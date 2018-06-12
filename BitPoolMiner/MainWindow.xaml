@@ -1,0 +1,226 @@
+﻿<Window x:Name="MainWindow1" 
+        x:Class="BitPoolMiner.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewmodels="clr-namespace:BitPoolMiner.ViewModels"
+        xmlns:views="clr-namespace:BitPoolMiner.Views"
+        xmlns:main="clr-namespace:BitPoolMiner"
+        mc:Ignorable="d"
+        Title="BITPOOL MINER" 
+        HorizontalAlignment="Left" 
+        VerticalAlignment="Top" 
+        Background="#FF080808" 
+        WindowStartupLocation="CenterScreen" 
+        WindowState="Maximized" 
+        Closing="MainWindow_Closing"
+        BorderBrush="Black"
+        MinWidth="1000" 
+        MinHeight="700" 
+        DataContext="{StaticResource MainWindowViewModel}"
+        Icon="Resources/Images/bitpool.png">
+
+    <!--Define Views-->
+    <Window.Resources>
+        <!-- Style - Left Menu - Buttons -->
+        <Style x:Key = "buttonStyleLeftMenu" TargetType = "Button">
+            <Setter Property = "Foreground" Value = "#9f9f9f" />
+            <Setter Property = "HorizontalContentAlignment" Value = "Left" />
+            <Setter Property = "FontSize" Value = "14" />
+            <Setter Property = "Width" Value = "270" />
+            <Setter Property = "Height" Value = "50" />
+            <Setter Property = "FontWeight" Value = "Bold" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="borderButtonStyleLeftMenu" BorderThickness="0,0,0,1" Padding="10" BorderBrush="#444444">
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#262626" TargetName="borderButtonStyleLeftMenu" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Style - Left Menu - Label Grey -->
+        <Style x:Key = "labelStyleLeftMenuGrey" TargetType = "Label">
+            <Setter Property = "Foreground" Value = "#9f9f9f" />
+            <Setter Property = "FontSize" Value = "14" />
+            <Setter Property = "Padding" Value = "4 4 20 4" />
+            <Setter Property = "FontWeight" Value = "Bold" />
+        </Style>
+
+        <!-- Style - Footer - Start Button -->
+        <Style x:Key = "buttonStyleFooterStart" TargetType = "Button">
+            <Setter Property= "Background" Value = "#2c97de" />
+            <Setter Property = "Foreground" Value = "#FFFFFF" />
+            <Setter Property = "HorizontalContentAlignment" Value = "Center" />
+            <Setter Property = "FontSize" Value = "25" />
+            <Setter Property = "FontWeight" Value = "Bold" />
+            <Setter Property = "Padding" Value = "5" />
+            <Setter Property = "Margin" Value = "5" />
+        </Style>
+
+        <!-- Style - Footer - Stop Button -->
+        <Style x:Key = "buttonStyleFooterStop" TargetType = "Button">
+            <Setter Property= "Background" Value = "#2c97de" />
+            <Setter Property = "Foreground" Value = "#FFFFFF" />
+            <Setter Property = "HorizontalContentAlignment" Value = "Center" />
+            <Setter Property = "FontSize" Value = "25" />
+            <Setter Property = "FontWeight" Value = "Bold" />
+            <Setter Property = "Padding" Value = "5" />
+            <Setter Property = "Margin" Value = "5" />
+        </Style>
+
+        <!-- Style - Footer - Label White -->
+        <Style x:Key = "labelStyleFooterWhite" TargetType = "Label">
+            <Setter Property = "Foreground" Value = "#FFFFFF" />
+            <Setter Property = "FontSize" Value = "20" />
+            <Setter Property = "FontWeight" Value = "Bold" />
+            <Setter Property = "Canvas.Top" Value = "7" />
+        </Style>
+
+        <!-- Style - Footer - Label Grey -->
+        <Style x:Key = "labelStyleFooterGrey" TargetType = "Label">
+            <Setter Property = "Foreground" Value = "#646464" />
+            <Setter Property = "FontSize" Value = "20" />
+            <Setter Property = "FontWeight" Value = "Bold" />
+            <Setter Property = "Canvas.Top" Value = "7" />
+        </Style>
+
+        <DataTemplate x:Name="accountViewTemplate" DataType="{x:Type viewmodels:AccountViewModel}">
+            <views:AccountView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="monitorViewTemplate" DataType="{x:Type viewmodels:MonitorViewModel}">
+            <views:MonitorView DataContext="{Binding}"/>
+        </DataTemplate>
+        <DataTemplate x:Name="walletViewTemplate" DataType="{x:Type viewmodels:WalletViewModel}">
+            <views:WalletView DataContext="{Binding}"/>
+        </DataTemplate>
+
+        <viewmodels:MainWindowViewModel x:Key="mainViewModelDataSource"/>
+
+    </Window.Resources>
+    <!--Define Form Grid-->
+    <Grid Background="#212121">
+        <!--Grid Columns-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="270"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!--Grid Rows-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="60"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!--Header-->
+        <Border x:Name="BorderHeader" BorderThickness="0 0 0 1" BorderBrush="#444444" Canvas.Top="0" Canvas.Left="0" Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="10" Background="#080808" >
+            <Canvas x:Name="HeaderCanvas" Canvas.Top="0" Canvas.Left="0" Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="10" Background="#080808">
+                <Image Source="Resources/Images/bitpool.png" Canvas.Top="12" Canvas.Left="5" Width="30" Height="30"/>
+                <Label Name="LabelMainTitle" Foreground="#FFFFFF" FontWeight="Bold" FontSize="30" Canvas.Top="0" Canvas.Left="40" Content="{Binding Source={StaticResource MainWindowViewModel}, Path=LabelMainTitle, UpdateSourceTrigger=PropertyChanged}"></Label>
+            </Canvas>
+        </Border>
+
+        <!--Left Menu Rigs-->
+        <Border x:Name="BorderRigs" BorderThickness="0 4 1 4" BorderBrush="#444444" Grid.Row="1" Grid.Column="0" Grid.RowSpan="7" Background="#080808" Width="270" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+            <ItemsControl 
+                x:Name="MenuStackPanelRigs" 
+                Grid.Row="1" 
+                Grid.Column="0" 
+                Grid.RowSpan="7" 
+                Width="270" 
+                Background="#080808" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Stretch"
+                ItemsSource="{Binding Source={StaticResource MainWindowViewModel}, Path=AccountWorkersList}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button x:Name="Rig1Button" Style="{StaticResource buttonStyleLeftMenu}">
+                            <StackPanel Orientation="Horizontal" >
+                                <Label Style="{StaticResource labelStyleLeftMenuGrey}" Content="{Binding WorkerName}" Width="140"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                                    <Border BorderThickness="1" BorderBrush="#444444" Padding="4 0 4 0" Margin="0 2 2 0">
+                                        <Label Foreground="#444444" Padding="4" FontSize="10" Content="{Binding LocalWorker}"/>
+                                    </Border>
+                                    <Border BorderThickness="1" BorderBrush="#444444" Padding="4 0 4 0" Margin="4 2 2 0">
+                                        <Label Foreground="#444444" Padding="4" FontSize="10" Content="{Binding Status}"/>
+                                    </Border>
+                                </StackPanel>
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+
+        <!--Left Menu Settings-->
+        <Border x:Name="BorderSettings" BorderThickness="0 5 1 4" BorderBrush="#444444" Grid.Row="6" Grid.Column="0" Grid.RowSpan="3" MinHeight="250" Width="270" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+            <StackPanel x:Name="MenuStackPanelSettings" Grid.Row="6" Grid.Column="0" Grid.RowSpan="3" Width="270" MinHeight="250" Background="#080808" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                <Button x:Name="GettingStartedButton" Style="{StaticResource buttonStyleLeftMenu}" MinHeight="55" Click="GettingStartedButton_Clicked" >
+                    Getting Started
+                </Button>
+                <Button x:Name="MiningDashboardButton" Style="{StaticResource buttonStyleLeftMenu}" Click="MiningDashboardButton_Clicked">
+                    Mining Dashboard
+                </Button>
+                <Button x:Name="WalletSettingsButton" Style="{StaticResource buttonStyleLeftMenu}" Click="WalletSettingsButton_Clicked">
+                    Wallet Settings
+                </Button>
+                <Button x:Name="AccountSettingsButton" Style="{StaticResource buttonStyleLeftMenu}" Click="AccountSettingsButton_Clicked">
+                    Account/Miner Settings
+                </Button>
+                <Button x:Name="AutoProfitSwitchingButton" Style="{StaticResource buttonStyleLeftMenu}" Click="AutoProfitSwitchingButton_Clicked">
+                    Auto Profit Switching
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <!--Body-->
+        <ContentControl Background="#262626" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="8" Grid.RowSpan="8" Content="{Binding}" />
+
+        <!--Footer-->
+        <Border x:Name="BorderFooter" BorderThickness="0 1 0 0" BorderBrush="#444444" Grid.Row="9" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="10"  >
+            <Canvas x:Name="FooterCanvas" Grid.Row="9" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="10" Background="#080808">
+                <Label x:Name="RigStatus" Style="{StaticResource labelStyleFooterWhite}" Canvas.Left="10">RIG01 STATUS</Label>
+                <Label x:Name="RigStatusDetails" Style="{StaticResource labelStyleFooterGrey}" Canvas.Left="160">ONLINE 12d 21h 43m</Label>
+                <Label x:Name="RigHashrate" Style="{StaticResource labelStyleFooterWhite}" Canvas.Left="390">RIG01 HASHRATE</Label>
+                <Label x:Name="RigHashrateDetails" Style="{StaticResource labelStyleFooterGrey}" Canvas.Left="570">45.09 MH/s</Label>
+                <Label x:Name="RigCoin" Style="{StaticResource labelStyleFooterWhite}" Canvas.Left="710">RIG01 MINING</Label>
+                <Label x:Name="RigCoinDetail" Style="{StaticResource labelStyleFooterGrey}" Canvas.Left="860">KMD</Label>
+                <Label x:Name="TotalHashrate" Style="{StaticResource labelStyleFooterWhite}" Canvas.Left="950">TOTAL HASHRATE</Label>
+                <Label x:Name="TotalHashrateDetail" Style="{StaticResource labelStyleFooterGrey}" Canvas.Left="1140">989.12 MH/s</Label>
+                <Button x:Name="ButtonStartMining" Style="{StaticResource buttonStyleFooterStart}" Canvas.Right="200" Canvas.Top="7" Command="{Binding CommandStartMining}" Click="ButtonStartMining_Click">
+                    START MINING
+                </Button>
+                <Button x:Name="ButtonStopMining" Style="{StaticResource buttonStyleFooterStop}" Canvas.Right="7"  Canvas.Top="7" Command="{Binding CommandStopMining}" Click="ButtonStopMining_Click">
+                    STOP MINING
+                </Button>
+            </Canvas>
+        </Border>
+    </Grid>
+    
+</Window>
+
+    

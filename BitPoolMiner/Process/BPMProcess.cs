@@ -1,0 +1,62 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using System.IO;
+
+namespace BitPoolMiner.Process
+{
+    /// <summary>
+    /// This class will be used to handle the individual miner processes. A new instance will be created
+    /// for each  miner, and can be used to return data on the process or kill it.
+    /// </summary>
+    public class BPMProcess
+    {
+        public System.Diagnostics.Process MinerProcess { get; private set; }
+
+        public bool Start(string workingDirectory, string arguments, string filename)
+        {
+            try
+            {
+                MinerProcess = new System.Diagnostics.Process();
+                MinerProcess.StartInfo.WorkingDirectory = workingDirectory;
+                MinerProcess.StartInfo.FileName = Path.Combine(workingDirectory,filename);
+                MinerProcess.StartInfo.CreateNoWindow = false;
+                MinerProcess.StartInfo.Arguments = arguments;
+                MinerProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+                MinerProcess.StartInfo.UseShellExecute = true;
+                MinerProcess.EnableRaisingEvents = true;
+            }
+            catch (Exception e)
+            {
+                throw new ApplicationException(string.Format("Error launching the miner process {0} with working directory {1}", filename, workingDirectory), e);
+            }
+            var started = MinerProcess.Start();
+
+            if (MinerProcess.HasExited)
+            {
+                throw new ApplicationException(string.Format("The miner process started but died instantly. Check the arguments: {0}", MinerProcess.StartInfo.Arguments));
+            }
+            
+            return started;
+        }
+
+        public void KillProcess()
+        {
+            if (!MinerProcess.HasExited)
+                MinerProcess.Kill();
+        }
+
+        ~BPMProcess()
+        {
+            // Since destroying this class, kill any miner process and dispose of it.
+            if (MinerProcess != null && !MinerProcess.HasExited)
+                KillProcess();
+
+            if (MinerProcess != null)
+                MinerProcess.Dispose();
+        }
+    }
+}

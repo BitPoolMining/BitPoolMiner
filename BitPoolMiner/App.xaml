@@ -1,0 +1,24 @@
+﻿<Application x:Name="BitPoolMiner" x:Class="BitPoolMiner.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:BitPoolMiner"
+             xmlns:viewmodels="clr-namespace:BitPoolMiner.ViewModels"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+               
+        <ResourceDictionary>
+
+            <!-- Main Window View Model-->
+            <viewmodels:MainWindowViewModel x:Key="MainWindowViewModel" />
+            <!-- Main Window View Model-->
+            
+            <!-- Notifications from NuGet - ToastNotifications -->
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/ToastNotifications.Messages;component/Themes/Default.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <!-- Notifications from NuGet - ToastNotifications -->
+            
+        </ResourceDictionary>
+        
+    </Application.Resources>
+</Application>

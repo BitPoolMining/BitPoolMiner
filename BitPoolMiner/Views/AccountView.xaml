@@ -1,0 +1,579 @@
+﻿<UserControl x:Class="BitPoolMiner.Views.AccountView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ct="clr-namespace:BitPoolMiner.Enums"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             HorizontalContentAlignment="Stretch"
+             VerticalContentAlignment="Stretch">
+
+    <!--Define Views-->
+    <UserControl.Resources>
+
+        <!-- Wire up enum data source for CoinType -->
+        <ObjectDataProvider x:Key="EnumDataProvider"                         MethodName="GetValues"                         ObjectType="{x:Type System:Enum}">            <ObjectDataProvider.MethodParameters>                <x:Type TypeName="ct:CoinType"/>            </ObjectDataProvider.MethodParameters>        </ObjectDataProvider>
+
+        <!-- Wire up enum data source for MinerBaseType -->
+        <ObjectDataProvider x:Key="EnumDataProviderMinerBaseType"                         MethodName="GetValues"                         ObjectType="{x:Type System:Enum}">            <ObjectDataProvider.MethodParameters>                <x:Type TypeName="ct:MinerBaseType"/>            </ObjectDataProvider.MethodParameters>        </ObjectDataProvider>
+
+        <!-- Wire up enum data source for Region -->
+        <ObjectDataProvider x:Key="EnumDataProviderRegion"                         MethodName="GetValues"                         ObjectType="{x:Type System:Enum}">            <ObjectDataProvider.MethodParameters>                <x:Type TypeName="ct:Region"/>            </ObjectDataProvider.MethodParameters>        </ObjectDataProvider>
+
+        <!-- Style - Label White Title -->
+        <Style x:Key = "labelStyleFooterWhiteTitle" TargetType = "Label">
+            <Setter Property = "Foreground" Value = "#FFFFFF" />
+            <Setter Property = "FontSize" Value = "20" />
+            <Setter Property = "Canvas.Top" Value = "7" />
+            <Setter Property = "VerticalContentAlignment" Value = "Center" />
+            <Setter Property = "Margin" Value = "10 10 10 10 " />
+        </Style>
+
+        <!-- Style - Label Grey -->
+        <Style x:Key = "labelStyleFooterGrey" TargetType = "Label">
+            <Setter Property = "Foreground" Value = "#646464" />
+            <Setter Property = "FontSize" Value = "14" />
+            <Setter Property = "Canvas.Top" Value = "7" />
+            <Setter Property = "VerticalContentAlignment" Value = "Center" />
+            <Setter Property = "Margin" Value = "15 0 0 0 " />
+        </Style>
+
+        <!-- Style - Label White -->
+        <Style x:Key = "labelStyleFooterWhite" TargetType = "Label">
+            <Setter Property = "Foreground" Value = "#FFFFFF" />
+            <Setter Property = "FontSize" Value = "14" />
+            <Setter Property = "Canvas.Top" Value = "7" />
+            <Setter Property = "VerticalContentAlignment" Value = "Center" />
+            <Setter Property = "Margin" Value = "15 0 0 0 " />
+        </Style>
+
+        <!-- Style - Textbox -->
+        <Style x:Key = "textBoxStyle" TargetType = "TextBox">
+            <Setter Property = "Background" Value = "#646464" />
+            <Setter Property = "Foreground" Value = "#FFFFFF" />
+            <Setter Property = "Height" Value = "30" />
+            <Setter Property = "FontSize" Value = "12" />
+            <Setter Property = "FontWeight" Value = "Bold" />
+            <Setter Property = "BorderBrush" Value = "#444444" />
+            <Setter Property = "Margin" Value = "5" />
+            <Setter Property = "Padding" Value = "5" />
+            <Setter Property = "VerticalContentAlignment" Value = "Center" />
+        </Style>
+
+        <!-- Style - Button -->
+        <Style x:Key = "buttonStyle" TargetType = "Button">
+            <Setter Property = "Foreground" Value = "#FFFFFF" />
+            <Setter Property = "Background" Value = "#2c97de" />
+            <Setter Property = "Height" Value = "30" />
+            <Setter Property = "HorizontalContentAlignment" Value = "Left" />
+            <Setter Property = "FontSize" Value = "12" />
+            <Setter Property = "Padding" Value = "5" />
+            <Setter Property = "Margin" Value = "5" />
+        </Style>
+
+        <!-- Style - Button Delete -->
+        <Style x:Key = "buttonDeleteStyle" TargetType = "Button">
+            <Setter Property = "Foreground" Value = "#FFFFFF" />
+            <Setter Property = "Background" Value = "#2c97de" />
+            <Setter Property = "Height" Value = "30" />
+            <Setter Property = "HorizontalContentAlignment" Value = "Left" />
+            <Setter Property = "FontSize" Value = "12" />
+            <Setter Property = "Padding" Value = "5" />
+            <Setter Property = "Margin" Value = "5 0 0 0" />
+        </Style>
+
+        <Style x:Key="DataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}"  >
+            <Setter Property="Background" Value="#2d2d2d" />
+            <Setter Property="Foreground" Value="#646464" />            <Setter Property = "FontSize" Value = "14" />
+            <Setter Property = "FontWeight" Value = "Bold" />
+            <Setter Property = "Padding" Value = "5" />
+            <Setter Property = "Margin" Value = "5" />
+            <Setter Property = "BorderBrush" Value = "#2d2d2d" />
+            <Setter Property = "HorizontalContentAlignment" Value = "Left" />
+        </Style>
+
+        <Style x:Key="DataGridCellStyle"  TargetType="{x:Type DataGridCell}" >
+            <Setter Property="Background" Value="#2d2d2d"/>
+            <Setter Property="Foreground" Value="#FFFFFF" />            <Setter Property = "FontSize" Value = "14" />
+            <Setter Property = "Padding" Value = "10 5 5 5" />
+            <Setter Property = "Margin" Value = "10 5 5 5" />
+            <Setter Property = "BorderBrush" Value = "#2d2d2d" />
+            <Setter Property = "HorizontalContentAlignment" Value = "Left" />
+        </Style>
+
+        <Style x:Key="DataGridRowStyle" TargetType="{x:Type DataGridRow}" >
+            <Setter Property="Background" Value="#262626"/>
+            <Setter Property="Foreground" Value="#FFFFFF" />            <Setter Property = "FontSize" Value = "14" />
+            <Setter Property = "Padding" Value = "10" />
+            <Setter Property = "Margin" Value = "10" />
+            <Setter Property = "BorderBrush" Value = "#262626" />
+            <Setter Property = "HorizontalContentAlignment" Value = "Left" />
+        </Style>
+
+    </UserControl.Resources>
+
+    <Grid>
+
+        <!--Grid Columns-->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <!--Grid Rows-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!-- Account ID Settings-->
+        <Border
+            BorderThickness="1"
+            BorderBrush="#2d2d2d"
+            Margin="20"
+            Padding="10"
+            Grid.Column="0"
+                Grid.ColumnSpan="5"
+                Grid.Row="0"
+                Grid.RowSpan="3"
+            Background="#2d2d2d">
+            <Grid x:Name="GridAccountID"
+                  ShowGridLines="False"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="5"
+                  Grid.Row="0"
+                  Grid.RowSpan="3"
+                  Background="#2d2d2d">
+
+                <!--Grid Columns-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <!--Grid Rows-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!-- Header Section -->
+                <Label 
+                    Foreground="#FFFFFF" 
+                    Grid.Row="0" 
+                    Grid.ColumnSpan="5" 
+                    Style="{StaticResource labelStyleFooterWhiteTitle}">Account ID Settings</Label>
+
+                <!-- Account ID Section -->
+                <Label 
+                    Grid.Row="2" 
+                    Grid.Column="0" 
+                    Style="{StaticResource labelStyleFooterGrey}">Account ID</Label>
+                <TextBox    
+                    x:Name="TextboxAccountID"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    HorizontalAlignment="right"
+                    Style="{StaticResource textBoxStyle}"
+                    Text="{Binding AccountGuid, Mode=TwoWay}"
+                    Width="300">
+                </TextBox>
+
+                <!-- Button to get a new account ID-->
+                <Button x:Name="ButtonGetNewAccountID" 
+                        Style="{StaticResource buttonStyle}" 
+                        Grid.Row="3" 
+                        Grid.Column="2" 
+                        Command="{Binding CommandGetNewAccountID}">
+                    Get New Account ID
+                </Button>
+
+                <!-- Button to set an existing account ID-->
+                <Button x:Name="ButtonSaveAccountID" 
+                        Style="{StaticResource buttonStyle}" 
+                        Grid.Row="3" 
+                        Grid.Column="3" 
+                        Command="{Binding CommandUpdateAccountID}"  
+                        CommandParameter="{Binding Text, ElementName=TextboxAccountID}">
+                    Set Account ID
+                </Button>
+            </Grid>
+        </Border>
+
+        <!-- Worker Hardware List-->
+        <Border
+                BorderThickness="1"
+                BorderBrush="#2d2d2d"
+                Margin="20"
+                Padding="10"
+                Grid.Column="0"
+                Grid.ColumnSpan="5"
+                Grid.Row="5"
+                Grid.RowSpan="4"
+                Background="#2d2d2d">
+            <Grid ShowGridLines="False"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="5"
+                  Grid.Row="5"
+                  Grid.RowSpan="4"
+                  Background="#2d2d2d">
+
+                <!--Grid Columns-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <!--Grid Rows-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!-- Worker Hardware Section -->
+                <Label 
+                    Foreground="#FFFFFF" 
+                    Grid.Row="0" 
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2" 
+                    Style="{StaticResource labelStyleFooterWhiteTitle}">
+                    Worker Hardware List
+                </Label>
+
+                <!-- Worker Hardware Grid -->
+                <DataGrid 
+                    AutoGenerateColumns="False" 
+                    Grid.Row="1" 
+                    Grid.ColumnSpan="4" 
+                    Grid.Column="0"
+                    ItemsSource="{Binding GPUSettingsList}" 
+                    ScrollViewer.CanContentScroll="False" 
+                    CanUserDeleteRows="False" 
+                    CanUserAddRows="False" 
+                    CanUserSortColumns="False" 
+                    CanUserResizeColumns="False" 
+                    CanUserReorderColumns="False" 
+                    BorderThickness="0"
+                    BorderBrush="#2d2d2d"
+                    Background="#2d2d2d"
+                    RowHeaderWidth="0"
+                    GridLinesVisibility="None"
+                    Margin="20 0 0 0 "
+                    ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Background" Value="#2d2d2d" />
+                            <Setter Property="Foreground" Value="#FFFFFF" />
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding GPUID}" Header="GPU ID" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding HardwareType}" Header="GPU Type" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding HardwareName}" Header="Name" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTemplateColumn Header="Enabled" CellStyle="{StaticResource DataGridCellStyle}">                            <DataGridTemplateColumn.CellTemplate>                                <DataTemplate>                                    <CheckBox                                 Background= "#646464"
+                                Foreground= "#FFFFFF"                                IsChecked="{Binding EnabledForMining, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >                                        <CheckBox.LayoutTransform>
+                                            <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                        </CheckBox.LayoutTransform>                                    </CheckBox>                                </DataTemplate>                            </DataGridTemplateColumn.CellTemplate>                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Coin" CellStyle="{StaticResource DataGridCellStyle}">                            <DataGridTemplateColumn.CellTemplate>                                <DataTemplate>                                    <ComboBox                                 FontSize= "14"
+                                FontWeight= "Bold"                                Foreground= "#000000"                                Height="25"
+                                SelectedItem="{Binding Path=CoinSelectedForMining, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                ItemsSource="{Binding Source={StaticResource EnumDataProvider}}">                                        <ComboBox.ItemContainerStyle>
+                                            <Style TargetType="ComboBoxItem">
+                                                <Setter Property="Background" Value="#646464"/>
+                                                <Setter Property="Foreground" Value="#000000"/>
+                                                <Setter Property="BorderBrush" Value="#646464"/>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsSelected" Value="True">
+                                                        <Setter Property="Background" Value="#646464" />
+                                                        <Setter Property="Foreground" Value="#000000"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </ComboBox.ItemContainerStyle>
+                                    </ComboBox>                                </DataTemplate>                            </DataGridTemplateColumn.CellTemplate>                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="Miner" CellStyle="{StaticResource DataGridCellStyle}">                            <DataGridTemplateColumn.CellTemplate>                                <DataTemplate>                                    <ComboBox                                             FontSize= "14"
+                                            FontWeight= "Bold"                                            Foreground= "#000000"                                            Height="25"
+                                            SelectedItem="{Binding Path=MinerBaseType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            ItemsSource="{Binding Source={StaticResource EnumDataProviderMinerBaseType}}">                                        <ComboBox.ItemContainerStyle>
+                                            <Style TargetType="ComboBoxItem">
+                                                <Setter Property="Background" Value="#646464"/>
+                                                <Setter Property="Foreground" Value="#000000"/>
+                                                <Setter Property="BorderBrush" Value="#646464"/>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsSelected" Value="True">
+                                                        <Setter Property="Background" Value="#646464" />
+                                                        <Setter Property="Foreground" Value="#000000"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </ComboBox.ItemContainerStyle>
+                                    </ComboBox>                                </DataTemplate>                            </DataGridTemplateColumn.CellTemplate>                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+
+                </DataGrid>
+
+
+                <!-- Button to scan for hardware-->
+                <Button 
+                    x:Name="ButtonScanHardware" 
+                    Style="{StaticResource buttonStyle}" 
+                    Grid.Row="2" 
+                    Grid.Column="2" 
+                    HorizontalAlignment="Right"
+                    Command="{Binding CommandScanHardware}">
+                    Scan Hardware
+                </Button>
+
+                <!-- Button to save hardware changes-->
+                <Button 
+                    x:Name="ButtonSaveAccountWorkerHardware" 
+                    Style="{StaticResource buttonStyle}" 
+                    Grid.Row="2" 
+                    Grid.Column="3" 
+                    HorizontalAlignment="Right"
+                    Command="{Binding CommandSaveAccountWorkerHardware}">
+                    Save Hardware Changes
+                </Button>
+
+            </Grid>
+        </Border>
+
+        <!-- Worker Name Section -->
+        <Border
+                BorderThickness="1"
+                BorderBrush="#2d2d2d"
+                Margin="20"
+                Padding="10"
+                Grid.Column="5"
+                Grid.ColumnSpan="3"
+                Grid.Row="0"
+                Grid.RowSpan="4"
+                Background="#2d2d2d">
+            <Grid ShowGridLines="False"
+                  Grid.Column="5"
+                  Grid.ColumnSpan="3"
+                  Grid.Row="0"
+                  Grid.RowSpan="4"
+                  Background="#2d2d2d">
+
+                <!--Grid Columns-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <!--Grid Rows-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Label 
+                    Foreground="#FFFFFF" 
+                    Grid.Row="0" 
+                    Grid.ColumnSpan="2" 
+                    Grid.Column="0"
+                    Style="{StaticResource labelStyleFooterWhiteTitle}">Worker Name Settings</Label>
+
+                <!-- Worker Name -->
+                <Label 
+                    Grid.Row="1" 
+                    Grid.Column="0" 
+                    Grid.ColumnSpan="1"  
+                    Style="{StaticResource labelStyleFooterGrey}">Worker Name</Label>
+                <TextBox x:Name="TextboxWorkerName"
+                     Grid.Row="1"
+                     Grid.Column="1"
+                     Style="{StaticResource textBoxStyle}"
+                     Text="{Binding Path=WorkerSettings.WorkerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     HorizontalAlignment="Left"
+                     Width="200">
+                </TextBox>
+
+                <!-- Auto start mining -->
+                <Label 
+                    Grid.Row="2" 
+                    Grid.Column="0" 
+                    Grid.ColumnSpan="1"    
+                    Style="{StaticResource labelStyleFooterGrey}">Auto Start Mining</Label>
+                <CheckBox   
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Background= "#646464"
+                    Foreground= "#FFFFFF"
+                    Margin="5 0 0 0"
+                    IsChecked="{Binding Path=WorkerSettings.AutoStartMining, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    HorizontalAlignment="Left"
+                    FontSize="20">
+                    <CheckBox.LayoutTransform>
+                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                    </CheckBox.LayoutTransform>
+                </CheckBox>
+
+                <!-- Region -->
+                <Label 
+                    Grid.Row="3" 
+                    Grid.Column="0" 
+                    Grid.ColumnSpan="1"    
+                    Style="{StaticResource labelStyleFooterGrey}">Region</Label>
+                <ComboBox                     Grid.Row="3" 
+                    Grid.Column="1" 
+                    Grid.ColumnSpan="1"                      FontSize= "14"
+                    FontWeight= "Bold"                    Foreground= "#000000"                    Height="25"
+                    SelectedItem="{Binding Path=WorkerSettings.Region, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    ItemsSource="{Binding Source={StaticResource EnumDataProviderRegion}}">                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="Background" Value="#646464"/>
+                            <Setter Property="Foreground" Value="#000000"/>
+                            <Setter Property="BorderBrush" Value="#646464"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="#646464" />
+                                    <Setter Property="Foreground" Value="#000000"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+
+                <!-- Button to save worker settings-->
+                <Button 
+                    x:Name="ButtonSaveWorkerSettings" 
+                    Style="{StaticResource buttonStyle}" 
+                    Grid.Row="4" 
+                     Grid.RowSpan="1"
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    Command="{Binding CommandSaveWorkerSettings}">
+                    Save Worker Settings
+                </Button>
+            </Grid>
+        </Border>
+
+        <!-- Connected Workers -->
+        <Border
+                BorderThickness="1"
+                BorderBrush="#2d2d2d"
+                Margin="20"
+                Padding="10"
+                Grid.Column="5"
+                Grid.ColumnSpan="3"
+                Grid.Row="5"
+                Grid.RowSpan="4"
+                Background="#2d2d2d">
+            <Grid ShowGridLines="False"
+                  Grid.Column="5"
+                  Grid.ColumnSpan="3"
+                  Grid.Row="5"
+                  Grid.RowSpan="4"
+                  Background="#2d2d2d">
+
+                <!--Grid Columns-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <!--Grid Rows-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <!-- Connected Workers -->
+                <Label 
+                    Foreground="#FFFFFF" 
+                    Grid.Row="0" 
+                    Grid.Column="0" 
+                    Grid.ColumnSpan="5" 
+                    Style="{StaticResource labelStyleFooterWhiteTitle}">Connected Workers</Label>
+
+                <!-- Account Worker List Grid -->
+                <DataGrid 
+                    AutoGenerateColumns="False" 
+                    Grid.Row="1" 
+                    Grid.RowSpan="100"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="3" 
+                    ItemsSource="{Binding AccountWorkersList, Mode=OneWay, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" 
+                    ScrollViewer.CanContentScroll="False" 
+                    CanUserDeleteRows="False" 
+                    CanUserAddRows="False" 
+                    CanUserSortColumns="False" 
+                    CanUserResizeColumns="False" 
+                    CanUserReorderColumns="False" 
+                    BorderThickness="0"
+                    BorderBrush="#2d2d2d"
+                    Background="#2d2d2d"
+                    RowHeaderWidth="0"
+                    GridLinesVisibility="None"
+                    Margin="20 0 0 0 "
+                    ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Background" Value="#2d2d2d" />
+                            <Setter Property="Foreground" Value="#FFFFFF" />
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding WorkerName, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Worker Name" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding Status, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Status" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding LocalWorker, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Local Worker" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding MinutesSinceLastMonitored, NotifyOnSourceUpdated=True, UpdateSourceTrigger=PropertyChanged}" Header="Last Seen (Mins)" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Remove worker"
+                                    Style="{StaticResource buttonDeleteStyle}"
+                                    Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.CommandRemoveWorker}"
+                                    CommandParameter="{Binding}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </Grid>
+        </Border>
+
+    </Grid>
+</UserControl>
