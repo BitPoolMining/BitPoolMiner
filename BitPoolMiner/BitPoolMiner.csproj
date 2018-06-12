@@ -125,7 +125,6 @@
     <Compile Include="Models\MinerMonitorStat.cs" />
     <Compile Include="Models\RPCResponse\EWBFTemplate.cs" />
     <Compile Include="Models\WorkerSettings.cs" />
-    <Compile Include="Notes.cs" />
     <Compile Include="Persistence\API\AccountWalletAPI.cs" />
     <Compile Include="Persistence\API\AccountWorkersAPI.cs" />
     <Compile Include="Persistence\API\GPUSettingsAPI.cs" />

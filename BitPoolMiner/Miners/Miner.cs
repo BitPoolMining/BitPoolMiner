@@ -8,6 +8,9 @@ using System;
 
 namespace BitPoolMiner.Miners
 {
+    /// <summary>
+    /// Base miner class. Each specific miner will inherit and implement the necessary methods.
+    /// </summary>
     public abstract class Miner
     {
         protected BPMProcess MinerProcess;
@@ -34,9 +37,19 @@ namespace BitPoolMiner.Miners
             MinerBaseType = minerBaseType;
         }
 
+        /// <summary>
+        /// Children must override for miner specific start operation
+        /// </summary>
         public abstract void Start();
+        /// <summary>
+        /// Children must override for miner specific stop operation 
+        /// </summary>
         public abstract void Stop();
 
+        /// <summary>
+        /// Starts the miner process
+        /// </summary>
+        /// <returns></returns>
         protected virtual BPMProcess StartProcess()
         {
             var process = new BPMProcess();
@@ -46,18 +59,33 @@ namespace BitPoolMiner.Miners
             return process;
         }
 
+        /// <summary>
+        /// Stops the miner process
+        /// </summary>
         protected virtual void StopProcess()
         {
             Stop();
         }
 
+        /// <summary>
+        /// Handles miner exited event.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MinerExited(object sender, EventArgs e)
         {
             // TODO: restart the miner if it crashed or exited.
         }
 
+        /// <summary>
+        /// Reports miner statistics back to the website via API. Implemented per miner, should be asynchronous.
+        /// </summary>
         public abstract void ReportStatsAsyc();
 
+        /// <summary>
+        /// Helper method to post miner stats back to the website
+        /// </summary>
+        /// <param name="stats"></param>
         protected void PostMinerMonitorStat(MinerMonitorStat stats)
         {
             // Send data to API
