@@ -49,7 +49,7 @@ namespace BitPoolMiner.Miners
         {
             try
             {
-                MinerProcess?.KillProcess();
+                StopProcess();
             }
             catch (Exception e)
             {

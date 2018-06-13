@@ -29,12 +29,15 @@ namespace BitPoolMiner.Miners
         public HardwareType Hardware { get; protected set; }
         public MinerBaseType MinerBaseType { get; protected set; }
 
+        public bool IsMining { get; protected set; }
+
         protected Miner(string minerName, HardwareType hardwareType, MinerBaseType minerBaseType, bool is64Bit = true)
         {
             MinerName = minerName;
             Is64Bit = is64Bit;
             Hardware = hardwareType;
             MinerBaseType = minerBaseType;
+            IsMining = false;
         }
 
         /// <summary>
@@ -54,6 +57,7 @@ namespace BitPoolMiner.Miners
         {
             var process = new BPMProcess();
 
+            IsMining = true;
             process.Start(MinerWorkingDirectory, MinerArguments, MinerFileName);
             process.MinerProcess.Exited += MinerExited;
             return process;
@@ -64,7 +68,8 @@ namespace BitPoolMiner.Miners
         /// </summary>
         protected virtual void StopProcess()
         {
-            Stop();
+            IsMining = false;
+            MinerProcess?.KillProcess();
         }
 
         /// <summary>
@@ -74,7 +79,10 @@ namespace BitPoolMiner.Miners
         /// <param name="e"></param>
         private void MinerExited(object sender, EventArgs e)
         {
-            // TODO: restart the miner if it crashed or exited.
+            // Restart the miner if it crashed or exited and we are still mining.
+            // TODO: Add a restart delay if immediate restart is an issue.
+            if (IsMining)
+                Start();
         }
 
         /// <summary>
