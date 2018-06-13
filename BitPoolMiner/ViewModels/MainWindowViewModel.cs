@@ -2,6 +2,7 @@
 using BitPoolMiner.Miners;
 using BitPoolMiner.Models;
 using BitPoolMiner.Persistence.API;
+using BitPoolMiner.Utils;
 using BitPoolMiner.ViewModels.Base;
 using System;
 using System.Collections;
@@ -29,6 +30,7 @@ namespace BitPoolMiner.ViewModels
 
             // Initialize objects
             InitMining();
+            InitMonitoringCheckTimer();
 
             // Init account worker list
             AccountWorkersList = new ObservableCollection<AccountWorkers>();
@@ -43,18 +45,21 @@ namespace BitPoolMiner.ViewModels
         private void InitMining()
         {
             // Init timer used for monitoring and mining stats
-            InitMonitoringTimer();
+            MinerStatusInsertTimer = new Timer();
+            MinerStatusInsertTimer.Elapsed += MinerStatusInsertTimer_Elapsed;
+            MinerStatusInsertTimer.Interval = 30000;  // 30 second default right now.  EWBF won't display any data until it submits the first share.
+            MinerStatusInsertTimer.Enabled = false;
         }
 
         /// <summary>
         /// Init timer used for monitoring and mining stats
         /// </summary>
-        private void InitMonitoringTimer()
+        private void InitMonitoringCheckTimer()
         {
             MinerStatusCheckTimer = new Timer();
             MinerStatusCheckTimer.Elapsed += MinerStatusCheckTimer_Elapsed;
             MinerStatusCheckTimer.Interval = 30000;  // 30 second default right now.  EWBF won't display any data until it submits the first share.
-            MinerStatusCheckTimer.Enabled = false;
+            MinerStatusCheckTimer.Enabled = true;
         }
 
         #endregion
@@ -71,6 +76,7 @@ namespace BitPoolMiner.ViewModels
 
         // Timer for Monitoring Miner
         private Timer MinerStatusCheckTimer;
+        private Timer MinerStatusInsertTimer;
         private MiningSession MiningSession = new MiningSession();
         private bool MiningStatsStarted = false;
 
@@ -122,6 +128,21 @@ namespace BitPoolMiner.ViewModels
             }
         }
 
+        // Miner monitor stats grouped by coin 
+        private ObservableCollection<MinerMonitorStat> minerMonitorStatListGrouped;
+        public ObservableCollection<MinerMonitorStat> MinerMonitorStatListGrouped
+        {
+            get
+            {
+                return minerMonitorStatListGrouped;
+            }
+            set
+            {
+                minerMonitorStatListGrouped = value;
+                OnPropertyChanged("MinerMonitorStatListGrouped");
+            }
+        }
+
         #endregion
 
         #region Mining
@@ -131,36 +152,66 @@ namespace BitPoolMiner.ViewModels
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void MinerStatusCheckTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        private async void MinerStatusInsertTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             // Call miner RPC and post results to API
             MiningSession.GetMinerStatsAsync();
         }
 
-        ///// <summary>
-        ///// Start individual mining sessions
-        ///// </summary>
-        //private async void StartMiner()
-        //{
-        //    if (MiningStatsStarted == false)
-        //    {
-        //        MiningStatsStarted = true;
-        //        while (MiningStatsStarted == true)
-        //        {
-        //            Miner miner = MinerFactory.CreateMiner(Enums.MinerBaseType.EWBF, Enums.HardwareType.Nvidia);
+        /// <summary>
+        /// Monitoring timer tick event
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void MinerStatusCheckTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            // Call miner RPC and post results to API
+            GetMinerMonitoringResults();
+        }
 
+        /// <summary>
+        /// Load list of miner monitor stats
+        /// </summary>
+        public void GetMinerMonitoringResults()
+        {
+            try
+            {
+                if (Application.Current.Properties["AccountID"] != null)
+                {
+                    // Load list of miner monitor stats
+                    List<MinerMonitorStat> minerMonitorStatList = new List<MinerMonitorStat>();
+                    MinerMonitorStatsAPI minerMonitorStatsAPI = new MinerMonitorStatsAPI();
+                    minerMonitorStatList = minerMonitorStatsAPI.GetMinerMonitorStats().ToList();
 
-        //            // Hard-coding the agruments list here.  This will be read by API, probably from within the EWBF class, but this is just temporary.
-        //            // Still deciding where to put the API calls.
-        //            //miner.Start("--server us-east.hush.bitpoolmining.com --user t1RVsrQUzTZjTsXxCS3fK8Ec9GrhGswkxEn.jprig1 --pass x --port 3032 --templimit 75 --tempunits C --api --fee 0");
+                    // Populate properties for UI binding
+                    // Group stats by coin to show details
+                    List<MinerMonitorStat> minerMonitorStatListGrouped = minerMonitorStatList
+                        .Where(x => x.CoinType != CoinType.UNDEFINED)
+                        .GroupBy(l => l.CoinType)
+                        .Select(cl => new MinerMonitorStat
+                        {
+                            CoinLogo = cl.First().CoinLogo,
+                            CoinType = cl.First().CoinType,
+                            CountStats = cl.Count(),
+                            HashRate = cl.Sum(c => c.HashRate)
+                        }).ToList();
 
-        //            EWBF ewbfMiner = (EWBF)miner;
+                    foreach (MinerMonitorStat minerMonitorStat in minerMonitorStatListGrouped)
+                    {
+                        minerMonitorStat.DisplayHashRate = HashrateFormatter.Format(minerMonitorStat.CoinType, minerMonitorStat.HashRate);
+                    }
 
-        //            ewbfMiner.ReportStatsAsyc();
-        //            System.Threading.Thread.Sleep(5000);
-        //        }
-        //    }
-        //}
+                    MinerMonitorStatListGrouped = new ObservableCollection<MinerMonitorStat>(minerMonitorStatListGrouped);
+
+                    // Notify UI of change
+                    OnPropertyChanged("MinerMonitorStatListGrouped");
+                }
+            }
+            catch (Exception e)
+            {
+                ShowError(string.Format("Error loading monitor data"));
+            }
+        }
 
         /// <summary>
         /// Handler to create multiple mining sessions if needed

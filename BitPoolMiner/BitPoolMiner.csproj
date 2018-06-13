@@ -138,6 +138,7 @@
     <Compile Include="Persistence\FileSystem\Base\FileConstants.cs" />
     <Compile Include="Process\BPMProcess.cs" />
     <Compile Include="Utils\Core.cs" />
+    <Compile Include="Utils\HashrateFormatter.cs" />
     <Compile Include="Utils\OpenHardwareMonitor\OpenHardwareMonitor.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />

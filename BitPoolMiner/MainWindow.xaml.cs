@@ -33,6 +33,9 @@ namespace BitPoolMiner
             InitializeComponent();
 
             DataContext = MonitorViewModel;
+
+            // Display MainView data
+            MainWindowViewModel.GetMinerMonitoringResults();
         }
 
         #endregion

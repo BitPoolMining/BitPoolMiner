@@ -11,7 +11,7 @@
         Title="BITPOOL MINER" 
         HorizontalAlignment="Left" 
         VerticalAlignment="Top" 
-        Background="#FF080808" 
+        Background="#FF1a1a1a" 
         WindowStartupLocation="CenterScreen" 
         WindowState="Maximized" 
         Closing="MainWindow_Closing"
@@ -64,7 +64,7 @@
             <Setter Property = "FontSize" Value = "25" />
             <Setter Property = "FontWeight" Value = "Bold" />
             <Setter Property = "Padding" Value = "5" />
-            <Setter Property = "Margin" Value = "5" />
+            <Setter Property = "Margin" Value = "40 5 5 5" />
         </Style>
 
         <!-- Style - Footer - Stop Button -->
@@ -81,17 +81,16 @@
         <!-- Style - Footer - Label White -->
         <Style x:Key = "labelStyleFooterWhite" TargetType = "Label">
             <Setter Property = "Foreground" Value = "#FFFFFF" />
-            <Setter Property = "FontSize" Value = "20" />
+            <Setter Property = "FontSize" Value = "12" />
+            <Setter Property = "Padding" Value = "5" />
             <Setter Property = "FontWeight" Value = "Bold" />
-            <Setter Property = "Canvas.Top" Value = "7" />
         </Style>
 
         <!-- Style - Footer - Label Grey -->
         <Style x:Key = "labelStyleFooterGrey" TargetType = "Label">
             <Setter Property = "Foreground" Value = "#646464" />
-            <Setter Property = "FontSize" Value = "20" />
-            <Setter Property = "FontWeight" Value = "Bold" />
-            <Setter Property = "Canvas.Top" Value = "7" />
+            <Setter Property = "FontSize" Value = "12" />
+            <Setter Property = "Padding" Value = "5" />
         </Style>
 
         <DataTemplate x:Name="accountViewTemplate" DataType="{x:Type viewmodels:AccountViewModel}">
@@ -103,6 +102,46 @@
         <DataTemplate x:Name="walletViewTemplate" DataType="{x:Type viewmodels:WalletViewModel}">
             <views:WalletView DataContext="{Binding}"/>
         </DataTemplate>
+
+        <Style x:Key="DataGridRowHeaderStyleGPU" TargetType="{x:Type DataGridRowHeader}"  >
+            <Setter Property="Visibility" Value="Hidden" />
+            <Setter Property="Background" Value="#212121" />
+            <Setter Property="Foreground" Value="#646464" />            <Setter Property = "FontSize" Value = "14" />
+            <Setter Property = "FontWeight" Value = "Bold" />
+            <Setter Property = "BorderBrush" Value = "#212121" />
+            <Setter Property = "Width" Value = "0" />
+            <Setter Property = "HorizontalContentAlignment" Value = "Left" />
+        </Style>
+
+        <Style x:Key="DataGridColumnHeaderStyleGPU" TargetType="{x:Type DataGridColumnHeader}"  >
+            <Setter Property="Background" Value="#212121" />
+            <Setter Property="Foreground" Value="#646464" />            <Setter Property = "FontSize" Value = "14" />
+            <Setter Property = "FontWeight" Value = "Bold" />
+            <Setter Property = "BorderBrush" Value = "#212121" />
+            <Setter Property = "Margin" Value = "5" />
+            <Setter Property = "HorizontalContentAlignment" Value = "Left" />
+        </Style>
+
+        <Style x:Key="DataGridCellStyleGPU"  TargetType="{x:Type DataGridCell}" >
+            <Setter Property="Background" Value="#212121"/>
+            <Setter Property="Foreground" Value="#FFFFFF" />            <Setter Property = "FontSize" Value = "12" />
+            <Setter Property = "BorderBrush" Value = "#222222" />
+            <Setter Property = "HorizontalContentAlignment" Value = "Left" />
+        </Style>
+
+        <Style x:Key="DataGridRowStyleGPU" TargetType="{x:Type DataGridRow}" >
+            <Setter Property="Background" Value="#212121"/>
+            <Setter Property="Foreground" Value="#FFFFFF" />            <Setter Property = "FontSize" Value = "12" />
+            <Setter Property = "BorderBrush" Value = "#212121" />
+            <Setter Property = "HorizontalContentAlignment" Value = "Left" />
+        </Style>
+
+        <Style x:Key="DataGridCellStyle"  TargetType="{x:Type DataGridCell}" >
+            <Setter Property="Background" Value="#212121"/>
+            <Setter Property="Foreground" Value="#FFFFFF" />            <Setter Property = "FontSize" Value = "12" />
+            <Setter Property = "BorderBrush" Value = "#212121" />
+            <Setter Property = "HorizontalContentAlignment" Value = "Left" />
+        </Style>
 
         <viewmodels:MainWindowViewModel x:Key="mainViewModelDataSource"/>
 
@@ -119,12 +158,12 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="270"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <!--Grid Rows-->
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -137,22 +176,34 @@
         </Grid.RowDefinitions>
 
         <!--Header-->
-        <Border x:Name="BorderHeader" BorderThickness="0 0 0 1" BorderBrush="#444444" Canvas.Top="0" Canvas.Left="0" Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="10" Background="#080808" >
-            <Canvas x:Name="HeaderCanvas" Canvas.Top="0" Canvas.Left="0" Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="10" Background="#080808">
+        <Border x:Name="BorderHeader" BorderThickness="0 0 0 1" BorderBrush="#444444" Canvas.Top="0" Canvas.Left="0" Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="10" Background="#1a1a1a" >
+            <Canvas Canvas.Top="0" Canvas.Left="0" Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="10"  Background="#1a1a1a">
                 <Image Source="Resources/Images/bitpool.png" Canvas.Top="12" Canvas.Left="5" Width="30" Height="30"/>
                 <Label Name="LabelMainTitle" Foreground="#FFFFFF" FontWeight="Bold" FontSize="30" Canvas.Top="0" Canvas.Left="40" Content="{Binding Source={StaticResource MainWindowViewModel}, Path=LabelMainTitle, UpdateSourceTrigger=PropertyChanged}"></Label>
+
+                <StackPanel Orientation="Horizontal" Canvas.Top="15" Canvas.Right="20">
+                    <TextBlock Margin="5">
+                        <Hyperlink Foreground="#444444" NavigateUri="https://bitpoolmining.com">POOL WEBSITE</Hyperlink>
+                    </TextBlock>
+                    <TextBlock Margin="5">
+                        <Hyperlink Foreground="#444444" NavigateUri="https://github.com/BitPoolMining/BitPoolMiner">GITHUB</Hyperlink>
+                    </TextBlock>
+                    <TextBlock Margin="5">
+                        <Hyperlink Foreground="#444444" NavigateUri="https://discordapp.com/invite/gxvyJuA">DISCORD</Hyperlink>
+                    </TextBlock>
+                </StackPanel>
             </Canvas>
         </Border>
 
         <!--Left Menu Rigs-->
-        <Border x:Name="BorderRigs" BorderThickness="0 4 1 4" BorderBrush="#444444" Grid.Row="1" Grid.Column="0" Grid.RowSpan="7" Background="#080808" Width="270" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+        <Border x:Name="BorderRigs" BorderThickness="0 4 1 4" BorderBrush="#444444" Grid.Row="1" Grid.Column="0" Grid.RowSpan="7" Background="#1a1a1a" Width="270" HorizontalAlignment="Left" VerticalAlignment="Stretch">
             <ItemsControl 
                 x:Name="MenuStackPanelRigs" 
                 Grid.Row="1" 
                 Grid.Column="0" 
                 Grid.RowSpan="7" 
                 Width="270" 
-                Background="#080808" 
+                Background="#1a1a1a" 
                 HorizontalAlignment="Left" 
                 VerticalAlignment="Stretch"
                 ItemsSource="{Binding Source={StaticResource MainWindowViewModel}, Path=AccountWorkersList}">
@@ -178,7 +229,7 @@
 
         <!--Left Menu Settings-->
         <Border x:Name="BorderSettings" BorderThickness="0 5 1 4" BorderBrush="#444444" Grid.Row="6" Grid.Column="0" Grid.RowSpan="3" MinHeight="250" Width="270" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-            <StackPanel x:Name="MenuStackPanelSettings" Grid.Row="6" Grid.Column="0" Grid.RowSpan="3" Width="270" MinHeight="250" Background="#080808" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+            <StackPanel x:Name="MenuStackPanelSettings" Grid.Row="6" Grid.Column="0" Grid.RowSpan="3" Width="270" MinHeight="250" Background="#1a1a1a" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                 <Button x:Name="GettingStartedButton" Style="{StaticResource buttonStyleLeftMenu}" MinHeight="55" Click="GettingStartedButton_Clicked" >
                     Getting Started
                 </Button>
@@ -197,30 +248,121 @@
             </StackPanel>
         </Border>
 
+        <!--Right Column -->
+        <Border x:Name="BorderRight" BorderThickness="1 4 0 4" BorderBrush="#444444" Grid.Row="1" Grid.Column="9" Grid.RowSpan="8" Background="#1a1a1a" Width="270" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+            <StackPanel>
+                <Label Style="{StaticResource labelStyleLeftMenuGrey}">Hashrate Per Coin</Label>
+                <DataGrid 
+                        AutoGenerateColumns="False" 
+                        ItemsSource="{Binding Source={StaticResource MainWindowViewModel}, Path=MinerMonitorStatListGrouped, UpdateSourceTrigger=PropertyChanged}" 
+                        ScrollViewer.CanContentScroll="False" 
+                        CanUserDeleteRows="False" 
+                        CanUserAddRows="False" 
+                        CanUserSortColumns="False" 
+                        CanUserResizeColumns="False" 
+                        CanUserReorderColumns="False" 
+                        BorderThickness="0"
+                        BorderBrush="#212121"
+                        Background="#212121"
+                        RowHeaderWidth="0"
+                        HeadersVisibility="Column"
+                        GridLinesVisibility="None"
+                        Margin="0"
+                        VerticalAlignment="Top"
+                        VerticalContentAlignment="Top" 
+                        ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyleGPU}"
+                        RowHeaderStyle="{StaticResource DataGridRowHeaderStyleGPU}"
+                        RowStyle="{StaticResource DataGridRowStyleGPU}"
+                        CellStyle="{StaticResource DataGridCellStyleGPU}">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn  CellStyle="{StaticResource DataGridCellStyle}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Margin="5 0 5 5" Height="20" Width="20" Source="{Binding CoinLogo}" VerticalAlignment="Top" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Binding="{Binding CoinType}" Header="" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding CountStats}" Header="# Rigs" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding DisplayHashRate}" Header="Total Hashrate" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Label Style="{StaticResource labelStyleLeftMenuGrey}">Revenue USD</Label>
+
+                <Label Style="{StaticResource labelStyleLeftMenuGrey}">Revenue BTC</Label>
+            </StackPanel>
+        </Border>
+
         <!--Body-->
         <ContentControl Background="#262626" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="8" Grid.RowSpan="8" Content="{Binding}" />
 
         <!--Footer-->
-        <Border x:Name="BorderFooter" BorderThickness="0 1 0 0" BorderBrush="#444444" Grid.Row="9" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="10"  >
-            <Canvas x:Name="FooterCanvas" Grid.Row="9" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="10" Background="#080808">
-                <Label x:Name="RigStatus" Style="{StaticResource labelStyleFooterWhite}" Canvas.Left="10">RIG01 STATUS</Label>
-                <Label x:Name="RigStatusDetails" Style="{StaticResource labelStyleFooterGrey}" Canvas.Left="160">ONLINE 12d 21h 43m</Label>
-                <Label x:Name="RigHashrate" Style="{StaticResource labelStyleFooterWhite}" Canvas.Left="390">RIG01 HASHRATE</Label>
-                <Label x:Name="RigHashrateDetails" Style="{StaticResource labelStyleFooterGrey}" Canvas.Left="570">45.09 MH/s</Label>
-                <Label x:Name="RigCoin" Style="{StaticResource labelStyleFooterWhite}" Canvas.Left="710">RIG01 MINING</Label>
-                <Label x:Name="RigCoinDetail" Style="{StaticResource labelStyleFooterGrey}" Canvas.Left="860">KMD</Label>
-                <Label x:Name="TotalHashrate" Style="{StaticResource labelStyleFooterWhite}" Canvas.Left="950">TOTAL HASHRATE</Label>
-                <Label x:Name="TotalHashrateDetail" Style="{StaticResource labelStyleFooterGrey}" Canvas.Left="1140">989.12 MH/s</Label>
-                <Button x:Name="ButtonStartMining" Style="{StaticResource buttonStyleFooterStart}" Canvas.Right="200" Canvas.Top="7" Command="{Binding CommandStartMining}" Click="ButtonStartMining_Click">
+        <Border x:Name="BorderFooter" BorderThickness="0 1 0 0" BorderBrush="#444444" Grid.Row="9" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="10" Background="#1a1a1a">
+            <StackPanel Orientation="Horizontal">
+
+                <StackPanel Orientation="Vertical" Margin="20 0 0 0">
+                    <Label Style="{StaticResource labelStyleFooterGrey}">Revenue Last 24h:</Label>
+                    <Label Style="{StaticResource labelStyleFooterGrey}">Revenue Last 24h:</Label>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <Label Style="{StaticResource labelStyleFooterWhite}">31.46 USD</Label>
+                    <Label Style="{StaticResource labelStyleFooterWhite}">0.006751235 BTC</Label>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="40 0 0 0">
+                    <Label Style="{StaticResource labelStyleFooterGrey}">Rough Forecast 24h:</Label>
+                    <Label Style="{StaticResource labelStyleFooterGrey}">Rough Forecast 24h:</Label>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <Label Style="{StaticResource labelStyleFooterWhite}">31.46 USD</Label>
+                    <Label Style="{StaticResource labelStyleFooterWhite}">0.006751235 BTC</Label>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="40 0 0 0">
+                    <Label Style="{StaticResource labelStyleFooterGrey}">Workers Online:</Label>
+                    <Label Style="{StaticResource labelStyleFooterGrey}">Workers Offline:</Label>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <Label Style="{StaticResource labelStyleFooterWhite}">4 Workers</Label>
+                    <Label Style="{StaticResource labelStyleFooterWhite}">1 Worker</Label>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="40 0 0 0">
+                    <Label Style="{StaticResource labelStyleFooterGrey}">NVidia GPU:</Label>
+                    <Label Style="{StaticResource labelStyleFooterGrey}">AMD GPU:</Label>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <Label Style="{StaticResource labelStyleFooterWhite}">23</Label>
+                    <Label Style="{StaticResource labelStyleFooterWhite}">1</Label>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <Label Style="{StaticResource labelStyleFooterWhite}">4</Label>
+                    <Label Style="{StaticResource labelStyleFooterWhite}">0</Label>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical" Margin="40 0 0 0">
+                    <Label Style="{StaticResource labelStyleFooterGrey}">Warnings:</Label>
+                    <Label Style="{StaticResource labelStyleFooterGrey}">Total Power:</Label>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <Label Style="{StaticResource labelStyleFooterWhite}">1 Warnings</Label>
+                    <Label Style="{StaticResource labelStyleFooterWhite}">1120W</Label>
+                </StackPanel>
+
+                <!-- Mining Buttons -->
+                <Button x:Name="ButtonStartMining" Style="{StaticResource buttonStyleFooterStart}" Command="{Binding CommandStartMining}" Click="ButtonStartMining_Click">
                     START MINING
                 </Button>
-                <Button x:Name="ButtonStopMining" Style="{StaticResource buttonStyleFooterStop}" Canvas.Right="7"  Canvas.Top="7" Command="{Binding CommandStopMining}" Click="ButtonStopMining_Click">
+                <Button x:Name="ButtonStopMining" Style="{StaticResource buttonStyleFooterStop}" Command="{Binding CommandStopMining}" Click="ButtonStopMining_Click">
                     STOP MINING
                 </Button>
-            </Canvas>
+                <!-- Mining Buttons -->
+
+            </StackPanel>
         </Border>
     </Grid>
-    
+
 </Window>
 
     
