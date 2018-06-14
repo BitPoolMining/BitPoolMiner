@@ -16,6 +16,9 @@ using BitPoolMiner.Enums;
 
 namespace BitPoolMiner.Miners
 {
+    /// <summary>
+    /// This class is for ccminer override.
+    /// </summary>
     public class Ccminer : Miner
     {
         public Ccminer(HardwareType hardwareType, MinerBaseType minerBaseType, bool is64Bit) : base("Ccminer", hardwareType, minerBaseType, is64Bit)
@@ -46,7 +49,7 @@ namespace BitPoolMiner.Miners
         {
             try
             {
-                MinerProcess?.KillProcess();
+                StopProcess();
             }
             catch (Exception e)
             {

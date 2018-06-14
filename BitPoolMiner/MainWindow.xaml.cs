@@ -1,18 +1,20 @@
 ﻿using BitPoolMiner.ViewModels;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace BitPoolMiner
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window
     {
         // ViewModels      
         private WalletViewModel WalletViewModel;
         private AccountViewModel AccountViewModel;
         private MainWindowViewModel MainWindowViewModel;
         private MonitorViewModel MonitorViewModel;
+        private WorkerViewModel WorkerViewModel;
 
         #region Init
 
@@ -30,9 +32,15 @@ namespace BitPoolMiner
             if (MonitorViewModel == null)
                 MonitorViewModel = new MonitorViewModel(MainWindowViewModel);
 
+            if (WorkerViewModel == null)
+                WorkerViewModel = new WorkerViewModel();
+
             InitializeComponent();
 
             DataContext = MonitorViewModel;
+
+            // Display MainView data
+            MainWindowViewModel.GetMinerMonitoringResults();
         }
 
         #endregion
@@ -52,6 +60,13 @@ namespace BitPoolMiner
         private void WalletSettingsButton_Clicked(object sender, RoutedEventArgs e)
         {
             DataContext = WalletViewModel;
+        }
+
+        private void WorkerButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            WorkerViewModel.WorkerName = button.CommandParameter.ToString();
+            DataContext = WorkerViewModel;
         }
 
         private void AccountSettingsButton_Clicked(object sender, RoutedEventArgs e)
