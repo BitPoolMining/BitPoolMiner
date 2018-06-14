@@ -65,6 +65,8 @@ namespace BitPoolMiner.ViewModels
         {
             // Call miner RPC and post results to API
             GetMinerMonitoringResults();
+            GetAccountWorkerList();
+            OnPropertyChanged("AccountWorkersList");
         }
 
         /// <summary>

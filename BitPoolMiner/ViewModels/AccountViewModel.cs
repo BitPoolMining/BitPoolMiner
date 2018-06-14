@@ -356,8 +356,6 @@ namespace BitPoolMiner.ViewModels
                         // Add new worker to local list
                         AccountWorkersList.Add(accountWorker);
 
-                        // Add worker to main window list
-                        _mainWindowViewModel.AddAccountWorker(accountWorker.AccountGuid, accountWorker.WorkerName);
                     }
 
                     // Set Label on Main Window
@@ -388,10 +386,7 @@ namespace BitPoolMiner.ViewModels
 
                     // Remove worker from local list of workers
                     AccountWorkersList.Remove(accountWorkersRemove);
-
-                    //  Remove worker from main window list
-                    _mainWindowViewModel.RemoveAccountWorker(accountWorkersRemove);
-
+                    
                     // Notify UI of change
                     OnPropertyChanged("AccountWorkersList");
 

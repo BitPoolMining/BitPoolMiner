@@ -79,7 +79,7 @@ namespace BitPoolMiner.ViewModels
         {
             get
             {
-                InitAccountWorkerList();
+                GetAccountWorkerList();
                 return accountWorkersList;
             }
             set
@@ -88,38 +88,20 @@ namespace BitPoolMiner.ViewModels
                 OnPropertyChanged();
             }
         }
-        
+
         #endregion
 
         #region Main Window Menu Worker List Methods
 
-        private void InitAccountWorkerList()
+        private void GetAccountWorkerList()
         {
             // If there is an account id set, and there are no records in the list then load from API
-            if (Application.Current.Properties["AccountID"] != null && accountWorkersList.Count == 0)
+            if (Application.Current.Properties["AccountID"] != null)
             {
                 // Load list of account workers
                 AccountWorkersAPI accountWorkersAPI = new AccountWorkersAPI();
                 accountWorkersList = accountWorkersAPI.GetAccountWorkers();
             }
-        }
-
-        public void AddAccountWorker(Guid AccountGuid, string WorkerName)
-        {
-
-            AccountWorkers accountWorkers = new AccountWorkers();
-            accountWorkers.AccountGuid = AccountGuid;
-            accountWorkers.WorkerName = WorkerName;
-            AccountWorkersList.Add(accountWorkers);
-            // Notify UI of change
-            OnPropertyChanged("AccountWorkersList");
-        }
-
-        public void RemoveAccountWorker(AccountWorkers accountWorkers)
-        {
-            AccountWorkersList.Remove(accountWorkers);
-            // Notify UI of change
-            OnPropertyChanged("AccountWorkersList");
         }
 
         #endregion
