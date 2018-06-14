@@ -21,18 +21,23 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
+    <InstallFrom>Unc</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
     <UpdateMode>Foreground</UpdateMode>
     <UpdateInterval>7</UpdateInterval>
     <UpdateIntervalUnits>Days</UpdateIntervalUnits>
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
+    <InstallUrl>\\localhost\bitpoolminer\publish\</InstallUrl>
+    <ProductName>BitPoolMiner</ProductName>
+    <PublisherName>BitPoolMining</PublisherName>
+    <SuiteName>BitPoolMining</SuiteName>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -58,10 +63,19 @@
     <StartupObject>BitPoolMiner.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>false</SignManifests>
+    <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>bitpool.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>35EAEE8706ECE2D8979A9B93B660314A68DAFF53</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>BitPoolMiner_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -203,16 +217,37 @@
     </EmbeddedResource>
     <None Include="bin\Debug\miners\EWBF\miner.cfg" />
     <None Include="bin\Debug\miners\EWBF\start.bat" />
+    <None Include="BitPoolMiner_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_0\bin\Debug\miners\ccminer-x64-2.2.4-cuda9\ccminer-x64.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_0\bin\Debug\miners\ccminer-x64-2.2.4-cuda9\msvcr120.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_0\bin\Debug\miners\ccminer-x86-2.2.4-cuda9\ccminer.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_0\bin\Debug\miners\ccminer-x86-2.2.4-cuda9\msvcr120.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_0\bin\Debug\miners\EWBF\cudart32_80.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_0\bin\Debug\miners\EWBF\cudart64_80.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_0\bin\Debug\miners\EWBF\miner.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_0\bitpool.ico.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_0\BitPoolMiner.application" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_0\BitPoolMiner.exe.config.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_0\BitPoolMiner.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_0\BitPoolMiner.exe.manifest" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_0\Microsoft.Expression.Interactions.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_0\Newtonsoft.Json.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_0\OpenHardwareMonitorLib.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_0\System.Windows.Interactivity.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_0\ToastNotifications.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_0\ToastNotifications.Messages.dll.deploy" />
+    <None Include="publish\BitPoolMiner.application" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="publish\setup.exe" />
     <Resource Include="bitpool.ico" />
     <Resource Include="bin\Debug\Images\bitpool.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

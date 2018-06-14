@@ -52,6 +52,36 @@ namespace BitPoolMiner.ViewModels
             }
         }
 
+        // Workers online
+        private string workersOnline;
+        public string WorkersOnline
+        {
+            get
+            {
+                return workersOnline;
+            }
+            set
+            {
+                workersOnline = value;
+                OnPropertyChanged("WorkersOnline");
+            }
+        }
+
+        // Workers offline
+        private string workersOffline;
+        public string WorkersOffline
+        {
+            get
+            {
+                return workersOffline;
+            }
+            set
+            {
+                workersOffline = value;
+                OnPropertyChanged("WorkersOffline");
+            }
+        }
+
         #endregion
 
         #region Monitoring
