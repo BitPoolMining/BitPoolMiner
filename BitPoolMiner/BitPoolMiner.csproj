@@ -141,11 +141,14 @@
     <Compile Include="Utils\HashrateFormatter.cs" />
     <Compile Include="Utils\OpenHardwareMonitor\OpenHardwareMonitor.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
-    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel\MainWindowViewModel.Mining.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel\MainWindowViewModel.Monitoring.cs" />
     <Compile Include="ViewModels\MonitorViewModel.cs" />
     <Compile Include="ViewModels\Base\RelayCommand.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
     <Compile Include="ViewModels\WalletViewModel.cs" />
+    <Compile Include="ViewModels\WorkerViewModel.cs" />
     <Compile Include="Views\AccountView.xaml.cs">
       <DependentUpon>AccountView.xaml</DependentUpon>
     </Compile>

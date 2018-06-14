@@ -209,7 +209,7 @@
                 ItemsSource="{Binding Source={StaticResource MainWindowViewModel}, Path=AccountWorkersList}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Button x:Name="Rig1Button" Style="{StaticResource buttonStyleLeftMenu}">
+                        <Button x:Name="WorkerButton" Style="{StaticResource buttonStyleLeftMenu}" Click="WorkerButton_Clicked" CommandParameter="{Binding WorkerName}">
                             <StackPanel Orientation="Horizontal" >
                                 <Label Style="{StaticResource labelStyleLeftMenuGrey}" Content="{Binding WorkerName}" Width="140"/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
