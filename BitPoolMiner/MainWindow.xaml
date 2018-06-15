@@ -12,12 +12,10 @@
         HorizontalAlignment="Left" 
         VerticalAlignment="Top" 
         Background="#FF1a1a1a" 
-        WindowStartupLocation="CenterScreen" 
-        WindowState="Maximized" 
+        ResizeMode="CanMinimize"
         Closing="MainWindow_Closing"
         BorderBrush="Black"
-        MinWidth="1000" 
-        MinHeight="700" 
+        WindowStartupLocation="CenterScreen"
         DataContext="{StaticResource MainWindowViewModel}"
         Icon="Resources/Images/bitpool.png">
 
