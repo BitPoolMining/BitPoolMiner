@@ -1,4 +1,5 @@
 ﻿using BitPoolMiner.ViewModels;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -41,6 +42,9 @@ namespace BitPoolMiner
 
             // Display MainView data
             MainWindowViewModel.GetMinerMonitoringResults();
+
+            //Force window size to prevent crashing
+            ResizeWindow();
         }
 
         #endregion
@@ -125,6 +129,39 @@ namespace BitPoolMiner
         public void InitTimer()
         {
 
+        }
+
+        #endregion
+
+        #region Window Resizing
+
+        private bool _inStateChange;
+
+        /// <summary>
+        /// Force window size to prevent crashing
+        /// </summary>
+        private void ResizeWindow()
+        {
+            if (!_inStateChange)
+            {
+                _inStateChange = true;
+                WindowState = WindowState.Normal;
+                ResizeMode = ResizeMode.CanMinimize;
+                Height = SystemParameters.PrimaryScreenHeight - 100;
+                Width = SystemParameters.PrimaryScreenWidth - 100;
+                WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                _inStateChange = false;
+            }
+        }
+
+        /// <summary>
+        /// Force the app to be full sized
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnStateChanged(EventArgs e)
+        {
+            ResizeWindow();
+            base.OnStateChanged(e);
         }
 
         #endregion
