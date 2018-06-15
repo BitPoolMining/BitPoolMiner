@@ -145,14 +145,13 @@ namespace BitPoolMiner
         /// </summary>
         private void ResizeWindow()
         {
-            if (!_inStateChange)
+            if (WindowState != WindowState.Minimized && !_inStateChange)
             {
                 _inStateChange = true;
                 WindowState = WindowState.Normal;
                 ResizeMode = ResizeMode.CanMinimize;
                 Height = SystemParameters.PrimaryScreenHeight - 100;
                 Width = SystemParameters.PrimaryScreenWidth - 100;
-                WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 _inStateChange = false;
             }
         }
