@@ -38,8 +38,8 @@ namespace BitPoolMiner.Persistence.API
             foreach (AccountWallet accountWallet in accountWalletList)
             {
                 CoinLogos.CoinLogoDictionary.TryGetValue(accountWallet.CoinType, out string logoSourceLocation);
-                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images");
-                accountWallet.CoinLogo = Path.Combine(path, logoSourceLocation); 
+                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, logoSourceLocation);
+                accountWallet.CoinLogo = path; 
             }
 
             return accountWalletList;

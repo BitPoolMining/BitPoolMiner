@@ -19,11 +19,11 @@ namespace BitPoolMiner.Enums
     {
         public static readonly Dictionary<CoinType, string> CoinLogoDictionary = new Dictionary<CoinType, string>
         {
-            { CoinType.HUSH, @"Images\\hush.png" },
-            { CoinType.KMD, @"Images\\kmd.png" },
-            { CoinType.VTC, @"Images\\vtc.png" },
-            { CoinType.MONA, @"Images\\mona.png" },
-            { CoinType.EXP, @"Images\\exp.png" },
+            { CoinType.HUSH, @"Resources\\Images\\hush.png" },
+            { CoinType.KMD, @"Resources\\Images\\kmd.png" },
+            { CoinType.VTC, @"Resources\\Images\\vtc.png" },
+            { CoinType.MONA, @"Resources\\Images\\mona.png" },
+            { CoinType.EXP, @"Resources\\Images\\exp.png" },
         };
     }
 }

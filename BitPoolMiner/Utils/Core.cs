@@ -21,7 +21,7 @@ namespace BitPoolMiner.Utils
 
         public static string GetBaseMinersDir()
         {
-            return Path.Combine(GetBaseBPMBaseDir(), "miners");
+            return Path.Combine(GetBaseBPMBaseDir(), "MinerApps");
         }
     }
 }

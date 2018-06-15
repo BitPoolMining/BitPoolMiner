@@ -13,6 +13,8 @@ namespace BitPoolMiner.Miners
     /// </summary>
     public abstract class Miner
     {
+        private const int MinerRestartDelay = 2000; // 2 second delay
+
         protected BPMProcess MinerProcess;
 
         public string MinerName { get; private set; }
@@ -80,9 +82,11 @@ namespace BitPoolMiner.Miners
         private void MinerExited(object sender, EventArgs e)
         {
             // Restart the miner if it crashed or exited and we are still mining.
-            // TODO: Add a restart delay if immediate restart is an issue.
             if (IsMining)
+            {
+                System.Threading.Thread.Sleep(MinerRestartDelay); // a few seconds before restart
                 Start();
+            }
         }
 
         /// <summary>

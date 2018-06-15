@@ -140,7 +140,7 @@ namespace BitPoolMiner.ViewModels
             }
             catch (Exception e)
             {
-                ShowError(string.Format("Error loading monitor data"));
+                ShowError(string.Format("Error loading monitor data: {0}", e.Message));
             }
         }
 

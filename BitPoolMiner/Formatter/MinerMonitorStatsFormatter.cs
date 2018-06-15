@@ -26,7 +26,7 @@ namespace BitPoolMiner.Formatter
             }
             catch (Exception ex)
             {
-                throw new ApplicationException("Error loading monitor stats");
+                throw new ApplicationException("Error loading monitor stats", ex);
             }
         }
 
