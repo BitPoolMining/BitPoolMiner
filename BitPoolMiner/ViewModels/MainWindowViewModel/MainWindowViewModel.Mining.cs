@@ -30,7 +30,7 @@ namespace BitPoolMiner.ViewModels
             // Init timer used for monitoring and mining stats
             MinerStatusInsertTimer = new Timer();
             MinerStatusInsertTimer.Elapsed += MinerStatusInsertTimer_Elapsed;
-            MinerStatusInsertTimer.Interval = 30000;  // 30 second default right now.  EWBF won't display any data until it submits the first share.
+            MinerStatusInsertTimer.Interval = 120000;  // 2 min default right now.  EWBF won't display any data until it submits the first share.
             MinerStatusInsertTimer.Enabled = false;
         }
 
