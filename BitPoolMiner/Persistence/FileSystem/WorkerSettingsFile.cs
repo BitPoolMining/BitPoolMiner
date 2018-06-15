@@ -17,7 +17,7 @@ namespace BitPoolMiner.Persistence.FileSystem
         /// <param name="workerSettings"></param>
         public void WriteJsonToFile(WorkerSettings workerSettings)
         {
-            string filePath = Path.Combine(FileConstants.ConfigFilePath, FileNameConstants.WorkerSettingsFileName);
+            string filePath = Path.Combine(FileConstants.ConfigFilePath(), FileNameConstants.WorkerSettingsFileName);
 
             try
             {
@@ -40,7 +40,7 @@ namespace BitPoolMiner.Persistence.FileSystem
         /// <returns></returns>
         public WorkerSettings ReadJsonFromFile()
         {
-            string filePath = Path.Combine(FileConstants.ConfigFilePath, FileNameConstants.WorkerSettingsFileName);
+            string filePath = Path.Combine(FileConstants.ConfigFilePath(), FileNameConstants.WorkerSettingsFileName);
             WorkerSettings workerSettings = new WorkerSettings();
 
             try
@@ -56,8 +56,8 @@ namespace BitPoolMiner.Persistence.FileSystem
                 }
                 else
                 {
-                    if (!Directory.Exists(FileConstants.ConfigFilePath))
-                        Directory.CreateDirectory(FileConstants.ConfigFilePath);
+                    //if (!Directory.Exists(FileConstants.ConfigFilePath))
+                    //    Directory.CreateDirectory(FileConstants.ConfigFilePath);
 
                     InitEmptyWorkerSettings(workerSettings);
                 }

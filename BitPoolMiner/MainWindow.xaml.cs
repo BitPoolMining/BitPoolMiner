@@ -1,4 +1,5 @@
-﻿using BitPoolMiner.ViewModels;
+﻿using BitPoolMiner.Utils;
+using BitPoolMiner.ViewModels;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -100,6 +101,7 @@ namespace BitPoolMiner
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             MainWindowViewModel.CommandStopMining.Execute(null);
+            NLogProcessing.StopLoggingMainWindowClose();
             Application.Current.Shutdown();
         }
 

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using BitPoolMiner.Utils;
+using System.IO;
 
 namespace BitPoolMiner.Persistence.FileSystem.Base
 {
@@ -8,10 +9,25 @@ namespace BitPoolMiner.Persistence.FileSystem.Base
     public static class FileConstants
     {
         // Use miners folder until we figure out a more appropriate location
-        public const string ConfigFolderName = "BPMConfig";
-        public const string MinersFolderName = "miners";
+        public const string BPMFolderName = "BPM";
+        public const string ConfigFolderName = "Config";
+        public const string MinersFolderName = "MinerApps";
+        public const string LogFolderName = "LogFiles";
+        public const string LogFileName = "BPMLog.txt";
 
-        public static string ConfigFilePath = Path.Combine(Utils.Core.GetUserConfigBaseDirectory(), ConfigFolderName);
+        public static string ConfigFilePath()
+        {
+            var dir = Path.Combine(Core.GetUserConfigBaseDirectory(), ConfigFolderName);
+            Core.ValidateDirectory(dir);
+            return dir;
+        }
+
+        public static string LogFilePath()
+        {
+            var dir = Path.Combine(Utils.Core.GetLogFileBaseDirectory(), LogFolderName);
+            Core.ValidateDirectory(dir);
+            return dir;
+        }
     }
 
     /// <summary>
