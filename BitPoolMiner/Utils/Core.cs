@@ -23,5 +23,10 @@ namespace BitPoolMiner.Utils
         {
             return Path.Combine(GetBaseBPMBaseDir(), "MinerApps");
         }
+
+        public static string GetUserConfigBaseDirectory()
+        {
+            return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        }
     }
 }

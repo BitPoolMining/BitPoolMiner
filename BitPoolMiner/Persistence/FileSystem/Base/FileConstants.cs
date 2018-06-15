@@ -8,10 +8,10 @@ namespace BitPoolMiner.Persistence.FileSystem.Base
     public static class FileConstants
     {
         // Use miners folder until we figure out a more appropriate location
-        public const string ConfigFolderName = "Config";
+        public const string ConfigFolderName = "BPMConfig";
         public const string MinersFolderName = "miners";
 
-        public static string ConfigFilePath = Path.Combine(Utils.Core.GetBaseBPMBaseDir(), ConfigFolderName);
+        public static string ConfigFilePath = Path.Combine(Utils.Core.GetUserConfigBaseDirectory(), ConfigFolderName);
     }
 
     /// <summary>
