@@ -233,7 +233,7 @@ namespace BitPoolMiner.ViewModels
             }
             catch (Exception e)
             {
-                throw new ApplicationException(string.Format("Error getting worker settings"));
+                throw new ApplicationException(string.Format("Error getting worker settings", e));
             }
         }
 
@@ -427,7 +427,7 @@ namespace BitPoolMiner.ViewModels
             }
             catch (Exception e)
             {
-                throw new ApplicationException(string.Format("Error saving worker settings"));
+                throw new ApplicationException(string.Format("Error saving worker settings"), e);
             }
         }
 
@@ -448,7 +448,7 @@ namespace BitPoolMiner.ViewModels
             }
             catch (Exception e)
             {
-                throw new ApplicationException(string.Format("Error saving worker hardware settings"));
+                throw new ApplicationException(string.Format("Error saving worker hardware settings"), e);
             }
         }
 
@@ -493,7 +493,7 @@ namespace BitPoolMiner.ViewModels
             }
             catch (Exception e)
             {
-                throw new ApplicationException(string.Format("Error saving worker hardware settings"));
+                throw new ApplicationException(string.Format("Error saving worker hardware settings"), e);
             }
         }
 

@@ -13,7 +13,7 @@ namespace BitPoolMiner.Miners
     /// </summary>
     public abstract class Miner
     {
-        private const int MinerRestartDelay = 3000;
+        private const int MinerRestartDelay = 2000; // 2 second delay
 
         protected BPMProcess MinerProcess;
 
