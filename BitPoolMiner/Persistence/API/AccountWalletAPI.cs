@@ -19,6 +19,8 @@ namespace BitPoolMiner.Persistence.API
     /// </summary>
     class AccountWalletAPI : APIBase
     {
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// Call API and GET list of account wallet addresses
         /// </summary>
@@ -26,23 +28,32 @@ namespace BitPoolMiner.Persistence.API
         public List<AccountWallet> GetAccountWalletList()
         {
             NameValueCollection nameValueCollection = new NameValueCollection();
-            nameValueCollection.Add("AccountGuid", Application.Current.Properties["AccountID"].ToString());
-
-            string apiURL = APIConstants.APIURL + APIEndpoints.GetAccountWallet;
-            List<AccountWallet> accountWalletList = DownloadSerializedJSONData<List<AccountWallet>>(apiURL, nameValueCollection);
-
-            // Update all AccountGuid properties in case they are returned null when there is no pre-existing wallet addresses saved for this account
-            accountWalletList = accountWalletList.Select(c => { c.AccountGuid = (Guid)Application.Current.Properties["AccountID"]; return c; }).ToList();
-
-            // Update coin logo
-            foreach (AccountWallet accountWallet in accountWalletList)
+            string apiURL = "";
+            try
             {
-                CoinLogos.CoinLogoDictionary.TryGetValue(accountWallet.CoinType, out string logoSourceLocation);
-                string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, logoSourceLocation);
-                accountWallet.CoinLogo = path; 
-            }
+                nameValueCollection.Add("AccountGuid", Application.Current.Properties["AccountID"].ToString());
 
-            return accountWalletList;
+                apiURL = APIConstants.APIURL + APIEndpoints.GetAccountWallet;
+                List<AccountWallet> accountWalletList = DownloadSerializedJSONData<List<AccountWallet>>(apiURL, nameValueCollection);
+
+                // Update all AccountGuid properties in case they are returned null when there is no pre-existing wallet addresses saved for this account
+                accountWalletList = accountWalletList.Select(c => { c.AccountGuid = (Guid)Application.Current.Properties["AccountID"]; return c; }).ToList();
+
+                // Update coin logo
+                foreach (AccountWallet accountWallet in accountWalletList)
+                {
+                    CoinLogos.CoinLogoDictionary.TryGetValue(accountWallet.CoinType, out string logoSourceLocation);
+                    string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, logoSourceLocation);
+                    accountWallet.CoinLogo = path;
+                }
+
+                return accountWalletList;
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, $"Unable to retrieve the account wallet list for '{Application.Current.Properties["AccountID"].ToString()}' from '{apiURL}'");
+                return new List<AccountWallet>();
+            }
         }
 
         /// <summary>
@@ -52,7 +63,8 @@ namespace BitPoolMiner.Persistence.API
         public async void PostAccountWalletList(List<AccountWallet> accountWalletList)
         {
             string apiURL = APIConstants.APIURL + APIEndpoints.PostAccountWallet;
-
+            try
+            { 
             // Serialize our concrete class into a JSON String
             var stringPayload = await Task.Run(() => JsonConvert.SerializeObject(accountWalletList));
 
@@ -70,6 +82,11 @@ namespace BitPoolMiner.Persistence.API
                     var responseContent = await httpResponse.Content.ReadAsStringAsync();
                 }
             }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, $"Unable to post the account wallet list to {apiURL}");
+            }
         }
 
         /// <summary>
@@ -79,19 +96,25 @@ namespace BitPoolMiner.Persistence.API
         public async void DeleteAccountWallet(AccountWallet accountWallet)
         {
             string apiURL = APIConstants.APIURL + APIEndpoints.DeleteAccountWallet;
-
-            // Serialize our concrete class into a JSON String
-            var stringPayload = await Task.Run(() => JsonConvert.SerializeObject(accountWallet));
-
-            using (var httpClient = new HttpClient())
+            try
             {
-                HttpRequestMessage request = new HttpRequestMessage
+                // Serialize our concrete class into a JSON String
+                var stringPayload = await Task.Run(() => JsonConvert.SerializeObject(accountWallet));
+
+                using (var httpClient = new HttpClient())
                 {
-                    Content = new StringContent(stringPayload, Encoding.UTF8, "application/json"),
-                    Method = HttpMethod.Delete,
-                    RequestUri = new Uri(apiURL)
-                };
-                await httpClient.SendAsync(request);
+                    HttpRequestMessage request = new HttpRequestMessage
+                    {
+                        Content = new StringContent(stringPayload, Encoding.UTF8, "application/json"),
+                        Method = HttpMethod.Delete,
+                        RequestUri = new Uri(apiURL)
+                    };
+                    await httpClient.SendAsync(request);
+                }
+            }
+            catch (Exception e)
+            {
+                logger.Error(e, $"Unable to delete the account wallet list from {apiURL} for {accountWallet.AccountGuid}");
             }
         }
     }
