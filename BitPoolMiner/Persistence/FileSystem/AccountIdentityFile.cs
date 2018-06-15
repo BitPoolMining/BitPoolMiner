@@ -17,7 +17,7 @@ namespace BitPoolMiner.Persistence.FileSystem
         /// <param name="accountIdentity"></param>
         public void WriteJsonToFile(AccountIdentity accountIdentity)
         {
-            string filePath = Path.Combine(FileConstants.ConfigFilePath, FileNameConstants.AccountIdentityFileName);
+            string filePath = Path.Combine(FileConstants.ConfigFilePath(), FileNameConstants.AccountIdentityFileName);
 
             try
             {
@@ -40,7 +40,7 @@ namespace BitPoolMiner.Persistence.FileSystem
         /// <returns></returns>
         public AccountIdentity ReadJsonFromFile()
         {
-            string filePath = Path.Combine(FileConstants.ConfigFilePath, FileNameConstants.AccountIdentityFileName);
+            string filePath = Path.Combine(FileConstants.ConfigFilePath(), FileNameConstants.AccountIdentityFileName);
             AccountIdentity accountIdentity = new AccountIdentity();
 
             try
@@ -55,11 +55,11 @@ namespace BitPoolMiner.Persistence.FileSystem
                         accountIdentity = (AccountIdentity)serializer.Deserialize(file, typeof(AccountIdentity));
                     }
                 }
-                else
-                {
-                    if (!Directory.Exists(FileConstants.ConfigFilePath))
-                        Directory.CreateDirectory(FileConstants.ConfigFilePath);
-                }
+                //else
+                //{
+                //    //if (!Directory.Exists(FileConstants.ConfigFilePath))
+                //    //    Directory.CreateDirectory(FileConstants.ConfigFilePath);
+                //}
                 return accountIdentity;
             }
             catch (Exception)

@@ -1,4 +1,6 @@
-﻿using BitPoolMiner.ViewModels;
+﻿using BitPoolMiner.Utils;
+using BitPoolMiner.ViewModels;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -20,9 +22,11 @@ namespace BitPoolMiner
 
         public MainWindow()
         {
+            InitializeComponent();
+
             // Initialize ViewModels
             if (MainWindowViewModel == null)
-                MainWindowViewModel = new MainWindowViewModel();
+                MainWindowViewModel = (MainWindowViewModel)this.DataContext; //new MainWindowViewModel();
             if (AccountViewModel == null)
                 AccountViewModel = new AccountViewModel(MainWindowViewModel);
 
@@ -35,12 +39,13 @@ namespace BitPoolMiner
             if (WorkerViewModel == null)
                 WorkerViewModel = new WorkerViewModel();
 
-            InitializeComponent();
-
             DataContext = MonitorViewModel;
 
             // Display MainView data
             MainWindowViewModel.GetMinerMonitoringResults();
+
+            //Force window size to prevent crashing
+            ResizeWindow();
         }
 
         #endregion
@@ -96,6 +101,8 @@ namespace BitPoolMiner
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             MainWindowViewModel.CommandStopMining.Execute(null);
+            NLogProcessing.StopLoggingMainWindowClose();
+            Application.Current.Shutdown();
         }
 
         /// <summary>
@@ -125,6 +132,38 @@ namespace BitPoolMiner
         public void InitTimer()
         {
 
+        }
+
+        #endregion
+
+        #region Window Resizing
+
+        private bool _inStateChange;
+
+        /// <summary>
+        /// Force window size to prevent crashing
+        /// </summary>
+        private void ResizeWindow()
+        {
+            if (WindowState != WindowState.Minimized && !_inStateChange)
+            {
+                _inStateChange = true;
+                WindowState = WindowState.Normal;
+                ResizeMode = ResizeMode.CanMinimize;
+                Height = SystemParameters.PrimaryScreenHeight - 100;
+                Width = SystemParameters.PrimaryScreenWidth - 100;
+                _inStateChange = false;
+            }
+        }
+
+        /// <summary>
+        /// Force the app to be full sized
+        /// </summary>
+        /// <param name="e"></param>
+        protected override void OnStateChanged(EventArgs e)
+        {
+            ResizeWindow();
+            base.OnStateChanged(e);
         }
 
         #endregion
