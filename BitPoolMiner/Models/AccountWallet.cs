@@ -9,6 +9,11 @@ namespace BitPoolMiner.Models
     /// </summary>
     public class AccountWallet
     {
+        public AccountWallet()
+        {
+            WalletAddress = "";
+        }
+
         /// <summary>
         /// Unique account identifier
         /// </summary>

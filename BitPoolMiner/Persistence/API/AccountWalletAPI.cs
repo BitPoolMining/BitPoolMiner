@@ -44,6 +44,8 @@ namespace BitPoolMiner.Persistence.API
                 {
                     CoinLogos.CoinLogoDictionary.TryGetValue(accountWallet.CoinType, out string logoSourceLocation);
                     string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, logoSourceLocation);
+                    if (accountWallet.WalletAddress == null)
+                        accountWallet.WalletAddress = "";
                     accountWallet.CoinLogo = path;
                 }
 

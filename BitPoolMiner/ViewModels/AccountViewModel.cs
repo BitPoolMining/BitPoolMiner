@@ -269,12 +269,18 @@ namespace BitPoolMiner.ViewModels
                 AccountIdentityAPI accountIdentityAPI = new AccountIdentityAPI();
                 AccountIdentity = accountIdentityAPI.GetAccountID();
 
+                // Set global variable for Account ID
+                Application.Current.Properties["AccountID"] = AccountIdentity.AccountGuid;
+
                 // Write GUID to account identity config file
                 AccountIdentityFile accountIdentityFile = new AccountIdentityFile();
                 accountIdentityFile.WriteJsonToFile(AccountIdentity);
 
                 // Notify UI to update
                 OnPropertyChanged("AccountGuid");
+
+                // Removed previous collection of account workers
+                accountWorkersList = new ObservableCollection<AccountWorkers>();
 
                 // Insert new worker for account
                 InsertAccountWorkers();
@@ -302,11 +308,12 @@ namespace BitPoolMiner.ViewModels
                 // Set GUID in account identity object
                 Guid parsedGuid;
                 bool parseResult = Guid.TryParse(parameter.ToString(), out parsedGuid);
-
                 if (parseResult == false)
                     throw new ApplicationException(string.Format("Error {0} is not a valid account id", parsedGuid));
 
+                // Set global variable for Account ID
                 AccountIdentity.AccountGuid = parsedGuid;
+                Application.Current.Properties["AccountID"] = AccountIdentity.AccountGuid;
 
                 // Write GUID to account identity config file
                 AccountIdentityFile accountIdentityFile = new AccountIdentityFile();
@@ -340,6 +347,9 @@ namespace BitPoolMiner.ViewModels
             {
                 if (Application.Current.Properties["AccountID"] != null && WorkerSettings.WorkerName != null)
                 {
+                    // Reload Account Work List
+                    InitAccountWorkers();
+
                     // Create new worker object
                     AccountWorkers accountWorker = new AccountWorkers();
                     accountWorker.AccountGuid = (Guid)Application.Current.Properties["AccountID"];
@@ -355,7 +365,6 @@ namespace BitPoolMiner.ViewModels
                     {
                         // Add new worker to local list
                         AccountWorkersList.Add(accountWorker);
-
                     }
 
                     // Set Label on Main Window
