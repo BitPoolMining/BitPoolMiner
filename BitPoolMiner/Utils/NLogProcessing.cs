@@ -34,7 +34,7 @@ namespace BitPoolMiner.Utils
                 NLog.Targets.FileTarget logfile = new NLog.Targets.FileTarget()
                 {
                     FileName = logFile,
-                    Layout = "${longdate} ${level}: ${message}  ${exception}",
+                    Layout = "${longdate} ${level} ${callsite}: ${message}  ${exception}",
                     ArchiveNumbering = NLog.Targets.ArchiveNumberingMode.DateAndSequence,
                     MaxArchiveFiles = 3,
                     ArchiveAboveSize = 1048576  // 1 MB

@@ -13,6 +13,8 @@ namespace BitPoolMiner.Persistence.API
     /// </summary>
     class MinerConfigStringAPI : APIBase
     {
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// Send Miner Config string request and get responses for all miners that we need to start
         /// </summary>
@@ -46,9 +48,10 @@ namespace BitPoolMiner.Persistence.API
 
                 return minerConfigResponseList;
             }
-            catch(Exception ex)
+            catch(Exception e)
             {
-                throw new ApplicationException("Error retrieving miner configuration from API", ex);
+                logger.Error(e,"Error retrieving miner coniguration from API.");
+                return new List<MinerConfigResponse>(); //return empty list
             }
         }
     }

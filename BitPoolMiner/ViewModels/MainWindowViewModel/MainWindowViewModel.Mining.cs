@@ -66,6 +66,54 @@ namespace BitPoolMiner.ViewModels
             MiningSession.GetMinerStatsAsync();
         }
 
+        private bool ValidateStartMining()
+        {
+            bool isValid = true;
+
+            // Validate that Account Guid is set
+            if (Application.Current.Properties["AccountID"] == null)
+            {
+                ShowError("Account ID must be set");
+                isValid = false;
+            }
+
+            // Validate that Workername is set
+            if (Application.Current.Properties["WorkerName"] == null)
+            {
+                ShowError("Worker name must be set");
+                isValid = false;
+            }
+
+            // Validate GPU Settings list is set
+            ObservableCollection<GPUSettings> gpuSettingsList = new ObservableCollection<GPUSettings>();
+            gpuSettingsList = (ObservableCollection<GPUSettings>)Application.Current.Properties["GPUSettingsList"];
+            if (gpuSettingsList == null || gpuSettingsList.Count == 0)
+            {
+                ShowError("GPU settings must be set");
+                isValid = false;
+            }
+
+            // Validate region is set
+            Region region = Region.UNDEFINED;
+            region = (Region)Application.Current.Properties["Region"];
+            if (region == null || region == Region.UNDEFINED)
+            {
+                ShowError("Region must be set");
+                isValid = false;
+            }
+
+            // Validate Wallet Settings list is set
+            List<AccountWallet> accountWalletList = new List<AccountWallet>();
+            accountWalletList = (List<AccountWallet>)Application.Current.Properties["AccountWalletList"];
+            if (accountWalletList == null || accountWalletList.Count == 0)
+            {
+                ShowError("Account Wallet List must be set");
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
         /// <summary>
         /// Handler to create multiple mining sessions if needed
         /// </summary>
@@ -74,7 +122,6 @@ namespace BitPoolMiner.ViewModels
             // This logic will be moved to a class to setup the local miners and add them to the mining session
             // This will be done via config file and API calls necessary based on the coins being mined, etc.
             MiningSession.RemoveAllMiners();
-
 
             // Call API and retrieve a list of miner configurations used to start mining
             List<MinerConfigResponse> minerConfigResponseList = GetMinerConfigurations();
@@ -127,6 +174,10 @@ namespace BitPoolMiner.ViewModels
         /// <param name="parameters"></param>
         private void StartAllMiners(object parameters)
         {
+            // Validate that all settings are properly set before starting mining
+            if (!ValidateStartMining())
+                return;
+
             SetupLocalMiners();
             MiningSession.StartMiningSession();
             MinerStatusInsertTimer.Enabled = true;
