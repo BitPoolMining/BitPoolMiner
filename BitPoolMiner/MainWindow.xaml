@@ -54,6 +54,35 @@
             <Setter Property = "FontWeight" Value = "Bold" />
         </Style>
 
+        <!-- Style - Left Menu - Label Grey Small -->
+        <Style x:Key = "labelStyleLeftMenuGreySmall" TargetType = "Label">
+            <Setter Property = "FontSize" Value = "10" />
+            <Setter Property = "Padding" Value = "4" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsOnline}" Value="True">
+                    <Setter Property="Foreground" Value="#444444"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsOnline}" Value="False">
+                    <Setter Property="Foreground" Value="#cc3e4a"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
+        <!-- Style - Left Menu - Border Grey Small -->
+        <Style x:Key = "borderStyleLeftMenuGreySmall" TargetType = "Border">
+            <Setter Property = "BorderThickness" Value = "1" />
+            <Setter Property = "Padding" Value = "4 0 4 0" />
+            <Setter Property = "Margin" Value = "4 2 2 0" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsOnline}" Value="True">
+                    <Setter Property="BorderBrush" Value="#444444"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsOnline}" Value="False">
+                    <Setter Property="BorderBrush" Value="#cc3e4a"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
         <!-- Style - Footer - Start Button -->
         <Style x:Key = "buttonStyleFooterStart" TargetType = "Button">
             <Setter Property= "Background" Value = "#2c97de" />
@@ -214,8 +243,8 @@
                                     <Border BorderThickness="1" BorderBrush="#444444" Padding="4 0 4 0" Margin="0 2 2 0">
                                         <Label Foreground="#444444" Padding="4" FontSize="10" Content="{Binding LocalWorker}"/>
                                     </Border>
-                                    <Border BorderThickness="1" BorderBrush="#444444" Padding="4 0 4 0" Margin="4 2 2 0">
-                                        <Label Foreground="#444444" Padding="4" FontSize="10" Content="{Binding Status}"/>
+                                    <Border Style="{StaticResource borderStyleLeftMenuGreySmall}">
+                                        <Label Style="{StaticResource labelStyleLeftMenuGreySmall}"  Content="{Binding Status}"/>
                                     </Border>
                                 </StackPanel>
                             </StackPanel>
@@ -331,12 +360,12 @@
                     <Label Style="{StaticResource labelStyleFooterGrey}">AMD GPU:</Label>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
-                    <Label Style="{StaticResource labelStyleFooterWhite}">23</Label>
-                    <Label Style="{StaticResource labelStyleFooterWhite}">1</Label>
+                    <Label Style="{StaticResource labelStyleFooterWhite}" Content="{Binding Source={StaticResource MainWindowViewModel}, Path=NvidiaOnline, UpdateSourceTrigger=PropertyChanged}"></Label>
+                    <Label Style="{StaticResource labelStyleFooterWhite}" Content="{Binding Source={StaticResource MainWindowViewModel}, Path=AMDOnline, UpdateSourceTrigger=PropertyChanged}"></Label>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
-                    <Label Style="{StaticResource labelStyleFooterWhite}">4</Label>
-                    <Label Style="{StaticResource labelStyleFooterWhite}">0</Label>
+                    <Label Style="{StaticResource labelStyleFooterWhite}" Content="{Binding Source={StaticResource MainWindowViewModel}, Path=NvidiaOffline, UpdateSourceTrigger=PropertyChanged}"></Label>
+                    <Label Style="{StaticResource labelStyleFooterWhite}" Content="{Binding Source={StaticResource MainWindowViewModel}, Path=AMDOffline, UpdateSourceTrigger=PropertyChanged}"></Label>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="40 0 0 0">
@@ -344,7 +373,7 @@
                     <Label Style="{StaticResource labelStyleFooterGrey}">Total Power:</Label>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
-                    <Label Style="{StaticResource labelStyleFooterWhite}">1 Warnings</Label>
+                    <Label Style="{StaticResource labelStyleFooterWhite}">COMING SOON</Label>
                     <Label Style="{StaticResource labelStyleFooterWhite}" Content="{Binding Source={StaticResource MainWindowViewModel}, Path=TotalPower, UpdateSourceTrigger=PropertyChanged}"></Label>
                 </StackPanel>
 

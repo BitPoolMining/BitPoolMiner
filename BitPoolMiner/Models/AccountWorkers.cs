@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Drawing;
 using System.Windows;
 
 namespace BitPoolMiner.Models
@@ -76,5 +77,23 @@ namespace BitPoolMiner.Models
         /// Number of stats records found.  0 indicates worker never started
         /// </summary>
         public int CountStats { get; set; }
+
+        /// <summary>
+        /// Foreground color based on status
+        /// </summary>
+        public Boolean IsOnline
+        {
+            get
+            {
+                if (Status == "online")
+                {                    
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }        
     }
 }

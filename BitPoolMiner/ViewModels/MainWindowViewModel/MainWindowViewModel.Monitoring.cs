@@ -102,6 +102,66 @@ namespace BitPoolMiner.ViewModels
             }
         }
 
+        // Nvidia cards online
+        private string nvidiaOnline;
+        public string NvidiaOnline
+        {
+            get
+            {
+                return nvidiaOnline;
+            }
+            set
+            {
+                nvidiaOnline = value;
+                OnPropertyChanged("NvidiaOnline");
+            }
+        }
+
+        // Nvidia cards offline
+        private string nvidiaOffline;
+        public string NvidiaOffline
+        {
+            get
+            {
+                return nvidiaOffline;
+            }
+            set
+            {
+                nvidiaOffline = value;
+                OnPropertyChanged("NvidiaOffline");
+            }
+        }
+
+        // AMD cards online
+        private string amdOnline;
+        public string AMDOnline
+        {
+            get
+            {
+                return amdOnline;
+            }
+            set
+            {
+                amdOnline = value;
+                OnPropertyChanged("AMDOnline");
+            }
+        }
+
+        // AMD cards offline
+        private string amdOffline;
+        public string AMDOffline
+        {
+            get
+            {
+                return amdOffline;
+            }
+            set
+            {
+                amdOffline = value;
+                OnPropertyChanged("AMDOffline");
+            }
+        }
+
         #endregion
 
         #region Monitoring
@@ -135,6 +195,7 @@ namespace BitPoolMiner.ViewModels
                     GetWorkersOnlineGrouped(minerMonitorStatList);
                     GetWorkersOfflineGrouped(minerMonitorStatList);
                     GetTotalPower(minerMonitorStatList);
+                    GetMinerCardsSumGrouped(minerMonitorStatList);
                 }
             }
             catch (Exception e)
@@ -172,6 +233,38 @@ namespace BitPoolMiner.ViewModels
 
             // Notify UI of change
             OnPropertyChanged("MinerMonitorStatListGrouped");
+        }
+
+        /// <summary>
+        /// Group GPU by Hardware type and status
+        /// </summary>
+        /// <param name="minerMonitorStatList"></param>
+        private void GetMinerCardsSumGrouped(List<MinerMonitorStat> minerMonitorStatList)
+        {
+            int nvidiaOnlineCount = 0;
+            int nvidiaOfflineCount = 0;
+            int amdOnlineCount = 0;
+            int amdOfflineCount = 0;
+
+            // Iterate through each miner stat
+            foreach (MinerMonitorStat minerMonitorStat in minerMonitorStatList)
+            {
+                nvidiaOnlineCount += minerMonitorStat.GPUMonitorStatList.Where(x => x.HardwareType == HardwareType.Nvidia && x.HashRate > 0).ToList().Count;
+                nvidiaOfflineCount += minerMonitorStat.GPUMonitorStatList.Where(x => x.HardwareType == HardwareType.Nvidia && x.HashRate == 0).ToList().Count;
+                amdOnlineCount += minerMonitorStat.GPUMonitorStatList.Where(x => x.HardwareType == HardwareType.AMD && x.HashRate > 0).ToList().Count;
+                amdOfflineCount += minerMonitorStat.GPUMonitorStatList.Where(x => x.HardwareType == HardwareType.AMD && x.HashRate == 0).ToList().Count;
+            }
+
+            NvidiaOnline = nvidiaOnlineCount.ToString();
+            NvidiaOffline = nvidiaOfflineCount.ToString();
+            AMDOnline = amdOnlineCount.ToString();
+            AMDOffline = amdOfflineCount.ToString();
+
+            // Notify UI of change
+            OnPropertyChanged("NvidiaOnline");
+            OnPropertyChanged("NvidiaOffline");
+            OnPropertyChanged("AMDOnline");
+            OnPropertyChanged("AMDOffline");
         }
 
         /// <summary>
