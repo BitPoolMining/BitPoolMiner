@@ -87,6 +87,21 @@ namespace BitPoolMiner.ViewModels
             }
         }
 
+        // Total power
+        private string totalPower;
+        public string TotalPower
+        {
+            get
+            {
+                return totalPower;
+            }
+            set
+            {
+                totalPower = value;
+                OnPropertyChanged("TotalPower");
+            }
+        }
+
         #endregion
 
         #region Monitoring
@@ -119,7 +134,7 @@ namespace BitPoolMiner.ViewModels
                     GetMinerMonitoringSumGrouped(minerMonitorStatList);
                     GetWorkersOnlineGrouped(minerMonitorStatList);
                     GetWorkersOfflineGrouped(minerMonitorStatList);
-
+                    GetTotalPower(minerMonitorStatList);
                 }
             }
             catch (Exception e)
@@ -181,6 +196,18 @@ namespace BitPoolMiner.ViewModels
 
             // Notify UI of change
             OnPropertyChanged("WorkersOffline");
+        }
+
+        /// <summary>
+        /// Group summarized total power
+        /// </summary>
+        /// <param name="minerMonitorStatList"></param>
+        private void GetTotalPower(List<MinerMonitorStat> minerMonitorStatList)
+        {
+            TotalPower = String.Format("{0}W", minerMonitorStatList.Sum(x => x.Power));
+
+            // Notify UI of change
+            OnPropertyChanged("TotalPower");
         }
 
         #endregion

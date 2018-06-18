@@ -345,7 +345,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
                     <Label Style="{StaticResource labelStyleFooterWhite}">1 Warnings</Label>
-                    <Label Style="{StaticResource labelStyleFooterWhite}">1120W</Label>
+                    <Label Style="{StaticResource labelStyleFooterWhite}" Content="{Binding Source={StaticResource MainWindowViewModel}, Path=TotalPower, UpdateSourceTrigger=PropertyChanged}"></Label>
                 </StackPanel>
 
                 <!-- Mining Buttons -->
