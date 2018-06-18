@@ -26,7 +26,8 @@ namespace BitPoolMiner
 
             // Initialize ViewModels
             if (MainWindowViewModel == null)
-                MainWindowViewModel = (MainWindowViewModel)this.DataContext; //new MainWindowViewModel();
+                MainWindowViewModel = (MainWindowViewModel)this.DataContext;
+
             if (AccountViewModel == null)
                 AccountViewModel = new AccountViewModel(MainWindowViewModel);
 
@@ -34,7 +35,7 @@ namespace BitPoolMiner
                 WalletViewModel = new WalletViewModel();
 
             if (MonitorViewModel == null)
-                MonitorViewModel = new MonitorViewModel(MainWindowViewModel);
+                MonitorViewModel = new MonitorViewModel();
 
             if (WorkerViewModel == null)
                 WorkerViewModel = new WorkerViewModel();

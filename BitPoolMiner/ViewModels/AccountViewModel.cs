@@ -148,6 +148,9 @@ namespace BitPoolMiner.ViewModels
 
             // Load hardware settings from API or scan for hardware
             InitWorkerHardware();
+
+            // Update worker list on main window
+            _mainWindowViewModel.GetAccountWorkerList();
         }
 
         /// <summary>
@@ -355,8 +358,10 @@ namespace BitPoolMiner.ViewModels
                     {
                         // Add new worker to local list
                         AccountWorkersList.Add(accountWorker);
-
                     }
+
+                    // Update worker list on main window
+                    _mainWindowViewModel.GetAccountWorkerList();
 
                     // Set Label on Main Window
                     _mainWindowViewModel.LabelMainTitle = string.Format("BITPOOL MINER - {0}", WorkerSettings.WorkerName);
@@ -389,6 +394,9 @@ namespace BitPoolMiner.ViewModels
                     
                     // Notify UI of change
                     OnPropertyChanged("AccountWorkersList");
+
+                    // Update worker list on main window
+                    _mainWindowViewModel.GetAccountWorkerList();
 
                     // Notify success
                     ShowSuccess(string.Format("Worker {0} successfully removed", accountWorkersRemove.WorkerName));

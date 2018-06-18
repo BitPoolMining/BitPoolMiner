@@ -322,8 +322,8 @@
                     <Label Style="{StaticResource labelStyleFooterGrey}">Workers Offline:</Label>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
-                    <Label Style="{StaticResource labelStyleFooterWhite}">4 Workers</Label>
-                    <Label Style="{StaticResource labelStyleFooterWhite}">1 Worker</Label>
+                    <Label Style="{StaticResource labelStyleFooterWhite}" Content="{Binding Source={StaticResource MainWindowViewModel}, Path=WorkersOnline, UpdateSourceTrigger=PropertyChanged}"></Label>
+                    <Label Style="{StaticResource labelStyleFooterWhite}" Content="{Binding Source={StaticResource MainWindowViewModel}, Path=WorkersOffline, UpdateSourceTrigger=PropertyChanged}"></Label>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="40 0 0 0">
