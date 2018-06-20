@@ -18,6 +18,8 @@ namespace BitPoolMiner.Utils
         /// </summary>
         private static readonly string[] ccminerHashrateSuffixList = new string[] { "ZH/s", "EH/s", "PH/s", "TH/s", "GH/s", "MH/s", "KH/s", "H/s" };
 
+        #region String Results
+
         /// <summary>
         /// 
         /// </summary>
@@ -49,7 +51,7 @@ namespace BitPoolMiner.Utils
 
                 max /= scale;
             }
-            return "0 Bytes";
+            return "0";
         }
 
         /// <summary>
@@ -70,7 +72,68 @@ namespace BitPoolMiner.Utils
 
                 max /= scale;
             }
-            return "0 Bytes";
+            return "0";
         }
+
+        #endregion
+
+        #region Double Results
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
+        public static double FormatNumeric(CoinType coinType, decimal bytes)
+        {
+            if (coinType == CoinType.HUSH || coinType == CoinType.KMD)
+                return FormatEWBFHashrateNumeric(bytes);
+            else
+                return FormatCCMinerHashrateNumeric(bytes);
+        }
+
+        /// <summary>
+        /// Format hashrate into human readable string for EWBF
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
+        public static double FormatEWBFHashrateNumeric(decimal bytes)
+        {
+            const int scale = 1024;
+
+            decimal max = (decimal)Math.Pow(scale, ewbfHashrateSuffixList.Length - 1);
+
+            foreach (string ewbfHashrateSuffix in ewbfHashrateSuffixList)
+            {
+                if (bytes > max)
+                    return (double)decimal.Divide(bytes, max);
+
+                max /= scale;
+            }
+            return double.NaN;
+        }
+
+        /// <summary>
+        /// Format hashrate into human readable string for CCMiner
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <returns></returns>
+        public static double FormatCCMinerHashrateNumeric(decimal bytes)
+        {
+            const int scale = 1024;
+
+            decimal max = (decimal)Math.Pow(scale, ccminerHashrateSuffixList.Length - 1);
+
+            foreach (string ccminerHashrateSuffix in ccminerHashrateSuffixList)
+            {
+                if (bytes > max)
+                    return (double)decimal.Divide(bytes, max);
+
+                max /= scale;
+            }
+            return double.NaN;
+        }
+
+        #endregion
     }
 }

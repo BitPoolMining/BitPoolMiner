@@ -173,14 +173,14 @@
                                         <Image Height="20" Width="20" Source="{Binding CoinLogo}" VerticalAlignment="Top" />
                                         <Label Foreground="#FFFFFF" Padding="2" FontSize="12" Content="{Binding CoinType}"/>
                                     </StackPanel>
-                                    <Border BorderThickness="1" BorderBrush="#444444" Padding="2" Margin="4 2 2 2" HorizontalAlignment="Left">
-                                        <Label Foreground="#444444" Padding="2" FontSize="10" Content="{Binding Status}"/>
+                                    <Border BorderThickness="1" BorderBrush="#9f9f9f" Padding="2" Margin="4 2 2 2" HorizontalAlignment="Left">
+                                        <Label Foreground="#9f9f9f" Padding="2" FontSize="10" Content="{Binding Status}"/>
                                     </Border>
-                                    <Border BorderThickness="1" BorderBrush="#444444" Padding="2" Margin="4 2 2 2" HorizontalAlignment="Left">
-                                        <Label Foreground="#444444" Padding="2" FontSize="10" Content="{Binding LocalWorker}"/>
+                                    <Border BorderThickness="1" BorderBrush="#9f9f9f" Padding="2" Margin="4 2 2 2" HorizontalAlignment="Left">
+                                        <Label Foreground="#9f9f9f" Padding="2" FontSize="10" Content="{Binding LocalWorker}"/>
                                     </Border>
-                                    <Border BorderThickness="1" BorderBrush="#444444" Padding="2" Margin="4 2 2 2" HorizontalAlignment="Left">
-                                        <Label Foreground="#444444" Padding="2" FontSize="10" Content="{Binding DisplayMinutesSinceLastMonitored}"/>
+                                    <Border BorderThickness="1" BorderBrush="#9f9f9f" Padding="2" Margin="4 2 2 2" HorizontalAlignment="Left">
+                                        <Label Foreground="#9f9f9f" Padding="2" FontSize="10" Content="{Binding DisplayMinutesSinceLastMonitored}"/>
                                     </Border>
                                 </StackPanel>
                             </DataTemplate>
@@ -191,15 +191,15 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    
-                                    <Border BorderThickness="1" BorderBrush="#444444" Padding="2" Margin="4 2 2 2" HorizontalAlignment="Left">
-                                        <Label Foreground="#444444" Padding="2" FontSize="10" Content="{Binding MinerBaseType}"/>
+
+                                    <Border BorderThickness="1" BorderBrush="#9f9f9f" Padding="2" Margin="4 2 2 2" HorizontalAlignment="Left">
+                                        <Label Foreground="#9f9f9f" Padding="2" FontSize="10" Content="{Binding MinerBaseType}"/>
                                     </Border>
-                                    <Border BorderThickness="1" BorderBrush="#444444" Padding="2" Margin="4 2 2 2" HorizontalAlignment="Left">
-                                        <Label Foreground="#444444" Padding="2" FontSize="10" Content="{Binding DisplayHashRate}"/>
+                                    <Border BorderThickness="1" BorderBrush="#9f9f9f" Padding="2" Margin="4 2 2 2" HorizontalAlignment="Left">
+                                        <Label Foreground="#9f9f9f" Padding="2" FontSize="10" Content="{Binding DisplayHashRate}"/>
                                     </Border>
-                                    <Border BorderThickness="1" BorderBrush="#444444" Padding="2" Margin="4 2 2 2" HorizontalAlignment="Left">
-                                        <Label Foreground="#444444" Padding="2" FontSize="10" Content="{Binding DisplayPower}"/>
+                                    <Border BorderThickness="1" BorderBrush="#9f9f9f" Padding="2" Margin="4 2 2 2" HorizontalAlignment="Left">
+                                        <Label Foreground="#9f9f9f" Padding="2" FontSize="10" Content="{Binding DisplayPower}"/>
                                     </Border>
                                 </StackPanel>
                             </DataTemplate>

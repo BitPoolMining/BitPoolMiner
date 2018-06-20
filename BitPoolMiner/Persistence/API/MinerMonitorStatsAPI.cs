@@ -49,6 +49,33 @@ namespace BitPoolMiner.Persistence.API
         }
 
         /// <summary>
+        /// Call API and GET list of account workers
+        /// </summary>
+        /// <returns></returns>
+        public ObservableCollection<MinerMonitorStat> GetMinerMonitorStats24Hour()
+        {
+            string apiURL = APIConstants.APIURL + APIEndpoints.GetMiningMonitorStatistics24Hour;
+
+            try
+            {
+                NameValueCollection nameValueCollection = new NameValueCollection();
+                nameValueCollection.Add("AccountGuid", Application.Current.Properties["AccountID"].ToString());
+
+                ObservableCollection<MinerMonitorStat> minerMonitorStatList = DownloadSerializedJSONData<ObservableCollection<MinerMonitorStat>>(apiURL, nameValueCollection);
+
+                minerMonitorStatList = MinerMonitorStatsFormatter.FormatMinerMonitorStats(minerMonitorStatList);
+
+                return minerMonitorStatList;
+            }
+            catch (Exception e)
+            {
+                //throw new ApplicationException("Error loading monitor stats", ex);
+                logger.Error(e, $"Error getting miner monitor stats from {apiURL}");
+                return new ObservableCollection<MinerMonitorStat>();
+            }
+        }
+
+        /// <summary>
         /// Post Miner and GPU stats
         /// </summary>
         /// <returns></returns>
