@@ -34,7 +34,7 @@
     <ProductName>BitPoolMiner</ProductName>
     <PublisherName>BitPoolMining</PublisherName>
     <SuiteName>BitPoolMining</SuiteName>
-    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -443,6 +443,38 @@
     <None Include="publish\Application Files\BitPoolMiner_1_0_0_6\ThinkSharp.FeatureTour.dll.deploy" />
     <None Include="publish\Application Files\BitPoolMiner_1_0_0_6\ToastNotifications.dll.deploy" />
     <None Include="publish\Application Files\BitPoolMiner_1_0_0_6\ToastNotifications.Messages.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\bitpool.ico.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\BitPoolMiner.application" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\BitPoolMiner.exe.config.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\BitPoolMiner.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\BitPoolMiner.exe.manifest" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\LiveCharts.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\LiveCharts.Wpf.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\Microsoft.Expression.Interactions.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\MinerApps\ccminer-x64-2.2.4-cuda9\ccminer-x64.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\MinerApps\ccminer-x64-2.2.4-cuda9\msvcr120.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\MinerApps\ccminer-x86-2.2.4-cuda9\ccminer.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\MinerApps\ccminer-x86-2.2.4-cuda9\msvcr120.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\MinerApps\EWBF\cudart32_80.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\MinerApps\EWBF\cudart64_80.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\MinerApps\EWBF\miner.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\MinerApps\EWBF\msvcp120.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\MinerApps\EWBF\msvcr120.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\Newtonsoft.Json.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\NLog.config.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\NLog.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\OpenHardwareMonitorLib.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\publish\setup.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\Resources\Images\bitpool.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\Resources\Images\exp.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\Resources\Images\hush.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\Resources\Images\kmd.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\Resources\Images\mona.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\Resources\Images\vtc.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\System.Windows.Interactivity.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\ThinkSharp.FeatureTour.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\ToastNotifications.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_7\ToastNotifications.Messages.dll.deploy" />
     <None Include="publish\BitPoolMiner.application" />
   </ItemGroup>
   <ItemGroup>
