@@ -1,5 +1,6 @@
 ﻿using BitPoolMiner.Utils;
 using BitPoolMiner.ViewModels;
+using LiveCharts.Wpf;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,7 +27,8 @@ namespace BitPoolMiner
 
             // Initialize ViewModels
             if (MainWindowViewModel == null)
-                MainWindowViewModel = (MainWindowViewModel)this.DataContext; //new MainWindowViewModel();
+                MainWindowViewModel = (MainWindowViewModel)this.DataContext;
+
             if (AccountViewModel == null)
                 AccountViewModel = new AccountViewModel(MainWindowViewModel);
 
@@ -34,7 +36,7 @@ namespace BitPoolMiner
                 WalletViewModel = new WalletViewModel();
 
             if (MonitorViewModel == null)
-                MonitorViewModel = new MonitorViewModel(MainWindowViewModel);
+                MonitorViewModel = new MonitorViewModel();
 
             if (WorkerViewModel == null)
                 WorkerViewModel = new WorkerViewModel();
@@ -46,6 +48,7 @@ namespace BitPoolMiner
 
             //Force window size to prevent crashing
             ResizeWindow();
+
         }
 
         #endregion
@@ -71,6 +74,9 @@ namespace BitPoolMiner
         {
             Button button = (Button)sender;
             WorkerViewModel.WorkerName = button.CommandParameter.ToString();
+
+            WorkerViewModel.InitMonitorMining();
+            WorkerViewModel.InitMonitorMining24Hour();
             DataContext = WorkerViewModel;
         }
 
@@ -123,15 +129,6 @@ namespace BitPoolMiner
         private void ButtonStopMining_Click(object sender, RoutedEventArgs e)
         {
             MainWindowViewModel.CommandStopMining.Execute(null);
-        }
-
-        #endregion
-
-        #region Main Window Data Updates
-
-        public void InitTimer()
-        {
-
         }
 
         #endregion

@@ -1,12 +1,7 @@
-﻿using BitPoolMiner.Enums;
-using BitPoolMiner.Miners;
-using BitPoolMiner.Models;
+﻿using BitPoolMiner.Models;
 using BitPoolMiner.Persistence.API;
 using BitPoolMiner.ViewModels.Base;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows;
 
 
@@ -29,9 +24,6 @@ namespace BitPoolMiner.ViewModels
             // Initialize objects
             InitMining();
             InitMonitoringCheckTimer();
-
-            // Init account worker list
-            AccountWorkersList = new ObservableCollection<AccountWorkers>();
 
             // Get a reference to the MainView window
             mainWindow = (MainWindow)Application.Current.MainWindow;
@@ -79,7 +71,6 @@ namespace BitPoolMiner.ViewModels
         {
             get
             {
-                GetAccountWorkerList();
                 return accountWorkersList;
             }
             set
@@ -93,7 +84,7 @@ namespace BitPoolMiner.ViewModels
 
         #region Main Window Menu Worker List Methods
 
-        private void GetAccountWorkerList()
+        public void GetAccountWorkerList()
         {
             // If there is an account id set, and there are no records in the list then load from API
             if (Application.Current.Properties["AccountID"] != null)
@@ -101,6 +92,7 @@ namespace BitPoolMiner.ViewModels
                 // Load list of account workers
                 AccountWorkersAPI accountWorkersAPI = new AccountWorkersAPI();
                 accountWorkersList = accountWorkersAPI.GetAccountWorkers();
+                OnPropertyChanged("AccountWorkersList");
             }
         }
 

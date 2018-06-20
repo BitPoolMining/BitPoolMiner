@@ -19,6 +19,7 @@
         public const string GetAccountWallet = "AccountWallet";
         public const string GetMinerConfigString = "MinerConfig";
         public const string GetMinerMonitorStats = "MiningMonitorStatistics";
+        public const string GetMiningMonitorStatistics24Hour = "MiningMonitorStatistics24Hour";
 
         public const string PostAccountWorkers = "AccountMiners";
         public const string PostMinerMonitorStats = "MiningMonitorStatistics";

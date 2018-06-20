@@ -17,20 +17,13 @@ namespace BitPoolMiner.ViewModels
         /// <summary>
         /// Constrtuctor
         /// </summary>
-        public MonitorViewModel(MainWindowViewModel mainWindowViewModel)
+        public MonitorViewModel()
         {
-            // Get a reference back to the main window view model
-            _mainWindowViewModel = mainWindowViewModel;
-
             InitMonitorMining();
-
             InitMonitoringTimer();
         }
 
         #region Properties
-
-        // Main Window View Model reference
-        private MainWindowViewModel _mainWindowViewModel;
 
         // Timer for Monitoring Miner
         private Timer MinerStatusCheckTimer;
