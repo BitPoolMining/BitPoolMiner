@@ -2,8 +2,10 @@
 using BitPoolMiner.ViewModels;
 using LiveCharts.Wpf;
 using System;
+using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace BitPoolMiner
 {

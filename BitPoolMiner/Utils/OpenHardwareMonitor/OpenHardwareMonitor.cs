@@ -37,6 +37,7 @@ namespace BitPoolMiner.Utils.OpenHardwareMonitor
                             gpuSettings.HardwareType = Enums.HardwareType.Nvidia;
                             gpuSettings.CoinSelectedForMining = Enums.CoinType.HUSH;
                             gpuSettings.MinerBaseType = Enums.MinerBaseType.EWBF;
+
                         }
                         else if (hardwareItem.HardwareType == HardwareType.GpuAti)
                         {

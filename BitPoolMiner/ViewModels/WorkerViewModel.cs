@@ -233,8 +233,16 @@ namespace BitPoolMiner.ViewModels
                     MinerMonitorStatListFiltered = MinerMonitorStatList24Hour.Where(x => x.WorkerName == WorkerName).OrderBy(y => y.Created).ToList();
 
                     // Calculate average values and display
-                    Calculate24HourAverageHashrate(MinerMonitorStatListFiltered);
-                    Calculate24HourAveragePower(MinerMonitorStatListFiltered);
+                    if (MinerMonitorStatListFiltered.Count > 0)
+                    { 
+                        Calculate24HourAverageHashrate(MinerMonitorStatListFiltered);
+                        Calculate24HourAveragePower(MinerMonitorStatListFiltered);
+                    }
+                    else
+                    {
+                        Hashrate24HourAverage = "0";
+                        Power24HourAverage = "0";
+                    }
 
                     // Populate series to be graphed
                     foreach (MinerMonitorStat minerMonitorStat in MinerMonitorStatListFiltered)
@@ -289,8 +297,10 @@ namespace BitPoolMiner.ViewModels
                     {
                         Efficiency = "0";
                     }
-
-                    Efficiency = String.Format("{0}/W", HashrateFormatter.Format(MinerMonitorStat.CoinType, (MinerMonitorStat.HashRate / MinerMonitorStat.Power)));
+                    else
+                    {
+                        Efficiency = String.Format("{0}/W", HashrateFormatter.Format(MinerMonitorStat.CoinType, (MinerMonitorStat.HashRate / MinerMonitorStat.Power)));
+                    }
 
                     // Notify UI of change
                     OnPropertyChanged("MinerMonitorStat");
@@ -321,7 +331,7 @@ namespace BitPoolMiner.ViewModels
         /// <param name="MinerMonitorStatList"></param>
         private void Calculate24HourAveragePower(List<MinerMonitorStat> MinerMonitorStatList)
         {
-            Power24HourAverage = String.Format("{0} W", MinerMonitorStatList.Average(x => x.Power));
+            Power24HourAverage = String.Format("{0} W", Convert.ToInt32(MinerMonitorStatList.Average(x => x.Power)));
 
             // Notify UI of change
             OnPropertyChanged("Power24HourAverage");
