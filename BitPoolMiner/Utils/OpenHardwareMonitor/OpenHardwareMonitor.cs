@@ -32,7 +32,7 @@ namespace BitPoolMiner.Utils.OpenHardwareMonitor
                         gpuSettings.GPUID = Convert.ToUInt16(hardwareItem.Identifier.ToString().Replace("/nvidiagpu/","").Replace("/atigpu/", "").Replace("}", ""));
                         gpuSettings.HardwareName = hardwareItem.Name;
                         gpuSettings.EnabledForMining = true;
-                        gpuSettings.Fanspeed = Convert.ToInt16(hardwareItem.Sensors.Where(x => x.SensorType == SensorType.Fan).FirstOrDefault().Value);
+                        gpuSettings.Fanspeed = Convert.ToInt16(hardwareItem.Sensors.Where(x => x.SensorType == SensorType.Control && x.Name == "GPU Fan").FirstOrDefault().Value);
                         gpuSettings.EnabledForMining = true;
 
                         if (hardwareItem.HardwareType == HardwareType.GpuNvidia)

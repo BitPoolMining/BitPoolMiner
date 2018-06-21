@@ -103,6 +103,9 @@ namespace BitPoolMiner.Miners
         /// <param name="stats"></param>
         protected void PostMinerMonitorStat(MinerMonitorStat stats)
         {
+            // Use OpenHardwareMonitor to add any missing data if needed
+            stats = SupplementMinerMonitorStatData(stats);
+
             // Send data to API
             MinerMonitorStatsAPI minerMonitorStatsAPI = new MinerMonitorStatsAPI();
             minerMonitorStatsAPI.PostMinerMonitorStats(stats);
