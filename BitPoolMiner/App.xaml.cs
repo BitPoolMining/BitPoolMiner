@@ -10,12 +10,14 @@ namespace BitPoolMiner
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
+
         protected override void OnStartup(StartupEventArgs e)
         {
             SetupLogging();
 
             // Force app to only user software rendering
             System.Windows.Media.RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;
+
             base.OnStartup(e);
         }
 

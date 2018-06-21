@@ -52,10 +52,5 @@ namespace BitPoolMiner.Models
         /// GPU Fanspeed
         /// </summary>
         public Int16 Fanspeed { get; set; }
-
-        /// <summary>
-        /// GPU Power
-        /// </summary>
-        public Int16 Power { get; set; }
     }
 }
