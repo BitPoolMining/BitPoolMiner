@@ -39,7 +39,7 @@
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Background" Value="#262626" TargetName="borderButtonStyleLeftMenu" />
                             </Trigger>
-                        </ControlTemplate.Triggers>
+                       </ControlTemplate.Triggers>
                     </ControlTemplate>
 
                 </Setter.Value>
@@ -240,6 +240,17 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Button x:Name="WorkerButton" Style="{StaticResource buttonStyleLeftMenu}" Click="WorkerButton_Clicked" CommandParameter="{Binding WorkerName}">
+
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="MouseEnter">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="CadetBlue"/>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Button.Triggers>
+
                             <StackPanel Orientation="Horizontal" >
                                 <Label Style="{StaticResource labelStyleLeftMenuGrey}" Content="{Binding WorkerName}" Width="140"/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >

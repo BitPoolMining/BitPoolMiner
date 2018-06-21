@@ -3,6 +3,9 @@ using BitPoolMiner.Models;
 using BitPoolMiner.Persistence.API;
 using BitPoolMiner.Process;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 // This is the Miner base class.
 
@@ -100,9 +103,54 @@ namespace BitPoolMiner.Miners
         /// <param name="stats"></param>
         protected void PostMinerMonitorStat(MinerMonitorStat stats)
         {
+            // Use OpenHardwareMonitor to add any missing data if needed
+            stats = SupplementMinerMonitorStatData(stats);
+
             // Send data to API
             MinerMonitorStatsAPI minerMonitorStatsAPI = new MinerMonitorStatsAPI();
             minerMonitorStatsAPI.PostMinerMonitorStats(stats);
+        }
+
+        /// <summary>
+        /// Use OpenHardwareMonitor to add any missing data if needed
+        /// </summary>
+        /// <param name="stats"></param>
+        private MinerMonitorStat SupplementMinerMonitorStatData(MinerMonitorStat stats)
+        {
+            // Check if any data is missing from stats
+            if (CheckMinerMonitorStatDataMissing(stats) == true)
+            {
+                // Retrive GPU data from OpenHardwareMonitor
+                Utils.OpenHardwareMonitor.OpenHardwareMonitor openHardwareMonitor = new Utils.OpenHardwareMonitor.OpenHardwareMonitor();
+                ObservableCollection<GPUSettings> gpuSettingsList = openHardwareMonitor.ScanHardware();
+
+                // Iterate through each GPUMonitorStat and add missing data
+                foreach (GPUMonitorStat gpuMonitorStat in stats.GPUMonitorStatList)
+                {
+                    gpuMonitorStat.FanSpeed = gpuSettingsList.Where(x => x.GPUID == gpuMonitorStat.GPUID).FirstOrDefault().Fanspeed;
+                }
+            }
+
+            return stats;
+        }
+
+        /// <summary>
+        /// Check miner stats for missing data and add if needed
+        /// </summary>
+        /// <param name="stats"></param>
+        /// <returns></returns>
+        private bool CheckMinerMonitorStatDataMissing(MinerMonitorStat stats)
+        {
+            bool IsDataMissing = false;
+
+            foreach(GPUMonitorStat gpuMonitorStat in stats.GPUMonitorStatList)
+            {
+                // Check if FanSpeed is showing 0
+                if (gpuMonitorStat.FanSpeed == 0)
+                    IsDataMissing = true;
+            }
+
+            return IsDataMissing;
         }
     }
 }

@@ -3,6 +3,7 @@ using OpenHardwareMonitor.Hardware;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -31,12 +32,15 @@ namespace BitPoolMiner.Utils.OpenHardwareMonitor
                         gpuSettings.GPUID = Convert.ToUInt16(hardwareItem.Identifier.ToString().Replace("/nvidiagpu/","").Replace("/atigpu/", "").Replace("}", ""));
                         gpuSettings.HardwareName = hardwareItem.Name;
                         gpuSettings.EnabledForMining = true;
+                        gpuSettings.Fanspeed = Convert.ToInt16(hardwareItem.Sensors.Where(x => x.SensorType == SensorType.Control && x.Name == "GPU Fan").FirstOrDefault().Value);
+                        gpuSettings.EnabledForMining = true;
 
                         if (hardwareItem.HardwareType == HardwareType.GpuNvidia)
                         {
                             gpuSettings.HardwareType = Enums.HardwareType.Nvidia;
                             gpuSettings.CoinSelectedForMining = Enums.CoinType.HUSH;
                             gpuSettings.MinerBaseType = Enums.MinerBaseType.EWBF;
+
                         }
                         else if (hardwareItem.HardwareType == HardwareType.GpuAti)
                         {

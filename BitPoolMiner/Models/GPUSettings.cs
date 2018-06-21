@@ -47,5 +47,10 @@ namespace BitPoolMiner.Models
         /// What Miner should we use per card?
         /// </summary>
         public MinerBaseType MinerBaseType { get; set; }
+
+        /// <summary>
+        /// GPU Fanspeed
+        /// </summary>
+        public Int16 Fanspeed { get; set; }
     }
 }
