@@ -1,6 +1,9 @@
-﻿using BitPoolMiner.Models;
+﻿using BitPoolMiner.Enums;
+using BitPoolMiner.Models;
+using BitPoolMiner.Models.CoinMarketCap;
 using BitPoolMiner.Persistence.API;
 using BitPoolMiner.Utils;
+using BitPoolMiner.Utils.CoinMarketCap;
 using BitPoolMiner.ViewModels.Base;
 using LiveCharts;
 using LiveCharts.Defaults;
@@ -23,6 +26,7 @@ namespace BitPoolMiner.ViewModels
             InitMonitoringTimer();
             InitMonitorMining24Hour();
             InitMonitorMining();
+            InitCoinMarketCap();
         }
 
         #region Properties
@@ -180,6 +184,21 @@ namespace BitPoolMiner.ViewModels
             }
         }
 
+        // CoinMarketCap data
+        private CoinMarketCapResponse coinMarketCapResponse;
+        public CoinMarketCapResponse CoinMarketCapResponse
+        {
+            get
+            {
+                return coinMarketCapResponse;
+            }
+            set
+            {
+                coinMarketCapResponse = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
         #region Init
@@ -209,6 +228,7 @@ namespace BitPoolMiner.ViewModels
             // Call miner RPC and post results to API
             InitMonitorMining24Hour();
             InitMonitorMining();
+            InitCoinMarketCap();
         }
 
         /// <summary>
@@ -234,7 +254,7 @@ namespace BitPoolMiner.ViewModels
 
                     // Calculate average values and display
                     if (MinerMonitorStatListFiltered.Count > 0)
-                    { 
+                    {
                         Calculate24HourAverageHashrate(MinerMonitorStatListFiltered);
                         Calculate24HourAveragePower(MinerMonitorStatListFiltered);
                     }
@@ -335,6 +355,38 @@ namespace BitPoolMiner.ViewModels
 
             // Notify UI of change
             OnPropertyChanged("Power24HourAverage");
+        }
+
+        #endregion
+
+        #region CoinMarketCap
+
+        /// <summary>
+        /// Lookup CoinMarketCap data using miner's preferred fiat currency
+        /// </summary>
+        public void InitCoinMarketCap()
+        {
+            try
+            {
+
+                if (Application.Current.Properties["Currency"] == null)
+                    return;
+
+                string fiatCurrencyISOSymbol = Application.Current.Properties["Currency"].ToString();
+
+                // Attempt to get crypto coin name
+                CoinNames.CoinNameDictionary.TryGetValue(MinerMonitorStat.CoinType, out string cryptoCurrencyName);
+
+                // Load CoinMarketCap data
+                CoinMarketCapAPI coinMarketCapAPI = new CoinMarketCapAPI();
+                CoinMarketCapResponse = coinMarketCapAPI.GetCoinMarketCapResponse(cryptoCurrencyName, fiatCurrencyISOSymbol);
+                OnPropertyChanged("CoinMarketCapResponse");
+            }
+            catch (Exception e)
+            {
+                ShowError(string.Format("Error loading coin market cap data: {0}", e.Message));
+            }
+
         }
 
         #endregion

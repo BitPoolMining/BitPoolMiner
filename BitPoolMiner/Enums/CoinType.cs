@@ -26,4 +26,16 @@ namespace BitPoolMiner.Enums
             { CoinType.EXP, @"Resources\\Images\\exp.png" },
         };
     }
+
+    public static class CoinNames
+    {
+        public static readonly Dictionary<CoinType, string> CoinNameDictionary = new Dictionary<CoinType, string>
+        {
+            { CoinType.HUSH, "HUSH" },
+            { CoinType.KMD, "KOMODO" },
+            { CoinType.VTC, "VERTCOIN" },
+            { CoinType.MONA, "MONACOIN" },
+            { CoinType.EXP, "EXPANSE" },
+        };
+     }
 }

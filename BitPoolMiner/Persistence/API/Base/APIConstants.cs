@@ -6,6 +6,7 @@
     public static class APIConstants
     {
         public const string APIURL = "https://bitpoolminerapi.bitpoolmining.com/api/";
+        public const string CoinMarketCapAPIURL = "https://api.coinmarketcap.com/v1/ticker/{0}/?convert={1}";
     }
 
     /// <summary>

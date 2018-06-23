@@ -79,6 +79,7 @@ namespace BitPoolMiner
 
             WorkerViewModel.InitMonitorMining();
             WorkerViewModel.InitMonitorMining24Hour();
+            WorkerViewModel.InitCoinMarketCap();
             DataContext = WorkerViewModel;
         }
 

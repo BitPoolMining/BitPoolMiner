@@ -149,6 +149,7 @@
     </ApplicationDefinition>
     <Compile Include="Enums\AlgorithmType.cs" />
     <Compile Include="Enums\CoinType.cs" />
+    <Compile Include="Enums\Currency.cs" />
     <Compile Include="Enums\HardwareType.cs" />
     <Compile Include="Enums\MinerBaseType.cs" />
     <Compile Include="Enums\Region.cs" />
@@ -161,6 +162,7 @@
     <Compile Include="Miners\MiningSession.cs" />
     <Compile Include="Models\AccountWallet.cs" />
     <Compile Include="Models\AccountWorkers.cs" />
+    <Compile Include="Models\CoinMarketCap\CoinMarketCapResponse.cs" />
     <Compile Include="Models\GPUMonitorStat.cs" />
     <Compile Include="Models\GPUSettings.cs" />
     <Compile Include="Models\MinerConfigRequest.cs" />
@@ -180,6 +182,7 @@
     <Compile Include="Persistence\FileSystem\AccountIdentityFile.cs" />
     <Compile Include="Persistence\FileSystem\Base\FileConstants.cs" />
     <Compile Include="Process\BPMProcess.cs" />
+    <Compile Include="Utils\CoinMarketCap\CoinMarketCapAPI.cs" />
     <Compile Include="Utils\Core.cs" />
     <Compile Include="Utils\HashrateFormatter.cs" />
     <Compile Include="Utils\NLogProcessing.cs" />
