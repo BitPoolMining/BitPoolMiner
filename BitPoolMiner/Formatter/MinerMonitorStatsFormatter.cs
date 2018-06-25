@@ -2,7 +2,6 @@
 using BitPoolMiner.Models;
 using System;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.IO;
 
 namespace BitPoolMiner.Formatter
@@ -19,7 +18,6 @@ namespace BitPoolMiner.Formatter
                     CoinLogos.CoinLogoDictionary.TryGetValue(minerMonitorStat.CoinType, out string logoSourceLocation);
                     if (minerMonitorStat.CoinType != CoinType.UNDEFINED)
                         minerMonitorStat.CoinLogo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, logoSourceLocation);
-
                 }
 
                 return minerMonitorStatList;

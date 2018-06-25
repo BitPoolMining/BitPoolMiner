@@ -17,6 +17,9 @@ namespace BitPoolMiner.Enums
 
     public static class CoinLogos
     {
+        /// <summary>
+        /// Coin icon files
+        /// </summary>
         public static readonly Dictionary<CoinType, string> CoinLogoDictionary = new Dictionary<CoinType, string>
         {
             { CoinType.HUSH, @"Resources\\Images\\hush.png" },
@@ -29,6 +32,9 @@ namespace BitPoolMiner.Enums
 
     public static class CoinNames
     {
+        /// <summary>
+        /// Coin full name
+        /// </summary>
         public static readonly Dictionary<CoinType, string> CoinNameDictionary = new Dictionary<CoinType, string>
         {
             { CoinType.HUSH, "HUSH" },
@@ -38,4 +44,19 @@ namespace BitPoolMiner.Enums
             { CoinType.EXP, "EXPANSE" },
         };
      }
+
+    public static class CoinWhatToMineIDDictionary
+    {
+        /// <summary>
+        /// Coin ID for WhatToMine
+        /// </summary>
+        public static readonly Dictionary<CoinType, int> CoinWhatToMineID = new Dictionary<CoinType, int>
+        {
+            { CoinType.HUSH, 168 },
+            { CoinType.KMD, 174 },
+            { CoinType.VTC, 5 },
+            { CoinType.MONA, 148 },
+            { CoinType.EXP, 154 },
+        };
+    }
 }

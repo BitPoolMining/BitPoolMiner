@@ -27,6 +27,7 @@ namespace BitPoolMiner.ViewModels
             // Immediately get results before time is instantiated
             GetMinerMonitoringResults();
             GetAccountWorkerList();
+            InitWhatToMine();
 
             // Instantiate and start timer
             MinerStatusCheckTimer = new DispatcherTimer();
@@ -98,7 +99,7 @@ namespace BitPoolMiner.ViewModels
             set
             {
                 totalPower = value;
-                OnPropertyChanged("TotalPower");
+                OnPropertyChanged();
             }
         }
 
@@ -113,7 +114,7 @@ namespace BitPoolMiner.ViewModels
             set
             {
                 nvidiaOnline = value;
-                OnPropertyChanged("NvidiaOnline");
+                OnPropertyChanged();
             }
         }
 
@@ -128,7 +129,7 @@ namespace BitPoolMiner.ViewModels
             set
             {
                 nvidiaOffline = value;
-                OnPropertyChanged("NvidiaOffline");
+                OnPropertyChanged();
             }
         }
 
@@ -143,7 +144,7 @@ namespace BitPoolMiner.ViewModels
             set
             {
                 amdOnline = value;
-                OnPropertyChanged("AMDOnline");
+                OnPropertyChanged();
             }
         }
 
@@ -158,7 +159,7 @@ namespace BitPoolMiner.ViewModels
             set
             {
                 amdOffline = value;
-                OnPropertyChanged("AMDOffline");
+                OnPropertyChanged();
             }
         }
 
@@ -176,6 +177,7 @@ namespace BitPoolMiner.ViewModels
             // Call miner RPC and post results to API
             GetMinerMonitoringResults();
             GetAccountWorkerList();
+            InitWhatToMine();
         }
 
         /// <summary>
@@ -220,7 +222,8 @@ namespace BitPoolMiner.ViewModels
                     CoinLogo = cl.First().CoinLogo,
                     CoinType = cl.First().CoinType,
                     CountStats = cl.Count(),
-                    HashRate = cl.Sum(c => c.HashRate)
+                    HashRate = cl.Sum(c => c.HashRate),
+                    Power = cl.Sum(c => c.Power)
                 }).ToList();
 
             // Format the hashrate of each grouped sum of hashrate per cointype
@@ -304,5 +307,6 @@ namespace BitPoolMiner.ViewModels
         }
 
         #endregion
+               
     }
 }

@@ -153,6 +153,7 @@
     <Compile Include="Enums\HardwareType.cs" />
     <Compile Include="Enums\MinerBaseType.cs" />
     <Compile Include="Enums\Region.cs" />
+    <Compile Include="Formatter\WhatToMineDataFormatter.cs" />
     <Compile Include="Formatter\MinerMonitorStatsFormatter.cs" />
     <Compile Include="Miners\Ccminer.cs" />
     <Compile Include="Miners\EWBF.cs" />
@@ -169,6 +170,8 @@
     <Compile Include="Models\MinerConfigResponse.cs" />
     <Compile Include="Models\MinerMonitorStat.cs" />
     <Compile Include="Models\RPCResponse\EWBFTemplate.cs" />
+    <Compile Include="Models\WhatToMine\WhatToMineResponse.cs" />
+    <Compile Include="Models\WhatToMine\WhatToMineData.cs" />
     <Compile Include="Models\WorkerSettings.cs" />
     <Compile Include="Persistence\API\AccountWalletAPI.cs" />
     <Compile Include="Persistence\API\AccountWorkersAPI.cs" />
@@ -187,10 +190,12 @@
     <Compile Include="Utils\HashrateFormatter.cs" />
     <Compile Include="Utils\NLogProcessing.cs" />
     <Compile Include="Utils\OpenHardwareMonitor\OpenHardwareMonitor.cs" />
+    <Compile Include="Utils\WhatToMine\WhatToMineAPI.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel\MainWindowViewModel.Mining.cs" />
     <Compile Include="ViewModels\MainWindowViewModel\MainWindowViewModel.Monitoring.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel\MainWindowViewModel.Revenue.cs" />
     <Compile Include="ViewModels\MonitorViewModel.cs" />
     <Compile Include="ViewModels\Base\RelayCommand.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
