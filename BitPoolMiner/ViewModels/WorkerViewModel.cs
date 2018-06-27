@@ -281,6 +281,11 @@ namespace BitPoolMiner.ViewModels
                         ChartValuesPower.Add(dateTimePointPower);
                     }
 
+                    // Backfill lists as needed
+                    ChartDataBackFill chartDataBackFill = new ChartDataBackFill();
+                    ChartValuesHashRate = chartDataBackFill.BackFillList(ChartValuesHashRate);
+                    ChartValuesPower = chartDataBackFill.BackFillList(ChartValuesPower);
+
                     // Axis label formats
                     XFormatter = val => new DateTime((long)val).ToString();
                     YFormatter = val => val.ToString();
