@@ -270,19 +270,19 @@ namespace BitPoolMiner.ViewModels
                         DateTimePoint dateTimePoint = new DateTimePoint();
 
                         // HashRate
-                        dateTimePoint.DateTime = DateTime.SpecifyKind(minerMonitorStat.Created, DateTimeKind.Utc).ToLocalTime(); ;
+                        dateTimePoint.DateTime = minerMonitorStat.Created.ToLocalTime();
                         dateTimePoint.Value = HashrateFormatter.FormatNumeric(minerMonitorStat.CoinType, minerMonitorStat.HashRate);
                         ChartValuesHashRate.Add(dateTimePoint);
 
                         // Power
                         DateTimePoint dateTimePointPower = new DateTimePoint();
-                        dateTimePointPower.DateTime = DateTime.SpecifyKind(minerMonitorStat.Created, DateTimeKind.Utc).ToLocalTime(); ;
+                        dateTimePointPower.DateTime = minerMonitorStat.Created.ToLocalTime();
                         dateTimePointPower.Value = minerMonitorStat.Power;
                         ChartValuesPower.Add(dateTimePointPower);
                     }
 
                     // Axis label formats
-                    XFormatter = val => DateTime.SpecifyKind(new DateTime((long)val), DateTimeKind.Utc).ToLocalTime().ToString();
+                    XFormatter = val => new DateTime((long)val).ToString();
                     YFormatter = val => val.ToString();
 
                     // Notify UI of change

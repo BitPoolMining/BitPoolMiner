@@ -271,7 +271,7 @@
                 </lvc:Axis>
             </lvc:CartesianChart.AxisX>
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="HashRate" LabelFormatter="{Binding YFormatter}" >
+                <lvc:Axis Title="HashRate" LabelFormatter="{Binding YFormatter}">
                     <lvc:Axis.Separator>
                         <lvc:Separator Visibility="Hidden"/>
                     </lvc:Axis.Separator>
@@ -304,7 +304,7 @@
                 </lvc:Axis>
             </lvc:CartesianChart.AxisX>
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis Title="Power" LabelFormatter="{Binding YFormatter}" >
+                <lvc:Axis Title="Power" LabelFormatter="{Binding YFormatter}">
                     <lvc:Axis.Separator>
                         <lvc:Separator Visibility="Hidden"/>
                     </lvc:Axis.Separator>
