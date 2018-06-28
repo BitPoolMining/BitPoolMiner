@@ -1,13 +1,17 @@
 ﻿using BitPoolMiner.Enums;
 using BitPoolMiner.Formatter;
 using BitPoolMiner.Models;
+using BitPoolMiner.Models.MinerPayments;
 using BitPoolMiner.Models.WhatToMine;
+using BitPoolMiner.Persistence.API;
 using BitPoolMiner.Utils.WhatToMine;
 using BitPoolMiner.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
 using System.Linq;
+using System.Windows;
 
 namespace BitPoolMiner.ViewModels
 {
@@ -32,6 +36,20 @@ namespace BitPoolMiner.ViewModels
             }
         }
 
+        private MinerPaymentsData minerPaymentsData;
+        public MinerPaymentsData MinerPaymentsData
+        {
+            get
+            {
+                return minerPaymentsData;
+            }
+            set
+            {
+                minerPaymentsData = value;
+                OnPropertyChanged("MinerPaymentsData");
+            }
+        }
+
         #endregion
 
         #region WhatToMine
@@ -52,6 +70,8 @@ namespace BitPoolMiner.ViewModels
                 whatToMineResponse = WhatToMineDataFormatter.FormatWhatToMineData(whatToMineResponse, minerMonitorStat.CoinType);
                 whatToMineData.WhatToMineResponseList.Add(whatToMineResponse);
             }
+
+            whatToMineData.WhatToMineResponseList.OrderBy(x => x.name).ToList();
 
             CalculateForecastLast24Hour();
             CalculateForecastNext24Hour();
@@ -108,11 +128,72 @@ namespace BitPoolMiner.ViewModels
         private void CalculateForecastNext24Hour()
         {
             whatToMineData.ForecastNext24HourUSD = whatToMineData.WhatToMineResponseList.Sum(x => Convert.ToDecimal(x.revenue.ToString().Replace("$","")));
-            whatToMineData.ForecastNext24HourBTC = whatToMineData.WhatToMineResponseList.Sum(x => Convert.ToDecimal(x.btc_revenue));
-            whatToMineData.ForecastNext24HourCoin = whatToMineData.WhatToMineResponseList.Sum(x => Convert.ToDecimal(x.estimated_rewards));
+            whatToMineData.ForecastNext24HourBTC = Decimal.Round(whatToMineData.WhatToMineResponseList.Sum(x => Convert.ToDecimal(x.btc_revenue)), 6);
+            whatToMineData.ForecastNext24HourCoin = Decimal.Round(whatToMineData.WhatToMineResponseList.Sum(x => Convert.ToDecimal(x.estimated_rewards)), 6);
         }
 
         #endregion
 
+        #region Payments
+
+        public void InitPayments()
+        {
+            if (Application.Current.Properties["AccountID"] != null)
+            {
+                // Instantiate new Payment data
+                minerPaymentsData = new MinerPaymentsData();
+                List<MinerPaymentSummary> minerPaymentsList = new List<MinerPaymentSummary>();
+
+                // Load payment data from the API
+                MinerPaymentsAPI minerPaymentsAPI = new MinerPaymentsAPI();
+                minerPaymentsList = minerPaymentsAPI.GetMinerPayments();
+
+                // Add payment data to list
+                minerPaymentsData.MinerPaymentSummaryList = minerPaymentsList.OrderBy(x => x.CoinType).ToList();
+
+                // Calculate 24 hour sum values
+                CalculateRevenueLast24Hour();
+
+                OnPropertyChanged("MinerPaymentsData");
+            }
+        }
+
+        /// <summary>
+        /// Populate the payment summarized revenue for the next 24 hours for all coins and also for each individual coin
+        /// </summary>
+        private void CalculateRevenueLast24Hour()
+        {
+            // Iterate through each payment summary in the list for each coin
+            foreach (MinerPaymentSummary minerPaymentSummary in minerPaymentsData.MinerPaymentSummaryList)
+            {
+                // Update coin logo for each miner
+                CoinLogos.CoinLogoDictionary.TryGetValue(minerPaymentSummary.CoinType, out string logoSourceLocation);
+                if (minerPaymentSummary.CoinType != CoinType.UNDEFINED)
+                    minerPaymentSummary.CoinLogo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, logoSourceLocation);
+
+                // Find W2M record to get exchange rate data
+                WhatToMineResponse whatToMineResponse = WhatToMineData.WhatToMineResponseList.Where(x => x.tag == minerPaymentSummary.CoinType.ToString()).FirstOrDefault();
+
+                // If there is no W2M data then do not try to convert rates
+                if (whatToMineResponse == null)
+                {
+                    minerPaymentSummary.RevenueLast24HourCoin = Decimal.Round(minerPaymentSummary.MinerPaymentDetails24HoursList.Sum(x => x.PaymentAmount), 6);
+                    minerPaymentSummary.RevenueLast24HourBTC = 0;
+                    minerPaymentSummary.RevenueLast24HourUSD = 0;
+                }
+                else
+                {
+                    minerPaymentSummary.RevenueLast24HourCoin = Decimal.Round(minerPaymentSummary.MinerPaymentDetails24HoursList.Sum(x => x.PaymentAmount), 6);
+                    minerPaymentSummary.RevenueLast24HourBTC = Decimal.Round(minerPaymentSummary.RevenueLast24HourCoin * Convert.ToDecimal(whatToMineResponse.exchange_rate), 6);
+                    minerPaymentSummary.RevenueLast24HourUSD = 0;
+                }
+            }
+
+            // Calculate sum revenue across all coins
+            minerPaymentsData.RevenueLast24HourUSD = minerPaymentsData.MinerPaymentSummaryList.Sum(x => x.RevenueLast24HourUSD);
+            minerPaymentsData.RevenueLast24HourBTC = minerPaymentsData.MinerPaymentSummaryList.Sum(x => x.RevenueLast24HourBTC);
+        }
+
+        #endregion
     }
 }

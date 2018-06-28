@@ -22,6 +22,7 @@
         public const string GetMinerConfigString = "MinerConfig";
         public const string GetMinerMonitorStats = "MiningMonitorStatistics";
         public const string GetMiningMonitorStatistics24Hour = "MiningMonitorStatistics24Hour";
+        public const string GetMinerPayments = "MinerPayments";
 
         public const string PostAccountWorkers = "AccountMiners";
         public const string PostMinerMonitorStats = "MiningMonitorStatistics";

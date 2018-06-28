@@ -169,6 +169,10 @@
     <Compile Include="Models\MinerConfigRequest.cs" />
     <Compile Include="Models\MinerConfigResponse.cs" />
     <Compile Include="Models\MinerMonitorStat.cs" />
+    <Compile Include="Models\MinerPayments\MinerPaymentDetails24Hours.cs" />
+    <Compile Include="Models\MinerPayments\MinerPaymentsData.cs" />
+    <Compile Include="Models\MinerPayments\MinerPaymentsGroupedByDay.cs" />
+    <Compile Include="Models\MinerPayments\MinerPaymentSummary.cs" />
     <Compile Include="Models\RPCResponse\EWBFTemplate.cs" />
     <Compile Include="Models\WhatToMine\WhatToMineResponse.cs" />
     <Compile Include="Models\WhatToMine\WhatToMineData.cs" />
@@ -177,6 +181,7 @@
     <Compile Include="Persistence\API\AccountWorkersAPI.cs" />
     <Compile Include="Persistence\API\GPUSettingsAPI.cs" />
     <Compile Include="Persistence\API\MinerConfigStringAPI.cs" />
+    <Compile Include="Persistence\API\MinerPaymentsAPI.cs" />
     <Compile Include="Persistence\API\MinerMonitorStatsAPI.cs" />
     <Compile Include="Persistence\API\AccountIdentityAPI.cs" />
     <Compile Include="Persistence\API\Base\APIBase.cs" />

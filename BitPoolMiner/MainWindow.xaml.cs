@@ -47,6 +47,8 @@ namespace BitPoolMiner
 
             // Display MainView data
             MainWindowViewModel.GetMinerMonitoringResults();
+            MainWindowViewModel.InitWhatToMine();
+            MainWindowViewModel.InitPayments();
 
             //Force window size to prevent crashing
             ResizeWindow();

@@ -373,8 +373,12 @@ namespace BitPoolMiner.ViewModels
         {
             try
             {
-
+                // Exit if no fiat currency is selected
                 if (Application.Current.Properties["Currency"] == null)
+                    return;
+
+                // Exit if select worker is not currently mining
+                if (MinerMonitorStat == null || MinerMonitorStat.CoinType == CoinType.UNDEFINED)
                     return;
 
                 string fiatCurrencyISOSymbol = Application.Current.Properties["Currency"].ToString();

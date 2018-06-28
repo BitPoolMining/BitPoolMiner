@@ -333,7 +333,8 @@
                     </DataGrid.Columns>
                 </DataGrid>
 
-                <Label Style="{StaticResource labelStyleLeftMenuGrey}">Forecast Next 24 Hours</Label>
+                <!-- Forecast data from WhatToMine -->
+                <Label Style="{StaticResource labelStyleLeftMenuGrey}">Rough Forecast Next 24 Hours</Label>
                 <StackPanel DataContext="{Binding Source={StaticResource MainWindowViewModel}, Path=WhatToMineData, UpdateSourceTrigger=PropertyChanged}">
                     <DataGrid 
                             AutoGenerateColumns="False" 
@@ -376,7 +377,48 @@
                 </StackPanel>
 
 
-                <Label Style="{StaticResource labelStyleLeftMenuGrey}">Revenue BTC</Label>
+                <Label Style="{StaticResource labelStyleLeftMenuGrey}">Actual Revenue Last 24 Hours</Label>
+                <StackPanel DataContext="{Binding Source={StaticResource MainWindowViewModel}, Path=MinerPaymentsData, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGrid 
+                            AutoGenerateColumns="False" 
+                            ItemsSource="{Binding MinerPaymentSummaryList}" 
+                            ScrollViewer.CanContentScroll="False" 
+                            CanUserDeleteRows="False" 
+                            CanUserAddRows="False" 
+                            CanUserSortColumns="False" 
+                            CanUserResizeColumns="False" 
+                            CanUserReorderColumns="False" 
+                            BorderThickness="0"
+                            BorderBrush="#212121"
+                            Background="#212121"
+                            RowHeaderWidth="0"
+                            HeadersVisibility="Column"
+                            GridLinesVisibility="None"
+                            Margin="0"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Top" 
+                            HorizontalAlignment="Left"
+                            HorizontalContentAlignment="Left"
+                            ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyleGPU}"
+                            RowHeaderStyle="{StaticResource DataGridRowHeaderStyleGPU}"
+                            RowStyle="{StaticResource DataGridRowStyleGPU}"
+                            CellStyle="{StaticResource DataGridCellStyleGPU}">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn  CellStyle="{StaticResource DataGridCellStyle}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Margin="5 0 5 5" Height="20" Width="20" Source="{Binding CoinLogo}" VerticalAlignment="Top" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Binding="{Binding CoinType}" Header="" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                            <DataGridTextColumn Binding="{Binding RevenueLast24HourUSD}" Header="USD" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                            <DataGridTextColumn Binding="{Binding RevenueLast24HourCoin}" Header="COINS" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                            <DataGridTextColumn Binding="{Binding RevenueLast24HourBTC}" Header="BTC" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+                
             </StackPanel>
         </Border>
 
@@ -388,12 +430,12 @@
             <StackPanel Orientation="Horizontal">
 
                 <StackPanel Orientation="Vertical" Margin="20 0 0 0">
-                    <Label Style="{StaticResource labelStyleFooterGrey}">Revenue Last 24h:</Label>
-                    <Label Style="{StaticResource labelStyleFooterGrey}">Revenue Last 24h:</Label>
+                    <Label Style="{StaticResource labelStyleFooterGrey}">Revenue Last 24h USD:</Label>
+                    <Label Style="{StaticResource labelStyleFooterGrey}">Revenue Last 24h BTC:</Label>
                 </StackPanel>
-                <StackPanel Orientation="Vertical">
-                    <Label Style="{StaticResource labelStyleFooterWhite}">31.46 USD</Label>
-                    <Label Style="{StaticResource labelStyleFooterWhite}">0.006751235 BTC</Label>
+                <StackPanel Orientation="Vertical" DataContext="{Binding Source={StaticResource MainWindowViewModel}, Path=MinerPaymentsData, UpdateSourceTrigger=PropertyChanged}">
+                    <Label Style="{StaticResource labelStyleFooterWhite}" Content="{Binding RevenueLast24HourUSD}"></Label>
+                    <Label Style="{StaticResource labelStyleFooterWhite}" Content="{Binding RevenueLast24HourBTC}"></Label>
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="40 0 0 0">
