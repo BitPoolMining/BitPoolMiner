@@ -217,13 +217,13 @@
 
                 <StackPanel Orientation="Horizontal" Canvas.Top="15" Canvas.Right="20">
                     <TextBlock Margin="5">
-                        <Hyperlink Foreground="#444444" NavigateUri="https://bitpoolmining.com">POOL WEBSITE</Hyperlink>
+                        <Hyperlink Foreground="#444444" NavigateUri="https://bitpoolmining.com" RequestNavigate="Hyperlink_RequestNavigate">POOL WEBSITE</Hyperlink>
                     </TextBlock>
                     <TextBlock Margin="5">
-                        <Hyperlink Foreground="#444444" NavigateUri="https://github.com/BitPoolMining/BitPoolMiner">GITHUB</Hyperlink>
+                        <Hyperlink Foreground="#444444" NavigateUri="https://github.com/BitPoolMining/BitPoolMiner" RequestNavigate="Hyperlink_RequestNavigate">GITHUB</Hyperlink>
                     </TextBlock>
                     <TextBlock Margin="5">
-                        <Hyperlink Foreground="#444444" NavigateUri="https://discordapp.com/invite/gxvyJuA">DISCORD</Hyperlink>
+                        <Hyperlink Foreground="#444444" NavigateUri="https://discordapp.com/invite/gxvyJuA" RequestNavigate="Hyperlink_RequestNavigate">DISCORD</Hyperlink>
                     </TextBlock>
                 </StackPanel>
             </Canvas>
@@ -296,46 +296,50 @@
         <!--Right Column -->
         <Border x:Name="BorderRight" BorderThickness="1 4 0 4" BorderBrush="#444444" Grid.Row="1" Grid.Column="9" Grid.RowSpan="8" Background="#1a1a1a" Width="270" HorizontalAlignment="Left" VerticalAlignment="Stretch">
             <StackPanel>
-                <Label Style="{StaticResource labelStyleLeftMenuGrey}">Hashrate Per Coin</Label>
-                <DataGrid 
-                        AutoGenerateColumns="False" 
-                        ItemsSource="{Binding Source={StaticResource MainWindowViewModel}, Path=MinerMonitorStatListGrouped, UpdateSourceTrigger=PropertyChanged}" 
-                        ScrollViewer.CanContentScroll="False" 
-                        CanUserDeleteRows="False" 
-                        CanUserAddRows="False" 
-                        CanUserSortColumns="False" 
-                        CanUserResizeColumns="False" 
-                        CanUserReorderColumns="False" 
-                        BorderThickness="0"
-                        BorderBrush="#212121"
-                        Background="#212121"
-                        RowHeaderWidth="0"
-                        HeadersVisibility="Column"
-                        GridLinesVisibility="None"
-                        Margin="0"
-                        VerticalAlignment="Top"
-                        VerticalContentAlignment="Top" 
-                        ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyleGPU}"
-                        RowHeaderStyle="{StaticResource DataGridRowHeaderStyleGPU}"
-                        RowStyle="{StaticResource DataGridRowStyleGPU}"
-                        CellStyle="{StaticResource DataGridCellStyleGPU}">
-                    <DataGrid.Columns>
-                        <DataGridTemplateColumn  CellStyle="{StaticResource DataGridCellStyle}">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Image Margin="5 0 5 5" Height="20" Width="20" Source="{Binding CoinLogo}" VerticalAlignment="Top" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn Binding="{Binding CoinType}" Header="" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
-                        <DataGridTextColumn Binding="{Binding CountStats}" Header="# Rigs" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
-                        <DataGridTextColumn Binding="{Binding DisplayHashRate}" Header="Total Hashrate" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-
+                
+                <!-- Mining Hashrates -->
+                <StackPanel Margin="10 10 0 0">
+                    <Label Style="{StaticResource labelStyleLeftMenuGrey}">Hashrate Per Coin</Label>
+                    <DataGrid 
+                            AutoGenerateColumns="False" 
+                            ItemsSource="{Binding Source={StaticResource MainWindowViewModel}, Path=MinerMonitorStatListGrouped, UpdateSourceTrigger=PropertyChanged}" 
+                            ScrollViewer.CanContentScroll="False" 
+                            CanUserDeleteRows="False" 
+                            CanUserAddRows="False" 
+                            CanUserSortColumns="False" 
+                            CanUserResizeColumns="False" 
+                            CanUserReorderColumns="False" 
+                            BorderThickness="0"
+                            BorderBrush="#212121"
+                            Background="#212121"
+                            RowHeaderWidth="0"
+                            HeadersVisibility="Column"
+                            GridLinesVisibility="None"
+                            Margin="0"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Top" 
+                            ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyleGPU}"
+                            RowHeaderStyle="{StaticResource DataGridRowHeaderStyleGPU}"
+                            RowStyle="{StaticResource DataGridRowStyleGPU}"
+                            CellStyle="{StaticResource DataGridCellStyleGPU}">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn  CellStyle="{StaticResource DataGridCellStyle}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Margin="5 0 5 5" Height="20" Width="20" Source="{Binding CoinLogo}" VerticalAlignment="Top" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Binding="{Binding CoinType}" Header="" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                            <DataGridTextColumn Binding="{Binding CountStats}" Header="# Rigs" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                            <DataGridTextColumn Binding="{Binding DisplayHashRate}" Header="Total Hashrate" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+                
                 <!-- Forecast data from WhatToMine -->
-                <Label Style="{StaticResource labelStyleLeftMenuGrey}">Rough Forecast Next 24 Hours</Label>
-                <StackPanel DataContext="{Binding Source={StaticResource MainWindowViewModel}, Path=WhatToMineData, UpdateSourceTrigger=PropertyChanged}">
+                <StackPanel  Margin="10 10 0 0" DataContext="{Binding Source={StaticResource MainWindowViewModel}, Path=WhatToMineData, UpdateSourceTrigger=PropertyChanged}">
+                    <Label Style="{StaticResource labelStyleLeftMenuGrey}">Rough Forecast Last 24 Hours</Label>
                     <DataGrid 
                             AutoGenerateColumns="False" 
                             ItemsSource="{Binding WhatToMineResponseList}" 
@@ -376,9 +380,9 @@
                     </DataGrid>
                 </StackPanel>
 
-
-                <Label Style="{StaticResource labelStyleLeftMenuGrey}">Actual Revenue Last 24 Hours</Label>
-                <StackPanel DataContext="{Binding Source={StaticResource MainWindowViewModel}, Path=MinerPaymentsData, UpdateSourceTrigger=PropertyChanged}">
+                <!-- Actual revenue last 24 hours -->
+                <StackPanel Margin="10 10 0 0" DataContext="{Binding Source={StaticResource MainWindowViewModel}, Path=MinerPaymentsData, UpdateSourceTrigger=PropertyChanged}">
+                    <Label Style="{StaticResource labelStyleLeftMenuGrey}">Actual Revenue Last 24 Hours</Label>
                     <DataGrid 
                             AutoGenerateColumns="False" 
                             ItemsSource="{Binding MinerPaymentSummaryList}" 
@@ -439,8 +443,8 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="40 0 0 0">
-                    <Label Style="{StaticResource labelStyleFooterGrey}">Rough Forecast 24h USD:</Label>
-                    <Label Style="{StaticResource labelStyleFooterGrey}">Rough Forecast 24h BTC:</Label>
+                    <Label Style="{StaticResource labelStyleFooterGrey}">Rough Forecast Last 24h USD:</Label>
+                    <Label Style="{StaticResource labelStyleFooterGrey}">Rough Forecast Last 24h BTC:</Label>
                 </StackPanel>
                 <StackPanel Orientation="Vertical" DataContext="{Binding Source={StaticResource MainWindowViewModel}, Path=WhatToMineData, UpdateSourceTrigger=PropertyChanged}">
                     <Label Style="{StaticResource labelStyleFooterWhite}" Content="{Binding ForecastNext24HourUSD}"></Label>
