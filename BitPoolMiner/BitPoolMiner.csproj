@@ -164,6 +164,7 @@
     <Compile Include="Models\AccountWallet.cs" />
     <Compile Include="Models\AccountWorkers.cs" />
     <Compile Include="Models\CoinMarketCap\CoinMarketCapResponse.cs" />
+    <Compile Include="Models\CryptoCompare\HistoDayResponse.cs" />
     <Compile Include="Models\GPUMonitorStat.cs" />
     <Compile Include="Models\GPUSettings.cs" />
     <Compile Include="Models\MinerConfigRequest.cs" />
@@ -190,9 +191,11 @@
     <Compile Include="Persistence\FileSystem\AccountIdentityFile.cs" />
     <Compile Include="Persistence\FileSystem\Base\FileConstants.cs" />
     <Compile Include="Process\BPMProcess.cs" />
-    <Compile Include="Utils\ChartDataBackFill.cs" />
+    <Compile Include="Utils\ChartUtils\PaymentChartDataBackFill.cs" />
+    <Compile Include="Utils\ChartUtils\WorkerChartDataBackFill.cs" />
     <Compile Include="Utils\CoinMarketCap\CoinMarketCapAPI.cs" />
     <Compile Include="Utils\Core.cs" />
+    <Compile Include="Utils\CryptoCompare\CryptoCompareAPI.cs" />
     <Compile Include="Utils\HashrateFormatter.cs" />
     <Compile Include="Utils\NLogProcessing.cs" />
     <Compile Include="Utils\OpenHardwareMonitor\OpenHardwareMonitor.cs" />

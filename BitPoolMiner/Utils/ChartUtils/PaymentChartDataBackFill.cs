@@ -8,17 +8,17 @@ namespace BitPoolMiner.Utils
     /// <summary>
     /// Fill in any data points that are missing with ZERO to allow proper charting
     /// </summary>
-    public class ChartDataBackFill
+    public class PaymentChartDataBackFill
     {
         /// <summary>
-        /// Chart data is currently showing data points at an interval of 5 minutes
+        /// Chart data is currently showing data points at an interval of 1 day
         /// </summary>
-        const int datePointTimeIntervalMins = 5;
+        const int datePointTimeIntervalDays = 1;
 
         /// <summary>
-        /// Chart data is currently using a 24 hour window for historical data points from the current time backwards
+        /// Chart data is currently using a 30 day window for historical data points from the current time backwards
         /// </summary>
-        const int datePointTimeWindow = 1440;
+        const int datePointTimeWindow = 30;
 
         /// <summary>
         /// Public entry point
@@ -27,7 +27,7 @@ namespace BitPoolMiner.Utils
         /// <returns></returns>
         public ChartValues<DateTimePoint> BackFillList(ChartValues<DateTimePoint> list)
         {
-            list.ToList().ForEach(x => x.DateTime = RoundDown(x.DateTime, TimeSpan.FromMinutes(5)));
+            list.ToList().ForEach(x => x.DateTime = RoundDown(x.DateTime, TimeSpan.FromMinutes(datePointTimeIntervalDays)));
             ChartValues<DateTimePoint> completeList = GetListAllDates(list);
             return SortList(completeList);
         }
@@ -57,12 +57,12 @@ namespace BitPoolMiner.Utils
         /// <returns></returns>
         private ChartValues<DateTimePoint> GetListAllDates(ChartValues<DateTimePoint> list)
         {
-            DateTime tmpInterval = RoundDown(DateTime.UtcNow.ToLocalTime().Subtract(TimeSpan.FromMinutes(datePointTimeWindow - datePointTimeIntervalMins)), TimeSpan.FromMinutes(datePointTimeIntervalMins));
-            var upperBound = DateTime.UtcNow.ToLocalTime().Subtract(TimeSpan.FromMinutes(datePointTimeIntervalMins));
+            DateTime tmpInterval = RoundDown(DateTime.UtcNow.ToLocalTime().Subtract(TimeSpan.FromDays(datePointTimeWindow - datePointTimeIntervalDays)), TimeSpan.FromDays(datePointTimeIntervalDays));
+            var upperBound = DateTime.UtcNow.ToLocalTime().Subtract(TimeSpan.FromDays(datePointTimeIntervalDays));
 
             while (tmpInterval <= upperBound)
             {
-                if (list.Any(x => RoundDown(x.DateTime, TimeSpan.FromMinutes(datePointTimeIntervalMins)) == tmpInterval) == false)
+                if (list.Any(x => RoundDown(x.DateTime, TimeSpan.FromDays(datePointTimeIntervalDays)) == tmpInterval) == false)
                 {
                     DateTimePoint dateTimePoint = new DateTimePoint
                     {
@@ -71,7 +71,7 @@ namespace BitPoolMiner.Utils
                     };
                     list.Add(dateTimePoint);
                 }
-                tmpInterval = tmpInterval.Add(TimeSpan.FromMinutes(datePointTimeIntervalMins));
+                tmpInterval = tmpInterval.Add(TimeSpan.FromDays(datePointTimeIntervalDays));
             };
 
             return list;

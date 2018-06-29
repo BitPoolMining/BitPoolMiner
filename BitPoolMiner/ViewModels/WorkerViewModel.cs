@@ -282,7 +282,7 @@ namespace BitPoolMiner.ViewModels
                     }
 
                     // Backfill lists as needed
-                    ChartDataBackFill chartDataBackFill = new ChartDataBackFill();
+                    WorkerChartDataBackFill chartDataBackFill = new WorkerChartDataBackFill();
                     ChartValuesHashRate = chartDataBackFill.BackFillList(ChartValuesHashRate);
                     ChartValuesPower = chartDataBackFill.BackFillList(ChartValuesPower);
 

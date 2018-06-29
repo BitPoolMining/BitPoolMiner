@@ -132,6 +132,9 @@
         <DataTemplate x:Name="workerViewTemplate" DataType="{x:Type viewmodels:WorkerViewModel}">
             <views:WorkerView DataContext="{Binding}"/>
         </DataTemplate>
+        <DataTemplate x:Name="profitabilityViewTemplate" DataType="{x:Type viewmodels:ProfitabilityViewModel}">
+            <views:ProfitabilityView DataContext="{Binding}"/>
+        </DataTemplate>
 
         <Style x:Key="DataGridRowHeaderStyleGPU" TargetType="{x:Type DataGridRowHeader}"  >
             <Setter Property="Visibility" Value="Hidden" />

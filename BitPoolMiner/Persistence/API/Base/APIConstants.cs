@@ -7,6 +7,7 @@
     {
         public const string APIURL = "https://bitpoolminerapi.bitpoolmining.com/api/";
         public const string CoinMarketCapAPIURL = "https://api.coinmarketcap.com/v1/ticker/{0}/?convert={1}";
+        public const string CryptoCompareHistoDayAPIURL = "https://min-api.cryptocompare.com/data/histoday?fsym={0}&tsym={1}&limit=31&aggregate=1&e=CCCAGG";
         public const string WhatToMineAPIURL = "http://www.whattomine.com/coins/{0}.json";
     }
 

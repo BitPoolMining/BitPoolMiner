@@ -59,4 +59,19 @@ namespace BitPoolMiner.Enums
             { CoinType.EXP, 154 },
         };
     }
+
+    public static class CoinPaymentChartColor
+    {
+        /// <summary>
+        /// Coin icon files
+        /// </summary>
+        public static readonly Dictionary<CoinType, string> CoinPaymentChartColorDictionary = new Dictionary<CoinType, string>
+        {
+            { CoinType.HUSH, "#2d99dc" },
+            { CoinType.KMD, "#35bda8" },
+            { CoinType.VTC, "#86b34d" },
+            { CoinType.MONA, "#e66c40" },
+            { CoinType.EXP, "#cb3e4b" },
+        };
+    }
 }
