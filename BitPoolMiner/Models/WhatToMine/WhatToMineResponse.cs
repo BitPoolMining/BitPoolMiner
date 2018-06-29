@@ -1,4 +1,7 @@
-﻿namespace BitPoolMiner.Models.WhatToMine
+﻿using System;
+using System.Windows;
+
+namespace BitPoolMiner.Models.WhatToMine
 {
     public class WhatToMineResponse
     {
@@ -17,10 +20,48 @@
         public double exchange_rate_vol { get; set; }
         public string exchange_rate_curr { get; set; }
         public string market_cap { get; set; }
-        public string estimated_rewards { get; set; }
+
+        private string estimated_rewards;
+        public string Estimated_rewards
+        {
+            get
+            {
+                return Decimal.Round(Convert.ToDecimal(estimated_rewards), 6).ToString();
+            }
+            set
+            {
+                estimated_rewards = value;
+            }
+        }
+
         public string pool_fee { get; set; }
-        public string btc_revenue { get; set; }
-        public string revenue { get; set; }
+
+        private string btc_revenue;
+        public string BTC_revenue
+        {
+            get
+            {
+                return Decimal.Round(Convert.ToDecimal(btc_revenue), 6).ToString();
+            }
+            set
+            {
+                btc_revenue = value;
+            }
+        }
+
+        private string revenue;
+        public string Revenue
+        {
+            get
+            {
+                return revenue.Replace("$", "");
+            }
+            set
+            {
+                revenue = value;
+            }            
+        }
+
         public string cost { get; set; }
         public string profit { get; set; }
         public string status { get; set; }
@@ -30,5 +71,19 @@
         /// <summary>
         /// Get the Coin Logo file location
         public string CoinLogo { get; set; }
+
+        /// <summary>
+        /// Current workers fiat currency for conversions
+        /// </summary>
+        public string FiatCurrencySymbol
+        {
+            get
+            {
+                if (Application.Current.Properties["Currency"] == null)
+                    return "";
+                else
+                    return Application.Current.Properties["Currency"].ToString();
+            }
+        }
     }
 }

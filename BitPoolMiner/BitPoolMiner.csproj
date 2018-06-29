@@ -205,6 +205,7 @@
     <Compile Include="ViewModels\MonitorViewModel.cs" />
     <Compile Include="ViewModels\Base\RelayCommand.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
+    <Compile Include="ViewModels\ProfitabilityViewModel.cs" />
     <Compile Include="ViewModels\WalletViewModel.cs" />
     <Compile Include="ViewModels\WorkerViewModel.cs" />
     <Compile Include="Views\AccountView.xaml.cs">
@@ -215,6 +216,9 @@
     </Compile>
     <Compile Include="Views\MonitorView.xaml.cs">
       <DependentUpon>MonitorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfitabilityView.xaml.cs">
+      <DependentUpon>ProfitabilityView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WalletView.xaml.cs">
       <DependentUpon>WalletView.xaml</DependentUpon>
@@ -243,6 +247,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MonitorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProfitabilityView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -395,7 +395,6 @@ namespace BitPoolMiner.ViewModels
             {
                 ShowError(string.Format("Error loading coin market cap data: {0}", e.Message));
             }
-
         }
 
         #endregion

@@ -33,7 +33,7 @@ namespace BitPoolMiner.ViewModels
             // Instantiate and start timer
             MinerStatusCheckTimer = new DispatcherTimer();
             MinerStatusCheckTimer.Tick += MinerStatusCheckTimer_Elapsed;
-            MinerStatusCheckTimer.Interval = TimeSpan.FromSeconds(60);  // 60 second default right now.  EWBF won't display any data until it submits the first share.
+            MinerStatusCheckTimer.Interval = TimeSpan.FromSeconds(240);  // 240 second default right now.  EWBF won't display any data until it submits the first share.
             MinerStatusCheckTimer.Start();
         }
 

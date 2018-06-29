@@ -17,6 +17,7 @@ namespace BitPoolMiner
         private MainWindowViewModel MainWindowViewModel;
         private MonitorViewModel MonitorViewModel;
         private WorkerViewModel WorkerViewModel;
+        private ProfitabilityViewModel ProfitabilityViewModel;
 
         #region Init
 
@@ -50,6 +51,9 @@ namespace BitPoolMiner
             //Force window size to prevent crashing
             ResizeWindow();
 
+            // Initialize Profitability ViewModel after main window data loaded
+            if (ProfitabilityViewModel == null)
+                ProfitabilityViewModel = new ProfitabilityViewModel(MainWindowViewModel);
         }
 
         #endregion
@@ -87,9 +91,9 @@ namespace BitPoolMiner
             DataContext = AccountViewModel;
         }
 
-        private void AutoProfitSwitchingButton_Clicked(object sender, RoutedEventArgs e)
+        private void ProfitabilityButton_Clicked(object sender, RoutedEventArgs e)
         {
-            DataContext = AccountViewModel;
+            DataContext = ProfitabilityViewModel;
         }
 
         private void MiningDashboardButton_Clicked(object sender, RoutedEventArgs e)
