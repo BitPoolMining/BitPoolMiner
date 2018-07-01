@@ -54,6 +54,10 @@ namespace BitPoolMiner
             // Initialize Profitability ViewModel after main window data loaded
             if (ProfitabilityViewModel == null)
                 ProfitabilityViewModel = new ProfitabilityViewModel(MainWindowViewModel);
+
+            // Pass a reference of the Profitability ViewMode to the MainWindowViewModel.  This will allow 
+            // rerendering of charts from the main window view timer event
+            MainWindowViewModel.profitabilityViewModel = ProfitabilityViewModel;
         }
 
         #endregion

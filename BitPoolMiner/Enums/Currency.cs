@@ -25,6 +25,7 @@
         RUB,
         INR,
         BRL,
-        ZAR
+        ZAR,
+        MYR
     }
 }

@@ -42,5 +42,10 @@ namespace BitPoolMiner.Models.MinerPayments
                     return Application.Current.Properties["Currency"].ToString();
             }
         }
+
+        /// <summary>
+        /// List of miner payments by day and unioned across all coins. This list is used to bind to the UI.
+        /// </summary>
+        public List<MinerPaymentsGroupedByDay> MinerPaymentsGroupedByDayUnionedList { get; set; }
     }
 }

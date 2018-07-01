@@ -29,6 +29,7 @@ namespace BitPoolMiner.ViewModels
             GetAccountWorkerList();
             InitWhatToMine();
             InitPayments();
+            
 
             // Instantiate and start timer
             MinerStatusCheckTimer = new DispatcherTimer();
@@ -43,6 +44,8 @@ namespace BitPoolMiner.ViewModels
 
         // Timer for Monitoring Miner
         private DispatcherTimer MinerStatusCheckTimer;
+
+        public ProfitabilityViewModel profitabilityViewModel;
 
         // Miner monitor stats grouped by coin 
         private ObservableCollection<MinerMonitorStat> minerMonitorStatListGrouped;
@@ -180,6 +183,7 @@ namespace BitPoolMiner.ViewModels
             GetAccountWorkerList();
             InitWhatToMine();
             InitPayments();
+            profitabilityViewModel.PlotPaymentChart();
         }
 
         /// <summary>

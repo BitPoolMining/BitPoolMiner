@@ -67,38 +67,46 @@
 
     </UserControl.Resources>
 
-    <Grid>
-        <!--Grid Columns-->
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
+    <ScrollViewer>
+        <ScrollViewer.Resources>
+            <Style TargetType="ScrollBar">
+                <Setter Property="Background" Value="#212121" />
+                <Setter Property="BorderBrush" Value="#9f9f9f" />
+            </Style>
+        </ScrollViewer.Resources>
+        <Grid>
+            <!--Grid Columns-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="260"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
-        <!--Grid Rows-->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="1" Background="#2d2d2d" Margin="10" DataContext="{Binding Source={StaticResource MainWindowViewModel}, Path=WhatToMineData, UpdateSourceTrigger=PropertyChanged}">
-            <Label Style="{StaticResource labelStyleLeftMenuGrey}">Rough Forecast Last 24 Hours</Label>
-            <DataGrid 
+            <!--Grid Rows-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!-- Forecasts -->
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="1" Background="#2d2d2d" Margin="10" DataContext="{Binding Source={StaticResource MainWindowViewModel}, Path=WhatToMineData, UpdateSourceTrigger=PropertyChanged}">
+                <Label Style="{StaticResource labelStyleLeftMenuGrey}">Rough Forecast Last 24 Hours</Label>
+                <DataGrid 
                             AutoGenerateColumns="False" 
                             ItemsSource="{Binding WhatToMineResponseList}" 
                             ScrollViewer.CanContentScroll="False" 
@@ -122,40 +130,93 @@
                             RowHeaderStyle="{StaticResource DataGridRowHeaderStyleGPU}"
                             RowStyle="{StaticResource DataGridRowStyleGPU}"
                             CellStyle="{StaticResource DataGridCellStyleGPU}">
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn  CellStyle="{StaticResource DataGridCellStyle}">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <Image Margin="5 0 5 5" Height="20" Width="20" Source="{Binding CoinLogo}" VerticalAlignment="Top" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Binding="{Binding tag}" Header="" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
-                    <DataGridTextColumn Binding="{Binding Revenue}" Header="FIAT" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
-                    <DataGridTextColumn Binding="{Binding Estimated_rewards}" Header="COINS" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
-                    <DataGridTextColumn Binding="{Binding BTC_revenue}" Header="BTC" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn  CellStyle="{StaticResource DataGridCellStyle}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Margin="5 0 5 5" Height="20" Width="20" Source="{Binding CoinLogo}" VerticalAlignment="Top" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Binding="{Binding tag}" Header="" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding Revenue}" Header="FIAT" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding Estimated_rewards}" Header="COINS" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding BTC_revenue}" Header="BTC" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding pool_fee}" Header="Pool Fee" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding cost}" Header="Power Cost" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding profit}" Header="Profit" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
 
-        <lvc:CartesianChart Margin="20" Grid.Row="1" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="7" MinHeight="500" MinWidth="1000" Series="{Binding SeriesCollection}" LegendLocation="Top" >
-            <lvc:CartesianChart.ChartLegend>
-                <lvc:DefaultLegend Margin="5 5 0 0 " BulletSize="15" Foreground="#ffffff"/>
-            </lvc:CartesianChart.ChartLegend>
-            <lvc:CartesianChart.AxisX>
-                <lvc:Axis LabelFormatter="{Binding XFormatter}" >
-                    <lvc:Axis.Separator>
-                        <lvc:Separator IsEnabled="False" Step="{Binding ChartStep}" Stroke="#444444"/>
-                    </lvc:Axis.Separator>
-                </lvc:Axis>
-            </lvc:CartesianChart.AxisX>
-            <lvc:CartesianChart.AxisY>
-                <lvc:Axis LabelFormatter="{Binding YFormatter}">
-                    <lvc:Axis.Separator>
-                        <lvc:Separator Stroke="#444444"/>
-                    </lvc:Axis.Separator>
-                </lvc:Axis>
-            </lvc:CartesianChart.AxisY>
-        </lvc:CartesianChart>
-    </Grid>
+            <!-- Payment Chart -->
+            <StackPanel Grid.Row="1" Margin="10" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="9">
+                <lvc:CartesianChart  Series="{Binding SeriesCollection}" LegendLocation="Top" MinWidth="900" MinHeight="450">
+                    <lvc:CartesianChart.ChartLegend>
+                        <lvc:DefaultLegend Margin="5 5 0 0 " BulletSize="15" Foreground="#ffffff"/>
+                    </lvc:CartesianChart.ChartLegend>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis LabelFormatter="{Binding XFormatter}" >
+                            <lvc:Axis.Separator>
+                                <lvc:Separator IsEnabled="False" Step="{Binding ChartStep}" Stroke="#444444"/>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis LabelFormatter="{Binding YFormatter}">
+                            <lvc:Axis.Separator>
+                                <lvc:Separator Stroke="#444444"/>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+            </StackPanel>
+
+            <!-- Payment List -->
+
+            <StackPanel Grid.Row="0" Grid.Column="9" Grid.RowSpan="10" Grid.ColumnSpan="1" Background="#2d2d2d" Margin="10" DataContext="{Binding Source={StaticResource MainWindowViewModel}, Path=MinerPaymentsData, UpdateSourceTrigger=PropertyChanged}">
+                <Label Style="{StaticResource labelStyleLeftMenuGrey}">Payments Last 30 Days</Label>
+
+                <DataGrid 
+                            AutoGenerateColumns="False" 
+                            ItemsSource="{Binding MinerPaymentsGroupedByDayUnionedList}" 
+                            CanUserDeleteRows="False" 
+                            CanUserAddRows="False" 
+                            CanUserSortColumns="False" 
+                            CanUserResizeColumns="False" 
+                            CanUserReorderColumns="False" 
+                            BorderThickness="0"
+                            BorderBrush="#2d2d2d"
+                            Background="#2d2d2d"
+                            RowHeaderWidth="0"
+                            HeadersVisibility="Column"
+                            GridLinesVisibility="None"
+                            Margin="0"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Top" 
+                            HorizontalAlignment="Left"
+                            HorizontalContentAlignment="Left"
+                            ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyleGPU}"
+                            RowHeaderStyle="{StaticResource DataGridRowHeaderStyleGPU}"
+                            RowStyle="{StaticResource DataGridRowStyleGPU}"
+                            CellStyle="{StaticResource DataGridCellStyleGPU}">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn CellStyle="{StaticResource DataGridCellStyle}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Margin="5 0 0 0" Height="15" Width="15" Source="{Binding CoinLogo}" VerticalAlignment="Top" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Binding="{Binding CoinType}" Header="CoinType" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding DisplayPaymentDate}" Header="Date" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding DisplayPaymentAmount}" Header="Coins" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding DisplayPaymentAmountFiat}" Header="Fiat" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
 </UserControl>
