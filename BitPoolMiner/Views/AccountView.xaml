@@ -23,6 +23,9 @@
         <!-- Wire up enum data source for Region -->
         <ObjectDataProvider x:Key="EnumDataProviderRegion"                         MethodName="GetValues"                         ObjectType="{x:Type System:Enum}">            <ObjectDataProvider.MethodParameters>                <x:Type TypeName="ct:Region"/>            </ObjectDataProvider.MethodParameters>        </ObjectDataProvider>
 
+        <!-- Wire up enum data source for Currency -->
+        <ObjectDataProvider x:Key="EnumDataProviderCurrency"                         MethodName="GetValues"                         ObjectType="{x:Type System:Enum}">            <ObjectDataProvider.MethodParameters>                <x:Type TypeName="ct:CurrencyList"/>            </ObjectDataProvider.MethodParameters>        </ObjectDataProvider>
+        
         <!-- Style - Label White Title -->
         <Style x:Key = "labelStyleFooterWhiteTitle" TargetType = "Label">
             <Setter Property = "Foreground" Value = "#FFFFFF" />
@@ -401,6 +404,7 @@
                     <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
 
@@ -472,11 +476,37 @@
                     </ComboBox.ItemContainerStyle>
                 </ComboBox>
 
+                <!-- Currency -->
+                <Label 
+                    Grid.Row="4" 
+                    Grid.Column="0" 
+                    Grid.ColumnSpan="1"    
+                    Style="{StaticResource labelStyleFooterGrey}">Currency</Label>
+                <ComboBox                     Grid.Row="4" 
+                    Grid.Column="1" 
+                    Grid.ColumnSpan="1"                      FontSize= "14"
+                    FontWeight= "Bold"                    Foreground= "#000000"                    Height="25"
+                    SelectedItem="{Binding Path=WorkerSettings.Currency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    ItemsSource="{Binding Source={StaticResource EnumDataProviderCurrency}}">                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="Background" Value="#646464"/>
+                            <Setter Property="Foreground" Value="#000000"/>
+                            <Setter Property="BorderBrush" Value="#646464"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="#646464" />
+                                    <Setter Property="Foreground" Value="#000000"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
+
                 <!-- Button to save worker settings-->
                 <Button 
                     x:Name="ButtonSaveWorkerSettings" 
                     Style="{StaticResource buttonStyle}" 
-                    Grid.Row="4" 
+                    Grid.Row="5" 
                      Grid.RowSpan="1"
                     Grid.Column="1"
                     HorizontalAlignment="Right"

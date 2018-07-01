@@ -1,4 +1,5 @@
 ﻿using BitPoolMiner.Enums;
+using System.Globalization;
 
 namespace BitPoolMiner.Models
 {
@@ -18,5 +19,10 @@ namespace BitPoolMiner.Models
         /// Region for Miner
         /// </summary>
         public Region Region { get; set; }
+
+        /// <summary>
+        /// Currency Code
+        /// </summary>
+        public CurrencyList Currency { get; set; }
     }
 }

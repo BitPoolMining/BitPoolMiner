@@ -34,7 +34,7 @@
     <ProductName>BitPoolMiner</ProductName>
     <PublisherName>BitPoolMining</PublisherName>
     <SuiteName>BitPoolMining</SuiteName>
-    <ApplicationRevision>9</ApplicationRevision>
+    <ApplicationRevision>10</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -149,9 +149,11 @@
     </ApplicationDefinition>
     <Compile Include="Enums\AlgorithmType.cs" />
     <Compile Include="Enums\CoinType.cs" />
+    <Compile Include="Enums\Currency.cs" />
     <Compile Include="Enums\HardwareType.cs" />
     <Compile Include="Enums\MinerBaseType.cs" />
     <Compile Include="Enums\Region.cs" />
+    <Compile Include="Formatter\WhatToMineDataFormatter.cs" />
     <Compile Include="Formatter\MinerMonitorStatsFormatter.cs" />
     <Compile Include="Miners\Ccminer.cs" />
     <Compile Include="Miners\EWBF.cs" />
@@ -161,17 +163,26 @@
     <Compile Include="Miners\MiningSession.cs" />
     <Compile Include="Models\AccountWallet.cs" />
     <Compile Include="Models\AccountWorkers.cs" />
+    <Compile Include="Models\CoinMarketCap\CoinMarketCapResponse.cs" />
+    <Compile Include="Models\CryptoCompare\HistoDayResponse.cs" />
     <Compile Include="Models\GPUMonitorStat.cs" />
     <Compile Include="Models\GPUSettings.cs" />
     <Compile Include="Models\MinerConfigRequest.cs" />
     <Compile Include="Models\MinerConfigResponse.cs" />
     <Compile Include="Models\MinerMonitorStat.cs" />
+    <Compile Include="Models\MinerPayments\MinerPaymentDetails24Hours.cs" />
+    <Compile Include="Models\MinerPayments\MinerPaymentsData.cs" />
+    <Compile Include="Models\MinerPayments\MinerPaymentsGroupedByDay.cs" />
+    <Compile Include="Models\MinerPayments\MinerPaymentSummary.cs" />
     <Compile Include="Models\RPCResponse\EWBFTemplate.cs" />
+    <Compile Include="Models\WhatToMine\WhatToMineResponse.cs" />
+    <Compile Include="Models\WhatToMine\WhatToMineData.cs" />
     <Compile Include="Models\WorkerSettings.cs" />
     <Compile Include="Persistence\API\AccountWalletAPI.cs" />
     <Compile Include="Persistence\API\AccountWorkersAPI.cs" />
     <Compile Include="Persistence\API\GPUSettingsAPI.cs" />
     <Compile Include="Persistence\API\MinerConfigStringAPI.cs" />
+    <Compile Include="Persistence\API\MinerPaymentsAPI.cs" />
     <Compile Include="Persistence\API\MinerMonitorStatsAPI.cs" />
     <Compile Include="Persistence\API\AccountIdentityAPI.cs" />
     <Compile Include="Persistence\API\Base\APIBase.cs" />
@@ -180,17 +191,24 @@
     <Compile Include="Persistence\FileSystem\AccountIdentityFile.cs" />
     <Compile Include="Persistence\FileSystem\Base\FileConstants.cs" />
     <Compile Include="Process\BPMProcess.cs" />
+    <Compile Include="Utils\ChartUtils\PaymentChartDataBackFill.cs" />
+    <Compile Include="Utils\ChartUtils\WorkerChartDataBackFill.cs" />
+    <Compile Include="Utils\CoinMarketCap\CoinMarketCapAPI.cs" />
     <Compile Include="Utils\Core.cs" />
+    <Compile Include="Utils\CryptoCompare\CryptoCompareAPI.cs" />
     <Compile Include="Utils\HashrateFormatter.cs" />
     <Compile Include="Utils\NLogProcessing.cs" />
     <Compile Include="Utils\OpenHardwareMonitor\OpenHardwareMonitor.cs" />
+    <Compile Include="Utils\WhatToMine\WhatToMineAPI.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel\MainWindowViewModel.Mining.cs" />
     <Compile Include="ViewModels\MainWindowViewModel\MainWindowViewModel.Monitoring.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel\MainWindowViewModel.Revenue.cs" />
     <Compile Include="ViewModels\MonitorViewModel.cs" />
     <Compile Include="ViewModels\Base\RelayCommand.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
+    <Compile Include="ViewModels\ProfitabilityViewModel.cs" />
     <Compile Include="ViewModels\WalletViewModel.cs" />
     <Compile Include="ViewModels\WorkerViewModel.cs" />
     <Compile Include="Views\AccountView.xaml.cs">
@@ -201,6 +219,9 @@
     </Compile>
     <Compile Include="Views\MonitorView.xaml.cs">
       <DependentUpon>MonitorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ProfitabilityView.xaml.cs">
+      <DependentUpon>ProfitabilityView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WalletView.xaml.cs">
       <DependentUpon>WalletView.xaml</DependentUpon>
@@ -229,6 +250,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MonitorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ProfitabilityView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -509,6 +534,38 @@
     <None Include="publish\Application Files\BitPoolMiner_1_0_0_8\ThinkSharp.FeatureTour.dll.deploy" />
     <None Include="publish\Application Files\BitPoolMiner_1_0_0_8\ToastNotifications.dll.deploy" />
     <None Include="publish\Application Files\BitPoolMiner_1_0_0_8\ToastNotifications.Messages.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\bitpool.ico.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\BitPoolMiner.application" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\BitPoolMiner.exe.config.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\BitPoolMiner.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\BitPoolMiner.exe.manifest" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\LiveCharts.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\LiveCharts.Wpf.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\Microsoft.Expression.Interactions.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\MinerApps\ccminer-x64-2.2.4-cuda9\ccminer-x64.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\MinerApps\ccminer-x64-2.2.4-cuda9\msvcr120.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\MinerApps\ccminer-x86-2.2.4-cuda9\ccminer.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\MinerApps\ccminer-x86-2.2.4-cuda9\msvcr120.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\MinerApps\EWBF\cudart32_80.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\MinerApps\EWBF\cudart64_80.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\MinerApps\EWBF\miner.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\MinerApps\EWBF\msvcp120.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\MinerApps\EWBF\msvcr120.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\Newtonsoft.Json.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\NLog.config.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\NLog.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\OpenHardwareMonitorLib.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\publish\setup.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\Resources\Images\bitpool.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\Resources\Images\exp.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\Resources\Images\hush.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\Resources\Images\kmd.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\Resources\Images\mona.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\Resources\Images\vtc.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\System.Windows.Interactivity.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\ThinkSharp.FeatureTour.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\ToastNotifications.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_9\ToastNotifications.Messages.dll.deploy" />
     <None Include="publish\BitPoolMiner.application" />
   </ItemGroup>
   <ItemGroup>

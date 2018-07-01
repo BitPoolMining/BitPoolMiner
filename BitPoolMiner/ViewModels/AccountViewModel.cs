@@ -5,6 +5,7 @@ using BitPoolMiner.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Windows;
 
@@ -37,7 +38,7 @@ namespace BitPoolMiner.ViewModels
                 Application.Current.Properties["AccountID"] = AccountIdentity.AccountGuid;
             }
         }
-
+               
         // Account workers property to bind to UI
         private ObservableCollection<AccountWorkers> accountWorkersList;
         public ObservableCollection<AccountWorkers> AccountWorkersList
@@ -70,9 +71,10 @@ namespace BitPoolMiner.ViewModels
                 workerSettings = value;
                 OnPropertyChanged();
 
-                // Set global variable for Worker Name and region
+                // Set global variable for Worker Name, Region and Currency
                 Application.Current.Properties["WorkerName"] = WorkerSettings.WorkerName;
                 Application.Current.Properties["Region"] = WorkerSettings.Region;
+                Application.Current.Properties["Currency"] = WorkerSettings.Currency;
 
                 // Set Label on Main Window
                 _mainWindowViewModel.LabelMainTitle = string.Format("BITPOOL MINER - {0}", WorkerSettings.WorkerName);
@@ -210,10 +212,10 @@ namespace BitPoolMiner.ViewModels
                 {
                     // Load list of account workers
                     AccountWorkersAPI accountWorkersAPI = new AccountWorkersAPI();
-                    AccountWorkersList = accountWorkersAPI.GetAccountWorkers();                   
+                    AccountWorkersList = accountWorkersAPI.GetAccountWorkers();
 
                     // Notify UI of change
-                    OnPropertyChanged("AccountWorkersList");                    
+                    OnPropertyChanged("AccountWorkersList");
                 }
             }
             catch (Exception e)
@@ -230,9 +232,10 @@ namespace BitPoolMiner.ViewModels
                 WorkerSettingsFile workerSettingsFile = new WorkerSettingsFile();
                 WorkerSettings = workerSettingsFile.ReadJsonFromFile();
 
-                // Set global variable for Worker Name and region
+                // Set global variable for Worker Name, Region and Currency
                 Application.Current.Properties["WorkerName"] = WorkerSettings.WorkerName;
                 Application.Current.Properties["Region"] = WorkerSettings.Region;
+                Application.Current.Properties["Currency"] = WorkerSettings.Currency;
             }
             catch (Exception e)
             {
@@ -340,7 +343,7 @@ namespace BitPoolMiner.ViewModels
         #endregion
 
         #region Account Workers - List or remove workers from an account
-      
+
         /// <summary>
         /// Insert a new worker for account
         /// </summary>
@@ -401,7 +404,7 @@ namespace BitPoolMiner.ViewModels
 
                     // Remove worker from local list of workers
                     AccountWorkersList.Remove(accountWorkersRemove);
-                    
+
                     // Notify UI of change
                     OnPropertyChanged("AccountWorkersList");
 
@@ -421,11 +424,51 @@ namespace BitPoolMiner.ViewModels
         #endregion
 
         #region WorkerSettings
-   
+
+        private bool ValidateWorkerSettings(WorkerSettings workerSettingsValidate)
+        {
+            bool isValid = true;
+
+            // Validate that Workername is set
+            if (workerSettingsValidate.WorkerName == null || workerSettingsValidate.WorkerName == "")
+            {
+                ShowError("Worker name must be set");
+                isValid = false;
+            }
+
+            // Validate that Workername is not WORKER
+            if (workerSettingsValidate.WorkerName == "Worker")
+            {
+                ShowError("Please use another name other than WORKER");
+                isValid = false;
+            }
+
+            // Validate that region is set
+            if (workerSettingsValidate.Region == Enums.Region.UNDEFINED)
+            {
+                ShowError("Please select a region");
+                isValid = false;
+            }
+
+            // Validate that currency is set
+            if (workerSettingsValidate.Currency == Enums.CurrencyList.UNDEFINED)
+            {
+                ShowError("Please select a currency");
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
         public void PersistWorkerSettings(object param)
         {
             try
             {
+                if (ValidateWorkerSettings(WorkerSettings) == false)
+                {
+                    return;
+                }
+
                 // Write GUID to account identity config file
                 WorkerSettingsFile workerSettingsFile = new WorkerSettingsFile();
                 workerSettingsFile.WriteJsonToFile(WorkerSettings);
@@ -433,9 +476,10 @@ namespace BitPoolMiner.ViewModels
                 // Notify UI of change
                 OnPropertyChanged("WorkerSettings");
 
-                // Set global variable for Worker Name and region
+                // Set global variable for Worker Name, Region and Currency
                 Application.Current.Properties["WorkerName"] = WorkerSettings.WorkerName;
                 Application.Current.Properties["Region"] = WorkerSettings.Region;
+                Application.Current.Properties["Currency"] = WorkerSettings.Currency;
 
                 // Insert new worker for account if it doesnt already exist
                 InsertAccountWorkers();
@@ -452,7 +496,7 @@ namespace BitPoolMiner.ViewModels
         #endregion
 
         #region WorkerHardware
-        
+
         /// <summary>
         /// Get previously saved hardware GPU settings from API
         /// </summary>

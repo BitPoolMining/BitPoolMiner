@@ -3,13 +3,9 @@ using BitPoolMiner.Miners;
 using BitPoolMiner.Models;
 using BitPoolMiner.Persistence.API;
 using BitPoolMiner.ViewModels.Base;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using Timer = System.Timers.Timer;
 

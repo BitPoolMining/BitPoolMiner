@@ -1,0 +1,222 @@
+﻿<UserControl x:Class="BitPoolMiner.Views.ProfitabilityView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BitPoolMiner.Views"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             mc:Ignorable="d" 
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             HorizontalContentAlignment="Stretch"
+             VerticalContentAlignment="Stretch">
+
+    <UserControl.Resources>
+
+        <Style x:Key="DataGridRowHeaderStyleGPU" TargetType="{x:Type DataGridRowHeader}"  >
+            <Setter Property="Visibility" Value="Hidden" />
+            <Setter Property="Background" Value="#2d2d2d" />
+            <Setter Property="Foreground" Value="#646464" />            <Setter Property = "FontSize" Value = "14" />
+            <Setter Property = "FontWeight" Value = "Bold" />
+            <Setter Property = "BorderBrush" Value = "#212121" />
+            <Setter Property = "Width" Value = "0" />
+            <Setter Property = "HorizontalContentAlignment" Value = "Right" />
+            <Setter Property = "HorizontalAlignment" Value = "Right" />
+        </Style>
+
+        <Style x:Key="DataGridColumnHeaderStyleGPU" TargetType="{x:Type DataGridColumnHeader}"  >
+            <Setter Property="Background" Value="#2d2d2d" />
+            <Setter Property="Foreground" Value="#646464" />            <Setter Property = "FontSize" Value = "10" />
+            <Setter Property = "BorderBrush" Value = "#2d2d2d" />
+            <Setter Property = "Margin" Value = "1" />
+            <Setter Property = "HorizontalContentAlignment" Value = "Right" />
+            <Setter Property = "HorizontalAlignment" Value = "Right" />
+        </Style>
+
+        <Style x:Key="DataGridCellStyleGPU"  TargetType="{x:Type DataGridCell}" >
+            <Setter Property="Background" Value="#2d2d2d"/>
+            <Setter Property="Foreground" Value="#FFFFFF" />            <Setter Property = "FontSize" Value = "12" />
+            <Setter Property = "BorderBrush" Value = "#2d2d2d" />
+            <Setter Property = "HorizontalContentAlignment" Value = "Right" />
+            <Setter Property = "HorizontalAlignment" Value = "Right" />
+        </Style>
+
+        <Style x:Key="DataGridRowStyleGPU" TargetType="{x:Type DataGridRow}" >
+            <Setter Property="Background" Value="#2d2d2d"/>
+            <Setter Property="Foreground" Value="#FFFFFF" />            <Setter Property = "FontSize" Value = "12" />
+            <Setter Property = "BorderBrush" Value = "#2d2d2d" />
+            <Setter Property = "HorizontalContentAlignment" Value = "Right" />
+            <Setter Property = "HorizontalAlignment" Value = "Right" />
+        </Style>
+
+        <Style x:Key="DataGridCellStyle"  TargetType="{x:Type DataGridCell}" >
+            <Setter Property="Background" Value="#2d2d2d"/>
+            <Setter Property="Foreground" Value="#FFFFFF" />            <Setter Property = "FontSize" Value = "12" />
+            <Setter Property = "BorderBrush" Value = "#2d2d2d" />
+            <Setter Property = "HorizontalContentAlignment" Value = "Right" />
+            <Setter Property = "HorizontalAlignment" Value = "Right" />
+        </Style>
+
+        <!-- Style - Left Menu - Label Grey -->
+        <Style x:Key = "labelStyleLeftMenuGrey" TargetType = "Label">
+            <Setter Property = "Foreground" Value = "#9f9f9f" />
+            <Setter Property = "FontSize" Value = "14" />
+            <Setter Property = "Padding" Value = "4 4 20 4" />
+            <Setter Property = "FontWeight" Value = "Bold" />
+        </Style>
+
+    </UserControl.Resources>
+
+    <ScrollViewer>
+        <ScrollViewer.Resources>
+            <Style TargetType="ScrollBar">
+                <Setter Property="Background" Value="#212121" />
+                <Setter Property="BorderBrush" Value="#9f9f9f" />
+            </Style>
+        </ScrollViewer.Resources>
+        <Grid>
+            <!--Grid Columns-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="260"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <!--Grid Rows-->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!-- Forecasts -->
+            <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="1" Background="#2d2d2d" Margin="10" DataContext="{Binding Source={StaticResource MainWindowViewModel}, Path=WhatToMineData, UpdateSourceTrigger=PropertyChanged}">
+                <Label Style="{StaticResource labelStyleLeftMenuGrey}">Rough Forecast Last 24 Hours</Label>
+                <DataGrid 
+                            AutoGenerateColumns="False" 
+                            ItemsSource="{Binding WhatToMineResponseList}" 
+                            ScrollViewer.CanContentScroll="False" 
+                            CanUserDeleteRows="False" 
+                            CanUserAddRows="False" 
+                            CanUserSortColumns="False" 
+                            CanUserResizeColumns="False" 
+                            CanUserReorderColumns="False" 
+                            BorderThickness="0"
+                            BorderBrush="#2d2d2d"
+                            Background="#2d2d2d"
+                            RowHeaderWidth="0"
+                            HeadersVisibility="Column"
+                            GridLinesVisibility="None"
+                            Margin="0"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Top" 
+                            HorizontalAlignment="Left"
+                            HorizontalContentAlignment="Left"
+                            ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyleGPU}"
+                            RowHeaderStyle="{StaticResource DataGridRowHeaderStyleGPU}"
+                            RowStyle="{StaticResource DataGridRowStyleGPU}"
+                            CellStyle="{StaticResource DataGridCellStyleGPU}">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn  CellStyle="{StaticResource DataGridCellStyle}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Margin="5 0 5 5" Height="20" Width="20" Source="{Binding CoinLogo}" VerticalAlignment="Top" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Binding="{Binding tag}" Header="" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding Revenue}" Header="FIAT" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding Estimated_rewards}" Header="COINS" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding BTC_revenue}" Header="BTC" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding pool_fee}" Header="Pool Fee" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding cost}" Header="Power Cost" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding profit}" Header="Profit" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+
+            <!-- Payment Chart -->
+            <StackPanel Grid.Row="1" Margin="10" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="9">
+                <lvc:CartesianChart  Series="{Binding SeriesCollection}" LegendLocation="Top" MinWidth="900" MinHeight="450">
+                    <lvc:CartesianChart.ChartLegend>
+                        <lvc:DefaultLegend Margin="5 5 0 0 " BulletSize="15" Foreground="#ffffff"/>
+                    </lvc:CartesianChart.ChartLegend>
+                    <lvc:CartesianChart.AxisX>
+                        <lvc:Axis LabelFormatter="{Binding XFormatter}" >
+                            <lvc:Axis.Separator>
+                                <lvc:Separator IsEnabled="False" Step="{Binding ChartStep}" Stroke="#444444"/>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisX>
+                    <lvc:CartesianChart.AxisY>
+                        <lvc:Axis LabelFormatter="{Binding YFormatter}">
+                            <lvc:Axis.Separator>
+                                <lvc:Separator Stroke="#444444"/>
+                            </lvc:Axis.Separator>
+                        </lvc:Axis>
+                    </lvc:CartesianChart.AxisY>
+                </lvc:CartesianChart>
+            </StackPanel>
+
+            <!-- Payment List -->
+
+            <StackPanel Grid.Row="0" Grid.Column="9" Grid.RowSpan="10" Grid.ColumnSpan="1" Background="#2d2d2d" Margin="10" DataContext="{Binding Source={StaticResource MainWindowViewModel}, Path=MinerPaymentsData, UpdateSourceTrigger=PropertyChanged}">
+                <Label Style="{StaticResource labelStyleLeftMenuGrey}">Payments Last 30 Days</Label>
+
+                <DataGrid 
+                            AutoGenerateColumns="False" 
+                            ItemsSource="{Binding MinerPaymentsGroupedByDayUnionedList}" 
+                            CanUserDeleteRows="False" 
+                            CanUserAddRows="False" 
+                            CanUserSortColumns="False" 
+                            CanUserResizeColumns="False" 
+                            CanUserReorderColumns="False" 
+                            BorderThickness="0"
+                            BorderBrush="#2d2d2d"
+                            Background="#2d2d2d"
+                            RowHeaderWidth="0"
+                            HeadersVisibility="Column"
+                            GridLinesVisibility="None"
+                            Margin="0"
+                            VerticalAlignment="Top"
+                            VerticalContentAlignment="Top" 
+                            HorizontalAlignment="Left"
+                            HorizontalContentAlignment="Left"
+                            ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyleGPU}"
+                            RowHeaderStyle="{StaticResource DataGridRowHeaderStyleGPU}"
+                            RowStyle="{StaticResource DataGridRowStyleGPU}"
+                            CellStyle="{StaticResource DataGridCellStyleGPU}">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn CellStyle="{StaticResource DataGridCellStyle}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Margin="5 0 0 0" Height="15" Width="15" Source="{Binding CoinLogo}" VerticalAlignment="Top" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Binding="{Binding CoinType}" Header="CoinType" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding DisplayPaymentDate}" Header="Date" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding DisplayPaymentAmount}" Header="Coins" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTextColumn Binding="{Binding DisplayPaymentAmountFiat}" Header="Fiat" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+            </StackPanel>
+
+        </Grid>
+    </ScrollViewer>
+</UserControl>

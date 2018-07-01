@@ -1,11 +1,8 @@
 ﻿using BitPoolMiner.Utils;
 using BitPoolMiner.ViewModels;
-using LiveCharts.Wpf;
 using System;
-using System.Drawing;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace BitPoolMiner
 {
@@ -20,6 +17,7 @@ namespace BitPoolMiner
         private MainWindowViewModel MainWindowViewModel;
         private MonitorViewModel MonitorViewModel;
         private WorkerViewModel WorkerViewModel;
+        private ProfitabilityViewModel ProfitabilityViewModel;
 
         #region Init
 
@@ -47,10 +45,19 @@ namespace BitPoolMiner
 
             // Display MainView data
             MainWindowViewModel.GetMinerMonitoringResults();
+            MainWindowViewModel.InitWhatToMine();
+            MainWindowViewModel.InitPayments();
 
             //Force window size to prevent crashing
             ResizeWindow();
 
+            // Initialize Profitability ViewModel after main window data loaded
+            if (ProfitabilityViewModel == null)
+                ProfitabilityViewModel = new ProfitabilityViewModel(MainWindowViewModel);
+
+            // Pass a reference of the Profitability ViewMode to the MainWindowViewModel.  This will allow 
+            // rerendering of charts from the main window view timer event
+            MainWindowViewModel.profitabilityViewModel = ProfitabilityViewModel;
         }
 
         #endregion
@@ -79,6 +86,7 @@ namespace BitPoolMiner
 
             WorkerViewModel.InitMonitorMining();
             WorkerViewModel.InitMonitorMining24Hour();
+            WorkerViewModel.InitCoinMarketCap();
             DataContext = WorkerViewModel;
         }
 
@@ -87,14 +95,21 @@ namespace BitPoolMiner
             DataContext = AccountViewModel;
         }
 
-        private void AutoProfitSwitchingButton_Clicked(object sender, RoutedEventArgs e)
+        private void ProfitabilityButton_Clicked(object sender, RoutedEventArgs e)
         {
-            DataContext = AccountViewModel;
+            DataContext = ProfitabilityViewModel;
         }
 
         private void MiningDashboardButton_Clicked(object sender, RoutedEventArgs e)
         {            
             DataContext = MonitorViewModel;
+        }
+
+        // Navigate to website
+        private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(e.Uri.AbsoluteUri));
+            e.Handled = true;
         }
 
         #endregion
