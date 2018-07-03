@@ -153,6 +153,8 @@ namespace BitPoolMiner.ViewModels
 
             // Update worker list on main window
             _mainWindowViewModel.GetAccountWorkerList();
+
+
         }
 
         /// <summary>
@@ -236,6 +238,7 @@ namespace BitPoolMiner.ViewModels
                 Application.Current.Properties["WorkerName"] = WorkerSettings.WorkerName;
                 Application.Current.Properties["Region"] = WorkerSettings.Region;
                 Application.Current.Properties["Currency"] = WorkerSettings.Currency;
+                Application.Current.Properties["AutoStartMining"] = WorkerSettings.AutoStartMining;
             }
             catch (Exception e)
             {
