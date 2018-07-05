@@ -184,8 +184,8 @@ namespace BitPoolMiner
                 _inStateChange = true;
                 WindowState = WindowState.Normal;
                 ResizeMode = ResizeMode.CanMinimize;
-                Height = SystemParameters.PrimaryScreenHeight - 100;
-                Width = SystemParameters.PrimaryScreenWidth - 100;
+                Height = SystemParameters.PrimaryScreenHeight - 20;
+                Width = SystemParameters.PrimaryScreenWidth - 20;
                 _inStateChange = false;
             }
         }

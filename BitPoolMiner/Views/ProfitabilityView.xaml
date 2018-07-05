@@ -67,13 +67,6 @@
 
     </UserControl.Resources>
 
-    <ScrollViewer>
-        <ScrollViewer.Resources>
-            <Style TargetType="ScrollBar">
-                <Setter Property="Background" Value="#212121" />
-                <Setter Property="BorderBrush" Value="#9f9f9f" />
-            </Style>
-        </ScrollViewer.Resources>
         <Grid>
             <!--Grid Columns-->
             <Grid.ColumnDefinitions>
@@ -218,5 +211,4 @@
             </StackPanel>
 
         </Grid>
-    </ScrollViewer>
 </UserControl>

@@ -432,8 +432,16 @@
         </Border>
 
         <!--Body-->
-        <ContentControl Background="#262626" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="8" Grid.RowSpan="8" Content="{Binding}" />
-
+        <ScrollViewer Background="#262626" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="8" Grid.RowSpan="8" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <ScrollViewer.Resources>
+                <Style TargetType="ScrollBar">
+                    <Setter Property="Background" Value="#212121" />
+                    <Setter Property="BorderBrush" Value="#9f9f9f" />
+                </Style>
+            </ScrollViewer.Resources>
+            <ContentControl Content="{Binding}" />
+        </ScrollViewer>
+        
         <!--Footer-->
         <Border x:Name="BorderFooter" BorderThickness="0 1 0 0" BorderBrush="#444444" Grid.Row="9" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="10" Background="#1a1a1a">
             <StackPanel Orientation="Horizontal">
@@ -448,7 +456,7 @@
                         <Label Style="{StaticResource labelStyleFooterGrey}">BTC</Label>
                     </StackPanel>
                 </StackPanel>
-                
+
                 <StackPanel Orientation="Vertical" DataContext="{Binding Source={StaticResource MainWindowViewModel}, Path=MinerPaymentsData, UpdateSourceTrigger=PropertyChanged}">
                     <Label Style="{StaticResource labelStyleFooterWhite}" Content="{Binding RevenueLast24HourUSD}"></Label>
                     <Label Style="{StaticResource labelStyleFooterWhite}" Content="{Binding RevenueLast24HourBTC}"></Label>
@@ -465,9 +473,9 @@
                     </StackPanel>
                 </StackPanel>
 
-                
-                
-                
+
+
+
                 <StackPanel Orientation="Vertical" DataContext="{Binding Source={StaticResource MainWindowViewModel}, Path=WhatToMineData, UpdateSourceTrigger=PropertyChanged}">
                     <Label Style="{StaticResource labelStyleFooterWhite}" Content="{Binding ForecastNext24HourUSD}"></Label>
                     <Label Style="{StaticResource labelStyleFooterWhite}" Content="{Binding ForecastNext24HourBTC}"></Label>
