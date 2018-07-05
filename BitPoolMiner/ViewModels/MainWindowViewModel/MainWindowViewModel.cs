@@ -3,7 +3,7 @@ using BitPoolMiner.Persistence.API;
 using BitPoolMiner.ViewModels.Base;
 using System.Collections.ObjectModel;
 using System.Windows;
-
+using System.Deployment.Application;
 
 namespace BitPoolMiner.ViewModels
 {
@@ -34,6 +34,19 @@ namespace BitPoolMiner.ViewModels
         #region Properties
 
         public MainWindow mainWindow;
+
+        public string VersionNumber
+        {
+            get
+            {
+                try
+                {
+                    return ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+                }
+                catch
+                { return ""; }
+            }
+        }
 
         // Main Title string used to bind to UI
         private string labelMainTitle;

@@ -504,11 +504,11 @@
                 </StackPanel>
 
                 <StackPanel Orientation="Vertical" Margin="40 0 0 0">
-                    <Label Style="{StaticResource labelStyleFooterGrey}">Warnings:</Label>
+                    <Label Style="{StaticResource labelStyleFooterGrey}">Version:</Label>
                     <Label Style="{StaticResource labelStyleFooterGrey}">Total Power:</Label>
                 </StackPanel>
                 <StackPanel Orientation="Vertical">
-                    <Label Style="{StaticResource labelStyleFooterWhite}">COMING SOON</Label>
+                    <Label Style="{StaticResource labelStyleFooterWhite}" Content="{Binding Source={StaticResource MainWindowViewModel}, Path=VersionNumber, UpdateSourceTrigger=PropertyChanged}"></Label>
                     <Label Style="{StaticResource labelStyleFooterWhite}" Content="{Binding Source={StaticResource MainWindowViewModel}, Path=TotalPower, UpdateSourceTrigger=PropertyChanged}"></Label>
                 </StackPanel>
 
