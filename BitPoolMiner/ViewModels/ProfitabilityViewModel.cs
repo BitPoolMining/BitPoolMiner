@@ -166,7 +166,7 @@ namespace BitPoolMiner.ViewModels
             CoinPaymentChartColor.CoinPaymentChartColorDictionary.TryGetValue(MinerPaymentSummary.CoinType, out string chartColor);
 
             Brush brushFill = (Brush)converter.ConvertFromString(chartColor);
-            brushFill.Opacity = 0.2;
+            brushFill.Opacity = 0.05;
 
             Brush brushStroke = (Brush)converter.ConvertFromString(chartColor);
             brushStroke.Opacity = 1;

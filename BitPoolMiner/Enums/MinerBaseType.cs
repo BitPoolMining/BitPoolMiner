@@ -4,6 +4,7 @@
     {
         UNDEFINED,
         CCMiner,
-        EWBF
+        EWBF,
+        DSTM
     }
 }

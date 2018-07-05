@@ -58,6 +58,26 @@ namespace BitPoolMiner
             // Pass a reference of the Profitability ViewMode to the MainWindowViewModel.  This will allow 
             // rerendering of charts from the main window view timer event
             MainWindowViewModel.profitabilityViewModel = ProfitabilityViewModel;
+
+            // Check to see if should start mining on applications tart.
+            CheckAutoStartMining();
+        }
+        #endregion
+
+        #region Auto Start Mining
+        private void CheckAutoStartMining()
+        {
+            try
+            {
+                if ((bool)Application.Current.Properties["AutoStartMining"])
+                {
+                    ButtonStartMining_Click(this, new RoutedEventArgs());
+                }
+            }
+            catch
+            {
+                // if the value isn't set, just ignore it and assume false
+            }
         }
 
         #endregion
@@ -101,7 +121,7 @@ namespace BitPoolMiner
         }
 
         private void MiningDashboardButton_Clicked(object sender, RoutedEventArgs e)
-        {            
+        {
             DataContext = MonitorViewModel;
         }
 
@@ -164,8 +184,8 @@ namespace BitPoolMiner
                 _inStateChange = true;
                 WindowState = WindowState.Normal;
                 ResizeMode = ResizeMode.CanMinimize;
-                Height = SystemParameters.PrimaryScreenHeight - 100;
-                Width = SystemParameters.PrimaryScreenWidth - 100;
+                Height = SystemParameters.PrimaryScreenHeight - 20;
+                Width = SystemParameters.PrimaryScreenWidth - 20;
                 _inStateChange = false;
             }
         }

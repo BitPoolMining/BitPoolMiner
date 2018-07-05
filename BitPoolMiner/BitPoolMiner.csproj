@@ -34,7 +34,7 @@
     <ProductName>BitPoolMiner</ProductName>
     <PublisherName>BitPoolMining</PublisherName>
     <SuiteName>BitPoolMining</SuiteName>
-    <ApplicationRevision>10</ApplicationRevision>
+    <ApplicationRevision>11</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -110,6 +110,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Runtime.Serialization" />
@@ -156,6 +157,7 @@
     <Compile Include="Formatter\WhatToMineDataFormatter.cs" />
     <Compile Include="Formatter\MinerMonitorStatsFormatter.cs" />
     <Compile Include="Miners\Ccminer.cs" />
+    <Compile Include="Miners\DSTM.cs" />
     <Compile Include="Miners\EWBF.cs" />
     <Compile Include="Miners\Miner.cs" />
     <Compile Include="Miners\MinerFactory.cs" />
@@ -174,6 +176,7 @@
     <Compile Include="Models\MinerPayments\MinerPaymentsData.cs" />
     <Compile Include="Models\MinerPayments\MinerPaymentsGroupedByDay.cs" />
     <Compile Include="Models\MinerPayments\MinerPaymentSummary.cs" />
+    <Compile Include="Models\RPCResponse\DSTMTemplate.cs" />
     <Compile Include="Models\RPCResponse\EWBFTemplate.cs" />
     <Compile Include="Models\WhatToMine\WhatToMineResponse.cs" />
     <Compile Include="Models\WhatToMine\WhatToMineData.cs" />
@@ -292,6 +295,21 @@
     <None Include="MinerApps\EWBF\start.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Resource Include="MinerApps\DSTM\json-rpc.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="MinerApps\DSTM\LICENSE.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="MinerApps\DSTM\pthreadVC2.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="MinerApps\DSTM\README.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="MinerApps\DSTM\zm.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -324,6 +342,40 @@
     <None Include="publish\Application Files\BitPoolMiner_1_0_0_0\System.Windows.Interactivity.dll.deploy" />
     <None Include="publish\Application Files\BitPoolMiner_1_0_0_0\ToastNotifications.dll.deploy" />
     <None Include="publish\Application Files\BitPoolMiner_1_0_0_0\ToastNotifications.Messages.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\bitpool.ico.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\BitPoolMiner.application" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\BitPoolMiner.exe.config.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\BitPoolMiner.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\BitPoolMiner.exe.manifest" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\LiveCharts.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\LiveCharts.Wpf.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\Microsoft.Expression.Interactions.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\MinerApps\ccminer-x64-2.2.4-cuda9\ccminer-x64.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\MinerApps\ccminer-x64-2.2.4-cuda9\msvcr120.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\MinerApps\ccminer-x86-2.2.4-cuda9\ccminer.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\MinerApps\ccminer-x86-2.2.4-cuda9\msvcr120.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\MinerApps\DSTM\pthreadVC2.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\MinerApps\DSTM\zm.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\MinerApps\EWBF\cudart32_80.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\MinerApps\EWBF\cudart64_80.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\MinerApps\EWBF\miner.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\MinerApps\EWBF\msvcp120.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\MinerApps\EWBF\msvcr120.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\Newtonsoft.Json.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\NLog.config.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\NLog.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\OpenHardwareMonitorLib.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\publish\setup.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\Resources\Images\bitpool.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\Resources\Images\exp.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\Resources\Images\hush.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\Resources\Images\kmd.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\Resources\Images\mona.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\Resources\Images\vtc.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\System.Windows.Interactivity.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\ThinkSharp.FeatureTour.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\ToastNotifications.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_0_10\ToastNotifications.Messages.dll.deploy" />
     <None Include="publish\Application Files\BitPoolMiner_1_0_0_1\bin\Debug\miners\ccminer-x64-2.2.4-cuda9\ccminer-x64.exe.deploy" />
     <None Include="publish\Application Files\BitPoolMiner_1_0_0_1\bin\Debug\miners\ccminer-x64-2.2.4-cuda9\msvcr120.dll.deploy" />
     <None Include="publish\Application Files\BitPoolMiner_1_0_0_1\bin\Debug\miners\ccminer-x86-2.2.4-cuda9\ccminer.exe.deploy" />

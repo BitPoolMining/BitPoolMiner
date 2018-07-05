@@ -58,7 +58,7 @@ namespace BitPoolMiner.Utils
         private ChartValues<DateTimePoint> GetListAllDates(ChartValues<DateTimePoint> list)
         {
             DateTime tmpInterval = RoundDown(DateTime.UtcNow.ToLocalTime().Subtract(TimeSpan.FromDays(datePointTimeWindow - datePointTimeIntervalDays)), TimeSpan.FromDays(datePointTimeIntervalDays));
-            var upperBound = DateTime.UtcNow.ToLocalTime().Subtract(TimeSpan.FromDays(datePointTimeIntervalDays));
+            var upperBound = DateTime.UtcNow.ToLocalTime();
 
             while (tmpInterval <= upperBound)
             {
