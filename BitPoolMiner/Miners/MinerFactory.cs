@@ -19,6 +19,9 @@ namespace BitPoolMiner.Miners
                 case MinerBaseType.EWBF:
                     return new EWBF(hardwareType, minerBaseType);
 
+                case MinerBaseType.DSTM:
+                    return new DSTM(hardwareType, minerBaseType);
+
                 default:
                     throw new ApplicationException(string.Format("The miner base type {0} is not yet supported.", minerBaseType.ToString()));
             }

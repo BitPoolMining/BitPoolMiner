@@ -156,6 +156,7 @@
     <Compile Include="Formatter\WhatToMineDataFormatter.cs" />
     <Compile Include="Formatter\MinerMonitorStatsFormatter.cs" />
     <Compile Include="Miners\Ccminer.cs" />
+    <Compile Include="Miners\DSTM.cs" />
     <Compile Include="Miners\EWBF.cs" />
     <Compile Include="Miners\Miner.cs" />
     <Compile Include="Miners\MinerFactory.cs" />
@@ -174,6 +175,7 @@
     <Compile Include="Models\MinerPayments\MinerPaymentsData.cs" />
     <Compile Include="Models\MinerPayments\MinerPaymentsGroupedByDay.cs" />
     <Compile Include="Models\MinerPayments\MinerPaymentSummary.cs" />
+    <Compile Include="Models\RPCResponse\DSTMTemplate.cs" />
     <Compile Include="Models\RPCResponse\EWBFTemplate.cs" />
     <Compile Include="Models\WhatToMine\WhatToMineResponse.cs" />
     <Compile Include="Models\WhatToMine\WhatToMineData.cs" />
@@ -292,6 +294,21 @@
     <None Include="MinerApps\EWBF\start.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Resource Include="MinerApps\DSTM\json-rpc.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="MinerApps\DSTM\LICENSE.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="MinerApps\DSTM\pthreadVC2.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="MinerApps\DSTM\README.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Content Include="MinerApps\DSTM\zm.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
