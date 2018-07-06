@@ -178,12 +178,19 @@ namespace BitPoolMiner.ViewModels
         /// <param name="e"></param>
         private async void MinerStatusCheckTimer_Elapsed(object sender, EventArgs e)
         {
-            // Call miner RPC and post results to API
-            GetMinerMonitoringResults();
-            GetAccountWorkerList();
-            InitWhatToMine();
-            InitPayments();
-            profitabilityViewModel.PlotPaymentChart();
+            try
+            { 
+                // Call miner RPC and post results to API
+                GetMinerMonitoringResults();
+                GetAccountWorkerList();
+                InitWhatToMine();
+                InitPayments();
+                profitabilityViewModel.PlotPaymentChart();
+            }
+            catch (Exception ex)
+            {
+                ShowError(string.Format("Error loading monitor data: {0}", ex.Message));
+            }
         }
 
         /// <summary>

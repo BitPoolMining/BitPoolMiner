@@ -75,8 +75,8 @@
             <Setter Property = "Margin" Value = "4 2 2 0" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsOnline}" Value="True">
-                    <Setter Property="BorderBrush" Value="#86b34d"/>
-                    <Setter Property="Background" Value="#86b34d"/>
+                    <Setter Property="BorderBrush" Value="#2c97de"/>
+                    <Setter Property="Background" Value="#2c97de"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding IsOnline}" Value="False">
                     <Setter Property="BorderBrush" Value="#cc3e4a"/>
@@ -92,8 +92,8 @@
             <Setter Property = "Margin" Value = "4 4 4 4" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding Source={StaticResource MainWindowViewModel}, Path=MiningStatus, UpdateSourceTrigger=PropertyChanged}" Value="online">
-                    <Setter Property="BorderBrush" Value="#86b34d"/>
-                    <Setter Property="Background" Value="#86b34d"/>
+                    <Setter Property="BorderBrush" Value="#2c97de"/>
+                    <Setter Property="Background" Value="#2c97de"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding Source={StaticResource MainWindowViewModel}, Path=MiningStatus, UpdateSourceTrigger=PropertyChanged}" Value="offline">
                     <Setter Property="BorderBrush" Value="#cc3e4a"/>
@@ -202,11 +202,12 @@
         <viewmodels:MainWindowViewModel x:Key="mainViewModelDataSource"/>
 
     </Window.Resources>
+    
     <!--Define Form Grid-->
     <Grid Background="#212121">
         <!--Grid Columns-->
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="270"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
@@ -215,7 +216,7 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="270"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <!--Grid Rows-->
         <Grid.RowDefinitions>
@@ -256,73 +257,98 @@
                 </StackPanel>
             </Canvas>
         </Border>
+        
+        <!--Left Menu -->
+        <Expander IsExpanded="True" ExpandDirection="Left" Grid.Row="1" Grid.Column="0" Grid.RowSpan="8" Foreground="#FFFFFF" BorderBrush="#444444" Background="#1a1a1a" BorderThickness="0 4 1 4" >
+            <Expander.Header>
+                <TextBlock Text="Main Menu">
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="90"/>
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Expander.Header>
+            <Border >
+                <StackPanel>
 
-        <!--Left Menu Rigs-->
-        <Border x:Name="BorderRigs" BorderThickness="0 4 1 4" BorderBrush="#444444" Grid.Row="1" Grid.Column="0" Grid.RowSpan="7" Background="#1a1a1a" Width="270" HorizontalAlignment="Left" VerticalAlignment="Stretch">
-            <ItemsControl 
-                x:Name="MenuStackPanelRigs" 
-                Grid.Row="1" 
-                Grid.Column="0" 
-                Grid.RowSpan="7" 
-                Width="270" 
-                Background="#1a1a1a" 
-                HorizontalAlignment="Left" 
-                VerticalAlignment="Stretch"
-                ItemsSource="{Binding Source={StaticResource MainWindowViewModel}, Path=AccountWorkersList}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button x:Name="WorkerButton" Style="{StaticResource buttonStyleLeftMenu}" Click="WorkerButton_Clicked" CommandParameter="{Binding WorkerName}">
+                <!--Left Menu Rigs-->
+                <Border x:Name="BorderRigs" BorderThickness="0 4 1 4" BorderBrush="#444444" Grid.Row="1" Grid.Column="0" Grid.RowSpan="5" Background="#1a1a1a" Width="270" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                    <ItemsControl 
+                        x:Name="MenuStackPanelRigs" 
+                        Grid.Row="1" 
+                        Grid.Column="0" 
+                        Grid.RowSpan="7" 
+                        Width="270" 
+                        Background="#1a1a1a" 
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Stretch"
+                        ItemsSource="{Binding Source={StaticResource MainWindowViewModel}, Path=AccountWorkersList}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button x:Name="WorkerButton" Style="{StaticResource buttonStyleLeftMenu}" Click="WorkerButton_Clicked" CommandParameter="{Binding WorkerName}">
 
-                            <Button.Triggers>
-                                <EventTrigger RoutedEvent="MouseEnter">
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="CadetBlue"/>
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger>
-                            </Button.Triggers>
+                                    <Button.Triggers>
+                                        <EventTrigger RoutedEvent="MouseEnter">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="CadetBlue"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </Button.Triggers>
 
-                            <StackPanel Orientation="Horizontal" >
-                                <Label Style="{StaticResource labelStyleLeftMenuGrey}" Content="{Binding WorkerName}" Width="140"/>
-                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
-                                    <Border BorderThickness="1" BorderBrush="#444444" Padding="4 0 4 0" Margin="0 2 2 0">
-                                        <Label Foreground="#444444" Padding="4" FontSize="10" Content="{Binding LocalWorker}"/>
-                                    </Border>
-                                    <Border Style="{StaticResource borderStyleLeftMenuGreySmall}">
-                                        <Label Style="{StaticResource labelStyleLeftMenuGreySmall}"  Content="{Binding Status}"/>
-                                    </Border>
-                                </StackPanel>
-                            </StackPanel>
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Label Style="{StaticResource labelStyleLeftMenuGrey}" Content="{Binding WorkerName}" Width="140"/>
+                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                                            <Border BorderThickness="1" BorderBrush="#444444" Padding="4 0 4 0" Margin="0 2 2 0">
+                                                <Label Foreground="#444444" Padding="4" FontSize="10" Content="{Binding LocalWorker}"/>
+                                            </Border>
+                                            <Border Style="{StaticResource borderStyleLeftMenuGreySmall}">
+                                                <Label Style="{StaticResource labelStyleLeftMenuGreySmall}"  Content="{Binding Status}"/>
+                                            </Border>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Border>
+
+                <!--Left Menu Settings-->
+                <Border x:Name="BorderSettings" BorderThickness="0 5 1 4" BorderBrush="#444444" Grid.Row="6" Grid.Column="0" Grid.RowSpan="3" MinHeight="250" Width="270" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                    <StackPanel x:Name="MenuStackPanelSettings" Grid.Row="6" Grid.Column="0" Grid.RowSpan="3" Width="270" MinHeight="250" Background="#1a1a1a" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                        <Button x:Name="GettingStartedButton" Style="{StaticResource buttonStyleLeftMenu}" MinHeight="55" Click="GettingStartedButton_Clicked" >
+                            Getting Started
                         </Button>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
-        </Border>
-
-        <!--Left Menu Settings-->
-        <Border x:Name="BorderSettings" BorderThickness="0 5 1 4" BorderBrush="#444444" Grid.Row="6" Grid.Column="0" Grid.RowSpan="3" MinHeight="250" Width="270" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-            <StackPanel x:Name="MenuStackPanelSettings" Grid.Row="6" Grid.Column="0" Grid.RowSpan="3" Width="270" MinHeight="250" Background="#1a1a1a" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                <Button x:Name="GettingStartedButton" Style="{StaticResource buttonStyleLeftMenu}" MinHeight="55" Click="GettingStartedButton_Clicked" >
-                    Getting Started
-                </Button>
-                <Button x:Name="MiningDashboardButton" Style="{StaticResource buttonStyleLeftMenu}" Click="MiningDashboardButton_Clicked">
-                    Mining Dashboard
-                </Button>
-                <Button x:Name="WalletSettingsButton" Style="{StaticResource buttonStyleLeftMenu}" Click="WalletSettingsButton_Clicked">
-                    Wallet Settings
-                </Button>
-                <Button x:Name="AccountSettingsButton" Style="{StaticResource buttonStyleLeftMenu}" Click="AccountSettingsButton_Clicked">
-                    Account/Miner Settings
-                </Button>
-                <Button x:Name="ProfitabilityButton" Style="{StaticResource buttonStyleLeftMenu}" Click="ProfitabilityButton_Clicked">
-                    Profitability
-                </Button>
+                        <Button x:Name="MiningDashboardButton" Style="{StaticResource buttonStyleLeftMenu}" Click="MiningDashboardButton_Clicked">
+                            Mining Dashboard
+                        </Button>
+                        <Button x:Name="WalletSettingsButton" Style="{StaticResource buttonStyleLeftMenu}" Click="WalletSettingsButton_Clicked">
+                            Wallet Settings
+                        </Button>
+                        <Button x:Name="AccountSettingsButton" Style="{StaticResource buttonStyleLeftMenu}" Click="AccountSettingsButton_Clicked">
+                            Account/Miner Settings
+                        </Button>
+                        <Button x:Name="ProfitabilityButton" Style="{StaticResource buttonStyleLeftMenu}" Click="ProfitabilityButton_Clicked">
+                            Profitability
+                        </Button>
+                    </StackPanel>
+                </Border>
+                
             </StackPanel>
-        </Border>
+            </Border>
+        </Expander>
 
         <!--Right Column -->
-        <Border x:Name="BorderRight" BorderThickness="1 4 0 4" BorderBrush="#444444" Grid.Row="1" Grid.Column="9" Grid.RowSpan="8" Background="#1a1a1a" Width="270" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+        <Expander IsExpanded="True" Foreground="#FFFFFF" Grid.Row="1" Grid.Column="9" Grid.RowSpan="8" BorderBrush="#444444" Background="#1a1a1a" BorderThickness="1 4 0 4" ExpandDirection="Right">
+            <Expander.Header>
+                <TextBlock Text="Quick Details">
+                    <TextBlock.LayoutTransform>
+                        <RotateTransform Angle="-90"/>
+                    </TextBlock.LayoutTransform>
+                </TextBlock>
+            </Expander.Header>
+            
+            <Border x:Name="BorderRight" Width="270" HorizontalAlignment="Left" VerticalAlignment="Stretch">
             <StackPanel>
 
                 <!-- Mining Hashrates -->
@@ -455,7 +481,8 @@
 
             </StackPanel>
         </Border>
-
+        </Expander>
+        
         <!--Body-->
         <ScrollViewer Background="#262626" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="8" Grid.RowSpan="8" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
             <ScrollViewer.Resources>
