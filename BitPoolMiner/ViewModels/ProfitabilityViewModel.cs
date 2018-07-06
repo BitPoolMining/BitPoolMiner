@@ -106,9 +106,13 @@ namespace BitPoolMiner.ViewModels
                 if (Application.Current.Properties["Currency"] == null)
                     return;
 
+                // Create a new list of Miner Payments Grouped by day
                 MinerPaymentsData.MinerPaymentsGroupedByDayUnionedList = new List<MinerPaymentsGroupedByDay>();
 
+                // New list of strings used for labels when plotting the chart
                 List<string> labels = new List<string>();
+
+                // New collection of series
                 seriesCollection = new SeriesCollection();
 
                 foreach (MinerPaymentSummary MinerPaymentSummary in MinerPaymentsData.MinerPaymentSummaryList)
@@ -135,6 +139,9 @@ namespace BitPoolMiner.ViewModels
                     stackedColumnSeries.Values = paymentChartDataBackFill.BackFillList(chartValues);
                     seriesCollection.Add(stackedColumnSeries);
                 }
+
+                // Add a line series for the Total Line
+                seriesCollection.Add(this.AddTotalLineSeries());
 
                 MinerPaymentsData.MinerPaymentsGroupedByDayUnionedList = MinerPaymentsData.MinerPaymentsGroupedByDayUnionedList.OrderByDescending(x => x.PaymentDate).ToList();
 
@@ -178,6 +185,52 @@ namespace BitPoolMiner.ViewModels
 
             stackedColumnSeries.Stroke = brushStroke;
             stackedColumnSeries.StrokeThickness = 1;
+        }
+
+        /// <summary>
+        /// Calculate the total payment amount for each day and create a total line series to plot
+        /// </summary>
+        /// <returns></returns>
+        private LineSeries AddTotalLineSeries()
+        {
+            LineSeries totalLineSeries = new LineSeries();
+            ChartValues<DateTimePoint> chartValues = new ChartValues<DateTimePoint>();
+
+            // Group payments by date and get sum of all fiat payment amounts
+            List<MinerPaymentsGroupedByDay> result = MinerPaymentsData.MinerPaymentsGroupedByDayUnionedList
+                                    .GroupBy(l => l.PaymentDateTicks)
+                                    .Select(cl => new MinerPaymentsGroupedByDay
+                                    {
+                                        PaymentDateTicks = cl.First().PaymentDateTicks,
+                                        PaymentAmountFiat = cl.Sum(c => c.PaymentAmountFiat)
+                                    }).ToList();
+
+            // Iterate through each date and add new data points to the line series
+            foreach (MinerPaymentsGroupedByDay minerPaymentsGroupedByDay in result)
+            {
+                DateTimePoint dateTimePoint = new DateTimePoint();
+                dateTimePoint.DateTime = minerPaymentsGroupedByDay.PaymentDate;
+                dateTimePoint.Value = Convert.ToDouble(minerPaymentsGroupedByDay.PaymentAmountFiat);
+
+                chartValues.Add(dateTimePoint);
+            }
+
+            PaymentChartDataBackFill paymentChartDataBackFill = new PaymentChartDataBackFill();
+            totalLineSeries.Values = paymentChartDataBackFill.BackFillList(chartValues);
+
+            // Format series
+            var converter = new System.Windows.Media.BrushConverter();
+            Brush brushStroke = (Brush)converter.ConvertFromString("#FFFFFF");
+            brushStroke.Opacity = 0;
+            
+            totalLineSeries.Title = "TOTAL";
+            totalLineSeries.LineSmoothness = 0.7;
+            totalLineSeries.PointGeometrySize = 0;
+
+            totalLineSeries.Stroke = brushStroke;
+            totalLineSeries.StrokeThickness = 0;
+
+            return totalLineSeries;
         }
 
         #endregion
