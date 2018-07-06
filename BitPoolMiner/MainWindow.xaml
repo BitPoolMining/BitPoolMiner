@@ -60,10 +60,10 @@
             <Setter Property = "Padding" Value = "4" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsOnline}" Value="True">
-                    <Setter Property="Foreground" Value="#444444"/>
+                    <Setter Property="Foreground" Value="#ffffff"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding IsOnline}" Value="False">
-                    <Setter Property="Foreground" Value="#cc3e4a"/>
+                    <Setter Property="Foreground" Value="#ffffff"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -75,14 +75,33 @@
             <Setter Property = "Margin" Value = "4 2 2 0" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsOnline}" Value="True">
-                    <Setter Property="BorderBrush" Value="#444444"/>
+                    <Setter Property="BorderBrush" Value="#86b34d"/>
+                    <Setter Property="Background" Value="#86b34d"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding IsOnline}" Value="False">
                     <Setter Property="BorderBrush" Value="#cc3e4a"/>
+                    <Setter Property="Background" Value="#cc3e4a"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
 
+        <!-- Style - Header - Border Mining Status -->
+        <Style x:Key = "borderStyleHeaderMiningStatus" TargetType = "Border">
+            <Setter Property = "BorderThickness" Value = "1" />
+            <Setter Property = "Padding" Value = "1 1 1 1" />
+            <Setter Property = "Margin" Value = "4 4 4 4" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Source={StaticResource MainWindowViewModel}, Path=MiningStatus, UpdateSourceTrigger=PropertyChanged}" Value="online">
+                    <Setter Property="BorderBrush" Value="#86b34d"/>
+                    <Setter Property="Background" Value="#86b34d"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Source={StaticResource MainWindowViewModel}, Path=MiningStatus, UpdateSourceTrigger=PropertyChanged}" Value="offline">
+                    <Setter Property="BorderBrush" Value="#cc3e4a"/>
+                    <Setter Property="Background" Value="#cc3e4a"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
         <!-- Style - Footer - Start Button -->
         <Style x:Key = "buttonStyleFooterStart" TargetType = "Button">
             <Setter Property= "Background" Value = "#2c97de" />
@@ -216,8 +235,14 @@
         <Border x:Name="BorderHeader" BorderThickness="0 0 0 1" BorderBrush="#444444" Canvas.Top="0" Canvas.Left="0" Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="10" Background="#1a1a1a" >
             <Canvas Canvas.Top="0" Canvas.Left="0" Grid.Row="0" Grid.RowSpan="1" Grid.Column="0" Grid.ColumnSpan="10"  Background="#1a1a1a">
                 <Image Source="Resources/Images/bitpool.png" Canvas.Top="12" Canvas.Left="5" Width="30" Height="30"/>
-                <Label Name="LabelMainTitle" Foreground="#FFFFFF" FontWeight="Bold" FontSize="30" Canvas.Top="0" Canvas.Left="40" Content="{Binding Source={StaticResource MainWindowViewModel}, Path=LabelMainTitle, UpdateSourceTrigger=PropertyChanged}"></Label>
 
+                <StackPanel Orientation="Horizontal" Canvas.Top="0" Canvas.Left="40">
+                    <Label Name="LabelMainTitle" Foreground="#FFFFFF" FontWeight="Bold" FontSize="30" Content="{Binding Source={StaticResource MainWindowViewModel}, Path=LabelMainTitle, UpdateSourceTrigger=PropertyChanged}"></Label>
+                    <Border Style="{StaticResource borderStyleHeaderMiningStatus}">
+                        <Label  FontWeight="Bold" FontSize="20" Style="{StaticResource labelStyleFooterWhite}" Content="{Binding Source={StaticResource MainWindowViewModel}, Path=MiningStatus, UpdateSourceTrigger=PropertyChanged}"></Label>
+                    </Border>
+                </StackPanel>
+                
                 <StackPanel Orientation="Horizontal" Canvas.Top="15" Canvas.Right="20">
                     <TextBlock Margin="5">
                         <Hyperlink Foreground="#444444" NavigateUri="https://bitpoolmining.com" RequestNavigate="Hyperlink_RequestNavigate">POOL WEBSITE</Hyperlink>
@@ -511,12 +536,12 @@
                     <Label Style="{StaticResource labelStyleFooterWhite}" Content="{Binding Source={StaticResource MainWindowViewModel}, Path=VersionNumber, UpdateSourceTrigger=PropertyChanged}"></Label>
                     <Label Style="{StaticResource labelStyleFooterWhite}" Content="{Binding Source={StaticResource MainWindowViewModel}, Path=TotalPower, UpdateSourceTrigger=PropertyChanged}"></Label>
                 </StackPanel>
-
+                
                 <!-- Mining Buttons -->
                 <Button x:Name="ButtonStartMining" Style="{StaticResource buttonStyleFooterStart}" Command="{Binding CommandStartMining}" Click="ButtonStartMining_Click">
                     START MINING
                 </Button>
-                <Button x:Name="ButtonStopMining" Style="{StaticResource buttonStyleFooterStop}" Command="{Binding CommandStopMining}" Click="ButtonStopMining_Click">
+                <Button x:Name="ButtonStopMining" IsEnabled="False" Style="{StaticResource buttonStyleFooterStop}" Command="{Binding CommandStopMining}" Click="ButtonStopMining_Click">
                     STOP MINING
                 </Button>
                 <!-- Mining Buttons -->

@@ -106,9 +106,10 @@
         
     </UserControl.Resources>
 
+    
     <Grid>
 
-        <!-- Monitor Dashboard -->
+            <!-- Monitor Dashboard -->
             <Grid ShowGridLines="False"
                   Grid.Column="0"
                   Grid.ColumnSpan="10"
@@ -245,6 +246,7 @@
                 </DataGrid>
 
             </Grid>
-    
+
     </Grid>
+    
 </UserControl>
