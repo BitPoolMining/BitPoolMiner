@@ -160,9 +160,9 @@
             <Border BorderThickness="1" BorderBrush="#2d2d2d" Margin="5" Padding="5" Background="#2d2d2d" Width="180" DataContext="{Binding MinerMonitorStat, UpdateSourceTrigger=PropertyChanged}">
                 <StackPanel >
                     <Label FontSize="20" FontWeight="Bold" Style="{StaticResource labelStyleWhite}" Content="{Binding DisplayPower, UpdateSourceTrigger=PropertyChanged}"></Label>
-                    <Label Style="{StaticResource labelStyleGrey}">current hashrate</Label>
+                    <Label Style="{StaticResource labelStyleGrey}">current power</Label>
                     <Label Style="{StaticResource labelStyleWhite}" Content="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Power24HourAverage}"></Label>
-                    <Label Style="{StaticResource labelStyleGrey}">24 hour avg hashrate</Label>
+                    <Label Style="{StaticResource labelStyleGrey}">24 hour avg power</Label>
                     <Label Style="{StaticResource labelStyleWhite}" Content="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.Efficiency}"></Label>
                     <Label Style="{StaticResource labelStyleGrey}">effeciency</Label>
                 </StackPanel>
