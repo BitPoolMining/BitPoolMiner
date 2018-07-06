@@ -307,6 +307,9 @@
     <Resource Include="MinerApps\DSTM\README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Content Include="MinerApps\DSTM\vcruntime140.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="MinerApps\DSTM\zm.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
