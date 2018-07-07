@@ -45,7 +45,23 @@ namespace BitPoolMiner.ViewModels
         // Timer for Monitoring Miner
         private Timer MinerStatusInsertTimer;
         private MiningSession MiningSession = new MiningSession();
+
+        // Status of mining
         private bool MiningStatsStarted = false;
+        public string MiningStatus
+        {
+            get
+            {
+                if (MiningStatsStarted == true)
+                {
+                    return "online";
+                }
+                else
+                {
+                    return "offline";
+                }                
+            }
+        }
 
         #endregion
 
@@ -178,6 +194,7 @@ namespace BitPoolMiner.ViewModels
             MiningSession.StartMiningSession();
             MinerStatusInsertTimer.Enabled = true;
             MiningStatsStarted = true;
+            OnPropertyChanged("MiningStatus");
         }
 
         /// <summary>
@@ -190,6 +207,7 @@ namespace BitPoolMiner.ViewModels
             MiningStatsStarted = false;
             MinerStatusInsertTimer.Enabled = false;
             MiningSession.StopMiningSession();
+            OnPropertyChanged("MiningStatus");
         }
 
         #endregion

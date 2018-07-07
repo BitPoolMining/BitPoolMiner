@@ -155,6 +155,9 @@ namespace BitPoolMiner
         /// <param name="e"></param>
         private void ButtonStartMining_Click(object sender, RoutedEventArgs e)
         {
+            ButtonStartMining.IsEnabled = false;
+            ButtonStopMining.IsEnabled = true;
+
             MainWindowViewModel.CommandStartMining.Execute(null);
         }
 
@@ -165,6 +168,8 @@ namespace BitPoolMiner
         /// <param name="e"></param>
         private void ButtonStopMining_Click(object sender, RoutedEventArgs e)
         {
+            ButtonStartMining.IsEnabled = true;
+            ButtonStopMining.IsEnabled = false;
             MainWindowViewModel.CommandStopMining.Execute(null);
         }
 
@@ -184,8 +189,8 @@ namespace BitPoolMiner
                 _inStateChange = true;
                 WindowState = WindowState.Normal;
                 ResizeMode = ResizeMode.CanMinimize;
-                Height = SystemParameters.PrimaryScreenHeight - 20;
-                Width = SystemParameters.PrimaryScreenWidth - 20;
+                Height = SystemParameters.PrimaryScreenHeight - 100;
+                Width = SystemParameters.PrimaryScreenWidth - 100;
                 _inStateChange = false;
             }
         }

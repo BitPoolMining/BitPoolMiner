@@ -36,6 +36,20 @@
         </Style>
 
         <!-- Style - Label White -->
+        <Style x:Key = "labelStyleWhite" TargetType = "Label">
+            <Setter Property = "Foreground" Value = "#FFFFFF" />
+            <Setter Property = "FontSize" Value = "12" />
+            <Setter Property = "Padding" Value = "0 2 0 2" />
+        </Style>
+
+        <!-- Style - Label Grey -->
+        <Style x:Key = "labelStyleGrey" TargetType = "Label">
+            <Setter Property = "Foreground" Value = "#646464" />
+            <Setter Property = "FontSize" Value = "12" />
+            <Setter Property = "Padding" Value = "0 2 0 2" />
+        </Style>
+        
+        <!-- Style - Label White -->
         <Style x:Key = "labelStyleFooterWhite" TargetType = "Label">
             <Setter Property = "Foreground" Value = "#FFFFFF" />
             <Setter Property = "FontSize" Value = "14" />
@@ -105,10 +119,10 @@
         </Style>
         
     </UserControl.Resources>
-
+    
     <Grid>
 
-        <!-- Monitor Dashboard -->
+            <!-- Monitor Dashboard -->
             <Grid ShowGridLines="False"
                   Grid.Column="0"
                   Grid.ColumnSpan="10"
@@ -132,8 +146,169 @@
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <!-- Worker Hardware Grid -->
-                <DataGrid 
+
+            <DataGrid 
+                    AutoGenerateColumns="False" 
+                    Grid.Row="1" 
+                    Grid.ColumnSpan="4" 
+                    Grid.Column="0"
+                    ItemsSource="{Binding MinerMonitorStatList}" 
+                    ScrollViewer.CanContentScroll="False" 
+                    CanUserDeleteRows="False" 
+                    CanUserAddRows="False" 
+                    CanUserSortColumns="False" 
+                    CanUserResizeColumns="False" 
+                    CanUserReorderColumns="False" 
+                    BorderThickness="0"
+                    BorderBrush="#212121"
+                    Background="#212121"
+                    RowHeaderWidth="0"
+                    GridLinesVisibility="Horizontal"
+                    HorizontalGridLinesBrush="#444444"
+                    Margin="20 0 0 0 "
+                    ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+                    VerticalAlignment="Top"
+                    VerticalContentAlignment="Top">
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="#212121" />
+                        <Setter Property="Foreground" Value="#FFFFFF" />
+                    </Style>
+                </DataGrid.RowStyle>
+                                
+                <DataGrid.Columns>
+                    
+                    <!-- First Column - Rig Data -->
+                    <DataGridTemplateColumn  CellStyle="{StaticResource DataGridCellStyle}" MinWidth="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label Foreground="#FFFFFF" Padding="4" FontSize="12" FontWeight="Bold" Content="{Binding WorkerName}"/>                                       
+                                    </StackPanel>
+                                    
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Height="20" Width="20" Source="{Binding CoinLogo}" VerticalAlignment="Top" />
+                                        <Label Foreground="#FFFFFF" Padding="2" FontSize="12" Content="{Binding CoinType}"/>
+                                    </StackPanel>
+
+                                    <Border BorderThickness="1" BorderBrush="#2c97de" Padding="2" Margin="0 5 0 0" HorizontalAlignment="Left">
+                                        <Label Foreground="#2c97de" Padding="2" FontSize="12" FontWeight="Bold" Content="{Binding Status}"/>
+                                    </Border>
+
+                                </StackPanel>
+                                
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <!-- Second Column - Rig Data -->
+                    <DataGridTemplateColumn  CellStyle="{StaticResource DataGridCellStyle}" MinWidth="150">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <Border BorderThickness="1" BorderBrush="#2c97de" Padding="2" Margin="4 2 2 2" HorizontalAlignment="Left">
+                                            <Label Foreground="#2c97de" Padding="2" FontSize="12" Content="{Binding DisplayHashRate}"/>
+                                        </Border>
+                                        <Border BorderThickness="1" BorderBrush="#9f9f9f" Padding="2" Margin="4 2 2 2" HorizontalAlignment="Left">
+                                            <Label Foreground="#9f9f9f" Padding="2" FontSize="12" Content="{Binding DisplayPower}"/>
+                                        </Border>
+                                        
+
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal">
+
+
+                                        <Border BorderThickness="1" BorderBrush="#9f9f9f" Padding="2" Margin="4 2 2 2" HorizontalAlignment="Left">
+                                            <Label Foreground="#9f9f9f" Padding="2" FontSize="12" Content="{Binding MinerBaseType}"/>
+                                        </Border>
+                                        <Border BorderThickness="1" BorderBrush="#9f9f9f" Padding="2" Margin="4 2 2 2" HorizontalAlignment="Left">
+                                            <Label Foreground="#9f9f9f" Padding="2" FontSize="12" Content="{Binding LocalWorker}"/>
+                                        </Border>
+
+                                    </StackPanel>
+
+                                    <Label Foreground="#9f9f9f" Padding="2" FontSize="10" Content="{Binding DisplayMinutesSinceLastMonitored}"/>
+
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <!-- Third Column - GPU Data -->
+                    <DataGridTemplateColumn  CellStyle="{StaticResource DataGridCellStyle}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                 <!--GPU DataGrid--> 
+                                <ItemsControl ItemsSource="{Binding GPUMonitorStatList}">
+
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border BorderThickness="1" BorderBrush="#2d2d2d" Margin="5" Padding="5" Background="#2d2d2d" Width="140">
+                                                <StackPanel>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Label FontWeight="Bold" Style="{StaticResource labelStyleWhite}" Content="{Binding DisplayGPUID, UpdateSourceTrigger=PropertyChanged}"></Label>
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Label FontSize="10" Style="{StaticResource labelStyleGrey}" Content="{Binding HardwareName, UpdateSourceTrigger=PropertyChanged}"></Label>
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Horizontal">
+
+                                                        <!-- HashRate -->
+                                                        <Border BorderBrush="#2c97de" BorderThickness="1" Padding="5 0 5 0" Margin="2 2 2 0">
+                                                            <Label Foreground="#2c97de" Style="{StaticResource labelStyleWhite}" Content="{Binding DisplayHashRate, UpdateSourceTrigger=PropertyChanged}"></Label>
+                                                        </Border>
+
+                                                        <!-- Power -->
+                                                        <Border BorderBrush="#9f9f9f" BorderThickness="1" Padding="5 0 5 0" Margin="2 2 2 0">
+                                                            <Label Foreground="#9f9f9f" Style="{StaticResource labelStyleWhite}" Content="{Binding DisplayPower, UpdateSourceTrigger=PropertyChanged}"></Label>
+                                                        </Border>
+
+                                                    </StackPanel>
+                                                    <StackPanel Orientation="Horizontal">
+
+                                                        <!-- Temp -->
+                                                        <Border BorderBrush="#2c97de" BorderThickness="1" Padding="5 0 5 0" Margin="2 2 2 0">
+                                                            <Label Foreground="#2c97de" Style="{StaticResource labelStyleWhite}" Content="{Binding DisplayTemp, UpdateSourceTrigger=PropertyChanged}"></Label>
+                                                        </Border>
+
+                                                        <!-- Fan -->
+                                                        <Border BorderBrush="#9f9f9f" BorderThickness="1" Padding="5 0 5 0" Margin="2 2 2 0">
+                                                            <Label Foreground="#9f9f9f" Style="{StaticResource labelStyleWhite}" Content="{Binding DisplayFanSpeed, UpdateSourceTrigger=PropertyChanged}"></Label>
+                                                        </Border>
+
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+
+                                    </ItemsControl>
+                                     <!--GPU DataGrid--> 
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+
+                </DataGrid.Columns>
+            </DataGrid>
+
+
+
+
+            <!-- Worker Hardware Grid -->
+                <!--<DataGrid 
                     AutoGenerateColumns="False" 
                     Grid.Row="1" 
                     Grid.ColumnSpan="4" 
@@ -210,7 +385,7 @@
                     <DataGridTemplateColumn  CellStyle="{StaticResource DataGridCellStyle}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <!-- GPU DataGrid -->
+                                --><!-- GPU DataGrid --><!--
                                 <DataGrid 
                                     AutoGenerateColumns="True" 
                                     ItemsSource="{Binding DataTableGPUData}" 
@@ -235,16 +410,17 @@
                                     RowHeaderStyle="{StaticResource DataGridRowHeaderStyleGPU}"
                                     RowStyle="{StaticResource DataGridRowStyleGPU}"
                                     CellStyle="{StaticResource DataGridCellStyleGPU}"/>
-                                <!-- GPU DataGrid -->
+                                --><!-- GPU DataGrid --><!--
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
 
 
                 </DataGrid.Columns>
-                </DataGrid>
+                </DataGrid>-->
 
             </Grid>
-    
+
     </Grid>
+    
 </UserControl>
