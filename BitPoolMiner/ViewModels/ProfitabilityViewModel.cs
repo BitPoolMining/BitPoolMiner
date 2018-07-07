@@ -1,6 +1,7 @@
 ﻿using BitPoolMiner.Enums;
 using BitPoolMiner.Models.CryptoCompare;
 using BitPoolMiner.Models.MinerPayments;
+using BitPoolMiner.Models.Profitability;
 using BitPoolMiner.Models.WhatToMine;
 using BitPoolMiner.Utils;
 using BitPoolMiner.Utils.CryptoCompare;
@@ -35,6 +36,20 @@ namespace BitPoolMiner.ViewModels
             get
             {
                 return _mainWindowViewModel.MinerPaymentsData;
+            }
+        }
+
+        private ProfitabilityData profitabilityData;
+        public ProfitabilityData ProfitabilityData
+        {
+            get
+            {
+                return profitabilityData;
+            }
+            set
+            {
+                profitabilityData = value;
+                OnPropertyChanged();
             }
         }
 
@@ -90,6 +105,7 @@ namespace BitPoolMiner.ViewModels
         {
             // Get a reference back to the main window view model
             _mainWindowViewModel = mainWindowViewModel;
+            profitabilityData = new ProfitabilityData();
 
             PlotPaymentChart();
         }
@@ -107,7 +123,7 @@ namespace BitPoolMiner.ViewModels
                     return;
 
                 // Create a new list of Miner Payments Grouped by day
-                MinerPaymentsData.MinerPaymentsGroupedByDayUnionedList = new List<MinerPaymentsGroupedByDay>();
+                profitabilityData.MinerPaymentsGroupedByDayUnionedList = new List<MinerPaymentsGroupedByDay>();
 
                 // New list of strings used for labels when plotting the chart
                 List<string> labels = new List<string>();
@@ -143,12 +159,13 @@ namespace BitPoolMiner.ViewModels
                 // Add a line series for the Total Line
                 seriesCollection.Add(this.AddTotalLineSeries());
 
-                MinerPaymentsData.MinerPaymentsGroupedByDayUnionedList = MinerPaymentsData.MinerPaymentsGroupedByDayUnionedList.OrderByDescending(x => x.PaymentDate).ToList();
+                profitabilityData.MinerPaymentsGroupedByDayUnionedList = profitabilityData.MinerPaymentsGroupedByDayUnionedList.OrderByDescending(x => x.PaymentDate).ToList();
 
                 // Axis label formats
                 XFormatter = val => new DateTime((long)val).ToShortDateString();
                 YFormatter = val => String.Format("{0} {1}", Math.Round(val, 4).ToString(), Application.Current.Properties["Currency"].ToString());
 
+                OnPropertyChanged("ProfitabilityData");
                 OnPropertyChanged("MinerPaymentsData");
                 OnPropertyChanged("SeriesCollection");
                 OnPropertyChanged("XFormatter");
@@ -197,7 +214,7 @@ namespace BitPoolMiner.ViewModels
             ChartValues<DateTimePoint> chartValues = new ChartValues<DateTimePoint>();
 
             // Group payments by date and get sum of all fiat payment amounts
-            List<MinerPaymentsGroupedByDay> result = MinerPaymentsData.MinerPaymentsGroupedByDayUnionedList
+            List<MinerPaymentsGroupedByDay> result = profitabilityData.MinerPaymentsGroupedByDayUnionedList
                                     .GroupBy(l => l.PaymentDateTicks)
                                     .Select(cl => new MinerPaymentsGroupedByDay
                                     {
@@ -294,7 +311,7 @@ namespace BitPoolMiner.ViewModels
             // Add payment to complete unioned list that will be bound to the UI
             minerPaymentsGroupedByDay.CoinType = MinerPaymentSummary.CoinType;
             minerPaymentsGroupedByDay.CoinLogo = MinerPaymentSummary.CoinLogo;
-            MinerPaymentsData.MinerPaymentsGroupedByDayUnionedList.Add(minerPaymentsGroupedByDay);
+            profitabilityData.MinerPaymentsGroupedByDayUnionedList.Add(minerPaymentsGroupedByDay);
 
             dateTimePoint.DateTime = new DateTime(minerPaymentsGroupedByDay.PaymentDate.Year, minerPaymentsGroupedByDay.PaymentDate.Month, minerPaymentsGroupedByDay.PaymentDate.Day);
             return dateTimePoint;
