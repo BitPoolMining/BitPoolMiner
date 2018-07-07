@@ -23,44 +23,51 @@ namespace BitPoolMiner
 
         public MainWindow()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
-            // Initialize ViewModels
-            if (MainWindowViewModel == null)
-                MainWindowViewModel = (MainWindowViewModel)this.DataContext;
+                // Initialize ViewModels
+                if (MainWindowViewModel == null)
+                    MainWindowViewModel = (MainWindowViewModel)this.DataContext;
 
-            if (AccountViewModel == null)
-                AccountViewModel = new AccountViewModel(MainWindowViewModel);
+                if (AccountViewModel == null)
+                    AccountViewModel = new AccountViewModel(MainWindowViewModel);
 
-            if (WalletViewModel == null)
-                WalletViewModel = new WalletViewModel();
+                if (WalletViewModel == null)
+                    WalletViewModel = new WalletViewModel();
 
-            if (MonitorViewModel == null)
-                MonitorViewModel = new MonitorViewModel();
+                if (MonitorViewModel == null)
+                    MonitorViewModel = new MonitorViewModel();
 
-            if (WorkerViewModel == null)
-                WorkerViewModel = new WorkerViewModel();
+                if (WorkerViewModel == null)
+                    WorkerViewModel = new WorkerViewModel();
 
-            DataContext = MonitorViewModel;
+                DataContext = MonitorViewModel;
 
-            // Display MainView data
-            MainWindowViewModel.GetMinerMonitoringResults();
-            MainWindowViewModel.InitWhatToMine();
-            MainWindowViewModel.InitPayments();
+                // Display MainView data
+                MainWindowViewModel.GetMinerMonitoringResults();
+                MainWindowViewModel.InitWhatToMine();
+                MainWindowViewModel.InitPayments();
 
-            //Force window size to prevent crashing
-            ResizeWindow();
+                //Force window size to prevent crashing
+                ResizeWindow();
 
-            // Initialize Profitability ViewModel after main window data loaded
-            if (ProfitabilityViewModel == null)
-                ProfitabilityViewModel = new ProfitabilityViewModel(MainWindowViewModel);
+                // Initialize Profitability ViewModel after main window data loaded
+                if (ProfitabilityViewModel == null)
+                    ProfitabilityViewModel = new ProfitabilityViewModel(MainWindowViewModel);
 
-            // Pass a reference of the Profitability ViewMode to the MainWindowViewModel.  This will allow 
-            // rerendering of charts from the main window view timer event
-            MainWindowViewModel.profitabilityViewModel = ProfitabilityViewModel;
+                // Pass a reference of the Profitability ViewMode to the MainWindowViewModel.  This will allow 
+                // rerendering of charts from the main window view timer event
+                MainWindowViewModel.profitabilityViewModel = ProfitabilityViewModel;
 
-            // Check to see if should start mining on applications tart.
-            CheckAutoStartMining();
+                // Check to see if should start mining on applications tart.
+                CheckAutoStartMining();
+            }
+            catch
+            {
+                // eat it
+            }
         }
         #endregion
 
@@ -201,8 +208,15 @@ namespace BitPoolMiner
         /// <param name="e"></param>
         protected override void OnStateChanged(EventArgs e)
         {
-            ResizeWindow();
-            base.OnStateChanged(e);
+            try
+            {
+                ResizeWindow();
+                base.OnStateChanged(e);
+            }
+            catch
+            {
+                // eat it
+            }
         }
 
         #endregion
