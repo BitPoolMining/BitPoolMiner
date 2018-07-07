@@ -176,6 +176,7 @@
     <Compile Include="Models\MinerPayments\MinerPaymentsData.cs" />
     <Compile Include="Models\MinerPayments\MinerPaymentsGroupedByDay.cs" />
     <Compile Include="Models\MinerPayments\MinerPaymentSummary.cs" />
+    <Compile Include="Models\Profitability\ProfitabilityData.cs" />
     <Compile Include="Models\RPCResponse\DSTMTemplate.cs" />
     <Compile Include="Models\RPCResponse\EWBFTemplate.cs" />
     <Compile Include="Models\WhatToMine\WhatToMineResponse.cs" />

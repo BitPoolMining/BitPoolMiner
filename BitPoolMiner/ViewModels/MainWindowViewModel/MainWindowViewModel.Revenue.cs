@@ -11,6 +11,7 @@ using BitPoolMiner.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -99,13 +100,20 @@ namespace BitPoolMiner.ViewModels
             // Build up Query Parameters for API request
             NameValueCollection nameValueCollection = new NameValueCollection();
 
+            // This is invariant, always use USD based formatting for W2M calls
+            NumberFormatInfo format = new NumberFormatInfo();
+            // Set the 'splitter' for thousands
+            format.NumberGroupSeparator = ",";
+            // Set the decimal seperator
+            format.NumberDecimalSeparator = ".";
+
             if (minerMonitorStat.CoinType == CoinType.MONA || minerMonitorStat.CoinType == CoinType.VTC)
             {
-                nameValueCollection.Add("hr", (minerMonitorStat.HashRate / 1000).ToString());
+                nameValueCollection.Add("hr", (minerMonitorStat.HashRate / 1000).ToString(format));
             }
             else
             {
-                nameValueCollection.Add("hr", minerMonitorStat.HashRate.ToString());
+                nameValueCollection.Add("hr", minerMonitorStat.HashRate.ToString(format));
             }
 
             nameValueCollection.Add("p", minerMonitorStat.Power.ToString());

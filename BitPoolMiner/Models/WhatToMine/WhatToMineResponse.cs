@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows;
 
 namespace BitPoolMiner.Models.WhatToMine
@@ -26,7 +27,14 @@ namespace BitPoolMiner.Models.WhatToMine
         {
             get
             {
-                return Decimal.Round(Convert.ToDecimal(estimated_rewards), 6).ToString();
+                // This is invariant
+                NumberFormatInfo format = new NumberFormatInfo();
+                // Set the 'splitter' for thousands
+                format.NumberGroupSeparator = ",";
+                // Set the decimal seperator
+                format.NumberDecimalSeparator = ".";
+
+                return Double.Parse(estimated_rewards, format).ToString();
             }
             set
             {
