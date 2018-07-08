@@ -11,10 +11,10 @@ namespace BitPoolMiner.Utils
 {
     public class NLogProcessing
     {
-        #region "NLog"
-        NLog.Config.LoggingConfiguration config;
-        NLog.Targets.FileTarget logfile;
-        #endregion
+        //#region "NLog"
+        //NLog.Config.LoggingConfiguration config;
+        //NLog.Targets.FileTarget logfile;
+        //#endregion
 
         public static void SetupLogging()
         {

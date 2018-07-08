@@ -16,7 +16,7 @@ namespace BitPoolMiner.Process
     {
         public System.Diagnostics.Process MinerProcess { get; private set; }
 
-        public bool Start(string workingDirectory, string arguments, string filename)
+        public bool Start(string workingDirectory, string arguments, string filename, bool forAMD)
         {
             try
             {
@@ -27,6 +27,30 @@ namespace BitPoolMiner.Process
                 MinerProcess.StartInfo.Arguments = arguments;
                 MinerProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
                 MinerProcess.StartInfo.UseShellExecute = true;
+                if (forAMD)
+                {
+                    MinerProcess.StartInfo.UseShellExecute = false;
+                    if (MinerProcess.StartInfo.EnvironmentVariables.ContainsKey("GPU_FORCE_64BIT_PTR"))
+                        MinerProcess.StartInfo.EnvironmentVariables.Remove("GPU_FORCE_64BIT_PTR");
+
+                    if (MinerProcess.StartInfo.EnvironmentVariables.ContainsKey("GPU_MAX_HEAP_SIZE"))
+                        MinerProcess.StartInfo.EnvironmentVariables.Remove("GPU_MAX_HEAP_SIZE");
+
+                    if (MinerProcess.StartInfo.EnvironmentVariables.ContainsKey("GPU_USE_SYNC_OBJECTS"))
+                        MinerProcess.StartInfo.EnvironmentVariables.Remove("GPU_USE_SYNC_OBJECTS");
+
+                    if (MinerProcess.StartInfo.EnvironmentVariables.ContainsKey("GPU_MAX_ALLOC_PERCENT"))
+                        MinerProcess.StartInfo.EnvironmentVariables.Remove("GPU_MAX_ALLOC_PERCENT");
+
+                    if (MinerProcess.StartInfo.EnvironmentVariables.ContainsKey("GPU_SINGLE_ALLOC_PERCENT"))
+                        MinerProcess.StartInfo.EnvironmentVariables.Remove("GPU_SINGLE_ALLOC_PERCENT");
+
+                    MinerProcess.StartInfo.EnvironmentVariables.Add("GPU_FORCE_64BIT_PTR", "0");
+                    MinerProcess.StartInfo.EnvironmentVariables.Add("GPU_MAX_HEAP_SIZE", "100");
+                    MinerProcess.StartInfo.EnvironmentVariables.Add("GPU_USE_SYNC_OBJECTS", "1");
+                    MinerProcess.StartInfo.EnvironmentVariables.Add("GPU_MAX_ALLOC_PERCENT", "100");
+                    MinerProcess.StartInfo.EnvironmentVariables.Add("GPU_SINGLE_ALLOC_PERCENT", "100");
+                }
                 MinerProcess.EnableRaisingEvents = true;
             }
             catch (Exception e)

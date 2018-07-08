@@ -171,7 +171,7 @@ namespace BitPoolMiner.ViewModels
                 OnPropertyChanged("XFormatter");
                 OnPropertyChanged("YFormatter");
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 ShowError("Error loading payment data");
             }

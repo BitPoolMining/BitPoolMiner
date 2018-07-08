@@ -63,7 +63,7 @@ namespace BitPoolMiner.Miners
             var process = new BPMProcess();
 
             IsMining = true;
-            process.Start(MinerWorkingDirectory, MinerArguments, MinerFileName);
+            process.Start(MinerWorkingDirectory, MinerArguments, MinerFileName, Hardware == HardwareType.AMD);
             process.MinerProcess.Exited += MinerExited;
             return process;
         }
