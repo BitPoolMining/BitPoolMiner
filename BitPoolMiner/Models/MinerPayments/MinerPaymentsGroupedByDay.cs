@@ -42,6 +42,11 @@ namespace BitPoolMiner.Models.MinerPayments
         public Decimal PaymentAmountFiat { get; set; }
 
         /// <summary>
+        /// Exchange rate used to convert to Fiat
+        /// </summary>
+        public Decimal FiatExchangeRate { get; set; }
+
+        /// <summary>
         /// Coin type for payment
         /// </summary>
         public CoinType CoinType { get; set; }

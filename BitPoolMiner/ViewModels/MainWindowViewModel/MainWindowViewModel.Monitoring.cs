@@ -185,7 +185,7 @@ namespace BitPoolMiner.ViewModels
                 GetAccountWorkerList();
                 InitWhatToMine();
                 InitPayments();
-                profitabilityViewModel.PlotPaymentChart();
+                profitabilityViewModel.CalculateProfitability();
             }
             catch (Exception ex)
             {
@@ -245,7 +245,7 @@ namespace BitPoolMiner.ViewModels
                 minerMonitorStat.DisplayHashRate = HashrateFormatter.Format(minerMonitorStat.CoinType, minerMonitorStat.HashRate);
             }
 
-            MinerMonitorStatListGrouped = new ObservableCollection<MinerMonitorStat>(minerMonitorStatListGrouped);
+            MinerMonitorStatListGrouped = new ObservableCollection<MinerMonitorStat>(minerMonitorStatListGrouped.OrderBy(x => x.CoinType.ToString()).ToList());
 
             // Notify UI of change
             OnPropertyChanged("MinerMonitorStatListGrouped");
