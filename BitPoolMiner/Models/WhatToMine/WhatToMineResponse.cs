@@ -34,7 +34,7 @@ namespace BitPoolMiner.Models.WhatToMine
                 // Set the decimal seperator
                 format.NumberDecimalSeparator = ".";
 
-                return Double.Parse(estimated_rewards, format).ToString();
+                return Math.Round(Double.Parse(estimated_rewards, format), 6).ToString();
             }
             set
             {
@@ -49,7 +49,14 @@ namespace BitPoolMiner.Models.WhatToMine
         {
             get
             {
-                return Decimal.Round(Convert.ToDecimal(btc_revenue), 6).ToString();
+                // This is invariant
+                NumberFormatInfo format = new NumberFormatInfo();
+                // Set the 'splitter' for thousands
+                format.NumberGroupSeparator = ",";
+                // Set the decimal seperator
+                format.NumberDecimalSeparator = ".";
+
+                return Math.Round(Double.Parse(btc_revenue, format), 6).ToString();
             }
             set
             {
