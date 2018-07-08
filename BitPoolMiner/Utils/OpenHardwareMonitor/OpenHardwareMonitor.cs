@@ -1,5 +1,6 @@
 ﻿using BitPoolMiner.Models;
 using OpenHardwareMonitor.Hardware;
+using OpenHardwareMonitor.Hardware.ATI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,6 +22,9 @@ namespace BitPoolMiner.Utils.OpenHardwareMonitor
                 myComputer.Open();
                 myComputer.GPUEnabled = true;
 
+                int amdCount = 0;
+                int nvidiaCount = 0;
+
                 foreach (var hardwareItem in myComputer.Hardware)
                 {
                     if (hardwareItem.HardwareType == HardwareType.GpuNvidia || hardwareItem.HardwareType == HardwareType.GpuAti)
@@ -29,14 +33,27 @@ namespace BitPoolMiner.Utils.OpenHardwareMonitor
 
                         gpuSettings.AccountGuid = (Guid)Application.Current.Properties["AccountID"];
                         gpuSettings.WorkerName = Application.Current.Properties["WorkerName"].ToString();
-                        gpuSettings.GPUID = Convert.ToUInt16(hardwareItem.Identifier.ToString().Replace("/nvidiagpu/","").Replace("/atigpu/", "").Replace("}", ""));
                         gpuSettings.HardwareName = hardwareItem.Name;
                         gpuSettings.EnabledForMining = true;
-                        gpuSettings.Fanspeed = Convert.ToInt16(hardwareItem.Sensors.Where(x => x.SensorType == SensorType.Control && x.Name == "GPU Fan").FirstOrDefault().Value);
+
+                        try
+                        {
+                            gpuSettings.Fanspeed = Convert.ToInt16(hardwareItem.Sensors.Where(x => x.SensorType == SensorType.Control && x.Name == "GPU Fan").FirstOrDefault().Value);
+                        }
+                        catch
+                        {
+                            gpuSettings.Fanspeed = 0;
+                        }
+
                         gpuSettings.EnabledForMining = true;
 
                         if (hardwareItem.HardwareType == HardwareType.GpuNvidia)
                         {
+                            //gpuSettings.GPUID = Convert.ToUInt16(hardwareItem.Identifier.ToString().Replace("/nvidiagpu/", "").Replace("/atigpu/", "").Replace("}", ""));
+
+                            gpuSettings.GPUID = nvidiaCount;
+                            nvidiaCount++;
+
                             gpuSettings.HardwareType = Enums.HardwareType.Nvidia;
                             gpuSettings.CoinSelectedForMining = Enums.CoinType.HUSH;
                             gpuSettings.MinerBaseType = Enums.MinerBaseType.EWBF;
@@ -44,6 +61,11 @@ namespace BitPoolMiner.Utils.OpenHardwareMonitor
                         }
                         else if (hardwareItem.HardwareType == HardwareType.GpuAti)
                         {
+                            //gpuSettings.GPUID = Convert.ToUInt16(hardwareItem.Identifier.ToString().Replace("/nvidiagpu/", "").Replace("/atigpu/", "").Replace("}", ""));
+
+                            gpuSettings.GPUID = amdCount;
+                            amdCount++;
+
                             gpuSettings.HardwareType = Enums.HardwareType.AMD;
                             gpuSettings.CoinSelectedForMining = Enums.CoinType.EXP;
                             gpuSettings.MinerBaseType = Enums.MinerBaseType.UNDEFINED;
