@@ -79,7 +79,7 @@
                 <ColumnDefinition Width="auto"></ColumnDefinition>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="260"></ColumnDefinition>
+                <ColumnDefinition Width="310"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <!--Grid Rows-->
@@ -144,7 +144,7 @@
 
             <!-- Payment Chart -->
             <StackPanel Grid.Row="1" Margin="10" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="9">
-                <lvc:CartesianChart  Series="{Binding SeriesCollection}" LegendLocation="Top" MinWidth="900" MinHeight="450">
+                <lvc:CartesianChart  Series="{Binding SeriesCollection}" LegendLocation="Top" MinWidth="800" MinHeight="450">
                     <lvc:CartesianChart.ChartLegend>
                         <lvc:DefaultLegend Margin="5 5 0 0 " BulletSize="15" Foreground="#ffffff"/>
                     </lvc:CartesianChart.ChartLegend>
@@ -204,7 +204,8 @@
                         <DataGridTextColumn Binding="{Binding DisplayPaymentDate}" Header="Date" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
                         <DataGridTextColumn Binding="{Binding DisplayPaymentAmount}" Header="Coins" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
                         <DataGridTextColumn Binding="{Binding DisplayPaymentAmountFiat}" Header="Fiat" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
-                    </DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding FiatExchangeRate}" Header="Ex Rate" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                </DataGrid.Columns>
                 </DataGrid>
 
             </StackPanel>

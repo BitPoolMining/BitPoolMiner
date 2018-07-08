@@ -107,6 +107,13 @@ namespace BitPoolMiner.ViewModels
             _mainWindowViewModel = mainWindowViewModel;
             profitabilityData = new ProfitabilityData();
 
+            CalculateProfitability();
+        }
+
+        public void CalculateProfitability()
+        {
+            PopulateFiatCurrenyAmounts();
+            PopulateUnionedList();
             PlotPaymentChart();
         }
 
@@ -114,16 +121,16 @@ namespace BitPoolMiner.ViewModels
 
         #region PaymentChart
 
-        public void PlotPaymentChart()
+        /// <summary>
+        /// Create chart series for each coin
+        /// </summary>
+        private void PlotPaymentChart()
         {
             try
             {
                 // Exit if no fiat currency is selected
                 if (Application.Current.Properties["Currency"] == null)
                     return;
-
-                // Create a new list of Miner Payments Grouped by day
-                profitabilityData.MinerPaymentsGroupedByDayUnionedList = new List<MinerPaymentsGroupedByDay>();
 
                 // New list of strings used for labels when plotting the chart
                 List<string> labels = new List<string>();
@@ -139,41 +146,104 @@ namespace BitPoolMiner.ViewModels
                     // Format series fill, stroke, etc
                     FormatChartSeries(MinerPaymentSummary, stackedColumnSeries);
 
-                    // Get CryptoCompare historical rates for the past 30 days
-                    HistoDayResponse histoDayResponse = GetCryptoCompare(MinerPaymentSummary.CoinType);
-
                     // Iterate through each day and add a chart point
                     foreach (MinerPaymentsGroupedByDay minerPaymentsGroupedByDay in MinerPaymentSummary.MinerPaymentsGroupedByDayList.Where(x => x.PaymentDate >= DateTime.Now.AddDays(-30)).OrderByDescending(y => y.PaymentDate))
                     {
-                        DateTimePoint dateTimePoint = CalculateDailyPaymentUsingHistoricalRates(MinerPaymentSummary, histoDayResponse, minerPaymentsGroupedByDay);
+                        DateTimePoint dateTimePoint = CreateChartDataPoint(minerPaymentsGroupedByDay);
                         chartValues.Add(dateTimePoint);
                     }
 
+                    // Add coin symbol to labels to show up in the UI
                     labels.Add(MinerPaymentSummary.CoinType.ToString());
 
+                    // Add 0 values for any dates with no payments in order to render the chart properly
                     PaymentChartDataBackFill paymentChartDataBackFill = new PaymentChartDataBackFill();
                     stackedColumnSeries.Values = paymentChartDataBackFill.BackFillList(chartValues);
                     seriesCollection.Add(stackedColumnSeries);
                 }
 
                 // Add a line series for the Total Line
-                seriesCollection.Add(this.AddTotalLineSeries());
-
-                profitabilityData.MinerPaymentsGroupedByDayUnionedList = profitabilityData.MinerPaymentsGroupedByDayUnionedList.OrderByDescending(x => x.PaymentDate).ToList();
+                seriesCollection.Add(this.AddTotalLineSeries());                
 
                 // Axis label formats
                 XFormatter = val => new DateTime((long)val).ToShortDateString();
                 YFormatter = val => String.Format("{0} {1}", Math.Round(val, 4).ToString(), Application.Current.Properties["Currency"].ToString());
 
-                OnPropertyChanged("ProfitabilityData");
-                OnPropertyChanged("MinerPaymentsData");
+                // Rebind UI
                 OnPropertyChanged("SeriesCollection");
                 OnPropertyChanged("XFormatter");
                 OnPropertyChanged("YFormatter");
             }
             catch (Exception e)
             {
-                ShowError("Error loading payment data");
+                ShowError(String.Format("{0} {1}", "Error plotting payment chart", e.Message));
+            }
+        }
+
+        /// <summary>
+        /// Iterate through all payments and lookup cryptocompare data to calculate fiat amounts
+        /// </summary>
+        private void PopulateFiatCurrenyAmounts()
+        {
+            try
+            {
+                // Exit if no fiat currency is selected
+                if (Application.Current.Properties["Currency"] == null)
+                    return;
+
+                foreach (MinerPaymentSummary MinerPaymentSummary in MinerPaymentsData.MinerPaymentSummaryList)
+                {
+                    // Get CryptoCompare historical rates for the past 30 days for this particular coin
+                    HistoDayResponse histoDayResponse = GetCryptoCompare(MinerPaymentSummary.CoinType);
+
+                    // Iterate through each day and calculate based on the rates
+                    foreach (MinerPaymentsGroupedByDay minerPaymentsGroupedByDay in MinerPaymentSummary.MinerPaymentsGroupedByDayList.Where(x => x.PaymentDate >= DateTime.Now.AddDays(-30)).OrderByDescending(y => y.PaymentDate))
+                    {
+                        CalculateDailyPaymentUsingHistoricalRates(MinerPaymentSummary, histoDayResponse, minerPaymentsGroupedByDay);
+                    }
+                }
+                
+                OnPropertyChanged("MinerPaymentsData");                
+            }
+            catch (Exception e)
+            {
+                ShowError(String.Format("{0} {1}", "Error populating fiat currency amounts", e.Message));
+            }
+        }
+
+        /// <summary>
+        /// Iterate through all payments and add to the list of unioned payments
+        /// </summary>
+        private void PopulateUnionedList()
+        {
+            try
+            {
+                // Exit if no fiat currency is selected
+                if (Application.Current.Properties["Currency"] == null)
+                    return;
+
+                // Create a new list of Miner Payments Grouped by day
+                profitabilityData.MinerPaymentsGroupedByDayUnionedList = new List<MinerPaymentsGroupedByDay>();
+
+                // Iterate through each coin
+                foreach (MinerPaymentSummary MinerPaymentSummary in MinerPaymentsData.MinerPaymentSummaryList)
+                {
+                    // Iterate through each day and calculate based on the rates
+                    foreach (MinerPaymentsGroupedByDay minerPaymentsGroupedByDay in MinerPaymentSummary.MinerPaymentsGroupedByDayList.Where(x => x.PaymentDate >= DateTime.Now.AddDays(-30)).OrderByDescending(y => y.PaymentDate))
+                    {
+                        AddMinerPaymentPerDayToUnionedList(MinerPaymentSummary, minerPaymentsGroupedByDay);
+                    }
+                }
+
+                // Sort payments by date desc
+                profitabilityData.MinerPaymentsGroupedByDayUnionedList = profitabilityData.MinerPaymentsGroupedByDayUnionedList.OrderByDescending(x => x.PaymentDate).ToList();
+
+                // Rebind UI
+                OnPropertyChanged("ProfitabilityData");
+            }
+            catch (Exception e)
+            {
+                ShowError(String.Format("{0} {1}", "Error populating complete list of 30 day payment data", e.Message));
             }
         }
 
@@ -288,31 +358,47 @@ namespace BitPoolMiner.ViewModels
         /// <param name="histoDayResponse"></param>
         /// <param name="minerPaymentsGroupedByDay"></param>
         /// <returns></returns>
-        private DateTimePoint CalculateDailyPaymentUsingHistoricalRates(MinerPaymentSummary MinerPaymentSummary, HistoDayResponse histoDayResponse, MinerPaymentsGroupedByDay minerPaymentsGroupedByDay)
+        private void CalculateDailyPaymentUsingHistoricalRates(MinerPaymentSummary MinerPaymentSummary, HistoDayResponse histoDayResponse, MinerPaymentsGroupedByDay minerPaymentsGroupedByDay)
         {
             // Lookup CryptoCompare rate for the specific date
             HistoDateResponseData histoDayResponseDay = histoDayResponse.data.Where(x => x.dateTime <= minerPaymentsGroupedByDay.PaymentDate.ToUniversalTime().AddHours(9) &&
                                                                                     x.dateTime >= minerPaymentsGroupedByDay.PaymentDate.ToUniversalTime().AddHours(-9)).FirstOrDefault();
 
-            DateTimePoint dateTimePoint = new DateTimePoint();
-
             if (histoDayResponseDay == null)
             {
                 minerPaymentsGroupedByDay.PaymentAmountFiat = 0;
-                dateTimePoint.Value = 0;
+                minerPaymentsGroupedByDay.FiatExchangeRate = 0;
                 ShowError(String.Format("{0} {1} Missing", minerPaymentsGroupedByDay.PaymentDate.ToUniversalTime(), MinerPaymentSummary.CoinType));
             }
             else
             {
+                minerPaymentsGroupedByDay.FiatExchangeRate = histoDayResponseDay.high;
                 minerPaymentsGroupedByDay.PaymentAmountFiat = (minerPaymentsGroupedByDay.PaymentAmount * histoDayResponseDay.high);
-                dateTimePoint.Value = (double)minerPaymentsGroupedByDay.PaymentAmountFiat;
             }
+        }
 
+        /// <summary>
+        /// Add payment to list of unioned payments used to bind to the UI
+        /// </summary>
+        /// <param name="MinerPaymentSummary"></param>
+        /// <param name="minerPaymentsGroupedByDay"></param>
+        private void AddMinerPaymentPerDayToUnionedList(MinerPaymentSummary MinerPaymentSummary, MinerPaymentsGroupedByDay minerPaymentsGroupedByDay)
+        {
             // Add payment to complete unioned list that will be bound to the UI
-            minerPaymentsGroupedByDay.CoinType = MinerPaymentSummary.CoinType;
             minerPaymentsGroupedByDay.CoinLogo = MinerPaymentSummary.CoinLogo;
+            minerPaymentsGroupedByDay.CoinType = MinerPaymentSummary.CoinType;
             profitabilityData.MinerPaymentsGroupedByDayUnionedList.Add(minerPaymentsGroupedByDay);
+        }
 
+        /// <summary>
+        /// Create a new chart data point 
+        /// </summary>
+        /// <param name="minerPaymentsGroupedByDay"></param>
+        /// <returns></returns>
+        private DateTimePoint CreateChartDataPoint(MinerPaymentsGroupedByDay minerPaymentsGroupedByDay)
+        {
+            DateTimePoint dateTimePoint = new DateTimePoint();
+            dateTimePoint.Value = (double)minerPaymentsGroupedByDay.PaymentAmountFiat;
             dateTimePoint.DateTime = new DateTime(minerPaymentsGroupedByDay.PaymentDate.Year, minerPaymentsGroupedByDay.PaymentDate.Month, minerPaymentsGroupedByDay.PaymentDate.Day);
             return dateTimePoint;
         }

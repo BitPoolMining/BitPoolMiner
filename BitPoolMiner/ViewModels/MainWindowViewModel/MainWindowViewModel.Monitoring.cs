@@ -185,7 +185,7 @@ namespace BitPoolMiner.ViewModels
                 GetAccountWorkerList();
                 InitWhatToMine();
                 InitPayments();
-                profitabilityViewModel.PlotPaymentChart();
+                profitabilityViewModel.CalculateProfitability();
             }
             catch (Exception ex)
             {
