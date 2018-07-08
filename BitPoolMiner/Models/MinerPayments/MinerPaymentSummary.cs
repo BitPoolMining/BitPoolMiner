@@ -27,6 +27,12 @@ namespace BitPoolMiner.Models.MinerPayments
         public Decimal RevenueLast24HourBTC { get; set; }
         public Decimal RevenueLast24HourCoin { get; set; }
 
+        public Decimal RevenueLast7DaysUSD { get; set; }
+        public Decimal RevenueLast7DaysCoin { get; set; }
+
+        public Decimal RevenueLast30DaysUSD { get; set; }
+        public Decimal RevenueLast30DaysCoin { get; set; }
+
         /// <summary>
         /// List of payments summarized by day
         /// </summary>

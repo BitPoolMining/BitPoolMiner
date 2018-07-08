@@ -115,6 +115,19 @@ namespace BitPoolMiner.ViewModels
             PopulateFiatCurrenyAmounts();
             PopulateUnionedList();
             PlotPaymentChart();
+            CalculateRevenueLast7Days();
+            CalculateRevenueLast30Days();
+            SortData();
+        }
+
+        private void SortData()
+        {
+            WhatToMineData.WhatToMineResponseList = WhatToMineData.WhatToMineResponseList.OrderBy(x => x.CoinLogo).ToList();
+            MinerPaymentsData.MinerPaymentSummaryList = MinerPaymentsData.MinerPaymentSummaryList.OrderBy(x => x.CoinLogo).ToList();
+
+            // Rebind UI
+            OnPropertyChanged("WhatToMineData");
+            OnPropertyChanged("ProfitabilityData");
         }
 
         #endregion
@@ -401,6 +414,63 @@ namespace BitPoolMiner.ViewModels
             dateTimePoint.Value = (double)minerPaymentsGroupedByDay.PaymentAmountFiat;
             dateTimePoint.DateTime = new DateTime(minerPaymentsGroupedByDay.PaymentDate.Year, minerPaymentsGroupedByDay.PaymentDate.Month, minerPaymentsGroupedByDay.PaymentDate.Day);
             return dateTimePoint;
+        }
+
+        /// <summary>
+        /// Calculate earnings per coin for the last 7 days
+        /// </summary>
+        private void CalculateRevenueLast7Days()
+        {
+            try
+            {
+                // Exit if no fiat currency is selected
+                if (Application.Current.Properties["Currency"] == null)
+                    return;
+
+                // Iterate through each coin
+                foreach (MinerPaymentSummary MinerPaymentSummary in MinerPaymentsData.MinerPaymentSummaryList)
+                {
+                    MinerPaymentSummary.RevenueLast7DaysCoin = Math.Round(MinerPaymentSummary.MinerPaymentsGroupedByDayList.Where(x => x.PaymentDate >= DateTime.Now.AddDays(-7)).Sum(c => c.PaymentAmount), 6);
+                    MinerPaymentSummary.RevenueLast7DaysUSD = Math.Round(MinerPaymentSummary.MinerPaymentsGroupedByDayList.Where(x => x.PaymentDate >= DateTime.Now.AddDays(-7)).Sum(c => c.PaymentAmountFiat), 2);
+                }
+
+                // Rebind UI
+                OnPropertyChanged("ProfitabilityData");
+            }
+            catch (Exception e)
+            {
+                ShowError(String.Format("{0} {1}", "Error calculating last 7 days data", e.Message));
+            }
+        }
+
+        /// <summary>
+        /// Calculate earnings per coin for the last 30 days
+        /// </summary>
+        private void CalculateRevenueLast30Days()
+        {
+            try
+            {
+                // Exit if no fiat currency is selected
+                if (Application.Current.Properties["Currency"] == null)
+                    return;
+
+                // Iterate through each coin
+                foreach (MinerPaymentSummary MinerPaymentSummary in MinerPaymentsData.MinerPaymentSummaryList)
+                {
+                    MinerPaymentSummary.RevenueLast30DaysCoin = Math.Round(MinerPaymentSummary.MinerPaymentsGroupedByDayList.Where(x => x.PaymentDate >= DateTime.Now.AddDays(-30)).Sum(c => c.PaymentAmount), 6);
+                    MinerPaymentSummary.RevenueLast30DaysUSD = Math.Round(MinerPaymentSummary.MinerPaymentsGroupedByDayList.Where(x => x.PaymentDate >= DateTime.Now.AddDays(-30)).Sum(c => c.PaymentAmountFiat), 2);
+                }
+
+                // Remove data where the has not been a payment at all in the last 30 days
+                MinerPaymentsData.MinerPaymentSummaryList.RemoveAll(x => x.RevenueLast30DaysCoin == 0);
+
+                // Rebind UI
+                OnPropertyChanged("ProfitabilityData");
+            }
+            catch (Exception e)
+            {
+                ShowError(String.Format("{0} {1}", "Error calculating last 30 days data", e.Message));
+            }
         }
 
         #endregion
