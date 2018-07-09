@@ -247,7 +247,7 @@
                                         <ControlTemplate TargetType="{x:Type GroupItem}">
                                             <StackPanel>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="{Binding DisplayPaymentDate}" />
+                                                    <TextBlock Text="{Binding DisplayPaymentDate}"/>
                                                     
                                                 </StackPanel>
                                                 <ItemsPresenter />
