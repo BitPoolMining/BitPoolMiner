@@ -28,8 +28,7 @@ namespace BitPoolMiner.ViewModels
             GetMinerMonitoringResults();
             GetAccountWorkerList();
             InitWhatToMine();
-            InitPayments();
-            
+            InitPayments();            
 
             // Instantiate and start timer
             MinerStatusCheckTimer = new DispatcherTimer();

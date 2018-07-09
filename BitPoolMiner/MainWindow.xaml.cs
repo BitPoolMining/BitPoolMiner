@@ -1,4 +1,5 @@
 ﻿using BitPoolMiner.Utils;
+using BitPoolMiner.Utils.CommandConverter;
 using BitPoolMiner.ViewModels;
 using System;
 using System.Windows;
@@ -11,6 +12,9 @@ namespace BitPoolMiner
     /// </summary>
     public partial class MainWindow : Window
     {
+        // NLog
+        private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
         // ViewModels      
         private WalletViewModel WalletViewModel;
         private AccountViewModel AccountViewModel;
@@ -64,9 +68,9 @@ namespace BitPoolMiner
                 // Check to see if should start mining on applications tart.
                 CheckAutoStartMining();
             }
-            catch
+            catch (Exception e)
             {
-                // eat it
+                logger.Error(e, $"Unhandled exception caught");
             }
         }
         #endregion
@@ -109,7 +113,10 @@ namespace BitPoolMiner
         private void WorkerButton_Clicked(object sender, RoutedEventArgs e)
         {
             Button button = (Button)sender;
-            WorkerViewModel.WorkerName = button.CommandParameter.ToString();
+            WorkerParameters workerParameters = (WorkerParameters)button.CommandParameter;
+
+            WorkerViewModel.WorkerName = workerParameters .WorkerName;
+            WorkerViewModel.CoinType = workerParameters.CoinType;
 
             WorkerViewModel.InitMonitorMining();
             WorkerViewModel.InitMonitorMining24Hour();

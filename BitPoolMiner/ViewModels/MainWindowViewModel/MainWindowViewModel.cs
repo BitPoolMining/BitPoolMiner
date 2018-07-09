@@ -79,8 +79,8 @@ namespace BitPoolMiner.ViewModels
         }
 
         // Account workers property to bind to UI
-        private ObservableCollection<AccountWorkers> accountWorkersList;
-        public ObservableCollection<AccountWorkers> AccountWorkersList
+        private ObservableCollection<MinerMonitorStat> accountWorkersList;
+        public ObservableCollection<MinerMonitorStat> AccountWorkersList
         {
             get
             {
@@ -103,8 +103,8 @@ namespace BitPoolMiner.ViewModels
             if (Application.Current.Properties["AccountID"] != null)
             {
                 // Load list of account workers
-                AccountWorkersAPI accountWorkersAPI = new AccountWorkersAPI();
-                accountWorkersList = accountWorkersAPI.GetAccountWorkers();
+                MinerMonitorStatsAPI minerMonitorStatsAPI = new MinerMonitorStatsAPI();
+                AccountWorkersList = minerMonitorStatsAPI.GetMinerMonitorStats();
                 OnPropertyChanged("AccountWorkersList");
             }
         }

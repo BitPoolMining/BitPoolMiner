@@ -7,6 +7,7 @@
         xmlns:viewmodels="clr-namespace:BitPoolMiner.ViewModels"
         xmlns:views="clr-namespace:BitPoolMiner.Views"
         xmlns:main="clr-namespace:BitPoolMiner"
+        xmlns:converter="clr-namespace:BitPoolMiner.Utils.CommandConverter"
         mc:Ignorable="d"
         Title="BITPOOL MINER" 
         HorizontalAlignment="Left" 
@@ -21,11 +22,12 @@
 
     <!--Define Views-->
     <Window.Resources>
+        
         <!-- Style - Left Menu - Buttons -->
         <Style x:Key = "buttonStyleLeftMenu" TargetType = "Button">
             <Setter Property = "Foreground" Value = "#9f9f9f" />
             <Setter Property = "HorizontalContentAlignment" Value = "Left" />
-            <Setter Property = "FontSize" Value = "14" />
+            <Setter Property = "FontSize" Value = "12" />
             <Setter Property = "Width" Value = "270" />
             <Setter Property = "Height" Value = "50" />
             <Setter Property = "FontWeight" Value = "Bold" />
@@ -49,9 +51,8 @@
         <!-- Style - Left Menu - Label Grey -->
         <Style x:Key = "labelStyleLeftMenuGrey" TargetType = "Label">
             <Setter Property = "Foreground" Value = "#9f9f9f" />
-            <Setter Property = "FontSize" Value = "14" />
-            <Setter Property = "Padding" Value = "4 4 20 4" />
-            <Setter Property = "FontWeight" Value = "Bold" />
+            <Setter Property = "FontSize" Value = "12" />
+            <Setter Property = "Padding" Value = "4" />
         </Style>
 
         <!-- Style - Left Menu - Label Grey Small -->
@@ -64,6 +65,23 @@
                 </DataTrigger>
                 <DataTrigger Binding="{Binding IsOnline}" Value="False">
                     <Setter Property="Foreground" Value="#ffffff"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Style - Header - Border Mining Status -->
+        <Style x:Key = "borderStyleHeaderMiningStatus" TargetType = "Border">
+            <Setter Property = "BorderThickness" Value = "1" />
+            <Setter Property = "Padding" Value = "1 1 1 1" />
+            <Setter Property = "Margin" Value = "4 4 4 4" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Source={StaticResource MainWindowViewModel}, Path=MiningStatus, UpdateSourceTrigger=PropertyChanged}" Value="online">
+                    <Setter Property="BorderBrush" Value="#2c97de"/>
+                    <Setter Property="Background" Value="#2c97de"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Source={StaticResource MainWindowViewModel}, Path=MiningStatus, UpdateSourceTrigger=PropertyChanged}" Value="offline">
+                    <Setter Property="BorderBrush" Value="#cc3e4a"/>
+                    <Setter Property="Background" Value="#cc3e4a"/>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -85,20 +103,15 @@
             </Style.Triggers>
         </Style>
 
-        <!-- Style - Header - Border Mining Status -->
-        <Style x:Key = "borderStyleHeaderMiningStatus" TargetType = "Border">
-            <Setter Property = "BorderThickness" Value = "1" />
-            <Setter Property = "Padding" Value = "1 1 1 1" />
-            <Setter Property = "Margin" Value = "4 4 4 4" />
+        <!-- Style - Header - Border CoinType -->
+        <Style x:Key = "borderStyleHeaderCoinType" TargetType = "Border">
             <Style.Triggers>
-                <DataTrigger Binding="{Binding Source={StaticResource MainWindowViewModel}, Path=MiningStatus, UpdateSourceTrigger=PropertyChanged}" Value="online">
-                    <Setter Property="BorderBrush" Value="#2c97de"/>
-                    <Setter Property="Background" Value="#2c97de"/>
+                <DataTrigger Binding="{Binding IsOnline}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding Source={StaticResource MainWindowViewModel}, Path=MiningStatus, UpdateSourceTrigger=PropertyChanged}" Value="offline">
-                    <Setter Property="BorderBrush" Value="#cc3e4a"/>
-                    <Setter Property="Background" Value="#cc3e4a"/>
-                </DataTrigger>
+                <DataTrigger Binding="{Binding IsOnline}" Value="False">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                </DataTrigger>               
             </Style.Triggers>
         </Style>
 
@@ -201,6 +214,8 @@
 
         <viewmodels:MainWindowViewModel x:Key="mainViewModelDataSource"/>
 
+        <converter:Converter x:Key="converter"></converter:Converter>
+
     </Window.Resources>
 
     <!--Define Form Grid-->
@@ -284,8 +299,13 @@
                         ItemsSource="{Binding Source={StaticResource MainWindowViewModel}, Path=AccountWorkersList}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Button x:Name="WorkerButton" Style="{StaticResource buttonStyleLeftMenu}" Click="WorkerButton_Clicked" CommandParameter="{Binding WorkerName}">
-
+                                    <Button x:Name="WorkerButton" Style="{StaticResource buttonStyleLeftMenu}" Click="WorkerButton_Clicked">
+                                        <Button.CommandParameter>
+                                            <MultiBinding Converter="{StaticResource converter}">
+                                                <Binding Path="WorkerName"/>
+                                                <Binding Path="CoinType"/>
+                                            </MultiBinding>
+                                        </Button.CommandParameter>
                                         <Button.Triggers>
                                             <EventTrigger RoutedEvent="MouseEnter">
                                                 <BeginStoryboard>
@@ -297,14 +317,15 @@
                                         </Button.Triggers>
 
                                         <StackPanel Orientation="Horizontal" >
-                                            <Label Style="{StaticResource labelStyleLeftMenuGrey}" Content="{Binding WorkerName}" Width="140"/>
+                                            <Label Style="{StaticResource labelStyleLeftMenuGrey}" Content="{Binding WorkerName}" Width="125" />
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
-                                                <Border BorderThickness="1" BorderBrush="#444444" Padding="4 0 4 0" Margin="0 2 2 0">
-                                                    <Label Foreground="#444444" Padding="4" FontSize="10" Content="{Binding LocalWorker}"/>
-                                                </Border>
                                                 <Border Style="{StaticResource borderStyleLeftMenuGreySmall}">
                                                     <Label Style="{StaticResource labelStyleLeftMenuGreySmall}"  Content="{Binding Status}"/>
                                                 </Border>
+                                                <Border Style="{StaticResource borderStyleHeaderCoinType}" BorderThickness="1" BorderBrush="#444444" Padding="4 0 4 0" Margin="0 2 2 0">
+                                                    <Label Foreground="#444444" Padding="4" FontSize="10" Content="{Binding CoinType}"/>
+                                                </Border>
+                                                <Image Margin="5 1 5 0" Height="20" Width="20" Source="{Binding CoinLogo}" VerticalAlignment="Top" />    
                                             </StackPanel>
                                         </StackPanel>
                                     </Button>

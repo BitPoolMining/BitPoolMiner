@@ -10,7 +10,6 @@ namespace BitPoolMiner
     {
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
-
         protected override void OnStartup(StartupEventArgs e)
         {
             SetupLogging();

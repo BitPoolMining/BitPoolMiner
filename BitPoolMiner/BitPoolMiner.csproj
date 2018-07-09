@@ -200,6 +200,7 @@
     <Compile Include="Utils\ChartUtils\PaymentChartDataBackFill.cs" />
     <Compile Include="Utils\ChartUtils\WorkerChartDataBackFill.cs" />
     <Compile Include="Utils\CoinMarketCap\CoinMarketCapAPI.cs" />
+    <Compile Include="Utils\CommandConverter\Converter.cs" />
     <Compile Include="Utils\Core.cs" />
     <Compile Include="Utils\CryptoCompare\CryptoCompareAPI.cs" />
     <Compile Include="Utils\HashrateFormatter.cs" />

@@ -49,6 +49,21 @@ namespace BitPoolMiner.ViewModels
             }
         }
 
+        // CoinType
+        private CoinType coinType;
+        public CoinType CoinType
+        {
+            get
+            {
+                return coinType;
+            }
+            set
+            {
+                coinType = value;
+                OnPropertyChanged();
+            }
+        }
+
         // Average 24 hour hashrate
         private string hashrate24HourAverage;
         public string Hashrate24HourAverage
@@ -250,7 +265,7 @@ namespace BitPoolMiner.ViewModels
 
                     // Filter list by worker
                     List<MinerMonitorStat> MinerMonitorStatListFiltered = new List<MinerMonitorStat>();
-                    MinerMonitorStatListFiltered = MinerMonitorStatList24Hour.Where(x => x.WorkerName == WorkerName).OrderBy(y => y.Created).ToList();
+                    MinerMonitorStatListFiltered = MinerMonitorStatList24Hour.Where(x => x.WorkerName == WorkerName && x.CoinType == CoinType).OrderBy(y => y.Created).ToList();
 
                     // Calculate average values and display
                     if (MinerMonitorStatListFiltered.Count > 0)
@@ -315,7 +330,7 @@ namespace BitPoolMiner.ViewModels
                     ObservableCollection<MinerMonitorStat> MinerMonitorStatList = minerMonitorStatsAPI.GetMinerMonitorStats();
 
                     // Filter list by worker
-                    MinerMonitorStat = MinerMonitorStatList.Where(x => x.WorkerName == WorkerName).OrderBy(y => y.Created).FirstOrDefault();
+                    MinerMonitorStat = MinerMonitorStatList.Where(x => x.WorkerName == WorkerName && x.CoinType == CoinType).OrderBy(y => y.Created).FirstOrDefault();
 
                     // Calculate Efficiency
                     if (MinerMonitorStat.Power <= 0 || MinerMonitorStat.HashRate <= 0)
