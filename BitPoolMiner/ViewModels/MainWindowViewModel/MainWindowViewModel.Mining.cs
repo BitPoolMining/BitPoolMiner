@@ -146,7 +146,7 @@ namespace BitPoolMiner.ViewModels
                 miner.CoinType = minerConfigResponse.CoinSelectedForMining;
                 miner.MinerArguments = minerConfigResponse.MinerConfigString;
                 MiningSession.AddMiner(miner);
-                ShowInformation(string.Format("Mining started {0} {1}", minerConfigResponse.MinerBaseType, minerConfigResponseList[0].MinerConfigString));
+                ShowInformation(string.Format("Mining started {0} {1}", minerConfigResponse.MinerBaseType, minerConfigResponse.MinerConfigString));
             }
         }
 

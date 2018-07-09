@@ -120,14 +120,21 @@ namespace BitPoolMiner.Miners
             // Check if any data is missing from stats
             if (CheckMinerMonitorStatDataMissing(stats) == true)
             {
-                // Retrive GPU data from OpenHardwareMonitor
-                Utils.OpenHardwareMonitor.OpenHardwareMonitor openHardwareMonitor = new Utils.OpenHardwareMonitor.OpenHardwareMonitor();
-                ObservableCollection<GPUSettings> gpuSettingsList = openHardwareMonitor.ScanHardware();
-
-                // Iterate through each GPUMonitorStat and add missing data
-                foreach (GPUMonitorStat gpuMonitorStat in stats.GPUMonitorStatList)
+                try
                 {
-                    gpuMonitorStat.FanSpeed = gpuSettingsList.Where(x => x.GPUID == gpuMonitorStat.GPUID).FirstOrDefault().Fanspeed;
+                    // Retrive GPU data from OpenHardwareMonitor
+                    Utils.OpenHardwareMonitor.OpenHardwareMonitor openHardwareMonitor = new Utils.OpenHardwareMonitor.OpenHardwareMonitor();
+                    ObservableCollection<GPUSettings> gpuSettingsList = openHardwareMonitor.ScanHardware();
+
+                    // Iterate through each GPUMonitorStat and add missing data
+                    foreach (GPUMonitorStat gpuMonitorStat in stats.GPUMonitorStatList)
+                    {
+                        gpuMonitorStat.FanSpeed = gpuSettingsList.Where(x => x.GPUID == gpuMonitorStat.GPUID).FirstOrDefault().Fanspeed;
+                    }
+                }
+                catch (Exception)
+                {
+                    // Ignore this for now.                    
                 }
             }
 

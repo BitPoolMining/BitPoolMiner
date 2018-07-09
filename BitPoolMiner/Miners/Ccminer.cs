@@ -66,6 +66,7 @@ namespace BitPoolMiner.Miners
             if (minerMonitorStat == null)
                 return;
 
+            System.Threading.Thread.Sleep(4000);
             PostMinerMonitorStat(minerMonitorStat);
         }
         
