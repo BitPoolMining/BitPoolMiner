@@ -157,8 +157,8 @@ namespace BitPoolMiner.Miners
                             GPUID = i,
                             // Returned hashrate is in MH. Format later, return in KH/s same as CCMiner for now
                             HashRate = Convert.ToDecimal(hashRates[i])*1024,
-                            FanSpeed = Convert.ToInt16(tempFans[i * 2]),
-                            Temp = Convert.ToInt16(tempFans[(i*2)+1]),
+                            FanSpeed = 0, // Let OpenHardwareMonitor get the fanspeed
+                            Temp = Convert.ToInt16(tempFans[i * 2]),
                             Power = 0,
                             HardwareType = Hardware
                         };
