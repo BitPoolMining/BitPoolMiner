@@ -27,7 +27,7 @@
         <Style x:Key="DataGridColumnHeaderStyleGPU" TargetType="{x:Type DataGridColumnHeader}"  >
             <Setter Property="Background" Value="#2d2d2d" />
             <Setter Property="Foreground" Value="#646464" />            <Setter Property = "FontSize" Value = "10" />
-            <Setter Property = "BorderBrush" Value = "#2d2d2d" />            
+            <Setter Property = "BorderBrush" Value = "#2d2d2d" />
             <Setter Property = "Margin" Value = "4" />
             <Setter Property = "HorizontalContentAlignment" Value = "Right" />
             <Setter Property = "HorizontalAlignment" Value = "Right" />
@@ -52,7 +52,7 @@
         <Style x:Key="DataGridCellStyle"  TargetType="{x:Type DataGridCell}" >
             <Setter Property="Background" Value="#2d2d2d"/>
             <Setter Property="Foreground" Value="#FFFFFF" />            <Setter Property = "FontSize" Value = "12" />
-            <Setter Property = "BorderBrush" Value = "#2d2d2d" />            
+            <Setter Property = "BorderBrush" Value = "#2d2d2d" />
             <Setter Property = "HorizontalContentAlignment" Value = "Right" />
             <Setter Property = "HorizontalAlignment" Value = "Right" />
         </Style>
@@ -212,12 +212,12 @@
         </StackPanel>
 
         <!-- Payment List -->
-        <StackPanel Grid.Row="0" Grid.Column="9" Grid.RowSpan="10" Grid.ColumnSpan="1" Background="#2d2d2d" Margin="10" DataContext="{Binding ProfitabilityData, UpdateSourceTrigger=PropertyChanged}">
+        <StackPanel Grid.Row="0" Grid.Column="9" Grid.RowSpan="10" Grid.ColumnSpan="1" Background="#2d2d2d" Margin="10">
             <Label Style="{StaticResource labelStyleLeftMenuGrey}">Payments Last 30 Days</Label>
 
             <DataGrid 
                             AutoGenerateColumns="False" 
-                            ItemsSource="{Binding MinerPaymentsGroupedByDayUnionedList}" 
+                            ItemsSource="{Binding PaymentsGrouped}" 
                             CanUserDeleteRows="False" 
                             CanUserAddRows="False" 
                             CanUserSortColumns="False" 
@@ -238,6 +238,27 @@
                             RowHeaderStyle="{StaticResource DataGridRowHeaderStyleGPU}"
                             RowStyle="{StaticResource DataGridRowStyleGPU}"
                             CellStyle="{StaticResource DataGridCellStyleGPU}">
+                <DataGrid.GroupStyle>
+                    <GroupStyle>
+                        <GroupStyle.ContainerStyle>
+                            <Style TargetType="{x:Type GroupItem}">
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                                            <StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding DisplayPaymentDate}" />
+                                                    
+                                                </StackPanel>
+                                                <ItemsPresenter />
+                                            </StackPanel>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </GroupStyle.ContainerStyle>
+                    </GroupStyle>
+                </DataGrid.GroupStyle>
                 <DataGrid.Columns>
                     <DataGridTemplateColumn CellStyle="{StaticResource DataGridCellStyle}">
                         <DataGridTemplateColumn.CellTemplate>

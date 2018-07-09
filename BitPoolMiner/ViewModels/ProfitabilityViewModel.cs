@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Media;
 
 namespace BitPoolMiner.ViewModels
@@ -67,6 +68,20 @@ namespace BitPoolMiner.ViewModels
             }
         }
 
+        private ListCollectionView paymentsGrouped;
+        public ListCollectionView PaymentsGrouped
+        {
+            get
+            {
+                return paymentsGrouped;
+            }
+            set
+            {
+                paymentsGrouped = value;
+                OnPropertyChanged();
+            }
+        }
+
         // Charts x axis formatting function
         private Func<double, string> xFormatter;
         public Func<double, string> XFormatter
@@ -114,6 +129,7 @@ namespace BitPoolMiner.ViewModels
         {
             PopulateFiatCurrenyAmounts();
             PopulateUnionedList();
+            PopulateGroupedPayments();
             PlotPaymentChart();
             CalculateRevenueLast7Days();
             CalculateRevenueLast30Days();
@@ -176,7 +192,7 @@ namespace BitPoolMiner.ViewModels
                 }
 
                 // Add a line series for the Total Line
-                seriesCollection.Add(this.AddTotalLineSeries());                
+                seriesCollection.Add(this.AddTotalLineSeries());
 
                 // Axis label formats
                 XFormatter = val => new DateTime((long)val).ToShortDateString();
@@ -215,8 +231,8 @@ namespace BitPoolMiner.ViewModels
                         CalculateDailyPaymentUsingHistoricalRates(MinerPaymentSummary, histoDayResponse, minerPaymentsGroupedByDay);
                     }
                 }
-                
-                OnPropertyChanged("MinerPaymentsData");                
+
+                OnPropertyChanged("MinerPaymentsData");
             }
             catch (Exception e)
             {
@@ -257,6 +273,29 @@ namespace BitPoolMiner.ViewModels
             catch (Exception e)
             {
                 ShowError(String.Format("{0} {1}", "Error populating complete list of 30 day payment data", e.Message));
+            }
+        }
+
+        /// <summary>
+        /// Populate list of payments grouped by day
+        /// </summary>
+        private void PopulateGroupedPayments()
+        {
+            try
+            {
+                // Exit if no fiat currency is selected
+                if (Application.Current.Properties["Currency"] == null)
+                    return;
+
+                paymentsGrouped = new ListCollectionView(profitabilityData.MinerPaymentsGroupedByDayUnionedList);
+                paymentsGrouped.GroupDescriptions.Add(new PropertyGroupDescription("DisplayPaymentDate"));
+
+                // Rebind UI
+                OnPropertyChanged("PaymentsGrouped");
+            }
+            catch (Exception e)
+            {
+                ShowError(String.Format("{0} {1}", "Error populating list of grouped payments", e.Message));
             }
         }
 
@@ -322,7 +361,7 @@ namespace BitPoolMiner.ViewModels
             var converter = new System.Windows.Media.BrushConverter();
             Brush brushStroke = (Brush)converter.ConvertFromString("#FFFFFF");
             brushStroke.Opacity = 0;
-            
+
             totalLineSeries.Title = "TOTAL";
             totalLineSeries.LineSmoothness = 0.7;
             totalLineSeries.PointGeometrySize = 0;
