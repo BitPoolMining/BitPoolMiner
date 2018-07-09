@@ -293,94 +293,94 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="BitPoolMiner_TemporaryKey.pfx" />
-    <None Include="MinerApps\Claymore\Data.bin">
+    <Content Include="MinerApps\Claymore\Data.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1a1.bin">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1a1.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1a1.bin2">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1a1.bin2">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1b1.bin">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1b1.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1b1.bin2">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1b1.bin2">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1c1.bin">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1c1.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1c1.bin2">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1c1.bin2">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1c2.bin">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1c2.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1c2.bin2">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1c2.bin2">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1d1.bin">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1d1.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1d1.bin2">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1d1.bin2">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1e1.bin">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1e1.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1e1.bin2">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1e1.bin2">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1e2.bin">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1e2.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1e2.bin2">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1e2.bin2">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1g1.bin">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1g1.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1g1.bin2">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1g1.bin2">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1g2.bin">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1g2.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1g2.bin2">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1g2.bin2">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1h1.bin">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1h1.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1h1.bin2">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1h1.bin2">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1h2.bin">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1h2.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1h2.bin2">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1h2.bin2">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1i1.bin">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1i1.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1i1.bin2">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1i1.bin2">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1j1.bin">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1j1.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Data1j1.bin2">
+    </Content>
+    <Content Include="MinerApps\Claymore\Data1j1.bin2">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\Remote manager\sample.bat" />
-    <None Include="MinerApps\Claymore\start_eth+pasc.bat">
+    </Content>
+    <Content Include="MinerApps\Claymore\Remote manager\sample.bat" />
+    <Content Include="MinerApps\Claymore\start_eth+pasc.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="MinerApps\Claymore\start_only_eth.bat">
+    </Content>
+    <Content Include="MinerApps\Claymore\start_only_eth.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="MinerApps\EWBF\miner.cfg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -393,9 +393,9 @@
     <Resource Include="MinerApps\DSTM\LICENSE.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="MinerApps\Claymore\config.txt">
+    <Content Include="MinerApps\Claymore\config.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
     <Content Include="MinerApps\Claymore\cuda6.5\cudart64_65.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -411,34 +411,34 @@
     <Content Include="MinerApps\Claymore\cudart64_80.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="MinerApps\Claymore\dpools.txt">
+    <Content Include="MinerApps\Claymore\dpools.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="MinerApps\Claymore\epools.txt">
+    </Content>
+    <Content Include="MinerApps\Claymore\epools.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
     <Content Include="MinerApps\Claymore\EthDcrMiner64.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="MinerApps\Claymore\History.txt">
+    <Content Include="MinerApps\Claymore\History.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
     <Content Include="MinerApps\Claymore\libcurl.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="MinerApps\Claymore\License.txt">
+    <Content Include="MinerApps\Claymore\License.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
     <Content Include="MinerApps\Claymore\msvcr110.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="MinerApps\Claymore\Readme!!!.txt">
+    <Content Include="MinerApps\Claymore\Readme!!!.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="MinerApps\Claymore\Remote manager\API.txt" />
+    </Content>
+    <Content Include="MinerApps\Claymore\Remote manager\API.txt" />
     <Content Include="MinerApps\Claymore\Remote manager\EthMan.exe" />
     <Content Include="MinerApps\Claymore\Remote manager\libeay32.dll" />
-    <Resource Include="MinerApps\Claymore\Remote manager\readme.txt" />
+    <Content Include="MinerApps\Claymore\Remote manager\readme.txt" />
     <Content Include="MinerApps\Claymore\Remote manager\ssleay32.dll" />
     <Content Include="MinerApps\DSTM\pthreadVC2.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -958,9 +958,9 @@
     <Content Include="MinerApps\ccminer-x64-2.2.4-cuda9\msvcr120.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="MinerApps\ccminer-x64-2.2.4-cuda9\README.txt">
+    <Content Include="MinerApps\ccminer-x64-2.2.4-cuda9\README.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </Content>
     <Content Include="MinerApps\ccminer-x86-2.2.4-cuda9\ccminer.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
