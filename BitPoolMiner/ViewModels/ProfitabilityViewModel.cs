@@ -187,7 +187,7 @@ namespace BitPoolMiner.ViewModels
                 OnPropertyChanged("XFormatter");
                 OnPropertyChanged("YFormatter");
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 ShowError(String.Format("{0} {1}", "Error plotting payment chart", e.Message));
             }
