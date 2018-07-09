@@ -6,6 +6,7 @@
         CCMiner,
         EWBF,
         DSTM,
-        Claymore
+        Claymore,
+        CCMinerNanashi
     }
 }
