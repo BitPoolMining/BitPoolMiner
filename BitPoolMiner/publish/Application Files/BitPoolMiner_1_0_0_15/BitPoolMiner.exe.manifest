@@ -1,0 +1,491 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
+  <asmv1:assemblyIdentity name="BitPoolMiner.exe" version="1.0.0.15" publicKeyToken="4eb951c39ace8231" language="neutral" processorArchitecture="msil" type="win32" />
+  <description asmv2:iconFile="bitpool.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="BitPoolMiner" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="BitPoolMiner.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet version="1" class="System.Security.NamedPermissionSet" Name="LocalIntranet" Description="Default rights given to applications on the local intranet" Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!-- UAC Manifest Options
+             If you want to change the Windows User Account Control level replace the 
+             requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+            Specifying requestedExecutionLevel element will disable file and registry virtualization. 
+            Remove this element if your application requires this virtualization for backwards
+            compatibility.
+        -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="4.0.30319.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BitPoolMiner.exe" size="433112">
+      <assemblyIdentity name="BitPoolMiner" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>X5C+6ziou3fSWz4mBvPik1adsHynm2rPqSl5rryF7cM=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LiveCharts.dll" size="152064">
+      <assemblyIdentity name="LiveCharts" version="0.9.7.0" publicKeyToken="0BC1F845D1EBB8DF" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>n8+Jg3tg9pwcUB5M+k0oYIh6/QuPMlgDNn55Wk47yco=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LiveCharts.Wpf.dll" size="217600">
+      <assemblyIdentity name="LiveCharts.Wpf" version="0.9.7.0" publicKeyToken="0BC1F845D1EBB8DF" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>G9uxtcGlBlPlwmFh6bfAPtxRhyGm4Q6hgKhASdlnEGs=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.Expression.Interactions.dll" size="91648">
+      <assemblyIdentity name="Microsoft.Expression.Interactions" version="4.0.0.0" publicKeyToken="31BF3856AD364E35" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>87FN770FSTuFcwFrCLhuW11TtIawRX/XX2e/i/8Evjg=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Newtonsoft.Json.dll" size="662528">
+      <assemblyIdentity name="Newtonsoft.Json" version="11.0.0.0" publicKeyToken="30AD4FE6B2A6AEED" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>9Yw3T/yq5ONtdA2Q+/f+cNCrtzKM2a86CntwgD6ZS6Q=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="NLog.dll" size="696320">
+      <assemblyIdentity name="NLog" version="4.0.0.0" publicKeyToken="5120E14C03D0593C" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>nKocyJeQfnPPTP/DzhthkBa7kN24ZirbMtTZENd8+yk=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="OpenHardwareMonitorLib.dll" size="262656">
+      <assemblyIdentity name="OpenHardwareMonitorLib" version="0.7.1.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>qooOr/UJ0DtHKIUxDa1WlnSbAu29JOedLpOOBS2TP0I=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="System.Windows.Interactivity.dll" size="39936">
+      <assemblyIdentity name="System.Windows.Interactivity" version="4.0.0.0" publicKeyToken="31BF3856AD364E35" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>SqzoyKMwroQpzYzBtoBAdtOp/9YzRw+R/Ta90lu1eHY=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ThinkSharp.FeatureTour.dll" size="64512">
+      <assemblyIdentity name="ThinkSharp.FeatureTour" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>KpoeVQXIQJBxCkwp82JNn0IpOHhgeuct8GjRgblolp4=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ToastNotifications.dll" size="105472">
+      <assemblyIdentity name="ToastNotifications" version="2.2.5.0" publicKeyToken="E89D9D7314A7C797" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>Z/dc3WLdbpAh6XdaAf4mfJQsGhX1+9pT5r5qBHAmg6I=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ToastNotifications.Messages.dll" size="90624">
+      <assemblyIdentity name="ToastNotifications.Messages" version="2.2.5.0" publicKeyToken="E89D9D7314A7C797" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>UgyH2S7xTLOY1Zevl9whgnyQiLC/OfPUxIom6uB+TJs=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="bitpool.ico" size="1177">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>+jePDsv9xtOjXOjnrp35EU3MZct/S9Gq/6FdfRrmjFs=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="BitPoolMiner.exe.config" size="186">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>1NgAxCSw4ibTXzWVy7D6Rw60Qih4Dn37KvGhG5Ora/s=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\ccminer-x64-2.2.4-cuda9\ccminer-x64.exe" size="14795776">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>HlsR4CR1LIShax155yHc5UBdcqPiRJCF4z0iXk6w4C4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\ccminer-x64-2.2.4-cuda9\msvcr120.dll" size="963232">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>rTIkC7HeVcP1/KyHifWDoXBX+dFJFMU4wqelrTRrNBw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\ccminer-x86-2.2.4-cuda9\ccminer.exe" size="12264960">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>8W8yfJBFXyAKGGZuHkrBOBMbBR89ZIJRaLt+OXOhpF0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\ccminer-x86-2.2.4-cuda9\msvcr120.dll" size="970912">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>huObWZWvDgQvzaqF/irv18ndx61l5jJ71ecFi8OrYV8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\Claymore\cuda6.5\cudart64_65.dll" size="312992">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>kab+0484DvCFBiQPLDHHR9R9P4TXTBBVd9MV9Wc6X4w=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\Claymore\cuda7.5\cudart64_75.dll" size="360736">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>1CEPQAvPO8JVP8fGJJPpZVTBs7gtNG24rchMdc6hJNY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\Claymore\cuda7.5\EthDcrMiner64.exe" size="4122624">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>0N3kxxq7Dnm5WWB+w4gWThXUYMba+vuu55UqgWpl49E=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\Claymore\cuda9.1\cudart64_91.dll" size="374272">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>RS5yDKE1LDxKFoZzNSTC6Mtfx8Dm0Ls1D3eSixTlsaM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\Claymore\cudart64_80.dll" size="364088">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>bwaH/8vwbMjOnu7fTcLQ9r7A8FjfX+3Hu20iFr2eUU4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\Claymore\EthDcrMiner64.exe" size="3925504">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Qf2+Rx8WjLgqKTHcsAnKI23IKAyAjyn0Fd3jqGk51LQ=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\Claymore\libcurl.dll" size="305664">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>jjmziF+AkwhETpiUb+ksGDzAa/zzIMUwKS23eFfcEoI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\Claymore\msvcr110.dll" size="849360">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>rplu25sFBnfE+C1WCS79x18K3cl6FOLEZ1Pi2z9r1zI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\Claymore\Remote manager\EthMan.exe" size="3870720">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>naJzrArqxvoROPKkxKpj9dBeQTeFtiTfNBjI3Rp8ws0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\Claymore\Remote manager\libeay32.dll" size="1099776">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>b7oL0BegcPH13mTuM2nSrvy2sCGGae442cM0Q1NKIKo=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\Claymore\Remote manager\ssleay32.dll" size="237056">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>3ysToB6w0UAywLIcUcHGoWamjc9vTkVprk50vi3+zms=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\DSTM\pthreadVC2.dll" size="79360">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>zFaNYN2qTb/90GDszAWwcmADZf5ugEYHDARmgVLErY8=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\DSTM\vcruntime140.dll" size="89248">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>jy6y3nil3x3Kg8e+G3/xlFeFRaHs0uFsUqCWVzeygZk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\DSTM\zm.exe" size="1271808">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>OSCcAHfh/EKl9RGsnoGBcHOo1GI+v8V/vsMwj5ZFcxY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\EWBF\cudart32_80.dll" size="299064">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>yrda/isvQyNiHqKxsqCZgYkJu4H9VEqvqrsdNuvsX0A=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\EWBF\cudart64_80.dll" size="367672">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Fk1U4ZD5Fov7ZB+u7Mlum2i2n7YuP2Y14s1VmFUvKs4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\EWBF\miner.exe" size="320000">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>hN0C3rvysMXtfuv4EzBVQyZeNOyYY1E5eHv4uILnx7Q=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\EWBF\msvcp120.dll" size="660128">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Kr8Kq1o8WulCS2Tp0Z2dbUrrxngU1+kuSSe5eY/vKEg=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="MinerApps\EWBF\msvcr120.dll" size="963232">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>rTIkC7HeVcP1/KyHifWDoXBX+dFJFMU4wqelrTRrNBw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="NLog.config" size="1409">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>HZXtZEu31wbluOvcuHWyP4shxixTxwHrizOF93CAjX4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="publish\setup.exe" size="792024">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>VPop5BFwSR7wSAWjfkqNpi9oS71fsJ60ndq5o1BIsQk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Images\bitpool.png" size="7807">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>67LxaYGDslk6Rlfn0v7cFTWViKqDHrprJNTWZnRKYzw=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Images\exp.png" size="2313">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>XMfh00vOIA6ozn75gNOxACELOyb5IPfC8ImdsEZeSwM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Images\hush.png" size="749">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>WnfXFtrkdSUHs3G7Wpu7OPdj2SpGKphMhNeFiY73mUY=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Images\kmd.png" size="2103">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>5GW5NPQbiOqyC+7dKhIrALkIv4tMofhE8hQAn+aLcro=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Images\mona.png" size="2571">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Olp1QtIy4NzwiIHGJsLY3EFGv9E36uSEtZOo66LIoT4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Images\vtc.png" size="1489">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>O6jcginIAEugpVpT51kZOUrZPde4l/LrF5AslmS/eBM=</dsig:DigestValue>
+    </hash>
+  </file>
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+    <application>
+      <!-- A list of the Windows versions that this application has been tested on and is
+           is designed to work with. Uncomment the appropriate elements and Windows will 
+           automatically selected the most compatible environment. -->
+      <!-- Windows Vista -->
+      <!--<supportedOS Id="{e2011457-1546-43c5-a5fe-008deee3d3f0}" />-->
+      <!-- Windows 7 -->
+      <!--<supportedOS Id="{35138b9a-5d96-4fbd-8e2d-a2440225f93a}" />-->
+      <!-- Windows 8 -->
+      <!--<supportedOS Id="{4a2f28e3-53b9-4441-ba9c-d69d4a4a6e38}" />-->
+      <!-- Windows 8.1 -->
+      <!--<supportedOS Id="{1f676c76-80e1-4239-95bb-83d0f6d0da78}" />-->
+      <!-- Windows 10 -->
+      <!--<supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />-->
+    </application>
+  </compatibility>
+<publisherIdentity name="CN=DSTURT-SURFACE\dstur" issuerKeyHash="e52c1a52fe2c96e0cea6ee90dfad5b3aa9285afb" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>VQWpUhjOhApgs4LLnzEnw9EJzn0w1JqwYoCa4j8WVL4=</DigestValue></Reference></SignedInfo><SignatureValue>rsqlU86U3IEvVYtynelzRQU0P7CPnoLI8aSK3kDgnLMQAB7b3FqK8JAS4+dB/vdd2h40GMpBateGcRF4zfvMkWIM30lPzFVbUGxj43jiUbVcIwAodN5Ciz2RcAADa3ijvDLpmGAFuWt0PbA7Wq6juXyqBYfS4x19T6y2GdwmFNY=</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>0N2j1jELxr2whZRV1BDtcUDcOARPClY+n8mSKqddyC4INatOTDnSL0lDCDAm1vI1LGLwogYDoKtIVAOtRtFzUPmLsJ2vHFwjOsb1TgXQuvZFJNmchbI9QaO3M4+efATGygi4DWpgtWSwmyarNHPSx2Od+W0Xx/HKCAJfjkijZaU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="be54163fe29a8062b09ad4307dce09d1c327319fcb82b3600a84ce1852a90555" Description="" Url=""><as:assemblyIdentity name="BitPoolMiner.exe" version="1.0.0.15" publicKeyToken="4eb951c39ace8231" language="neutral" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=DSTURT-SURFACE\dstur</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha256" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" /><DigestValue>ID09zYAK18+KeyuMTPjRj+fojebYwj3tGmjmTrwYYGY=</DigestValue></Reference></SignedInfo><SignatureValue>iQ5GbqO+JJ4ZeWfuepxbs4FxBXYS6mH4YXmSrO7Mpbz0ZMhBHQE87sdxkU8mC8zvhso0zEM/sYbY3wqZmmEpLxgZpp/ek8Wl3yhZUuAwritOF5VfB/qLcpQzUw43l8GNUl/WbtVV71QhSDvxN3BjykbyBF/2KiSXQVfRICg3lec=</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>0N2j1jELxr2whZRV1BDtcUDcOARPClY+n8mSKqddyC4INatOTDnSL0lDCDAm1vI1LGLwogYDoKtIVAOtRtFzUPmLsJ2vHFwjOsb1TgXQuvZFJNmchbI9QaO3M4+efATGygi4DWpgtWSwmyarNHPSx2Od+W0Xx/HKCAJfjkijZaU=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIB6TCCAVKgAwIBAgIQMSF8bfMsQJFJBvCnjsSRajANBgkqhkiG9w0BAQsFADAzMTEwLwYDVQQDHigARABTAFQAVQBSAFQALQBTAFUAUgBGAEEAQwBFAFwAZABzAHQAdQByMB4XDTE4MDYxNDE5NDgyNloXDTE5MDYxNTAxNDgyNlowMzExMC8GA1UEAx4oAEQAUwBUAFUAUgBUAC0AUwBVAFIARgBBAEMARQBcAGQAcwB0AHUAcjCBnzANBgkqhkiG9w0BAQEFAAOBjQAwgYkCgYEA0N2j1jELxr2whZRV1BDtcUDcOARPClY+n8mSKqddyC4INatOTDnSL0lDCDAm1vI1LGLwogYDoKtIVAOtRtFzUPmLsJ2vHFwjOsb1TgXQuvZFJNmchbI9QaO3M4+efATGygi4DWpgtWSwmyarNHPSx2Od+W0Xx/HKCAJfjkijZaUCAwEAATANBgkqhkiG9w0BAQsFAAOBgQAvVlpdo9XcpudUkYsVFltjDgxy7/PChctSOu63rXfeVIkXEt29ScfaWJxZM9iqREHxD3IafS910dObtPYIejHfqJvWazWey7SnnrJ1byJHMlb3AUan0xeZNMXl7rTn7LFmb76tcSiW4RO1bq2ii4e40sbkW4gjOiebmYIFs0pGrw==</X509Certificate></X509Data></KeyInfo></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

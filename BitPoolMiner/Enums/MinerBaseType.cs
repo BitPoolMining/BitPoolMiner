@@ -5,6 +5,7 @@
         UNDEFINED,
         CCMiner,
         EWBF,
-        DSTM
+        DSTM,
+        Claymore
     }
 }

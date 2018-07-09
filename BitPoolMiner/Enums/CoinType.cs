@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace BitPoolMiner.Enums
 {
@@ -7,11 +8,17 @@ namespace BitPoolMiner.Enums
     /// </summary>
     public enum CoinType
     {
+        [Description("test")]
         UNDEFINED,
+        [Description("VTC")]
         VTC,
+        [Description("MONA")]
         MONA,
+        [Description("HUSH")]
         HUSH,
+        [Description("KMD")]
         KMD,
+        [Description("EXP")]
         EXP
     }
 

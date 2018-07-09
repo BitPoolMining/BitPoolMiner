@@ -111,6 +111,11 @@ namespace BitPoolMiner.ViewModels
             {
                 nameValueCollection.Add("hr", (minerMonitorStat.HashRate / 1000).ToString(format));
             }
+            else if (minerMonitorStat.CoinType == CoinType.EXP)
+            {
+                // Expects MH/s
+                nameValueCollection.Add("hr", (minerMonitorStat.HashRate / 1000000).ToString(format));
+            }
             else
             {
                 nameValueCollection.Add("hr", minerMonitorStat.HashRate.ToString(format));
@@ -169,7 +174,7 @@ namespace BitPoolMiner.ViewModels
                     minerPaymentsList = minerPaymentsAPI.GetMinerPayments();
 
                     // Add payment data to list
-                    minerPaymentsData.MinerPaymentSummaryList = minerPaymentsList.OrderBy(x => x.CoinType).ToList();
+                    minerPaymentsData.MinerPaymentSummaryList = minerPaymentsList.OrderBy(x => x.CoinType.ToString()).ToList();
 
                     // Calculate 24 hour sum values
                     CalculateRevenueLast24Hour();
@@ -222,6 +227,10 @@ namespace BitPoolMiner.ViewModels
                 // Calculate sum revenue across all coins
                 minerPaymentsData.RevenueLast24HourUSD = minerPaymentsData.MinerPaymentSummaryList.Sum(x => x.RevenueLast24HourUSD);
                 minerPaymentsData.RevenueLast24HourBTC = minerPaymentsData.MinerPaymentSummaryList.Sum(x => x.RevenueLast24HourBTC);
+
+                // Order actual payment history
+                minerPaymentsData.MinerPaymentSummaryList = minerPaymentsData.MinerPaymentSummaryList.OrderBy(x => x.CoinType.ToString()).ToList();
+                OnPropertyChanged("MinerPaymentsData");
             }
             catch (Exception e)
             {

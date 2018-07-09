@@ -61,12 +61,7 @@ namespace BitPoolMiner.Models
         /// </summary>
         public int MinutesSinceLastMonitored { get; set; }
 
-        /// <summary>
-        /// Status of worker
-        /// </summary>
-        public string Status { get; set; }
-
-        /// <summary>        /// Number of stats records found.  0 indicates worker never started        /// </summary>        public int CountStats { get; set; }
+            /// <summary>        /// Number of stats records found.  0 indicates worker never started        /// </summary>        public int CountStats { get; set; }
 
         /// <summary>
         /// What Miner should we use per card?
@@ -100,6 +95,53 @@ namespace BitPoolMiner.Models
 
                 else
                     return "remote";
+            }
+        }
+
+        /// <summary>
+        /// Status of worker
+        /// </summary>
+        [JsonIgnore]
+        public string Status
+        {
+            get
+            {
+                if (CountStats == 0 && MinutesSinceLastMonitored == 0)
+                {
+                    return "never run";
+                }
+                else if (CountStats > 0 && MinutesSinceLastMonitored <= 5)
+                {
+                    // If the worker has a monitor record from the last 5 mins then we can assume it is online
+                    return "online";
+                }
+                else if (CountStats > 0 && MinutesSinceLastMonitored > 5)
+                {
+                    // If the worker has a monitor record older than 5 mins the assume that it is offline
+                    return "offline";
+                }
+                else
+                {
+                    return "never run";
+                }
+            }
+        }
+
+        /// <summary>
+        /// Foreground color based on status
+        /// </summary>
+        public Boolean IsOnline
+        {
+            get
+            {
+                if (Status == "online")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
     }
