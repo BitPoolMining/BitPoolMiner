@@ -22,6 +22,9 @@ namespace BitPoolMiner.Miners
                 case MinerBaseType.DSTM:
                     return new DSTM(hardwareType, minerBaseType);
 
+                case MinerBaseType.Claymore:
+                    return new Claymore(hardwareType, minerBaseType);
+
                 default:
                     throw new ApplicationException(string.Format("The miner base type {0} is not yet supported.", minerBaseType.ToString()));
             }

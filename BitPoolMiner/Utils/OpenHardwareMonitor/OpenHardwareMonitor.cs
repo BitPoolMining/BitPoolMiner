@@ -68,7 +68,7 @@ namespace BitPoolMiner.Utils.OpenHardwareMonitor
 
                             gpuSettings.HardwareType = Enums.HardwareType.AMD;
                             gpuSettings.CoinSelectedForMining = Enums.CoinType.EXP;
-                            gpuSettings.MinerBaseType = Enums.MinerBaseType.UNDEFINED;
+                            gpuSettings.MinerBaseType = Enums.MinerBaseType.Claymore;
                         }
 
                         // Add GPU settings to list
