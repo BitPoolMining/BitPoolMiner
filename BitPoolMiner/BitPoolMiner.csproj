@@ -157,6 +157,7 @@
     <Compile Include="Formatter\WhatToMineDataFormatter.cs" />
     <Compile Include="Formatter\MinerMonitorStatsFormatter.cs" />
     <Compile Include="Miners\Ccminer.cs" />
+    <Compile Include="Miners\CCMinerForkNanashi.cs" />
     <Compile Include="Miners\Claymore.cs" />
     <Compile Include="Miners\DSTM.cs" />
     <Compile Include="Miners\EWBF.cs" />
@@ -296,6 +297,15 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="BitPoolMiner_TemporaryKey.pfx" />
+    <Content Include="MinerApps\ccminer-2.2-mod-r2\ccminer.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\ccminer-2.2-mod-r2\README.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\ccminer-2.2-mod-r2\vcruntime140.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="MinerApps\Claymore\Data.bin">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

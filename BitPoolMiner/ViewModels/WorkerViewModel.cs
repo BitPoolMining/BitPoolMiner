@@ -332,19 +332,22 @@ namespace BitPoolMiner.ViewModels
                     // Filter list by worker
                     MinerMonitorStat = MinerMonitorStatList.Where(x => x.WorkerName == WorkerName && x.CoinType == CoinType).OrderBy(y => y.Created).FirstOrDefault();
 
-                    // Calculate Efficiency
-                    if (MinerMonitorStat.Power <= 0 || MinerMonitorStat.HashRate <= 0)
+                    if (MinerMonitorStat != null)
                     {
-                        Efficiency = "0";
-                    }
-                    else
-                    {
-                        Efficiency = String.Format("{0}/W", HashrateFormatter.Format(MinerMonitorStat.CoinType, (MinerMonitorStat.HashRate / MinerMonitorStat.Power)));
-                    }
+                        // Calculate Efficiency
+                        if (MinerMonitorStat.Power <= 0 || MinerMonitorStat.HashRate <= 0)
+                        {
+                            Efficiency = "0";
+                        }
+                        else
+                        {
+                            Efficiency = String.Format("{0}/W", HashrateFormatter.Format(MinerMonitorStat.CoinType, (MinerMonitorStat.HashRate / MinerMonitorStat.Power)));
+                        }
 
-                    // Notify UI of change
-                    OnPropertyChanged("MinerMonitorStat");
-                    OnPropertyChanged("Efficiency");
+                        // Notify UI of change
+                        OnPropertyChanged("MinerMonitorStat");
+                        OnPropertyChanged("Efficiency");
+                    }
                 }
             }
             catch (Exception e)
