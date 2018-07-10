@@ -12,7 +12,7 @@ namespace BitPoolMiner.Miners
             versionedDirectory = "ccminer-2.2-mod-r2";
             MinerWorkingDirectory = Path.Combine(Utils.Core.GetBaseMinersDir(), versionedDirectory);
 
-            ApiPort = 4068;
+            ApiPort = 4093;
             HostName = "127.0.0.1";
         }
 
