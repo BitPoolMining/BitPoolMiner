@@ -1,8 +1,4 @@
 ﻿using BitPoolMiner.Models;
-using BitPoolMiner.Models.RPCResponse;
-using BitPoolMiner.Persistence.API;
-using BitPoolMiner.Process;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Sockets;
