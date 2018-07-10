@@ -3,6 +3,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:featureTourElements="clr-namespace:BitPoolMiner.Utils.FeatureTour"
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:featureTouring="clr-namespace:ThinkSharp.FeatureTouring;assembly=ThinkSharp.FeatureTour"
              mc:Ignorable="d" 
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch"
@@ -168,7 +171,7 @@
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <!-- Worker Hardware Section -->
+                <!-- Wallet Section -->
                 <Label 
                     Foreground="#FFFFFF" 
                     Grid.Row="0" 
@@ -178,7 +181,7 @@
                     Wallet Settings
                 </Label>
 
-                <!-- Worker Hardware Grid -->
+                <!-- Wallet Grid -->
                 <DataGrid 
                     AutoGenerateColumns="False" 
                     Grid.Row="1" 
@@ -197,7 +200,9 @@
                     RowHeaderWidth="0"
                     GridLinesVisibility="None"
                     Margin="20 0 0 0 "
-                    ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
+                    ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+                    featureTouring:TourHelper.ElementID="{x:Static featureTourElements:FeatureTourElementID.WalletViewDataGridWalletAddresses}"
+                    featureTouring:TourHelper.Placement="RightCenter">
                     <DataGrid.RowStyle>
                         <Style TargetType="DataGridRow">
                             <Setter Property="Background" Value="#2d2d2d" />
@@ -227,14 +232,16 @@
 
                 </DataGrid>
 
-                <!-- Button to save hardware changes-->
+                <!-- Button to save wallet changes-->
                 <Button 
                     x:Name="ButtonSaveAccountWallet" 
                     Style="{StaticResource buttonStyle}" 
                     Grid.Row="2" 
                     Grid.Column="3" 
                     HorizontalAlignment="Right"
-                    Command="{Binding CommandSaveAccountWallet}">
+                    Command="{Binding CommandSaveAccountWallet}"
+                    featureTouring:TourHelper.ElementID="{x:Static featureTourElements:FeatureTourElementID.WalletViewButtonSaveWalletAddresses}"
+                    featureTouring:TourHelper.Placement="RightCenter">
                     Save Wallet Changes
                 </Button>
 

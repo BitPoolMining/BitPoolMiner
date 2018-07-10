@@ -1,13 +1,14 @@
 ﻿<Window x:Name="MainWindow1" 
         x:Class="BitPoolMiner.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converter="clr-namespace:BitPoolMiner.Utils.CommandConverter"
         xmlns:viewmodels="clr-namespace:BitPoolMiner.ViewModels"
         xmlns:views="clr-namespace:BitPoolMiner.Views"
-        xmlns:main="clr-namespace:BitPoolMiner"
-        xmlns:converter="clr-namespace:BitPoolMiner.Utils.CommandConverter"
+        xmlns:featureTouring="clr-namespace:ThinkSharp.FeatureTouring;assembly=ThinkSharp.FeatureTour"
+        xmlns:featureTourElements="clr-namespace:BitPoolMiner.Utils.FeatureTour"
         mc:Ignorable="d"
         Title="BITPOOL MINER" 
         HorizontalAlignment="Left" 
@@ -152,6 +153,9 @@
             <Setter Property = "Padding" Value = "5" />
         </Style>
 
+        <DataTemplate x:Name="gettingStartedTemplate" DataType="{x:Type viewmodels:GettingStartedViewModel}">
+            <views:GettingStartedView DataContext="{Binding}"/>
+        </DataTemplate>
         <DataTemplate x:Name="accountViewTemplate" DataType="{x:Type viewmodels:AccountViewModel}">
             <views:AccountView DataContext="{Binding}"/>
         </DataTemplate>
@@ -317,7 +321,7 @@
                                         </Button.Triggers>
 
                                         <StackPanel Orientation="Horizontal" >
-                                            <Label Style="{StaticResource labelStyleLeftMenuGrey}" Content="{Binding WorkerName}" Width="125" />
+                                            <Label Style="{StaticResource labelStyleLeftMenuGrey}" Content="{Binding WorkerName}" Width="115" />
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
                                                 <Border Style="{StaticResource borderStyleLeftMenuGreySmall}">
                                                     <Label Style="{StaticResource labelStyleLeftMenuGreySmall}"  Content="{Binding Status}"/>
@@ -346,7 +350,9 @@
                             <Button x:Name="WalletSettingsButton" Style="{StaticResource buttonStyleLeftMenu}" Click="WalletSettingsButton_Clicked">
                                 Wallet Settings
                             </Button>
-                            <Button x:Name="AccountSettingsButton" Style="{StaticResource buttonStyleLeftMenu}" Click="AccountSettingsButton_Clicked">
+                            <Button x:Name="AccountSettingsButton" Style="{StaticResource buttonStyleLeftMenu}" Click="AccountSettingsButton_Clicked"
+                                    featureTouring:TourHelper.ElementID="{x:Static featureTourElements:FeatureTourElementID.MainViewButtonAccountWorkerSettings}"
+                                    featureTouring:TourHelper.Placement="RightCenter">
                                 Account/Miner Settings
                             </Button>
                             <Button x:Name="ProfitabilityButton" Style="{StaticResource buttonStyleLeftMenu}" Click="ProfitabilityButton_Clicked">

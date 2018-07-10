@@ -4,7 +4,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ct="clr-namespace:BitPoolMiner.Enums"
+             xmlns:featureTourElements="clr-namespace:BitPoolMiner.Utils.FeatureTour"
              xmlns:System="clr-namespace:System;assembly=mscorlib"
+             xmlns:featureTouring="clr-namespace:ThinkSharp.FeatureTouring;assembly=ThinkSharp.FeatureTour"
              mc:Ignorable="d" 
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch"
@@ -25,7 +27,7 @@
 
         <!-- Wire up enum data source for Currency -->
         <ObjectDataProvider x:Key="EnumDataProviderCurrency"                         MethodName="GetValues"                         ObjectType="{x:Type System:Enum}">            <ObjectDataProvider.MethodParameters>                <x:Type TypeName="ct:CurrencyList"/>            </ObjectDataProvider.MethodParameters>        </ObjectDataProvider>
-        
+
         <!-- Style - Label White Title -->
         <Style x:Key = "labelStyleFooterWhiteTitle" TargetType = "Label">
             <Setter Property = "Foreground" Value = "#FFFFFF" />
@@ -291,7 +293,9 @@
                     RowHeaderWidth="0"
                     GridLinesVisibility="None"
                     Margin="20 0 0 0 "
-                    ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
+                    ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+                    featureTouring:TourHelper.ElementID="{x:Static featureTourElements:FeatureTourElementID.AccountViewDataGridHardware}"
+                    featureTouring:TourHelper.Placement="RightCenter">
                     <DataGrid.RowStyle>
                         <Style TargetType="DataGridRow">
                             <Setter Property="Background" Value="#2d2d2d" />
@@ -365,7 +369,9 @@
                     Grid.Row="2" 
                     Grid.Column="3" 
                     HorizontalAlignment="Right"
-                    Command="{Binding CommandSaveAccountWorkerHardware}">
+                    Command="{Binding CommandSaveAccountWorkerHardware}"
+                    featureTouring:TourHelper.ElementID="{x:Static featureTourElements:FeatureTourElementID.AccountViewButtonSaveHardwareSettings}"
+                    featureTouring:TourHelper.Placement="RightCenter">
                     Save Hardware Changes
                 </Button>
 
@@ -427,7 +433,9 @@
                      Style="{StaticResource textBoxStyle}"
                      Text="{Binding Path=WorkerSettings.WorkerName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                      HorizontalAlignment="Left"
-                     Width="200">
+                     Width="200"
+                     featureTouring:TourHelper.ElementID="{x:Static featureTourElements:FeatureTourElementID.AccountViewTextBoxWorkerName}"
+                     featureTouring:TourHelper.Placement="RightCenter">
                 </TextBox>
 
                 <!-- Auto start mining -->
@@ -444,7 +452,9 @@
                     Margin="5 0 0 0"
                     IsChecked="{Binding Path=WorkerSettings.AutoStartMining, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     HorizontalAlignment="Left"
-                    FontSize="20">
+                    FontSize="20"
+                    featureTouring:TourHelper.ElementID="{x:Static featureTourElements:FeatureTourElementID.AccountViewCheckBoxAutoStartMining}"
+                    featureTouring:TourHelper.Placement="RightCenter">
                     <CheckBox.LayoutTransform>
                         <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                     </CheckBox.LayoutTransform>
@@ -461,7 +471,8 @@
                     Grid.ColumnSpan="1"                      FontSize= "14"
                     FontWeight= "Bold"                    Foreground= "#000000"                    Height="25"
                     SelectedItem="{Binding Path=WorkerSettings.Region, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    ItemsSource="{Binding Source={StaticResource EnumDataProviderRegion}}">                    <ComboBox.ItemContainerStyle>
+                    ItemsSource="{Binding Source={StaticResource EnumDataProviderRegion}}"                    featureTouring:TourHelper.ElementID="{x:Static featureTourElements:FeatureTourElementID.AccountViewComboBoxRegion}"
+                    featureTouring:TourHelper.Placement="RightCenter">                    <ComboBox.ItemContainerStyle>
                         <Style TargetType="ComboBoxItem">
                             <Setter Property="Background" Value="#646464"/>
                             <Setter Property="Foreground" Value="#000000"/>
@@ -487,7 +498,8 @@
                     Grid.ColumnSpan="1"                      FontSize= "14"
                     FontWeight= "Bold"                    Foreground= "#000000"                    Height="25"
                     SelectedItem="{Binding Path=WorkerSettings.Currency, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                    ItemsSource="{Binding Source={StaticResource EnumDataProviderCurrency}}">                    <ComboBox.ItemContainerStyle>
+                    ItemsSource="{Binding Source={StaticResource EnumDataProviderCurrency}}"                    featureTouring:TourHelper.ElementID="{x:Static featureTourElements:FeatureTourElementID.AccountViewComboBoxFiatCurrency}"
+                    featureTouring:TourHelper.Placement="RightCenter">                    <ComboBox.ItemContainerStyle>
                         <Style TargetType="ComboBoxItem">
                             <Setter Property="Background" Value="#646464"/>
                             <Setter Property="Foreground" Value="#000000"/>
@@ -510,7 +522,9 @@
                      Grid.RowSpan="1"
                     Grid.Column="1"
                     HorizontalAlignment="Right"
-                    Command="{Binding CommandSaveWorkerSettings}">
+                    Command="{Binding CommandSaveWorkerSettings}"
+                    featureTouring:TourHelper.ElementID="{x:Static featureTourElements:FeatureTourElementID.AccountViewButtonSaveWorkerSettings}"
+                    featureTouring:TourHelper.Placement="RightCenter">
                     Save Worker Settings
                 </Button>
             </Grid>
@@ -577,7 +591,9 @@
                     RowHeaderWidth="0"
                     GridLinesVisibility="None"
                     Margin="20 0 0 0 "
-                    ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
+                    ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
+                    featureTouring:TourHelper.ElementID="{x:Static featureTourElements:FeatureTourElementID.AccountViewDataGridConnectedWorkers}"
+                    featureTouring:TourHelper.Placement="RightCenter">
                     <DataGrid.RowStyle>
                         <Style TargetType="DataGridRow">
                             <Setter Property="Background" Value="#2d2d2d" />

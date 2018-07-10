@@ -83,6 +83,7 @@ namespace BitPoolMiner.Persistence.FileSystem
             workerSettings.WorkerName = "Worker";
             workerSettings.AutoStartMining = false;
             workerSettings.Region = Enums.Region.USEAST;
+            workerSettings.Currency = Enums.CurrencyList.USD;
 
             // Write defaults to disk
             WriteJsonToFile(workerSettings);

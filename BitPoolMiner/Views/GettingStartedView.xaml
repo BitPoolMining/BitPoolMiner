@@ -1,14 +1,49 @@
 ﻿<UserControl x:Class="BitPoolMiner.Views.GettingStartedView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:BitPoolMiner.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" 
              HorizontalAlignment="Stretch"
              VerticalAlignment="Stretch"
              HorizontalContentAlignment="Stretch"
              VerticalContentAlignment="Stretch">
+
+    <!--Define Views-->
+    <UserControl.Resources>
+
+        <!-- Style - Button -->
+        <Style x:Key = "buttonStyle" TargetType = "Button">
+            <Setter Property = "Foreground" Value = "#FFFFFF" />
+            <Setter Property = "Background" Value = "#2c97de" />
+            <Setter Property = "Height" Value = "30" />
+            <Setter Property = "HorizontalContentAlignment" Value = "Center" />
+            <Setter Property = "FontSize" Value = "14" />
+            <Setter Property = "Padding" Value = "5" />
+            <Setter Property = "Margin" Value = "5" />
+            <Setter Property = "FontWeight" Value = "Bold" />
+        </Style>
+
+        <!-- Style - Label Grey -->
+        <Style x:Key = "labelStyleFooterGrey" TargetType = "Label">
+            <Setter Property = "Foreground" Value = "#646464" />
+            <Setter Property = "FontSize" Value = "14" />
+            <Setter Property = "Canvas.Top" Value = "7" />
+            <Setter Property = "VerticalContentAlignment" Value = "Center" />
+            <Setter Property = "Margin" Value = "15 0 0 0 " />
+        </Style>
+
+        <!-- Style - Label White -->
+        <Style x:Key = "labelStyleFooterWhite" TargetType = "Label">
+            <Setter Property = "Foreground" Value = "#FFFFFF" />
+            <Setter Property = "FontSize" Value = "14" />
+            <Setter Property = "Canvas.Top" Value = "7" />
+            <Setter Property = "VerticalContentAlignment" Value = "Center" />
+            <Setter Property = "Margin" Value = "15 0 0 0 " />
+        </Style>
+
+    </UserControl.Resources>
+
     <Grid>
 
         <!--Grid Columns-->
@@ -36,10 +71,193 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
-        
-        
-        
+
+        <!-- Header -->
+        <Border
+            BorderThickness="1"
+            BorderBrush="#2d2d2d"
+            Margin="20"
+            Padding="10"
+            Grid.Column="0"
+                Grid.ColumnSpan="9"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+            Background="#2d2d2d">
+
+            <StackPanel>
+                <!-- Header Section -->
+                <Label 
+                    Foreground="#FFFFFF" 
+                    Style="{StaticResource labelStyleFooterWhite}">Getting Started With BPM</Label>
+
+                <!-- Account ID Section -->
+                <Label Style="{StaticResource labelStyleFooterGrey}">Welcome to BitPoolMiner.  Follow allong with the guided tours below, or watch our YouTube videos to get started.</Label>
+
+            </StackPanel>
+        </Border>
+
+        <!-- First Rig -->
+        <Border
+            BorderThickness="1"
+            BorderBrush="#2d2d2d"
+            Margin="20"
+            Padding="10"
+            Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Grid.Row="3"
+                Grid.RowSpan="3"
+            Background="#2d2d2d">
+
+            <StackPanel>
+                <!-- Header Section -->
+                <Label 
+                    Foreground="#FFFFFF" 
+                    Style="{StaticResource labelStyleFooterWhite}">Guided Tour - Set Up First Mining Rig</Label>
+
+                <!-- Account ID Section -->
+                <Label 
+                    Style="{StaticResource labelStyleFooterGrey}">This is the first rig I am setting up, or the only rig I have right now.</Label>
+                
+                <!-- Button to set an existing account ID-->
+                <Button Style="{StaticResource buttonStyle}" 
+                        Command="{Binding CmdStartTourFirstMiningWorkerSetup}"
+                        Width="150"
+                        HorizontalAlignment="Center"
+                        VerticalContentAlignment="Center">
+                    Get Started
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <!-- Second Rig -->
+        <Border
+            BorderThickness="1"
+            BorderBrush="#2d2d2d"
+            Margin="20"
+            Padding="10"
+            Grid.Column="6"
+            Grid.ColumnSpan="3"
+            Grid.Row="3"
+            Grid.RowSpan="3"
+            Background="#2d2d2d">
+
+            <StackPanel>
+                <!-- Header Section -->
+                <Label 
+                    Foreground="#FFFFFF" 
+                    Style="{StaticResource labelStyleFooterWhite}">Guided Tour - Set Up Additional Mining Rig</Label>
+
+                <!-- Account ID Section -->
+                <Label 
+                    Style="{StaticResource labelStyleFooterGrey}">I have already set up my first miner and I want to add another mining rig.</Label>
+
+                <!-- Button to set an existing account ID-->
+                <Button 
+                        Style="{StaticResource buttonStyle}" 
+                        Command="{Binding CommandUpdateAccountID}"  
+                        CommandParameter="{Binding Text, ElementName=TextboxAccountID}"
+                        Width="150"
+                        HorizontalAlignment="Center"
+                        VerticalContentAlignment="Center">
+                    Get Started
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <!-- Monitoring Only -->
+        <Border
+            BorderThickness="1"
+            BorderBrush="#2d2d2d"
+            Margin="20"
+            Padding="10"
+            Grid.Column="0"
+                Grid.ColumnSpan="4"
+                Grid.Row="6"
+                Grid.RowSpan="3"
+            Background="#2d2d2d">
+
+            <StackPanel>
+                <!-- Header Section -->
+                <Label 
+                    Foreground="#FFFFFF" 
+                    Style="{StaticResource labelStyleFooterWhite}">Guided Tour - Set Up A Monitoring Only Instance</Label>
+
+                <!-- Account ID Section -->
+                <Label Style="{StaticResource labelStyleFooterGrey}">I already have one or more mining rigs set up</Label>
+                <Label Style="{StaticResource labelStyleFooterGrey}">and I want to add a BPM instance just for monitoring my miners.</Label>
+
+                <!-- Button to set an existing account ID-->
+                <Button Style="{StaticResource buttonStyle}" 
+                        Command="{Binding CommandUpdateAccountID}"  
+                        CommandParameter="{Binding Text, ElementName=TextboxAccountID}"
+                        Width="150"
+                        HorizontalAlignment="Center"
+                        VerticalContentAlignment="Center">
+                    Get Started
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <!-- Second Rig -->
+        <Border
+            BorderThickness="1"
+            BorderBrush="#2d2d2d"
+            Margin="20"
+            Padding="10"
+            Grid.Column="6"
+            Grid.ColumnSpan="3"
+            Grid.Row="6"
+            Grid.RowSpan="3"
+            Background="#2d2d2d">
+
+            <StackPanel>
+                <!-- Header Section -->
+                <Label 
+                    Foreground="#FFFFFF" 
+                    Style="{StaticResource labelStyleFooterWhite}">Guided Tour - Mine Multiple Coins On One Rig</Label>
+
+                <!-- Account ID Section -->
+                <Label 
+                    Style="{StaticResource labelStyleFooterGrey}">I have already set up my first miner and I want to add another mining rig.</Label>
+
+                <!-- Button to set an existing account ID-->
+                <Button 
+                        Style="{StaticResource buttonStyle}" 
+                        Command="{Binding CommandUpdateAccountID}"  
+                        CommandParameter="{Binding Text, ElementName=TextboxAccountID}"
+                        Width="150"
+                        HorizontalAlignment="Center"
+                        VerticalContentAlignment="Center">
+                    Get Started
+                </Button>
+            </StackPanel>
+        </Border>
+
+        <!-- YouTube Videos -->
+        <Border
+            BorderThickness="1"
+            BorderBrush="#2d2d2d"
+            Margin="20"
+            Padding="10"
+            Grid.Column="0"
+                Grid.ColumnSpan="9"
+                Grid.Row="9"
+                Grid.RowSpan="1"
+            Background="#2d2d2d">
+
+            <StackPanel>
+                <!-- Header Section -->
+                <Label 
+                    Foreground="#FFFFFF" 
+                    Style="{StaticResource labelStyleFooterWhite}">YouTube Videos</Label>
+
+                <!-- Account ID Section -->
+                <Label Style="{StaticResource labelStyleFooterGrey}">YouTube tutorial videos will be coming shortly.</Label>
+
+            </StackPanel>
+        </Border>
+
     </Grid>
 </UserControl>

@@ -1,9 +1,11 @@
 ﻿using BitPoolMiner.Utils;
 using BitPoolMiner.Utils.CommandConverter;
+using BitPoolMiner.Utils.FeatureTour;
 using BitPoolMiner.ViewModels;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using ThinkSharp.FeatureTouring.Navigation;
 
 namespace BitPoolMiner
 {
@@ -15,7 +17,8 @@ namespace BitPoolMiner
         // NLog
         private static NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
-        // ViewModels      
+        // ViewModels 
+        private GettingStartedViewModel GettingStartedViewModel;
         private WalletViewModel WalletViewModel;
         private AccountViewModel AccountViewModel;
         private MainWindowViewModel MainWindowViewModel;
@@ -37,6 +40,9 @@ namespace BitPoolMiner
 
                 if (AccountViewModel == null)
                     AccountViewModel = new AccountViewModel(MainWindowViewModel);
+
+                if (GettingStartedViewModel == null)
+                    GettingStartedViewModel = new GettingStartedViewModel();
 
                 if (WalletViewModel == null)
                     WalletViewModel = new WalletViewModel();
@@ -67,12 +73,29 @@ namespace BitPoolMiner
 
                 // Check to see if should start mining on applications tart.
                 CheckAutoStartMining();
+
+                // Handle special Feature Tour Navigation events
+                InitFeatureTourNavigation();
             }
             catch (Exception e)
             {
                 logger.Error(e, $"Unhandled exception caught");
             }
         }
+        #endregion
+
+        #region Feature Tour Navigation 
+
+        /// <summary>
+        /// Handle special Feature Tour Navigation events
+        /// </summary>
+        private void InitFeatureTourNavigation()
+        {
+            var navigator = FeatureTour.GetNavigator();
+            navigator.OnStepEntering(FeatureTourElementID.AccountViewTextBoxWorkerName).Execute(s => DataContext = AccountViewModel);
+            navigator.OnStepEntering(FeatureTourElementID.WalletViewDataGridWalletAddresses).Execute(s => DataContext = WalletViewModel);
+        }
+
         #endregion
 
         #region Auto Start Mining
@@ -102,7 +125,7 @@ namespace BitPoolMiner
 
         private void GettingStartedButton_Clicked(object sender, RoutedEventArgs e)
         {
-            DataContext = AccountViewModel;
+            DataContext = GettingStartedViewModel;
         }
 
         private void WalletSettingsButton_Clicked(object sender, RoutedEventArgs e)
