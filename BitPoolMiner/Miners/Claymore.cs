@@ -1,7 +1,5 @@
 ﻿using BitPoolMiner.Models;
 using BitPoolMiner.Models.RPCResponse;
-using BitPoolMiner.Persistence.API;
-using BitPoolMiner.Process;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,7 +7,6 @@ using System.Net.Sockets;
 using System.Threading.Tasks;
 using System.Windows;
 using System.IO;
-using System.Text;
 using BitPoolMiner.Enums;
 using System.Globalization;
 
