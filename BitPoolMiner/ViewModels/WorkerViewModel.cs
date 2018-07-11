@@ -225,7 +225,7 @@ namespace BitPoolMiner.ViewModels
         {
             MinerStatusCheckTimer = new Timer();
             MinerStatusCheckTimer.Elapsed += MinerStatusCheckTimer_Elapsed;
-            MinerStatusCheckTimer.Interval = 30000;
+            MinerStatusCheckTimer.Interval = 120000;
             MinerStatusCheckTimer.Enabled = true;
         }
 
