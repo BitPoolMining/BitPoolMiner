@@ -19,8 +19,8 @@
             <Setter Property = "Height" Value = "30" />
             <Setter Property = "HorizontalContentAlignment" Value = "Center" />
             <Setter Property = "FontSize" Value = "14" />
-            <Setter Property = "Padding" Value = "5" />
-            <Setter Property = "Margin" Value = "5" />
+            <Setter Property = "Padding" Value = "5 5 5 5" />
+            <Setter Property = "Margin" Value = "5 5 5 5" />
             <Setter Property = "FontWeight" Value = "Bold" />
         </Style>
 
@@ -87,14 +87,8 @@
             Background="#2d2d2d">
 
             <StackPanel>
-                <!-- Header Section -->
-                <Label 
-                    Foreground="#FFFFFF" 
-                    Style="{StaticResource labelStyleFooterWhite}">Getting Started With BPM</Label>
-
-                <!-- Account ID Section -->
+                <Label Foreground="#FFFFFF" Style="{StaticResource labelStyleFooterWhite}">Getting Started With BPM</Label>
                 <Label Style="{StaticResource labelStyleFooterGrey}">Welcome to BitPoolMiner.  Follow allong with the guided tours below, or watch our YouTube videos to get started.</Label>
-
             </StackPanel>
         </Border>
 
@@ -116,17 +110,18 @@
                     Foreground="#FFFFFF" 
                     Style="{StaticResource labelStyleFooterWhite}">Guided Tour - Set Up First Mining Rig</Label>
 
-                <!-- Account ID Section -->
+                <!-- Details -->
                 <Label 
                     Style="{StaticResource labelStyleFooterGrey}">This is the first rig I am setting up, or the only rig I have right now.</Label>
                 
-                <!-- Button to set an existing account ID-->
+                <!-- Button to start tour -->
                 <Button Style="{StaticResource buttonStyle}" 
                         Command="{Binding CmdStartTourFirstMiningWorkerSetup}"
                         Width="150"
+                        Height="40"
                         HorizontalAlignment="Center"
                         VerticalContentAlignment="Center">
-                    Get Started
+                    Set up my first rig
                 </Button>
             </StackPanel>
         </Border>
@@ -149,19 +144,20 @@
                     Foreground="#FFFFFF" 
                     Style="{StaticResource labelStyleFooterWhite}">Guided Tour - Set Up Additional Mining Rig</Label>
 
-                <!-- Account ID Section -->
+                <!-- Details -->
                 <Label 
                     Style="{StaticResource labelStyleFooterGrey}">I have already set up my first miner and I want to add another mining rig.</Label>
 
-                <!-- Button to set an existing account ID-->
+                <!-- Button to start tour -->
                 <Button 
-                        Style="{StaticResource buttonStyle}" 
-                        Command="{Binding CommandUpdateAccountID}"  
-                        CommandParameter="{Binding Text, ElementName=TextboxAccountID}"
-                        Width="150"
-                        HorizontalAlignment="Center"
-                        VerticalContentAlignment="Center">
-                    Get Started
+                    Style="{StaticResource buttonStyle}" 
+                    Command="{Binding CmdStartTourAdditionalWorkerSetup}"  
+                    CommandParameter="{Binding Text, ElementName=TextboxAccountID}"
+                    Width="250"
+                    Height="40"
+                    HorizontalAlignment="Center"
+                    VerticalContentAlignment="Center">
+                    Set up an additional rig
                 </Button>
             </StackPanel>
         </Border>
@@ -184,18 +180,19 @@
                     Foreground="#FFFFFF" 
                     Style="{StaticResource labelStyleFooterWhite}">Guided Tour - Set Up A Monitoring Only Instance</Label>
 
-                <!-- Account ID Section -->
+                <!-- Details -->
                 <Label Style="{StaticResource labelStyleFooterGrey}">I already have one or more mining rigs set up</Label>
                 <Label Style="{StaticResource labelStyleFooterGrey}">and I want to add a BPM instance just for monitoring my miners.</Label>
 
-                <!-- Button to set an existing account ID-->
+                <!-- Button to start tour -->
                 <Button Style="{StaticResource buttonStyle}" 
-                        Command="{Binding CommandUpdateAccountID}"  
-                        CommandParameter="{Binding Text, ElementName=TextboxAccountID}"
-                        Width="150"
-                        HorizontalAlignment="Center"
-                        VerticalContentAlignment="Center">
-                    Get Started
+                    Command="{Binding CmdStartTourMonitoringOnlyInstance}"  
+                    CommandParameter="{Binding Text, ElementName=TextboxAccountID}"
+                    Width="250"
+                    Height="40"
+                    HorizontalAlignment="Center"
+                    VerticalContentAlignment="Center">
+                    Set up monitor instance
                 </Button>
             </StackPanel>
         </Border>
@@ -218,19 +215,20 @@
                     Foreground="#FFFFFF" 
                     Style="{StaticResource labelStyleFooterWhite}">Guided Tour - Mine Multiple Coins On One Rig</Label>
 
-                <!-- Account ID Section -->
-                <Label 
-                    Style="{StaticResource labelStyleFooterGrey}">I have already set up my first miner and I want to add another mining rig.</Label>
+                <!-- Details -->
+                <Label Style="{StaticResource labelStyleFooterGrey}">I want to mine more than one coin on this rig.</Label>
+                <Label Style="{StaticResource labelStyleFooterGrey}">Use this guide after you have set up this worker first.</Label>
 
-                <!-- Button to set an existing account ID-->
+                <!-- Button to start tour -->
                 <Button 
-                        Style="{StaticResource buttonStyle}" 
-                        Command="{Binding CommandUpdateAccountID}"  
-                        CommandParameter="{Binding Text, ElementName=TextboxAccountID}"
-                        Width="150"
-                        HorizontalAlignment="Center"
-                        VerticalContentAlignment="Center">
-                    Get Started
+                    Style="{StaticResource buttonStyle}" 
+                    Command="{Binding CmdStartTourMineMultipleCoins}"  
+                    CommandParameter="{Binding Text, ElementName=TextboxAccountID}"
+                    Width="250"
+                    Height="40"
+                    HorizontalAlignment="Center"
+                    VerticalContentAlignment="Center">
+                    Mine multiple coins on one rig
                 </Button>
             </StackPanel>
         </Border>

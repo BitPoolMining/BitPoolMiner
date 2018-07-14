@@ -97,7 +97,7 @@
         </Grid.RowDefinitions>
 
         <!-- Forecasts -->
-        <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="1" Background="#2d2d2d" Margin="10" DataContext="{Binding Source={StaticResource MainWindowViewModel}, Path=WhatToMineData, UpdateSourceTrigger=PropertyChanged}">
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="1" Grid.ColumnSpan="1" Background="#2d2d2d" Margin="8 8 0 8" DataContext="{Binding Source={StaticResource MainWindowViewModel}, Path=WhatToMineData, UpdateSourceTrigger=PropertyChanged}">
             <Label Style="{StaticResource labelStyleLeftMenuGrey}">Rough Forecast Last 24 Hours</Label>
             <DataGrid 
                             AutoGenerateColumns="False" 
@@ -132,18 +132,18 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Binding="{Binding tag}" SortDirection="Ascending" Header="" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
-                    <DataGridTextColumn Binding="{Binding Revenue}" Header="FIAT" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
-                    <DataGridTextColumn Binding="{Binding Estimated_rewards}" Header="COINS" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
-                    <DataGridTextColumn Binding="{Binding BTC_revenue}" Header="BTC" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
-                    <DataGridTextColumn Binding="{Binding pool_fee}" Header="Pool Fee" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
-                    <DataGridTextColumn Binding="{Binding cost}" Header="Power Cost" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
-                    <DataGridTextColumn Binding="{Binding profit}" Header="Profit" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                    <DataGridTextColumn Binding="{Binding Estimated_rewards}" Header="REV COINS" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                    <DataGridTextColumn Binding="{Binding BTC_revenue}" Header="REV BTC" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                    <DataGridTextColumn Binding="{Binding Revenue}" Header="REV FIAT" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>                    
+                    <DataGridTextColumn Binding="{Binding pool_fee}" Header="POOL FEE FIAT" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                    <DataGridTextColumn Binding="{Binding cost}" Header="POWER COST FIAT" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
+                    <DataGridTextColumn Binding="{Binding profit}" Header="PROFIT FIAT" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
 
         <!-- Actual revenue -->
-        <StackPanel Background="#2d2d2d" Grid.Column="1" Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="10" DataContext="{Binding Source={StaticResource MainWindowViewModel}, Path=MinerPaymentsData, UpdateSourceTrigger=PropertyChanged}">
+        <StackPanel Background="#2d2d2d" Grid.Column="1" Grid.RowSpan="1" Grid.ColumnSpan="1" Margin="8 8 0 8" DataContext="{Binding Source={StaticResource MainWindowViewModel}, Path=MinerPaymentsData, UpdateSourceTrigger=PropertyChanged}">
             <Label Style="{StaticResource labelStyleLeftMenuGrey}">Actual Revenue Last 24 Hours</Label>
             <DataGrid 
                             AutoGenerateColumns="False" 
@@ -189,7 +189,7 @@
         </StackPanel>
 
         <!-- Payment Chart -->
-        <StackPanel Grid.Row="1" Margin="10" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="9">
+        <StackPanel Grid.Row="1" Margin="8 8 0 8" Grid.Column="0" Grid.RowSpan="7" Grid.ColumnSpan="9">
             <lvc:CartesianChart  Series="{Binding SeriesCollection}" LegendLocation="Top" MinWidth="800" MinHeight="450">
                 <lvc:CartesianChart.ChartLegend>
                     <lvc:DefaultLegend Margin="5 5 0 0 " BulletSize="15" Foreground="#ffffff"/>
@@ -212,7 +212,7 @@
         </StackPanel>
 
         <!-- Payment List -->
-        <StackPanel Grid.Row="0" Grid.Column="9" Grid.RowSpan="10" Grid.ColumnSpan="1" Background="#2d2d2d" Margin="10">
+        <StackPanel Grid.Row="0" Grid.Column="9" Grid.RowSpan="10" Grid.ColumnSpan="1" Background="#2d2d2d" Margin="0 8 0 8">
             <Label Style="{StaticResource labelStyleLeftMenuGrey}">Payments Last 30 Days</Label>
 
             <DataGrid 

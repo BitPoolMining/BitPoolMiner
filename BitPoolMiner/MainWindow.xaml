@@ -23,7 +23,7 @@
 
     <!--Define Views-->
     <Window.Resources>
-        
+
         <!-- Style - Left Menu - Buttons -->
         <Style x:Key = "buttonStyleLeftMenu" TargetType = "Button">
             <Setter Property = "Foreground" Value = "#9f9f9f" />
@@ -112,7 +112,7 @@
                 </DataTrigger>
                 <DataTrigger Binding="{Binding IsOnline}" Value="False">
                     <Setter Property="Visibility" Value="Hidden"/>
-                </DataTrigger>               
+                </DataTrigger>
             </Style.Triggers>
         </Style>
 
@@ -278,7 +278,7 @@
         </Border>
 
         <!--Left Menu -->
-        <Expander IsExpanded="True" ExpandDirection="Left" Grid.Row="1" Grid.Column="0" Grid.RowSpan="8" Foreground="#FFFFFF" BorderBrush="#444444" Background="#1a1a1a" BorderThickness="0 4 1 4" >
+        <Expander IsExpanded="True" ExpandDirection="Left" Grid.Row="1" Grid.Column="0" Grid.RowSpan="8" Foreground="#FFFFFF" BorderBrush="#444444" Background="#1a1a1a" BorderThickness="0 4 1 4">
             <Expander.Header>
                 <TextBlock Text="Main Menu">
                     <TextBlock.LayoutTransform>
@@ -286,11 +286,18 @@
                     </TextBlock.LayoutTransform>
                 </TextBlock>
             </Expander.Header>
-            <Border >
+            <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.RowSpan="8"  Background="#1a1a1a" HorizontalAlignment="Left" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <ScrollViewer.Resources>
+                    <Style TargetType="ScrollBar">
+                        <Setter Property="Background" Value="#212121" />
+                        <Setter Property="BorderBrush" Value="#9f9f9f" />
+                    </Style>
+                </ScrollViewer.Resources>
+                <Border >
                 <StackPanel>
 
                     <!--Left Menu Rigs-->
-                    <Border x:Name="BorderRigs" BorderThickness="0 4 1 4" BorderBrush="#444444" Grid.Row="1" Grid.Column="0" Grid.RowSpan="5" Background="#1a1a1a" Width="270" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+                    <Border BorderThickness="0 4 1 4" BorderBrush="#444444" Grid.Row="1" Grid.Column="0" Grid.RowSpan="5" Background="#1a1a1a" Width="270" HorizontalAlignment="Left" VerticalAlignment="Stretch">
                         <ItemsControl 
                         x:Name="MenuStackPanelRigs" 
                         Grid.Row="1" 
@@ -301,41 +308,41 @@
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Stretch"
                         ItemsSource="{Binding Source={StaticResource MainWindowViewModel}, Path=AccountWorkersList}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Button x:Name="WorkerButton" Style="{StaticResource buttonStyleLeftMenu}" Click="WorkerButton_Clicked">
-                                        <Button.CommandParameter>
-                                            <MultiBinding Converter="{StaticResource converter}">
-                                                <Binding Path="WorkerName"/>
-                                                <Binding Path="CoinType"/>
-                                            </MultiBinding>
-                                        </Button.CommandParameter>
-                                        <Button.Triggers>
-                                            <EventTrigger RoutedEvent="MouseEnter">
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="CadetBlue"/>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </EventTrigger>
-                                        </Button.Triggers>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="WorkerButton" Style="{StaticResource buttonStyleLeftMenu}" Click="WorkerButton_Clicked">
+                                            <Button.CommandParameter>
+                                                <MultiBinding Converter="{StaticResource converter}">
+                                                    <Binding Path="WorkerName"/>
+                                                    <Binding Path="CoinType"/>
+                                                </MultiBinding>
+                                            </Button.CommandParameter>
+                                            <Button.Triggers>
+                                                <EventTrigger RoutedEvent="MouseEnter">
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)" To="CadetBlue"/>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </EventTrigger>
+                                            </Button.Triggers>
 
-                                        <StackPanel Orientation="Horizontal" >
-                                            <Label Style="{StaticResource labelStyleLeftMenuGrey}" Content="{Binding WorkerName}" Width="115" />
-                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
-                                                <Border Style="{StaticResource borderStyleLeftMenuGreySmall}">
-                                                    <Label Style="{StaticResource labelStyleLeftMenuGreySmall}"  Content="{Binding Status}"/>
-                                                </Border>
-                                                <Border Style="{StaticResource borderStyleHeaderCoinType}" BorderThickness="1" BorderBrush="#444444" Padding="4 0 4 0" Margin="0 2 2 0">
-                                                    <Label Foreground="#444444" Padding="4" FontSize="10" Content="{Binding CoinType}"/>
-                                                </Border>
-                                                <Image Margin="5 1 5 0" Height="20" Width="20" Source="{Binding CoinLogo}" VerticalAlignment="Top" />    
+                                            <StackPanel Orientation="Horizontal" >
+                                                <Label Style="{StaticResource labelStyleLeftMenuGrey}" Content="{Binding WorkerName}" Width="115" />
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                                                    <Border Style="{StaticResource borderStyleLeftMenuGreySmall}">
+                                                        <Label Style="{StaticResource labelStyleLeftMenuGreySmall}"  Content="{Binding Status}"/>
+                                                    </Border>
+                                                    <Border Style="{StaticResource borderStyleHeaderCoinType}" BorderThickness="1" BorderBrush="#444444" Padding="4 0 4 0" Margin="0 2 2 0">
+                                                        <Label Foreground="#444444" Padding="4" FontSize="10" Content="{Binding CoinType}"/>
+                                                    </Border>
+                                                    <Image Margin="5 1 5 0" Height="20" Width="20" Source="{Binding CoinLogo}" VerticalAlignment="Top" />
+                                                </StackPanel>
                                             </StackPanel>
-                                        </StackPanel>
-                                    </Button>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
                     </Border>
 
                     <!--Left Menu Settings-->
@@ -363,6 +370,7 @@
 
                 </StackPanel>
             </Border>
+            </ScrollViewer>
         </Expander>
 
         <!--Right Column -->
@@ -399,7 +407,7 @@
                             Margin="0"
                             VerticalAlignment="Top"
                             VerticalContentAlignment="Top" 
-                        HorizontalAlignment="Left"
+                            HorizontalAlignment="Left"
                             HorizontalContentAlignment="Left"
                             ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyleGPU}"
                             RowHeaderStyle="{StaticResource DataGridRowHeaderStyleGPU}"

@@ -206,7 +206,9 @@
                     HorizontalAlignment="right"
                     Style="{StaticResource textBoxStyle}"
                     Text="{Binding AccountGuid, Mode=TwoWay}"
-                    Width="300">
+                    Width="300"
+                    featureTouring:TourHelper.ElementID="{x:Static featureTourElements:FeatureTourElementID.AccountViewTextBoxAccountID}"
+                    featureTouring:TourHelper.Placement="RightCenter">
                 </TextBox>
 
                 <!-- Button to get a new account ID-->
@@ -220,11 +222,13 @@
 
                 <!-- Button to set an existing account ID-->
                 <Button x:Name="ButtonSaveAccountID" 
-                        Style="{StaticResource buttonStyle}" 
-                        Grid.Row="3" 
-                        Grid.Column="3" 
-                        Command="{Binding CommandUpdateAccountID}"  
-                        CommandParameter="{Binding Text, ElementName=TextboxAccountID}">
+                    Style="{StaticResource buttonStyle}" 
+                    Grid.Row="3" 
+                    Grid.Column="3" 
+                    Command="{Binding CommandUpdateAccountID}"  
+                    CommandParameter="{Binding Text, ElementName=TextboxAccountID}"                    
+                    featureTouring:TourHelper.ElementID="{x:Static featureTourElements:FeatureTourElementID.AccountViewButtonSaveAccountID}"
+                    featureTouring:TourHelper.Placement="RightCenter">
                     Set Account ID
                 </Button>
             </Grid>
@@ -270,7 +274,9 @@
                     Grid.Row="0" 
                     Grid.Column="0"
                     Grid.ColumnSpan="2" 
-                    Style="{StaticResource labelStyleFooterWhiteTitle}">
+                    Style="{StaticResource labelStyleFooterWhiteTitle}"
+                    featureTouring:TourHelper.ElementID="{x:Static featureTourElements:FeatureTourElementID.AccountViewDataGridHardware}"
+                    featureTouring:TourHelper.Placement="TopRight">
                     Worker Hardware List
                 </Label>
 
@@ -293,9 +299,7 @@
                     RowHeaderWidth="0"
                     GridLinesVisibility="None"
                     Margin="20 0 0 0 "
-                    ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}"
-                    featureTouring:TourHelper.ElementID="{x:Static featureTourElements:FeatureTourElementID.AccountViewDataGridHardware}"
-                    featureTouring:TourHelper.Placement="RightCenter">
+                    ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
                     <DataGrid.RowStyle>
                         <Style TargetType="DataGridRow">
                             <Setter Property="Background" Value="#2d2d2d" />

@@ -92,6 +92,9 @@ namespace BitPoolMiner
         private void InitFeatureTourNavigation()
         {
             var navigator = FeatureTour.GetNavigator();
+
+            navigator.OnStepEntering(FeatureTourElementID.AccountViewButtonSaveHardwareSettings).Execute(s => DataContext = AccountViewModel);
+            navigator.OnStepEntering(FeatureTourElementID.AccountViewTextBoxAccountID).Execute(s => DataContext = AccountViewModel);
             navigator.OnStepEntering(FeatureTourElementID.AccountViewTextBoxWorkerName).Execute(s => DataContext = AccountViewModel);
             navigator.OnStepEntering(FeatureTourElementID.WalletViewDataGridWalletAddresses).Execute(s => DataContext = WalletViewModel);
         }
@@ -138,7 +141,7 @@ namespace BitPoolMiner
             Button button = (Button)sender;
             WorkerParameters workerParameters = (WorkerParameters)button.CommandParameter;
 
-            WorkerViewModel.WorkerName = workerParameters .WorkerName;
+            WorkerViewModel.WorkerName = workerParameters.WorkerName;
             WorkerViewModel.CoinType = workerParameters.CoinType;
 
             WorkerViewModel.InitMonitorMining();
