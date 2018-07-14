@@ -31,6 +31,14 @@ namespace BitPoolMiner
 
         private void BitPoolMiner_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
+            // Hotfix to prevent excessive errors
+            // TODO - fix this shit
+            if (e.Exception.Message == "Cannot set Owner property to a Window that has not been shown previously.")
+            {                
+                e.Handled = true;
+                return;
+            }
+
             logger.Error(e.Exception, $"Unhandled exception caught");
             e.Handled = true;
         }

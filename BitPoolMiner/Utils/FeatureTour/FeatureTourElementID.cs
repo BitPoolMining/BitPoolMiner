@@ -9,6 +9,8 @@
         public static readonly string MainViewButtonAccountWorkerSettings = "MainViewButtonAccountWorkerSettings";
 
         // AccountView
+        public static readonly string AccountViewTextBoxAccountID = "AccountViewTextBoxAccountID";
+        public static readonly string AccountViewButtonSaveAccountID = "AccountViewButtonSaveAccountID";
         public static readonly string AccountViewTextBoxWorkerName = "AccountViewTextBoxWorkerName";
         public static readonly string AccountViewCheckBoxAutoStartMining = "AccountViewCheckBoxAutoStartMining";
         public static readonly string AccountViewComboBoxRegion = "AccountViewComboBoxRegion";
