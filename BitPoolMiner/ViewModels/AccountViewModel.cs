@@ -84,6 +84,7 @@ namespace BitPoolMiner.ViewModels
             }
         }
 
+        // List of GPU hardware settings
         private ObservableCollection<GPUSettings> gpuSettingsList;
         public ObservableCollection<GPUSettings> GPUSettingsList
         {
@@ -101,6 +102,9 @@ namespace BitPoolMiner.ViewModels
                 Application.Current.Properties["GPUSettingsList"] = GPUSettingsList;
             }
         }
+
+        // WalletViewModel reference
+        public WalletViewModel WalletViewModel { get; set; }
 
         #endregion
 
@@ -333,6 +337,9 @@ namespace BitPoolMiner.ViewModels
 
                 // Insert new worker for account
                 InsertAccountWorkers();
+
+                // Reload Wallet Addresses
+                WalletViewModel.CommandInitAccountWallet.Execute(null);
 
                 // Notify success
                 ShowSuccess("Updated existing Account ID");

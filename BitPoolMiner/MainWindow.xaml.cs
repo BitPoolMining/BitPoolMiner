@@ -71,6 +71,10 @@ namespace BitPoolMiner
                 // rerendering of charts from the main window view timer event
                 MainWindowViewModel.profitabilityViewModel = ProfitabilityViewModel;
 
+                // Pass a reference of the Wallet View Model to the Account View model.  
+                // This will allow the account view model to refresh the wallet if needed when linking account id's.
+                AccountViewModel.WalletViewModel = WalletViewModel;
+
                 // Check to see if should start mining on applications tart.
                 CheckAutoStartMining();
 

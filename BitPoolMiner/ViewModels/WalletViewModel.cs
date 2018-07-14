@@ -8,7 +8,7 @@ using ToastNotifications.Messages;
 
 namespace BitPoolMiner.ViewModels
 {
-    class WalletViewModel : ViewModelBase
+    public class WalletViewModel : ViewModelBase
     {
         /// <summary>
         /// Constrtuctor
@@ -20,9 +20,10 @@ namespace BitPoolMiner.ViewModels
 
             // Wire up commands for Account Wallets
             CommandSaveAccountWallet = new RelayCommand(PersistAccountWallet);
+            CommandInitAccountWallet = new RelayCommand(InitAccountWallet);
 
             // Load initial wallet data
-            InitAccountWallet();
+            InitAccountWallet(null);
         }
 
         #region Wallet Settings
@@ -47,11 +48,12 @@ namespace BitPoolMiner.ViewModels
 
         // Relay commands used for command binding to the view
         public RelayCommand CommandSaveAccountWallet { get; set; }
+        public RelayCommand CommandInitAccountWallet { get; set; }
 
         /// <summary>
         /// Load list of wallet addresses account
         /// </summary>
-        private void InitAccountWallet()
+        private void InitAccountWallet(object param)
         {
             try
             {
