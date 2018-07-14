@@ -33,7 +33,7 @@ namespace BitPoolMiner
         {
             // Hotfix to prevent excessive errors
             // TODO - fix this shit
-            if (e.Exception.Message == "Cannot set Owner property to a Window that has not been shown previously.")
+            if (e.Exception.Message.ToLower() == "Cannot set Owner property to a Window that has not been shown previously.".ToLower())
             {                
                 e.Handled = true;
                 return;
