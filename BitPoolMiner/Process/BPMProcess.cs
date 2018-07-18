@@ -22,7 +22,7 @@ namespace BitPoolMiner.Process
             {
                 MinerProcess = new System.Diagnostics.Process();
                 MinerProcess.StartInfo.WorkingDirectory = workingDirectory;
-                MinerProcess.StartInfo.FileName = Path.Combine(workingDirectory,filename);
+                MinerProcess.StartInfo.FileName = Path.Combine(workingDirectory, filename);
                 MinerProcess.StartInfo.CreateNoWindow = false;
                 MinerProcess.StartInfo.Arguments = arguments;
                 MinerProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
@@ -63,14 +63,21 @@ namespace BitPoolMiner.Process
             {
                 throw new ApplicationException(string.Format("The miner process started but died instantly. Check the arguments: {0}", MinerProcess.StartInfo.Arguments));
             }
-            
+
             return started;
         }
 
         public void KillProcess()
         {
-            if (!MinerProcess.HasExited)
+            // Try to force kill it anyway
+            try
+            {
                 MinerProcess.Kill();
+            }
+            catch
+            {
+                // if it failed to kill the process ignore it for now.
+            }
         }
 
         ~BPMProcess()
