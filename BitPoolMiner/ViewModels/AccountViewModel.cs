@@ -1,11 +1,11 @@
-﻿using BitPoolMiner.Models;
+﻿using BitPoolMiner.Enums;
+using BitPoolMiner.Models;
 using BitPoolMiner.Persistence.API;
 using BitPoolMiner.Persistence.FileSystem;
 using BitPoolMiner.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
 using System.Windows;
 
@@ -38,7 +38,7 @@ namespace BitPoolMiner.ViewModels
                 Application.Current.Properties["AccountID"] = AccountIdentity.AccountGuid;
             }
         }
-               
+
         // Account workers property to bind to UI
         private ObservableCollection<AccountWorkers> accountWorkersList;
         public ObservableCollection<AccountWorkers> AccountWorkersList
@@ -105,6 +105,7 @@ namespace BitPoolMiner.ViewModels
 
         // WalletViewModel reference
         public WalletViewModel WalletViewModel { get; set; }
+
 
         #endregion
 
@@ -264,6 +265,7 @@ namespace BitPoolMiner.ViewModels
             // Set global variable for Worker Name
             Application.Current.Properties["GPUSettingsList"] = GPUSettingsList;
         }
+               
 
         #endregion
 

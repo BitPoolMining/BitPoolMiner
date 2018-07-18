@@ -1,5 +1,6 @@
 ﻿using BitPoolMiner.Enums;
 using System;
+using System.Collections.Generic;
 
 namespace BitPoolMiner.Models
 {
@@ -52,5 +53,66 @@ namespace BitPoolMiner.Models
         /// GPU Fanspeed
         /// </summary>
         public Int16 Fanspeed { get; set; }
+
+        /// <summary>
+        /// Limit Coin's to be mined based on hardware type
+        /// </summary>
+        public List<CoinType> CoinTypeList
+        {
+            get
+            {
+                List<CoinType> coinTypeList = new List<CoinType>();
+
+                if (HardwareType == HardwareType.AMD)
+                {
+                    coinTypeList.Add(CoinType.EXP);
+                }
+                else if (HardwareType == HardwareType.Nvidia)
+                {
+                    coinTypeList.Add(CoinType.HUSH);
+                    coinTypeList.Add(CoinType.KMD);
+                    coinTypeList.Add(CoinType.MONA);
+                    coinTypeList.Add(CoinType.VTC);
+                }
+
+                return coinTypeList;
+            }
+        }
+
+        /// <summary>
+        /// Limit Miner Base Type based on selected coin
+        /// </summary>
+        public List<MinerBaseType> MinerBaseTypeList
+        {
+            get
+            {
+                List<MinerBaseType> minerBaseTypeList = new List<MinerBaseType>();
+
+                switch (CoinSelectedForMining)
+                {
+                    case CoinType.EXP:
+                        minerBaseTypeList.Add(MinerBaseType.Claymore);
+                        break;
+                    case CoinType.HUSH:
+                        minerBaseTypeList.Add(MinerBaseType.DSTM);
+                        minerBaseTypeList.Add(MinerBaseType.EWBF);
+                        break;
+                    case CoinType.KMD:
+                        minerBaseTypeList.Add(MinerBaseType.DSTM);
+                        minerBaseTypeList.Add(MinerBaseType.EWBF);
+                        break;
+                    case CoinType.MONA:
+                        minerBaseTypeList.Add(MinerBaseType.CCMiner);
+                        minerBaseTypeList.Add(MinerBaseType.CCMinerNanashi);
+                        break;
+                    case CoinType.VTC:
+                        minerBaseTypeList.Add(MinerBaseType.CCMiner);
+                        minerBaseTypeList.Add(MinerBaseType.CCMinerNanashi);
+                        break;
+                }
+
+                return minerBaseTypeList;
+            }
+        }
     }
 }

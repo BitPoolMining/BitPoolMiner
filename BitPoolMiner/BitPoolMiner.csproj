@@ -168,6 +168,7 @@
     <Compile Include="Models\AccountWallet.cs" />
     <Compile Include="Models\AccountWorkers.cs" />
     <Compile Include="Models\CoinMarketCap\CoinMarketCapResponse.cs" />
+    <Compile Include="Models\CoinMiners.cs" />
     <Compile Include="Models\CryptoCompare\HistoDayResponse.cs" />
     <Compile Include="Models\GPUMonitorStat.cs" />
     <Compile Include="Models\GPUSettings.cs" />

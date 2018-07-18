@@ -318,7 +318,7 @@
                         <DataGridTemplateColumn Header="Coin" CellStyle="{StaticResource DataGridCellStyle}">                            <DataGridTemplateColumn.CellTemplate>                                <DataTemplate>                                    <ComboBox                                 FontSize= "14"
                                 FontWeight= "Bold"                                Foreground= "#000000"                                Height="25"
                                 SelectedItem="{Binding Path=CoinSelectedForMining, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                ItemsSource="{Binding Source={StaticResource EnumDataProvider}}">                                        <ComboBox.ItemContainerStyle>
+                                ItemsSource="{Binding Path=CoinTypeList}">                                        <ComboBox.ItemContainerStyle>
                                             <Style TargetType="ComboBoxItem">
                                                 <Setter Property="Background" Value="#646464"/>
                                                 <Setter Property="Foreground" Value="#000000"/>
@@ -336,7 +336,7 @@
                         <DataGridTemplateColumn Header="Miner" CellStyle="{StaticResource DataGridCellStyle}">                            <DataGridTemplateColumn.CellTemplate>                                <DataTemplate>                                    <ComboBox                                             FontSize= "14"
                                             FontWeight= "Bold"                                            Foreground= "#000000"                                            Height="25"
                                             SelectedItem="{Binding Path=MinerBaseType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            ItemsSource="{Binding Source={StaticResource EnumDataProviderMinerBaseType}}">                                        <ComboBox.ItemContainerStyle>
+                                            ItemsSource="{Binding Path=MinerBaseTypeList}">                                        <ComboBox.ItemContainerStyle>
                                             <Style TargetType="ComboBoxItem">
                                                 <Setter Property="Background" Value="#646464"/>
                                                 <Setter Property="Foreground" Value="#000000"/>

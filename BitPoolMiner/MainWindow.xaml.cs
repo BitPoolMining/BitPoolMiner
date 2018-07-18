@@ -232,7 +232,7 @@ namespace BitPoolMiner
             {
                 _inStateChange = true;
                 WindowState = WindowState.Normal;
-                ResizeMode = ResizeMode.CanResize;
+                ResizeMode = ResizeMode.CanMinimize;
                 Height = SystemParameters.PrimaryScreenHeight - 100;
                 Width = SystemParameters.PrimaryScreenWidth - 100;
                 _inStateChange = false;
