@@ -11,6 +11,5 @@ namespace BitPoolMiner.Views
         {
             InitializeComponent();
         }
-
     }
 }

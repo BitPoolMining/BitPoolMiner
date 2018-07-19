@@ -118,6 +118,7 @@ namespace BitPoolMiner.ViewModels
         public RelayCommand CommandSaveWorkerSettings { get; set; }
         public RelayCommand CommandScanHardware { get; set; }
         public RelayCommand CommandSaveAccountWorkerHardware { get; set; }
+        public RelayCommand CommandUpdateCoinType { get; set; }
 
         #endregion
 
@@ -143,6 +144,7 @@ namespace BitPoolMiner.ViewModels
             CommandSaveWorkerSettings = new RelayCommand(PersistWorkerSettings);
             CommandScanHardware = new RelayCommand(ScanHardware);
             CommandSaveAccountWorkerHardware = new RelayCommand(PersistWorkerHardware);
+            CommandUpdateCoinType = new RelayCommand(UpdateCoinType);
 
             // Load previous GUID or get a new GUID
             InitAccountID();
@@ -542,6 +544,15 @@ namespace BitPoolMiner.ViewModels
 
             // Notify success
             ShowSuccess(string.Format("Hardware scanned successfully"));
+        }
+
+        /// <summary>
+        /// Update coin type for a specific GPU
+        /// </summary>
+        /// <param name="param"></param>
+        private void UpdateCoinType(object param)
+        {
+            OnPropertyChanged("GPUSettingsList");
         }
 
         /// <summary>
