@@ -38,7 +38,7 @@ namespace BitPoolMiner.Enums
             { CoinType.ETC, @"Resources\\Images\\exp.png" },
             { CoinType.BTG, @"Resources\\Images\\btg.png" },
             { CoinType.BTCP, @"Resources\\Images\\btcp.png" },
-            { CoinType.ZEN, @"Resources\\Images\\zen.png" },
+            { CoinType.ZEN, @"Resources\\Images\\zencash.png" },
             { CoinType.ZCL, @"Resources\\Images\\zcl.png" },
         };
     }
