@@ -1,11 +1,11 @@
-﻿using BitPoolMiner.Models;
+﻿using BitPoolMiner.Enums;
+using BitPoolMiner.Models;
 using BitPoolMiner.Persistence.API;
 using BitPoolMiner.Persistence.FileSystem;
 using BitPoolMiner.ViewModels.Base;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
 using System.Windows;
 
@@ -38,7 +38,7 @@ namespace BitPoolMiner.ViewModels
                 Application.Current.Properties["AccountID"] = AccountIdentity.AccountGuid;
             }
         }
-               
+
         // Account workers property to bind to UI
         private ObservableCollection<AccountWorkers> accountWorkersList;
         public ObservableCollection<AccountWorkers> AccountWorkersList
@@ -106,6 +106,7 @@ namespace BitPoolMiner.ViewModels
         // WalletViewModel reference
         public WalletViewModel WalletViewModel { get; set; }
 
+
         #endregion
 
         #region Commands
@@ -117,6 +118,7 @@ namespace BitPoolMiner.ViewModels
         public RelayCommand CommandSaveWorkerSettings { get; set; }
         public RelayCommand CommandScanHardware { get; set; }
         public RelayCommand CommandSaveAccountWorkerHardware { get; set; }
+        public RelayCommand CommandUpdateCoinType { get; set; }
 
         #endregion
 
@@ -142,6 +144,7 @@ namespace BitPoolMiner.ViewModels
             CommandSaveWorkerSettings = new RelayCommand(PersistWorkerSettings);
             CommandScanHardware = new RelayCommand(ScanHardware);
             CommandSaveAccountWorkerHardware = new RelayCommand(PersistWorkerHardware);
+            CommandUpdateCoinType = new RelayCommand(UpdateCoinType);
 
             // Load previous GUID or get a new GUID
             InitAccountID();
@@ -264,6 +267,7 @@ namespace BitPoolMiner.ViewModels
             // Set global variable for Worker Name
             Application.Current.Properties["GPUSettingsList"] = GPUSettingsList;
         }
+               
 
         #endregion
 
@@ -540,6 +544,15 @@ namespace BitPoolMiner.ViewModels
 
             // Notify success
             ShowSuccess(string.Format("Hardware scanned successfully"));
+        }
+
+        /// <summary>
+        /// Update coin type for a specific GPU
+        /// </summary>
+        /// <param name="param"></param>
+        private void UpdateCoinType(object param)
+        {
+            OnPropertyChanged("GPUSettingsList");
         }
 
         /// <summary>

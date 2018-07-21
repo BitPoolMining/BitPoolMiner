@@ -8,18 +8,18 @@ namespace BitPoolMiner.Enums
     /// </summary>
     public enum CoinType
     {
-        [Description("test")]
         UNDEFINED,
-        [Description("VTC")]
         VTC,
-        [Description("MONA")]
         MONA,
-        [Description("HUSH")]
         HUSH,
-        [Description("KMD")]
         KMD,
-        [Description("EXP")]
-        EXP
+        EXP,
+        ETH,
+        ETC,
+        BTCP,
+        BTG,
+        ZEN,
+        ZCL
     }
 
     public static class CoinLogos
@@ -34,6 +34,12 @@ namespace BitPoolMiner.Enums
             { CoinType.VTC, @"Resources\\Images\\vtc.png" },
             { CoinType.MONA, @"Resources\\Images\\mona.png" },
             { CoinType.EXP, @"Resources\\Images\\exp.png" },
+            { CoinType.ETH, @"Resources\\Images\\exp.png" },
+            { CoinType.ETC, @"Resources\\Images\\exp.png" },
+            { CoinType.BTG, @"Resources\\Images\\btg.png" },
+            { CoinType.BTCP, @"Resources\\Images\\btcp.png" },
+            { CoinType.ZEN, @"Resources\\Images\\zencash.png" },
+            { CoinType.ZCL, @"Resources\\Images\\zcl.png" },
         };
     }
 
@@ -49,6 +55,12 @@ namespace BitPoolMiner.Enums
             { CoinType.VTC, "VERTCOIN" },
             { CoinType.MONA, "MONACOIN" },
             { CoinType.EXP, "EXPANSE" },
+            { CoinType.ETH, "ETHEREUM" },
+            { CoinType.ETC, "ETHEREUM CLASSIC" },
+            { CoinType.BTG, "BITCOIN GOLD" },
+            { CoinType.BTCP, "BITCOIN PRIVATE" },
+            { CoinType.ZEN, "ZENCASH" },
+            { CoinType.ZCL, "ZCLASSIC" },
         };
      }
 
@@ -64,6 +76,12 @@ namespace BitPoolMiner.Enums
             { CoinType.VTC, 5 },
             { CoinType.MONA, 148 },
             { CoinType.EXP, 154 },
+            { CoinType.ETH, 151 },
+            { CoinType.ETC, 162 },
+            { CoinType.BTG, 214 },
+            { CoinType.BTCP, 230 },
+            { CoinType.ZEN, 185 },
+            { CoinType.ZCL, 167 },
         };
     }
 
@@ -79,6 +97,12 @@ namespace BitPoolMiner.Enums
             { CoinType.VTC, "#86b34d" },
             { CoinType.MONA, "#e66c40" },
             { CoinType.EXP, "#cb3e4b" },
+            { CoinType.ETH, "#08a5e1" },
+            { CoinType.ETC, "#343286" },
+            { CoinType.BTG, "#732c86" },
+            { CoinType.BTCP, "#78fd9a" },
+            { CoinType.ZEN, "#68fee0" },
+            { CoinType.ZCL, "#a072fc" },
         };
     }
 }

@@ -87,6 +87,7 @@ namespace BitPoolMiner.Miners
             // Restart the miner if it crashed or exited and we are still mining.
             if (IsMining)
             {
+                StopProcess();
                 System.Threading.Thread.Sleep(MinerRestartDelay); // a few seconds before restart
                 Start();
             }
