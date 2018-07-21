@@ -34,7 +34,7 @@
     <ProductName>BitPoolMiner</ProductName>
     <PublisherName>BitPoolMining</PublisherName>
     <SuiteName>BitPoolMining</SuiteName>
-    <ApplicationRevision>21</ApplicationRevision>
+    <ApplicationRevision>23</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -295,8 +295,18 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Resource Include="Resources\Images\zcl.png" />
-    <Resource Include="Resources\Images\zencash.png" />
+    <Content Include="Resources\Images\etc.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\eth.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\zcl.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\zencash.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -1442,8 +1452,12 @@
     <Content Include="MinerApps\EWBF\msvcr120.dll" />
     <Content Include="publish\setup.exe" />
     <Resource Include="bitpool.ico" />
-    <Resource Include="Resources\Images\btcp.png" />
-    <Resource Include="Resources\Images\btg.png" />
+    <Content Include="Resources\Images\btcp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\btg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\exp.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
