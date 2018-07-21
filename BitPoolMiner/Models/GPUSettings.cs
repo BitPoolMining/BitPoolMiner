@@ -98,6 +98,8 @@ namespace BitPoolMiner.Models
             if (HardwareType == HardwareType.AMD)
             {
                 coinTypeList.Add(CoinType.EXP);
+                coinTypeList.Add(CoinType.ETH);
+                coinTypeList.Add(CoinType.ETC);
             }
             else if (HardwareType == HardwareType.Nvidia)
             {
@@ -105,6 +107,10 @@ namespace BitPoolMiner.Models
                 coinTypeList.Add(CoinType.KMD);
                 coinTypeList.Add(CoinType.MONA);
                 coinTypeList.Add(CoinType.VTC);
+                coinTypeList.Add(CoinType.ZCL);
+                coinTypeList.Add(CoinType.ZEN);
+                coinTypeList.Add(CoinType.BTG);
+                coinTypeList.Add(CoinType.BTCP);
             }
 
             return coinTypeList;
@@ -134,11 +140,33 @@ namespace BitPoolMiner.Models
                 case CoinType.EXP:
                     minerBaseTypeList.Add(MinerBaseType.Claymore);
                     break;
+                case CoinType.ETH:
+                    minerBaseTypeList.Add(MinerBaseType.Claymore);
+                    break;
+                case CoinType.ETC:
+                    minerBaseTypeList.Add(MinerBaseType.Claymore);
+                    break;
                 case CoinType.HUSH:
                     minerBaseTypeList.Add(MinerBaseType.DSTM);
                     minerBaseTypeList.Add(MinerBaseType.EWBF);
                     break;
                 case CoinType.KMD:
+                    minerBaseTypeList.Add(MinerBaseType.DSTM);
+                    minerBaseTypeList.Add(MinerBaseType.EWBF);
+                    break;
+                case CoinType.BTG:
+                    minerBaseTypeList.Add(MinerBaseType.DSTM);
+                    minerBaseTypeList.Add(MinerBaseType.EWBF);
+                    break;
+                case CoinType.BTCP:
+                    minerBaseTypeList.Add(MinerBaseType.DSTM);
+                    minerBaseTypeList.Add(MinerBaseType.EWBF);
+                    break;
+                case CoinType.ZEN:
+                    minerBaseTypeList.Add(MinerBaseType.DSTM);
+                    minerBaseTypeList.Add(MinerBaseType.EWBF);
+                    break;
+                case CoinType.ZCL:
                     minerBaseTypeList.Add(MinerBaseType.DSTM);
                     minerBaseTypeList.Add(MinerBaseType.EWBF);
                     break;

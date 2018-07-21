@@ -295,6 +295,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Resource Include="Resources\Images\zcl.png" />
+    <Resource Include="Resources\Images\zencash.png" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -1352,6 +1354,8 @@
     <Content Include="MinerApps\EWBF\msvcr120.dll" />
     <Content Include="publish\setup.exe" />
     <Resource Include="bitpool.ico" />
+    <Resource Include="Resources\Images\btcp.png" />
+    <Resource Include="Resources\Images\btg.png" />
     <Content Include="Resources\Images\exp.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
