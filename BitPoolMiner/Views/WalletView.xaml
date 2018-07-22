@@ -50,9 +50,9 @@
             <Setter Property = "FontSize" Value = "12" />
             <Setter Property = "FontWeight" Value = "Bold" />
             <Setter Property = "BorderBrush" Value = "#444444" />
-            <Setter Property = "Margin" Value = "5" />
+            <Setter Property = "Margin" Value = "5 0 5 0" />
             <Setter Property = "Padding" Value = "5" />
-            <Setter Property = "VerticalContentAlignment" Value = "Center" />
+            <Setter Property = "VerticalContentAlignment" Value = "Top" />
         </Style>
 
         <!-- Style - Button -->
@@ -220,7 +220,7 @@
                         <DataGridTextColumn Binding="{Binding CoinName}" Header="Coin Name" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
                         <DataGridTextColumn Binding="{Binding CoinSymbol}" Header="Symbol" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
                         <DataGridTextColumn Binding="{Binding AlgorithmType}" Header="AlgorithmType" IsReadOnly="True" CellStyle="{StaticResource DataGridCellStyle}"/>
-                        <DataGridTemplateColumn IsReadOnly="True" Header="Enabled For Mining" CellStyle="{StaticResource DataGridCellStyle}">                            <DataGridTemplateColumn.CellTemplate>                                <DataTemplate>                                    <CheckBox                                         IsEnabled="False"                                        Background= "#646464"
+                        <DataGridTemplateColumn IsReadOnly="True" Header="Enabled" CellStyle="{StaticResource DataGridCellStyle}">                            <DataGridTemplateColumn.CellTemplate>                                <DataTemplate>                                    <CheckBox                                         IsEnabled="False"                                        Background= "#646464"
                                         Foreground= "#FFFFFF"                                        IsChecked="{Binding Enabled, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >                                        <CheckBox.LayoutTransform>
                                             <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
                                         </CheckBox.LayoutTransform>                                    </CheckBox>                                </DataTemplate>                            </DataGridTemplateColumn.CellTemplate>                        </DataGridTemplateColumn>
