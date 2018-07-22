@@ -336,7 +336,7 @@
 
                         <DataGridTemplateColumn Header="Miner" CellStyle="{StaticResource DataGridCellStyle}">                            <DataGridTemplateColumn.CellTemplate>                                <DataTemplate>                                    <ComboBox                                             FontSize= "14"
                                             FontWeight= "Bold"                                            Foreground= "#000000"                                            Height="25"                                       
-                                            SelectedItem="{Binding Path=MinerBaseType}"
+                                            SelectedItem="{Binding Path=MinerBaseType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             ItemsSource="{Binding Path=MinerBaseTypeList}">                                                                                <ComboBox.ItemContainerStyle>
                                             <Style TargetType="ComboBoxItem">
                                                 <Setter Property="Background" Value="#646464"/>
