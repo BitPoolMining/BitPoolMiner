@@ -7,6 +7,7 @@
         EWBF,
         DSTM,
         Claymore,
-        CCMinerNanashi
+        CCMinerNanashi,
+        LyclMiner
     }
 }
