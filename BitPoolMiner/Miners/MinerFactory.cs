@@ -4,9 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BitPoolMiner.Utils;
 
 namespace BitPoolMiner.Miners
 {
+    /// <summary>
+    /// This is the miner factor to construct each miner for each mining session instance
+    /// </summary>
     public class MinerFactory
     {
         public static Miner CreateMiner(MinerBaseType minerBaseType, HardwareType hardwareType, bool is64Bit = true)
