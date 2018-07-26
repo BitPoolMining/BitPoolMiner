@@ -9,9 +9,13 @@ using System.Windows;
 using System.IO;
 using BitPoolMiner.Enums;
 using System.Globalization;
+using BitPoolMiner.Utils;
 
 namespace BitPoolMiner.Miners
 {
+    /// <summary>
+    /// This class is for Claymore miner derived class.
+    /// </summary>
     public class Claymore : Miner
     {
         public Claymore(HardwareType hardwareType, MinerBaseType minerBaseType) : base("Claymore", hardwareType, minerBaseType)
@@ -47,21 +51,28 @@ namespace BitPoolMiner.Miners
         /// </summary>
         public override async void ReportStatsAsyc()
         {
-            // Call RPC and get response
-            ClaymoreTemplate claymoreTemplate = await GetRPCResponse();
+            try
+            {
+                // Call RPC and get response
+                ClaymoreTemplate claymoreTemplate = await GetRPCResponse();
 
-            if (claymoreTemplate == null)
-                return;
+                if (claymoreTemplate == null)
+                    return;
 
-            // Map response to BPM Statistics object
-            MinerMonitorStat minerMonitorStat = new MinerMonitorStat();
-            minerMonitorStat = MapRPCResponse(claymoreTemplate);
+                // Map response to BPM Statistics object
+                MinerMonitorStat minerMonitorStat = new MinerMonitorStat();
+                minerMonitorStat = MapRPCResponse(claymoreTemplate);
 
-            if (minerMonitorStat == null)
-                return;
+                if (minerMonitorStat == null)
+                    return;
 
-            System.Threading.Thread.Sleep(2000);
-            PostMinerMonitorStat(minerMonitorStat);
+                System.Threading.Thread.Sleep(2000);
+                PostMinerMonitorStat(minerMonitorStat);
+            }
+            catch (Exception e)
+            {
+                NLogProcessing.LogError(e, "Error reporting stats for Claymore");
+            }
         }
 
 
@@ -104,17 +115,15 @@ namespace BitPoolMiner.Miners
                 }
                 else
                 {
-                    // TODO - Do something useful here, or ignore?
-                    Console.WriteLine("Claymore socket failed");
+                    NLogProcessing.LogInfo($"Could not connect to claymore miner socket on port {ApiPort}");
 
                     // Return null object;
                     return null;
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                // TODO - Do something useful here
-                Console.WriteLine("Claymore Exception: " + ex.Message);
+                NLogProcessing.LogError(e, $"Error reading RPC call from claymore miner on port {ApiPort}");
 
                 // Return null object;
                 return null;
@@ -144,7 +153,7 @@ namespace BitPoolMiner.Miners
                     List<GPUMonitorStat> gpuMonitorStatList = new List<GPUMonitorStat>();
                     string[] hashRates = claymoreTemplate.result[3].Split(';');
                     string[] tempFans = claymoreTemplate.result[6].Split(';');
-                    for (int i= 0; i < hashRates.GetLength(0); i++)
+                    for (int i = 0; i < hashRates.GetLength(0); i++)
                     {
                         // Create new GPU monitor stats object and map values
                         GPUMonitorStat gpuMonitorStat = new GPUMonitorStat
@@ -154,7 +163,7 @@ namespace BitPoolMiner.Miners
                             CoinType = this.CoinType,
                             GPUID = i,
                             // Returned hashrate is in MH. Format later, return in KH/s same as CCMiner for now
-                            HashRate = Convert.ToDecimal(hashRates[i])*1024,
+                            HashRate = Convert.ToDecimal(hashRates[i]) * 1024,
                             FanSpeed = 0, // Let OpenHardwareMonitor get the fanspeed
                             Temp = Convert.ToInt16(tempFans[i * 2]),
                             Power = 0,
@@ -175,9 +184,9 @@ namespace BitPoolMiner.Miners
 
                 return minerMonitorStat;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                // Todo - Add error handling and do something useful here
+                NLogProcessing.LogError(e, "Error mapping RPC Response for claymore miner");
                 return null;
             }
         }

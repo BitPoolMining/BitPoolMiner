@@ -3,6 +3,7 @@ using BitPoolMiner.Persistence.FileSystem.Base;
 using Newtonsoft.Json;
 using System;
 using System.IO;
+using BitPoolMiner.Utils;
 
 namespace BitPoolMiner.Persistence.FileSystem
 {
@@ -55,17 +56,11 @@ namespace BitPoolMiner.Persistence.FileSystem
                         accountIdentity = (AccountIdentity)serializer.Deserialize(file, typeof(AccountIdentity));
                     }
                 }
-                //else
-                //{
-                //    //if (!Directory.Exists(FileConstants.ConfigFilePath))
-                //    //    Directory.CreateDirectory(FileConstants.ConfigFilePath);
-                //}
                 return accountIdentity;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                // TODO handle case where file does not exist
-                //throw new ApplicationException(string.Format("Error writing file {0}", filePath));
+                NLogProcessing.LogError(e, "Could not load Account Identity file.");
                 return accountIdentity;
             }
         }
