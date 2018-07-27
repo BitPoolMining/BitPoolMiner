@@ -56,7 +56,7 @@ namespace BitPoolMiner.Models.WhatToMine
                 // Set the decimal seperator
                 format.NumberDecimalSeparator = ".";
 
-                return Math.Round(Double.Parse(btc_revenue, format), 6).ToString();
+                return Math.Round(Double.Parse(btc_revenue, format), 6).ToString("N6");
             }
             set
             {
