@@ -64,7 +64,7 @@ namespace BitPoolMiner.Miners
             var process = new BPMProcess();
 
             IsMining = true;
-            process.Start(MinerWorkingDirectory, MinerArguments, MinerFileName, Hardware == HardwareType.AMD);
+            process.Start(MinerWorkingDirectory, MinerArguments, MinerFileName, Hardware == HardwareType.AMD, MinerBaseType);
             process.MinerProcess.Exited += MinerExited;
             return process;
         }
@@ -83,7 +83,7 @@ namespace BitPoolMiner.Miners
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void MinerExited(object sender, EventArgs e)
+        public void MinerExited(object sender, EventArgs e)
         {
             // Restart the miner if it crashed or exited and we are still mining.
             if (IsMining)

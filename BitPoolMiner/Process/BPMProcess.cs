@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.IO;
+using BitPoolMiner.Enums;
 
 namespace BitPoolMiner.Process
 {
@@ -16,7 +17,7 @@ namespace BitPoolMiner.Process
     {
         public System.Diagnostics.Process MinerProcess { get; private set; }
 
-        public bool Start(string workingDirectory, string arguments, string filename, bool forAMD)
+        public bool Start(string workingDirectory, string arguments, string filename, bool forAMD, MinerBaseType minerBaseType)
         {
             try
             {

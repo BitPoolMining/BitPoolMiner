@@ -26,6 +26,9 @@ namespace BitPoolMiner.Miners
                 case MinerBaseType.EWBF:
                     return new EWBF(hardwareType, minerBaseType);
 
+                case MinerBaseType.EWBF_NO_ASIC:
+                    return new EWBF_NO_ASIC(hardwareType, minerBaseType);
+
                 case MinerBaseType.DSTM:
                     return new DSTM(hardwareType, minerBaseType);
 

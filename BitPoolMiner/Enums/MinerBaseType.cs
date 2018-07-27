@@ -8,6 +8,7 @@
         DSTM,
         Claymore,
         CCMinerNanashi,
-        LyclMiner
+        LyclMiner,
+        EWBF_NO_ASIC
     }
 }
