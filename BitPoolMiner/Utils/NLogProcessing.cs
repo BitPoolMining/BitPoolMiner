@@ -24,12 +24,6 @@ namespace BitPoolMiner.Utils
                 var logFilePath = FileConstants.LogFilePath();
                 var logFile = Path.Combine(logFilePath, FileConstants.LogFileName);
 
-                //if (!File.Exists(logFile))
-                //{
-                //    if (!Directory.Exists(FileConstants.LogFilePath))
-                //        Directory.CreateDirectory(FileConstants.LogFilePath);
-                //}
-
                 NLog.Config.LoggingConfiguration config = new NLog.Config.LoggingConfiguration();
                 NLog.Targets.FileTarget logfile = new NLog.Targets.FileTarget()
                 {
@@ -62,6 +56,32 @@ namespace BitPoolMiner.Utils
             logger.Info("Application Shutting Down due to main window close");
 
             NLog.LogManager.Shutdown();
+        }
+
+        public static void LogInfo(string message)
+        {
+            try
+            {
+                var logger = NLog.LogManager.GetCurrentClassLogger();
+                logger.Info(message);
+            }
+            catch
+            {
+                // If cannot log then don't blow up
+            }
+        }
+
+        public static void LogError(Exception e, string message)
+        {
+            try
+            {
+                var logger = NLog.LogManager.GetCurrentClassLogger();
+                logger.Error(e, message);
+            }
+            catch
+            {
+                // If cannot log then don't blow up
+            }
         }
 
     }

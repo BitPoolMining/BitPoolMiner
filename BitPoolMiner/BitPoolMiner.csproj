@@ -161,6 +161,8 @@
     <Compile Include="Miners\Claymore.cs" />
     <Compile Include="Miners\DSTM.cs" />
     <Compile Include="Miners\EWBF.cs" />
+    <Compile Include="Miners\EWBF_NO_ASIC.cs" />
+    <Compile Include="Miners\LyclMiner.cs" />
     <Compile Include="Miners\Miner.cs" />
     <Compile Include="Miners\MinerFactory.cs" />
     <Compile Include="Models\AccountIdentity.cs" />
@@ -295,6 +297,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Content Include="MinerApps\EWBF_NO_ASIC\cudart32_91.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\EWBF_NO_ASIC\cudart64_91.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\EWBF_NO_ASIC\miner.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\etc.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -481,9 +492,34 @@
     <Content Include="MinerApps\DSTM\zm.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="MinerApps\EWBF_NO_ASIC\miner.cfg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="MinerApps\lyclMiner015\libcurl.dll" />
+    <None Include="MinerApps\lyclMiner015\libgcc_s_seh-1.dll" />
+    <None Include="MinerApps\lyclMiner015\libstdc++-6.dll" />
+    <None Include="MinerApps\lyclMiner015\libwinpthread-1.dll" />
+    <None Include="MinerApps\lyclMiner015\lyclMiner.exe" />
+    <None Include="MinerApps\lyclMiner015\readme.txt" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="MinerApps\lyclMiner015\kernels\blake32\blake32.cl" />
+    <None Include="MinerApps\lyclMiner015\kernels\bmw\bmw.cl" />
+    <None Include="MinerApps\lyclMiner015\kernels\bmw\bmw_htarg.cl" />
+    <None Include="MinerApps\lyclMiner015\kernels\cubeHash256\cubeHash256.cl" />
+    <None Include="MinerApps\lyclMiner015\kernels\keccakF1600\keccakF1600.cl" />
+    <None Include="MinerApps\lyclMiner015\kernels\lyra441p1\lyra441p1.cl" />
+    <None Include="MinerApps\lyclMiner015\kernels\lyra441p2\lyra441p2.cl" />
+    <None Include="MinerApps\lyclMiner015\kernels\lyra441p2\lyra441p2_gfx7_amdcl2.bin" />
+    <None Include="MinerApps\lyclMiner015\kernels\lyra441p2\lyra441p2_gfx8_amdcl2.bin" />
+    <None Include="MinerApps\lyclMiner015\kernels\lyra441p2\lyra441p2_gfx8_rocm.bin" />
+    <None Include="MinerApps\lyclMiner015\kernels\lyra441p2\lyra441p2_gfx9_amdcl2.bin" />
+    <None Include="MinerApps\lyclMiner015\kernels\lyra441p2\lyra441p2_gfx9_rocm.bin" />
+    <Content Include="MinerApps\lyclMiner015\kernels\lyra441p3\lyra441p3.cl" />
+    <Content Include="MinerApps\lyclMiner015\kernels\skein\skein.cl" />
+    <None Include="MinerApps\lyclMiner015\lyclMiner.conf" />
+    <None Include="MinerApps\lyclMiner015\lyclMiner_default.conf" />
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>

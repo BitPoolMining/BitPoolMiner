@@ -15,12 +15,12 @@ namespace BitPoolMiner.Miners
     /// <summary>
     /// This class is for EWBF miner derived class.
     /// </summary>
-    public class EWBF : Miner
+    public class EWBF_NO_ASIC : Miner
     {
 
-        public EWBF(HardwareType hardwareType, MinerBaseType minerBaseType) : base("EWBF", hardwareType, minerBaseType)
+        public EWBF_NO_ASIC(HardwareType hardwareType, MinerBaseType minerBaseType) : base("EWBF_NO_ASIC", hardwareType, minerBaseType)
         {
-            MinerWorkingDirectory = Path.Combine(Utils.Core.GetBaseMinersDir(), "EWBF");
+            MinerWorkingDirectory = Path.Combine(Utils.Core.GetBaseMinersDir(), "EWBF_NO_ASIC");
             MinerFileName = "miner.exe";
 
             ApiPort = 42000;
@@ -117,7 +117,7 @@ namespace BitPoolMiner.Miners
             }
             catch (Exception e)
             {
-                NLogProcessing.LogError(e, $"Error reading RPC call from EWBF miner on port {ApiPort}");
+                NLogProcessing.LogError(e, $"Error reading RPC call from DSTM miner on port {ApiPort}");
 
                 // Return null object;
                 return null;
