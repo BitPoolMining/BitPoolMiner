@@ -15,7 +15,7 @@ namespace BitPoolMiner
             SetupLogging();
 
             // Force app to only user software rendering
-            System.Windows.Media.RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;
+            //System.Windows.Media.RenderOptions.ProcessRenderMode = System.Windows.Interop.RenderMode.SoftwareOnly;
 
             base.OnStartup(e);
         }

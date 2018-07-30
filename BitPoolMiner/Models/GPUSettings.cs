@@ -155,7 +155,7 @@ namespace BitPoolMiner.Models
                     minerBaseTypeList.Add(MinerBaseType.EWBF);
                     break;
                 case CoinType.BTG:
-                    minerBaseTypeList.Add(MinerBaseType.EWBF);
+                    minerBaseTypeList.Add(MinerBaseType.EWBF_NO_ASIC);
                     break;
                 case CoinType.BTCP:
                     minerBaseTypeList.Add(MinerBaseType.DSTM);

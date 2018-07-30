@@ -3,6 +3,7 @@ using BitPoolMiner.Persistence.FileSystem.Base;
 using Newtonsoft.Json;
 using System;
 using System.IO;
+using BitPoolMiner.Utils;
 
 namespace BitPoolMiner.Persistence.FileSystem
 {
@@ -56,16 +57,15 @@ namespace BitPoolMiner.Persistence.FileSystem
                 }
                 else
                 {
-                    //if (!Directory.Exists(FileConstants.ConfigFilePath))
-                    //    Directory.CreateDirectory(FileConstants.ConfigFilePath);
-
-                    InitEmptyWorkerSettings(workerSettings);
+                    workerSettings = InitEmptyWorkerSettings(workerSettings);
                 }
                 return workerSettings;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                InitEmptyWorkerSettings(workerSettings);
+                workerSettings = InitEmptyWorkerSettings(workerSettings);
+
+                NLogProcessing.LogError(e, "Worker settings could not be loaded. Using default values.");
 
                 // Return defaults
                 return workerSettings;

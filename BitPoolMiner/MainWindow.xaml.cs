@@ -61,7 +61,7 @@ namespace BitPoolMiner
                 MainWindowViewModel.InitPayments();
 
                 //Force window size to prevent crashing
-                ResizeWindow();
+                //ResizeWindow();
 
                 // Initialize Profitability ViewModel after main window data loaded
                 if (ProfitabilityViewModel == null)
@@ -221,40 +221,40 @@ namespace BitPoolMiner
 
         #region Window Resizing
 
-        private bool _inStateChange;
+        //private bool _inStateChange;
 
-        /// <summary>
-        /// Force window size to prevent crashing
-        /// </summary>
-        private void ResizeWindow()
-        {
-            if (WindowState != WindowState.Minimized && !_inStateChange)
-            {
-                _inStateChange = true;
-                WindowState = WindowState.Normal;
-                ResizeMode = ResizeMode.CanMinimize;
-                Height = SystemParameters.PrimaryScreenHeight - 100;
-                Width = SystemParameters.PrimaryScreenWidth - 100;
-                _inStateChange = false;
-            }
-        }
+        ///// <summary>
+        ///// Force window size to prevent crashing
+        ///// </summary>
+        //private void ResizeWindow()
+        //{
+        //    if (WindowState != WindowState.Minimized && !_inStateChange)
+        //    {
+        //        _inStateChange = true;
+        //        WindowState = WindowState.Normal;
+        //        ResizeMode = ResizeMode.CanMinimize;
+        //        Height = SystemParameters.PrimaryScreenHeight - 100;
+        //        Width = SystemParameters.PrimaryScreenWidth - 100;
+        //        _inStateChange = false;
+        //    }
+        //}
 
-        /// <summary>
-        /// Force the app to be full sized
-        /// </summary>
-        /// <param name="e"></param>
-        protected override void OnStateChanged(EventArgs e)
-        {
-            try
-            {
-                ResizeWindow();
-                base.OnStateChanged(e);
-            }
-            catch
-            {
-                // eat it
-            }
-        }
+        ///// <summary>
+        ///// Force the app to be full sized
+        ///// </summary>
+        ///// <param name="e"></param>
+        //protected override void OnStateChanged(EventArgs e)
+        //{
+        //    try
+        //    {
+        //        ResizeWindow();
+        //        base.OnStateChanged(e);
+        //    }
+        //    catch
+        //    {
+        //        // eat it
+        //    }
+        //}
 
         #endregion
     }

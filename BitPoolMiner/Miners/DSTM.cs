@@ -8,9 +8,13 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.IO;
 using BitPoolMiner.Enums;
+using BitPoolMiner.Utils;
 
 namespace BitPoolMiner.Miners
 {
+    /// <summary>
+    /// This class is for DTSM miner derived class.
+    /// </summary>
     public class DSTM : Miner
     {
         public DSTM(HardwareType hardwareType, MinerBaseType minerBaseType) : base("DSTM", hardwareType, minerBaseType)
@@ -46,21 +50,28 @@ namespace BitPoolMiner.Miners
         /// </summary>
         public override async void ReportStatsAsyc()
         {
-            // Call RPC and get response
-            DSTMTemplate dstmTemplate = await GetRPCResponse();
+            try
+            {
+                // Call RPC and get response
+                DSTMTemplate dstmTemplate = await GetRPCResponse();
 
-            if (dstmTemplate == null)
-                return;
+                if (dstmTemplate == null)
+                    return;
 
-            // Map response to BPM Statistics object
-            MinerMonitorStat minerMonitorStat = new MinerMonitorStat();
-            minerMonitorStat = MapRPCResponse(dstmTemplate);
+                // Map response to BPM Statistics object
+                MinerMonitorStat minerMonitorStat = new MinerMonitorStat();
+                minerMonitorStat = MapRPCResponse(dstmTemplate);
 
-            if (minerMonitorStat == null)
-                return;
+                if (minerMonitorStat == null)
+                    return;
 
-            System.Threading.Thread.Sleep(6000);
-            PostMinerMonitorStat(minerMonitorStat);
+                System.Threading.Thread.Sleep(6000);
+                PostMinerMonitorStat(minerMonitorStat);
+            }
+            catch (Exception e)
+            {
+                NLogProcessing.LogError(e, "Error reporting stats for DSTM");
+            }
         }
 
         /// <summary>
@@ -97,17 +108,15 @@ namespace BitPoolMiner.Miners
                 }
                 else
                 {
-                    // TODO - Do something useful here, or ignore?
-                    Console.WriteLine("DSTM socket failed");
+                    NLogProcessing.LogInfo($"Could not connect to DSTM miner socket on port {ApiPort}");
 
                     // Return null object;
                     return null;
                 }
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                // TODO - Do something useful here
-                Console.WriteLine("DSTM Exception: " + ex.Message);
+                NLogProcessing.LogError(e, $"Error reading RPC call from DSTM miner on port {ApiPort}");
 
                 // Return null object;
                 return null;
@@ -164,9 +173,10 @@ namespace BitPoolMiner.Miners
 
                 return minerMonitorStat;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                // Todo - Add error handling and do something useful here
+                NLogProcessing.LogError(e, "Error mapping RPC Response for DSTM miner");
+
                 return null;
             }
         }

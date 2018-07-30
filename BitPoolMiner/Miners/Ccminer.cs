@@ -9,11 +9,12 @@ using System.Text;
 using System.Globalization;
 using System.Linq;
 using BitPoolMiner.Enums;
+using BitPoolMiner.Utils;
 
 namespace BitPoolMiner.Miners
 {
     /// <summary>
-    /// This class is for ccminer override.
+    /// This class is for ccminer derived class.
     /// </summary>
     public class Ccminer : Miner
     {
@@ -57,15 +58,22 @@ namespace BitPoolMiner.Miners
 
         public async override void ReportStatsAsyc()
         {
-            var minerMonitorStat = await GetRPCResponse();
+            try
+            {
+                var minerMonitorStat = await GetRPCResponse();
 
-            if (minerMonitorStat == null)
-                return;
+                if (minerMonitorStat == null)
+                    return;
 
-            System.Threading.Thread.Sleep(4000);
-            PostMinerMonitorStat(minerMonitorStat);
+                System.Threading.Thread.Sleep(4000);
+                PostMinerMonitorStat(minerMonitorStat);
+            }
+            catch (Exception e)
+            {
+                NLogProcessing.LogError(e, "Error reporting stats for Ccminer");
+            }
         }
-        
+
         private async Task<MinerMonitorStat> GetRPCResponse()
         {
             MinerMonitorStat minerMonitorStat = new MinerMonitorStat();
@@ -126,8 +134,7 @@ namespace BitPoolMiner.Miners
             }
             catch (Exception ex)
             {
-                // TODO - Do something useful here
-                Console.WriteLine("ccminer Exception: " + ex.Message);
+                NLogProcessing.LogError(ex, "Error calling GetRPCResponse from miner.");
 
                 // Return null object;
                 return null;
@@ -264,8 +271,9 @@ namespace BitPoolMiner.Miners
 
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                NLogProcessing.LogError(e, $"Error getting Request from ccminer on port {port}");
                 return null;
             }
 
