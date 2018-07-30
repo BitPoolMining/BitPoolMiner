@@ -14,7 +14,7 @@
         HorizontalAlignment="Left" 
         VerticalAlignment="Top" 
         Background="#FF1a1a1a" 
-        ResizeMode="CanResize"
+        ResizeMode="CanMinimize"
         Closing="MainWindow_Closing"
         BorderBrush="Black"
         WindowStartupLocation="CenterScreen"

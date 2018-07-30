@@ -306,6 +306,9 @@
     <Content Include="MinerApps\EWBF_NO_ASIC\miner.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="MinerApps\EWBF_NO_ASIC\vcruntime140.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\etc.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
