@@ -41,7 +41,8 @@ namespace BitPoolMiner.Persistence.API
                     if (httpResponse.Content != null)
                     {
                         // Read response and remove extra formatting
-                        var responseContent = httpResponse.Content.ReadAsStringAsync().Result.Replace("\\", "").Trim(new char[1] { '"' }); ;
+                        var responseContent = httpResponse.Content.ReadAsStringAsync().Result.Replace("\\", "").Trim(new char[1] { '"' });
+                        logger.Info(responseContent);
                         minerConfigResponseList = JsonConvert.DeserializeObject<List<MinerConfigResponse>>(responseContent);
                     }
                 }

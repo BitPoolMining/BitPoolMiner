@@ -26,6 +26,9 @@ namespace BitPoolMiner.Utils.CoinMarketCap
                 CoinMarketCapResponse coinMarketCapResponse = new CoinMarketCapResponse();
                 coinMarketCapResponse.fiat_currency_iso_symbol = fiatCurrencySymbol;
 
+                // Replace spaces with dashes
+                cryptoCurrencyName = cryptoCurrencyName.Replace(" ", "-");
+
                 // Call CoinMarketCap and get rates for BTC and Fiat currency specified 
                 string apiURL = string.Format(APIConstants.CoinMarketCapAPIURL, cryptoCurrencyName, fiatCurrencySymbol);
                 JArray response = DownloadSerializedJSONData<JArray>(apiURL);
