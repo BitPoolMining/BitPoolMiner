@@ -315,6 +315,7 @@
     <Content Include="Resources\Images\eth.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Images\rvn.png" />
     <Content Include="Resources\Images\zcl.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
