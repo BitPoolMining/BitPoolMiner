@@ -111,6 +111,7 @@ namespace BitPoolMiner.Models
                 coinTypeList.Add(CoinType.ZEN);
                 coinTypeList.Add(CoinType.BTG);
                 coinTypeList.Add(CoinType.BTCP);
+                coinTypeList.Add(CoinType.RVN);
             }
 
             return coinTypeList;
@@ -176,6 +177,9 @@ namespace BitPoolMiner.Models
                 case CoinType.VTC:
                     minerBaseTypeList.Add(MinerBaseType.CCMiner);
                     minerBaseTypeList.Add(MinerBaseType.CCMinerNanashi);
+                    break;
+                case CoinType.RVN:
+                    minerBaseTypeList.Add(MinerBaseType.CCMinerRaven);
                     break;
             }
 

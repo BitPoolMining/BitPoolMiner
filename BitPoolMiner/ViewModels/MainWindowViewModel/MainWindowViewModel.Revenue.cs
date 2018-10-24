@@ -111,7 +111,7 @@ namespace BitPoolMiner.ViewModels
             {
                 nameValueCollection.Add("hr", (minerMonitorStat.HashRate / 1000).ToString(format));
             }
-            else if (minerMonitorStat.CoinType == CoinType.EXP || minerMonitorStat.CoinType == CoinType.ETC || minerMonitorStat.CoinType == CoinType.ETH)
+            else if (minerMonitorStat.CoinType == CoinType.EXP || minerMonitorStat.CoinType == CoinType.ETC || minerMonitorStat.CoinType == CoinType.ETH || minerMonitorStat.CoinType == CoinType.RVN)
             {
                 // Expects MH/s
                 nameValueCollection.Add("hr", (minerMonitorStat.HashRate / 1000000).ToString(format));

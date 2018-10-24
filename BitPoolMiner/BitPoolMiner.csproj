@@ -157,6 +157,7 @@
     <Compile Include="Formatter\WhatToMineDataFormatter.cs" />
     <Compile Include="Formatter\MinerMonitorStatsFormatter.cs" />
     <Compile Include="Miners\Ccminer.cs" />
+    <Compile Include="Miners\CCMinerForkRaven.cs" />
     <Compile Include="Miners\CCMinerForkNanashi.cs" />
     <Compile Include="Miners\Claymore.cs" />
     <Compile Include="Miners\DSTM.cs" />
@@ -297,6 +298,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Content Include="MinerApps\ccminer-ravencoin-v2.6\ccminer.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\ccminer-ravencoin-v2.6\Changelog.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\ccminer-ravencoin-v2.6\color.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="MinerApps\EWBF_NO_ASIC\cudart32_91.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -315,7 +325,9 @@
     <Content Include="Resources\Images\eth.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Resource Include="Resources\Images\rvn.png" />
+    <Content Include="Resources\Images\rvn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\zcl.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -423,6 +435,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="MinerApps\Claymore\start_only_eth.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\ccminer-ravencoin-v2.6\ccminer.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="MinerApps\EWBF\miner.cfg">

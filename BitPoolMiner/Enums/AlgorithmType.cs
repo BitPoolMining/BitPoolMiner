@@ -5,6 +5,7 @@
         UNDEFINED,
         Equihash,
         Lyra2REv2,
-        EthHash
+        EthHash,
+        x16R
     }
 }
