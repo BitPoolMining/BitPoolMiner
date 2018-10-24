@@ -23,6 +23,9 @@ namespace BitPoolMiner.Miners
                 case MinerBaseType.CCMinerNanashi:
                     return new CCMinerForkNanashi(hardwareType, minerBaseType);
 
+                case MinerBaseType.CCMinerRaven:
+                    return new CCMinerForkRaven(hardwareType, minerBaseType);
+
                 case MinerBaseType.EWBF:
                     return new EWBF(hardwareType, minerBaseType);
 

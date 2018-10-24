@@ -9,6 +9,7 @@
         Claymore,
         CCMinerNanashi,
         LyclMiner,
-        EWBF_NO_ASIC
+        EWBF_NO_ASIC,
+        CCMinerRaven
     }
 }

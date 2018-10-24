@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace BitPoolMiner.Enums
 {
@@ -19,7 +18,8 @@ namespace BitPoolMiner.Enums
         BTCP,
         BTG,
         ZEN,
-        ZCL
+        ZCL,
+        RVN
     }
 
     public static class CoinLogos
@@ -40,6 +40,7 @@ namespace BitPoolMiner.Enums
             { CoinType.BTCP, @"Resources\\Images\\btcp.png" },
             { CoinType.ZEN, @"Resources\\Images\\zencash.png" },
             { CoinType.ZCL, @"Resources\\Images\\zcl.png" },
+            { CoinType.RVN, @"Resources\\Images\\rvn.png" },
         };
     }
 
@@ -61,6 +62,7 @@ namespace BitPoolMiner.Enums
             { CoinType.BTCP, "BITCOIN PRIVATE" },
             { CoinType.ZEN, "ZENCASH" },
             { CoinType.ZCL, "ZCLASSIC" },
+            { CoinType.RVN, "RAVENCOIN" },
         };
      }
 
@@ -82,6 +84,7 @@ namespace BitPoolMiner.Enums
             { CoinType.BTCP, 230 },
             { CoinType.ZEN, 185 },
             { CoinType.ZCL, 167 },
+            { CoinType.RVN, 234 },
         };
     }
 
@@ -103,6 +106,7 @@ namespace BitPoolMiner.Enums
             { CoinType.BTCP, "#78fd9a" },
             { CoinType.ZEN, "#68fee0" },
             { CoinType.ZCL, "#a072fc" },
+            { CoinType.RVN, "#68fee0" },
         };
     }
 }
