@@ -10,6 +10,7 @@
         CCMinerNanashi,
         LyclMiner,
         EWBF_NO_ASIC,
-        CCMinerRaven
+        CCMinerRaven,
+        TRex
     }
 }

@@ -157,6 +157,7 @@
     <Compile Include="Formatter\WhatToMineDataFormatter.cs" />
     <Compile Include="Formatter\MinerMonitorStatsFormatter.cs" />
     <Compile Include="Miners\Ccminer.cs" />
+    <Compile Include="Miners\TRex.cs" />
     <Compile Include="Miners\CCMinerForkRaven.cs" />
     <Compile Include="Miners\CCMinerForkNanashi.cs" />
     <Compile Include="Miners\Claymore.cs" />
@@ -183,6 +184,7 @@
     <Compile Include="Models\MinerPayments\MinerPaymentsGroupedByDay.cs" />
     <Compile Include="Models\MinerPayments\MinerPaymentSummary.cs" />
     <Compile Include="Models\Profitability\ProfitabilityData.cs" />
+    <Compile Include="Models\RPCResponse\TRexTemplate.cs" />
     <Compile Include="Models\RPCResponse\ClaymoreTemplate.cs" />
     <Compile Include="Models\RPCResponse\DSTMTemplate.cs" />
     <Compile Include="Models\RPCResponse\EWBFTemplate.cs" />
@@ -307,6 +309,9 @@
     <Content Include="MinerApps\ccminer-ravencoin-v2.6\color.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="MinerApps\ccminer-ravencoin-v2.6\msvcr120.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="MinerApps\EWBF_NO_ASIC\cudart32_91.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -317,6 +322,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="MinerApps\EWBF_NO_ASIC\vcruntime140.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\t-rex-0.7.2-win-cuda10.0\msvcr71.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\t-rex-0.7.2-win-cuda10.0\t-rex-help.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\t-rex-0.7.2-win-cuda10.0\t-rex.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\etc.png">
@@ -539,6 +553,18 @@
     <Content Include="MinerApps\lyclMiner015\kernels\skein\skein.cl" />
     <None Include="MinerApps\lyclMiner015\lyclMiner.conf" />
     <None Include="MinerApps\lyclMiner015\lyclMiner_default.conf" />
+    <Content Include="MinerApps\t-rex-0.7.2-win-cuda10.0\BCD-failover.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\t-rex-0.7.2-win-cuda10.0\BCD-icemining.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\t-rex-0.7.2-win-cuda10.0\config_example">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\t-rex-0.7.2-win-cuda10.0\RVN-gos.cx.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>

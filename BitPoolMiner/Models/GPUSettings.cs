@@ -180,6 +180,7 @@ namespace BitPoolMiner.Models
                     break;
                 case CoinType.RVN:
                     minerBaseTypeList.Add(MinerBaseType.CCMinerRaven);
+                    minerBaseTypeList.Add(MinerBaseType.TRex);
                     break;
             }
 
