@@ -25,3 +25,19 @@ If necessary, add an exclusion rule to the BPM folder in Windows Defender or sim
 ```
 Add an exclusion to the folder C:\Users\username\AppData\Local\Apps\2.0
 ```
+
+### Supported Coins and Miners
+
+| Coins | NVidia Miner | AMD Miner |
+| ------------- | ------------- | ------------- |
+| ETH | N/A | Claymore |
+| ETC | N/A | Claymore |
+| EXP | N/A | Claymore |
+| RVN | TRex | N/A |
+| BTG | EWBF | N/A |
+| VTC | CCMiner, CCMinerNanashi | N/A |
+| MONA | CCMiner, CCMinerNanashi | N/A |
+| ZCL | DSTM, EWBF | N/A |
+| BTCP | DSTM, EWBF | N/A |
+| HUSH | DSTM, EWBF | N/A |
+| KMD | DSTM, EWBF | N/A |
