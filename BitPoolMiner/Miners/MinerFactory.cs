@@ -38,6 +38,9 @@ namespace BitPoolMiner.Miners
                 case MinerBaseType.Claymore:
                     return new Claymore(hardwareType, minerBaseType);
 
+                case MinerBaseType.TRex:
+                    return new TRex(hardwareType, minerBaseType);
+
                 default:
                     throw new ApplicationException(string.Format("The miner base type {0} is not yet supported.", minerBaseType.ToString()));
             }
