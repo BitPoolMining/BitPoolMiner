@@ -33,7 +33,7 @@ Add an exclusion to the folder C:\Users\username\AppData\Local\Apps\2.0
 | ETH | N/A | Claymore |
 | ETC | N/A | Claymore |
 | EXP | N/A | Claymore |
-| RVN | TRex | N/A |
+| RVN | TRex, Ravencoin Miner | N/A |
 | BTG | EWBF | N/A |
 | VTC | CCMiner, CCMinerNanashi | N/A |
 | MONA | CCMiner, CCMinerNanashi | N/A |
