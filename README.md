@@ -1,5 +1,5 @@
 # BitPoolMiner
-GPU Mining and Monitoring App that is free to use and open source.  Written to work specifically with www.bitpoolmining.com.
+GPU Mining and Monitoring App that is free to use and open source.  Written to work specifically with www.bitpoolmining.com.  You can get full details of BPM here www.bitpoolmining.com/bpm
 
 Lots of features:
 * Allows remote monitoring of workers and all gpus, including hashrates, temps, fan speed, power, etc.
