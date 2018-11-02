@@ -158,13 +158,13 @@ namespace BitPoolMiner.Miners
                             GPUID = trexGPU.device_id,
                             HashRate = trexGPU.hashrate,
                             FanSpeed = (short)trexGPU.fan_speed,
-                            Temp = 0,
-                            Power = 0,
+                            Temp = (short)trexGPU.temperature,
+                            Power = (short)trexGPU.power,
                             HardwareType = Hardware
                         };
 
                         // Sum up power and hashrate
-                        minerMonitorStat.Power += 0;
+                        minerMonitorStat.Power += trexGPU.power;
                         minerMonitorStat.HashRate += trexGPU.hashrate;
 
                         // Add GPU stats to list
