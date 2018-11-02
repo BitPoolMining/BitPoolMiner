@@ -55,6 +55,7 @@ namespace BitPoolMiner.Models.RPCResponse
         public int temperature { get; set; }
         public string vendor { get; set; }
         public bool disabled { get; set; }
+        public int power { get; set; }
         public int disabled_at_temperature { get; set; }
     }
 
