@@ -35,7 +35,7 @@ namespace BitPoolMiner.Utils.OpenHardwareMonitor
                         gpuSettings.WorkerName = Application.Current.Properties["WorkerName"].ToString();
                         gpuSettings.HardwareName = hardwareItem.Name;
                         gpuSettings.EnabledForMining = true;
-
+                        
                         try
                         {
                             gpuSettings.Fanspeed = Convert.ToInt16(hardwareItem.Sensors.Where(x => x.SensorType == SensorType.Control && x.Name == "GPU Fan").FirstOrDefault().Value);
@@ -43,6 +43,15 @@ namespace BitPoolMiner.Utils.OpenHardwareMonitor
                         catch
                         {
                             gpuSettings.Fanspeed = 0;
+                        }
+
+                        try
+                        {
+                            gpuSettings.Temp = Convert.ToInt16(hardwareItem.Sensors.Where(x => x.SensorType == SensorType.Temperature).FirstOrDefault().Value);
+                        }
+                        catch
+                        {
+                            gpuSettings.Temp = 0;
                         }
 
                         gpuSettings.EnabledForMining = true;

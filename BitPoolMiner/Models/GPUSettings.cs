@@ -76,6 +76,11 @@ namespace BitPoolMiner.Models
         public Int16 Fanspeed { get; set; }
 
         /// <summary>
+        /// GPU Temp
+        /// </summary>
+        public Int16 Temp { get; set; }
+
+        /// <summary>
         /// Limit Coin's to be mined based on hardware type
         /// </summary>
         public List<CoinType> CoinTypeList
