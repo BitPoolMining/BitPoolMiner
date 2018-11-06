@@ -157,6 +157,7 @@
     <Compile Include="Formatter\WhatToMineDataFormatter.cs" />
     <Compile Include="Formatter\MinerMonitorStatsFormatter.cs" />
     <Compile Include="Miners\Ccminer.cs" />
+    <Compile Include="Miners\WildRig.cs" />
     <Compile Include="Miners\TRex.cs" />
     <Compile Include="Miners\CCMinerForkRaven.cs" />
     <Compile Include="Miners\CCMinerForkNanashi.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="Models\MinerPayments\MinerPaymentsGroupedByDay.cs" />
     <Compile Include="Models\MinerPayments\MinerPaymentSummary.cs" />
     <Compile Include="Models\Profitability\ProfitabilityData.cs" />
+    <Compile Include="Models\RPCResponse\WildRigTemplate.cs" />
     <Compile Include="Models\RPCResponse\TRexTemplate.cs" />
     <Compile Include="Models\RPCResponse\ClaymoreTemplate.cs" />
     <Compile Include="Models\RPCResponse\DSTMTemplate.cs" />
@@ -331,6 +333,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="MinerApps\t-rex-0.7.2-win-cuda10.0\t-rex.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\wildrig-multi-0.12.7-beta\wildrig.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\etc.png">
@@ -563,6 +568,27 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="MinerApps\t-rex-0.7.2-win-cuda10.0\RVN-gos.cx.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\wildrig-multi-0.12.7-beta\kernel-baffin.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\wildrig-multi-0.12.7-beta\kernel-ellesmere.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\wildrig-multi-0.12.7-beta\kernel-fiji.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\wildrig-multi-0.12.7-beta\kernel-gfx900.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\wildrig-multi-0.12.7-beta\kernel-tonga.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\wildrig-multi-0.12.7-beta\start-help.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\wildrig-multi-0.12.7-beta\start.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="NLog.xsd">

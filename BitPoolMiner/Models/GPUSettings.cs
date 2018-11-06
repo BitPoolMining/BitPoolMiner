@@ -100,6 +100,7 @@ namespace BitPoolMiner.Models
                 coinTypeList.Add(CoinType.EXP);
                 coinTypeList.Add(CoinType.ETH);
                 coinTypeList.Add(CoinType.ETC);
+                coinTypeList.Add(CoinType.RVN);
             }
             else if (HardwareType == HardwareType.Nvidia)
             {
@@ -181,6 +182,7 @@ namespace BitPoolMiner.Models
                 case CoinType.RVN:
                     minerBaseTypeList.Add(MinerBaseType.CCMinerRaven);
                     minerBaseTypeList.Add(MinerBaseType.TRex);
+                    minerBaseTypeList.Add(MinerBaseType.WildRig);
                     break;
             }
 

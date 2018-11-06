@@ -228,7 +228,7 @@ namespace BitPoolMiner.ViewModels
             // Group stats by coin to show details
             List<MinerMonitorStat> minerMonitorStatListGrouped = minerMonitorStatList
                 .Where(x => x.CoinType != CoinType.UNDEFINED)
-                .GroupBy(l => l.CoinType)
+                .GroupBy(l => new { l.CoinType, l.MinerBaseType })
                 .Select(cl => new MinerMonitorStat
                 {
                     CoinLogo = cl.First().CoinLogo,
