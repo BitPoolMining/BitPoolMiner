@@ -11,6 +11,7 @@
         LyclMiner,
         EWBF_NO_ASIC,
         CCMinerRaven,
-        TRex
+        TRex,
+        WildRig
     }
 }
