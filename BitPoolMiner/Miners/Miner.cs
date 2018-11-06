@@ -3,10 +3,8 @@ using BitPoolMiner.Models;
 using BitPoolMiner.Persistence.API;
 using BitPoolMiner.Process;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using BitPoolMiner.Utils;
 
 // This is the Miner base class.
 
@@ -131,7 +129,11 @@ namespace BitPoolMiner.Miners
                     // Iterate through each GPUMonitorStat and add missing data
                     foreach (GPUMonitorStat gpuMonitorStat in stats.GPUMonitorStatList)
                     {
-                        gpuMonitorStat.FanSpeed = gpuSettingsList.Where(x => x.GPUID == gpuMonitorStat.GPUID).FirstOrDefault().Fanspeed;
+                        if (gpuMonitorStat.FanSpeed == 0)
+                            gpuMonitorStat.FanSpeed = gpuSettingsList.Where(x => x.GPUID == gpuMonitorStat.GPUID).FirstOrDefault().Fanspeed;
+
+                        if (gpuMonitorStat.Temp == 0)
+                            gpuMonitorStat.Temp = gpuSettingsList.Where(x => x.GPUID == gpuMonitorStat.GPUID).FirstOrDefault().Temp;
                     }
                 }
                 catch (Exception)
@@ -152,7 +154,7 @@ namespace BitPoolMiner.Miners
         {
             bool IsDataMissing = false;
 
-            foreach(GPUMonitorStat gpuMonitorStat in stats.GPUMonitorStatList)
+            foreach (GPUMonitorStat gpuMonitorStat in stats.GPUMonitorStatList)
             {
                 // Check if FanSpeed is showing 0
                 if (gpuMonitorStat.FanSpeed == 0)
