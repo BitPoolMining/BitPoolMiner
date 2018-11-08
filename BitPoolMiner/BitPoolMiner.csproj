@@ -326,13 +326,13 @@
     <Content Include="MinerApps\EWBF_NO_ASIC\vcruntime140.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="MinerApps\t-rex-0.7.3-win-cuda10.0\msvcr71.dll">
+    <Content Include="MinerApps\t-rex-0.7.4-win-cuda10.0\msvcr71.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="MinerApps\t-rex-0.7.3-win-cuda10.0\t-rex-help.txt">
+    <Content Include="MinerApps\t-rex-0.7.4-win-cuda10.0\t-rex-help.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="MinerApps\t-rex-0.7.3-win-cuda10.0\t-rex.exe">
+    <Content Include="MinerApps\t-rex-0.7.4-win-cuda10.0\t-rex.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="MinerApps\wildrig-multi-0.12.7-beta\wildrig.exe">
@@ -579,16 +579,16 @@
     <Content Include="MinerApps\wildrig-multi-0.12.7-beta\start.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="MinerApps\t-rex-0.7.3-win-cuda10.0\BCD-failover.bat">
+    <Content Include="MinerApps\t-rex-0.7.4-win-cuda10.0\BCD-failover.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="MinerApps\t-rex-0.7.3-win-cuda10.0\BCD-icemining.bat">
+    <Content Include="MinerApps\t-rex-0.7.4-win-cuda10.0\BCD-icemining.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="MinerApps\t-rex-0.7.3-win-cuda10.0\config_example">
+    <Content Include="MinerApps\t-rex-0.7.4-win-cuda10.0\config_example">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="MinerApps\t-rex-0.7.3-win-cuda10.0\RVN-gos.cx.bat">
+    <Content Include="MinerApps\t-rex-0.7.4-win-cuda10.0\RVN-gos.cx.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="NLog.xsd">
