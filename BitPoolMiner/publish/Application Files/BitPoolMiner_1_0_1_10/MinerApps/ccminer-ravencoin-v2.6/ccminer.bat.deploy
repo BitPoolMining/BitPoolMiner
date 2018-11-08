@@ -1,0 +1,1 @@
+ccminer -a x16r -o stratum+tcp://us-east.rvn.bitpoolmining.com:3172 -u RECsZxL52sdD13PJ6BesmSrH2rnPZJjRrj.BPMDEFAULT -p x
