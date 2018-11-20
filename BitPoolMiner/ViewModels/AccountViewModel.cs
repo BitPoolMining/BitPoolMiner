@@ -2,6 +2,7 @@
 using BitPoolMiner.Models;
 using BitPoolMiner.Persistence.API;
 using BitPoolMiner.Persistence.FileSystem;
+using BitPoolMiner.Utils.WMI;
 using BitPoolMiner.ViewModels.Base;
 using System;
 using System.Collections.Generic;
@@ -537,6 +538,7 @@ namespace BitPoolMiner.ViewModels
         {
             // Scan for hardware using Open Harware Monitor
             Utils.OpenHardwareMonitor.OpenHardwareMonitor openHardwareMonitor = new Utils.OpenHardwareMonitor.OpenHardwareMonitor();
+            //WMI wmi = new WMI();
             GPUSettingsList = openHardwareMonitor.ScanHardware();
 
             // Push GPU settings to the API

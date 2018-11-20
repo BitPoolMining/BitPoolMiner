@@ -22,8 +22,8 @@ namespace BitPoolMiner.Utils.OpenHardwareMonitor
                 myComputer.Open();
                 myComputer.GPUEnabled = true;
 
-                int amdCount = 0;
                 int nvidiaCount = 0;
+                int amdCount = 0; 
 
                 foreach (var hardwareItem in myComputer.Hardware)
                 {

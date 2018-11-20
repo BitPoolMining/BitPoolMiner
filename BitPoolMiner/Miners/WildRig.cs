@@ -23,7 +23,7 @@ namespace BitPoolMiner.Miners
         {
             string versionedDirectory = "";
             MinerFileName = "wildrig.exe";
-            versionedDirectory = "wildrig-multi-0.12.7-beta";
+            versionedDirectory = "wildrig-multi-0.13.1-beta";
             MinerWorkingDirectory = Path.Combine(Utils.Core.GetBaseMinersDir(), versionedDirectory);
 
             ApiPort = 2883;

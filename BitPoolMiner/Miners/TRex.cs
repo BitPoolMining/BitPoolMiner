@@ -23,7 +23,7 @@ namespace BitPoolMiner.Miners
         {
             string versionedDirectory = "";
             MinerFileName = "t-rex.exe";
-            versionedDirectory = "t-rex-0.7.4-win-cuda10.0";
+            versionedDirectory = "t-rex-0.8.0-win-cuda10.0";
             MinerWorkingDirectory = Path.Combine(Utils.Core.GetBaseMinersDir(), versionedDirectory);
 
             ApiPort = 4067;
