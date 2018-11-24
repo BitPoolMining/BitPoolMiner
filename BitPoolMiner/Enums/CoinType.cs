@@ -19,7 +19,8 @@ namespace BitPoolMiner.Enums
         BTG,
         ZEN,
         ZCL,
-        RVN
+        RVN,
+        SUQA
     }
 
     public static class CoinLogos
@@ -41,6 +42,7 @@ namespace BitPoolMiner.Enums
             { CoinType.ZEN, @"Resources\\Images\\zencash.png" },
             { CoinType.ZCL, @"Resources\\Images\\zcl.png" },
             { CoinType.RVN, @"Resources\\Images\\rvn.png" },
+            { CoinType.SUQA, @"Resources\\Images\\suqa.png" },
         };
     }
 
@@ -63,6 +65,7 @@ namespace BitPoolMiner.Enums
             { CoinType.ZEN, "ZENCASH" },
             { CoinType.ZCL, "ZCLASSIC" },
             { CoinType.RVN, "RAVENCOIN" },
+            { CoinType.SUQA, "SUQA" },
         };
      }
 
@@ -85,6 +88,7 @@ namespace BitPoolMiner.Enums
             { CoinType.ZEN, 185 },
             { CoinType.ZCL, 167 },
             { CoinType.RVN, 234 },
+            { CoinType.SUQA, 277 },
         };
     }
 
@@ -107,6 +111,7 @@ namespace BitPoolMiner.Enums
             { CoinType.ZEN, "#68fee0" },
             { CoinType.ZCL, "#a072fc" },
             { CoinType.RVN, "#68fee0" },
+            { CoinType.SUQA, "#35bda8" },
         };
     }
 }

@@ -44,6 +44,9 @@ namespace BitPoolMiner.Miners
                 case MinerBaseType.WildRig:
                     return new WildRig(hardwareType, minerBaseType);
 
+                case MinerBaseType.CryptoDredge:
+                    return new CryptoDredge(hardwareType, minerBaseType);
+
                 default:
                     throw new ApplicationException(string.Format("The miner base type {0} is not yet supported.", minerBaseType.ToString()));
             }
