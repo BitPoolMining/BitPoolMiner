@@ -33,7 +33,8 @@ Add an exclusion to the folder C:\Users\username\AppData\Local\Apps\2.0
 | ETH | N/A | Claymore |
 | ETC | N/A | Claymore |
 | EXP | N/A | Claymore |
-| RVN | TRex, Ravencoin Miner, WildRig | N/A |
+| RVN | TRex, Ravencoin Miner | WildRig |
+| SUQA | CryptoDredge | N/A |
 | BTG | EWBF | N/A |
 | VTC | CCMiner, CCMinerNanashi | N/A |
 | MONA | CCMiner, CCMinerNanashi | N/A |
@@ -41,3 +42,5 @@ Add an exclusion to the folder C:\Users\username\AppData\Local\Apps\2.0
 | BTCP | DSTM, EWBF | N/A |
 | HUSH | DSTM, EWBF | N/A |
 | KMD | DSTM, EWBF | N/A |
+
+
