@@ -118,6 +118,7 @@ namespace BitPoolMiner.Models
                 coinTypeList.Add(CoinType.BTG);
                 coinTypeList.Add(CoinType.BTCP);
                 coinTypeList.Add(CoinType.RVN);
+                coinTypeList.Add(CoinType.SUQA);
             }
 
             return coinTypeList;
@@ -188,6 +189,9 @@ namespace BitPoolMiner.Models
                     minerBaseTypeList.Add(MinerBaseType.CCMinerRaven);
                     minerBaseTypeList.Add(MinerBaseType.TRex);
                     minerBaseTypeList.Add(MinerBaseType.WildRig);
+                    break;
+                case CoinType.SUQA:
+                    minerBaseTypeList.Add(MinerBaseType.CryptoDredge);
                     break;
             }
 

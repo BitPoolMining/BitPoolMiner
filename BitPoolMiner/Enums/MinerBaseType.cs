@@ -12,6 +12,7 @@
         EWBF_NO_ASIC,
         CCMinerRaven,
         TRex,
-        WildRig
+        WildRig,
+        CryptoDredge
     }
 }
