@@ -5,6 +5,7 @@ using BitPoolMiner.Process;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 
 // This is the Miner base class.
 
@@ -62,18 +63,32 @@ namespace BitPoolMiner.Miners
             var process = new BPMProcess();
 
             IsMining = true;
+            FormatPerMinerCoinCombo();
 
-            // DS - Hotfix for SUQA/TREX algo type
-            // TODO - Fix this shit
+            ObservableCollection<AccountMinerTypeExtraParams> AccountMinerTypeExtraParamsList = (ObservableCollection<AccountMinerTypeExtraParams>)Application.Current.Properties["AccountMinerTypeExtraParamsList"];
+            AccountMinerTypeExtraParams accountMinerTypeExtraParams = AccountMinerTypeExtraParamsList.First(x => x.MinerBaseType == MinerBaseType);
 
-            if (MinerBaseType == MinerBaseType.TRex && CoinType == CoinType.SUQA)
+            if (accountMinerTypeExtraParams != null && accountMinerTypeExtraParams.ExtraParams != String.Empty)
             {
-                MinerArguments = MinerArguments.Replace("x16r", "x22i");
+                // Add Extra Params 
+                MinerArguments = String.Format("{0} {1}", MinerArguments, accountMinerTypeExtraParams.ExtraParams);
             }
 
             process.Start(MinerWorkingDirectory, MinerArguments, MinerFileName, Hardware == HardwareType.AMD, MinerBaseType);
             process.MinerProcess.Exited += MinerExited;
             return process;
+        }
+        /// <summary>
+        /// Handle special scenarios
+        /// </summary>
+        private void FormatPerMinerCoinCombo()
+        {
+            // DS - Hotfix for SUQA/TREX algo type
+            // TODO - Fix this shit
+            if (MinerBaseType == MinerBaseType.TRex && CoinType == CoinType.SUQA)
+            {
+                MinerArguments = MinerArguments.Replace("x16r", "x22i");
+            }
         }
 
         /// <summary>

@@ -44,5 +44,10 @@ namespace BitPoolMiner.Persistence.FileSystem.Base
         /// Config file used to store the worker settings
         /// </summary>
         public const string WorkerSettingsFileName = "WorkerSettings.json";
+
+        /// <summary>
+        /// Config file used to store the miner extra params
+        /// </summary>
+        public const string MinerTypeExtraParamsFileName = "MinerTypeExtraParams.json";
     }
 }
