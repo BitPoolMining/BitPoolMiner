@@ -148,6 +148,11 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
@@ -378,6 +383,102 @@
                     featureTouring:TourHelper.ElementID="{x:Static featureTourElements:FeatureTourElementID.AccountViewButtonSaveHardwareSettings}"
                     featureTouring:TourHelper.Placement="RightCenter">
                     Save Hardware Changes
+                </Button>
+
+            </Grid>
+        </Border>
+
+        <!-- Miner Type Extra Param List-->
+        <Border
+                BorderThickness="1"
+                BorderBrush="#2d2d2d"
+                Margin="20"
+                Padding="10"
+                Grid.Column="0"
+                Grid.ColumnSpan="5"
+                Grid.Row="10"
+                Grid.RowSpan="4"
+                Background="#2d2d2d">
+            <Grid ShowGridLines="False"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="5"
+                  Grid.Row="10"
+                  Grid.RowSpan="4"
+                  Background="#2d2d2d">
+
+                <!--Grid Columns-->
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <!--Grid Rows-->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!-- Miner Type Extra Params Section -->
+                <Label 
+                    Foreground="#FFFFFF" 
+                    Grid.Row="0" 
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2" 
+                    Style="{StaticResource labelStyleFooterWhiteTitle}"
+                    featureTouring:TourHelper.ElementID="{x:Static featureTourElements:FeatureTourElementID.AccountViewDataGridHardware}"
+                    featureTouring:TourHelper.Placement="TopRight">
+                    Miner Extra Params
+                </Label>
+
+                <!-- Miner Type Extra Params Grid -->
+                <DataGrid 
+                    AutoGenerateColumns="False" 
+                    Grid.Row="1" 
+                    Grid.ColumnSpan="4" 
+                    Grid.Column="0"
+                    ItemsSource="{Binding AccountMinerTypeExtraParamsList, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                    ScrollViewer.CanContentScroll="False" 
+                    CanUserDeleteRows="False" 
+                    CanUserAddRows="False" 
+                    CanUserSortColumns="False" 
+                    CanUserResizeColumns="False" 
+                    CanUserReorderColumns="False"
+                    BorderThickness="0"
+                    BorderBrush="#2d2d2d"
+                    Background="#2d2d2d"
+                    RowHeaderWidth="0"
+                    GridLinesVisibility="None"
+                    Margin="20 0 0 0 "
+                    ColumnHeaderStyle="{StaticResource DataGridColumnHeaderStyle}">
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Background" Value="#2d2d2d" />
+                            <Setter Property="Foreground" Value="#FFFFFF" />
+                        </Style>
+                    </DataGrid.RowStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding MinerBaseTypeString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Miner" IsReadOnly="False" CellStyle="{StaticResource DataGridCellStyle}"/>
+                        <DataGridTemplateColumn Header="Extra Params" CellStyle="{StaticResource DataGridCellStyle}">                            <DataGridTemplateColumn.CellTemplate>                                <DataTemplate>                                    <TextBox                                        Style="{StaticResource textBoxStyle}"                                          Background= "#646464"
+                                        Foreground= "#FFFFFF"                                        Width="300"                                        Text="{Binding ExtraParams, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >                                    </TextBox>                                </DataTemplate>                            </DataGridTemplateColumn.CellTemplate>                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+
+                </DataGrid>
+
+                <!-- Button to save hardware changes-->
+                <Button 
+                    x:Name="ButtonSaveMinerTypeExtraParams" 
+                    Style="{StaticResource buttonStyle}" 
+                    Grid.Row="2" 
+                    Grid.Column="3" 
+                    HorizontalAlignment="Right"
+                    Command="{Binding CommandSaveAccountMinerTypeExtraParams}">
+                    <!--featureTouring:TourHelper.ElementID="{x:Static featureTourElements:FeatureTourElementID.AccountViewButtonSaveHardwareSettings}"
+                    featureTouring:TourHelper.Placement="RightCenter"-->
+                    Save Miner Extra Params
                 </Button>
 
             </Grid>

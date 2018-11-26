@@ -107,6 +107,20 @@ namespace BitPoolMiner.ViewModels
         // WalletViewModel reference
         public WalletViewModel WalletViewModel { get; set; }
 
+        // Account Miner Type Extra Params property to bind to UI
+        private ObservableCollection<AccountMinerTypeExtraParams> accountMinerTypeExtraParamsList;
+        public ObservableCollection<AccountMinerTypeExtraParams> AccountMinerTypeExtraParamsList
+        {
+            get
+            {
+                return accountMinerTypeExtraParamsList;
+            }
+            set
+            {
+                accountMinerTypeExtraParamsList = value;
+                OnPropertyChanged();
+            }
+        }
 
         #endregion
 
@@ -120,6 +134,7 @@ namespace BitPoolMiner.ViewModels
         public RelayCommand CommandScanHardware { get; set; }
         public RelayCommand CommandSaveAccountWorkerHardware { get; set; }
         public RelayCommand CommandUpdateCoinType { get; set; }
+        public RelayCommand CommandSaveAccountMinerTypeExtraParams { get; set; }
 
         #endregion
 
@@ -146,6 +161,7 @@ namespace BitPoolMiner.ViewModels
             CommandScanHardware = new RelayCommand(ScanHardware);
             CommandSaveAccountWorkerHardware = new RelayCommand(PersistWorkerHardware);
             CommandUpdateCoinType = new RelayCommand(UpdateCoinType);
+            CommandSaveAccountMinerTypeExtraParams = new RelayCommand(PersistMinerTypeExtraParams);
 
             // Load previous GUID or get a new GUID
             InitAccountID();
@@ -159,10 +175,11 @@ namespace BitPoolMiner.ViewModels
             // Load hardware settings from API or scan for hardware
             InitWorkerHardware();
 
+            // Load miner type extra params
+            InitMinerTypeExtraParams();
+
             // Update worker list on main window
             _mainWindowViewModel.GetAccountWorkerList();
-
-
         }
 
         /// <summary>
@@ -268,7 +285,23 @@ namespace BitPoolMiner.ViewModels
             // Set global variable for Worker Name
             Application.Current.Properties["GPUSettingsList"] = GPUSettingsList;
         }
-               
+
+        private void InitMinerTypeExtraParams()
+        {
+            try
+            {
+                // Attempt to read the miner type extra params from the config file
+                MinerTypeExtraParamsFile minerTypeExtraParamsFile = new MinerTypeExtraParamsFile();
+                AccountMinerTypeExtraParamsList = minerTypeExtraParamsFile.ReadJsonFromFile();
+
+                // Save list for later
+                Application.Current.Properties["AccountMinerTypeExtraParamsList"] = AccountMinerTypeExtraParamsList;
+            }
+            catch (Exception e)
+            {
+                throw new ApplicationException(string.Format("Error getting miner type extra settings", e));
+            }
+        }
 
         #endregion
 
@@ -505,6 +538,54 @@ namespace BitPoolMiner.ViewModels
             catch (Exception e)
             {
                 throw new ApplicationException(string.Format("Error saving worker settings"), e);
+            }
+        }
+
+        #endregion
+
+        #region MinerTypeExtraParams
+
+        private bool ValidateMinerTypeExtraParams(ObservableCollection<AccountMinerTypeExtraParams> minerTypeExtraParamsValidateList)
+        {
+            bool isValid = true;
+
+            foreach (AccountMinerTypeExtraParams minerTypeExtraParams in minerTypeExtraParamsValidateList)
+            {
+                // Validate that miner type is set
+                if (minerTypeExtraParams.MinerBaseType == MinerBaseType.UNDEFINED)
+                {
+                    ShowError("Please select a miner type");
+                    isValid = false;
+                }
+            }
+
+            return isValid;
+        }
+
+        public void PersistMinerTypeExtraParams(object param)
+        {
+            try
+            {
+                if (ValidateMinerTypeExtraParams(AccountMinerTypeExtraParamsList) == false)
+                {
+                    return;
+                }
+
+                // Write GUID to account identity config file
+                MinerTypeExtraParamsFile minerTypeExtraParamsFile = new MinerTypeExtraParamsFile();
+                minerTypeExtraParamsFile.WriteJsonToFile(AccountMinerTypeExtraParamsList);
+
+                // Notify UI of change
+                OnPropertyChanged("AccountMinerTypeExtraParamsList");
+
+                Application.Current.Properties["AccountMinerTypeExtraParamsList"] = AccountMinerTypeExtraParamsList;
+
+                // Notify success
+                ShowSuccess(string.Format("Miner type extra params saved"));
+            }
+            catch (Exception e)
+            {
+                throw new ApplicationException(string.Format("Error saving miner type extra params"), e);
             }
         }
 
