@@ -191,6 +191,7 @@ namespace BitPoolMiner.Models
                     minerBaseTypeList.Add(MinerBaseType.WildRig);
                     break;
                 case CoinType.SUQA:
+                    minerBaseTypeList.Add(MinerBaseType.TRex);
                     minerBaseTypeList.Add(MinerBaseType.CryptoDredge);
                     break;
             }
