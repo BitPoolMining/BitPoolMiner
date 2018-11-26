@@ -62,6 +62,15 @@ namespace BitPoolMiner.Miners
             var process = new BPMProcess();
 
             IsMining = true;
+
+            // DS - Hotfix for SUQA/TREX algo type
+            // TODO - Fix this shit
+
+            if (MinerBaseType == MinerBaseType.TRex && CoinType == CoinType.SUQA)
+            {
+                MinerArguments = MinerArguments.Replace("x16r", "x22i");
+            }
+
             process.Start(MinerWorkingDirectory, MinerArguments, MinerFileName, Hardware == HardwareType.AMD, MinerBaseType);
             process.MinerProcess.Exited += MinerExited;
             return process;
