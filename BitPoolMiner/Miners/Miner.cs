@@ -89,6 +89,10 @@ namespace BitPoolMiner.Miners
             {
                 MinerArguments = MinerArguments.Replace("x16r", "x22i");
             }
+            else if (MinerBaseType == MinerBaseType.WildRig && CoinType == CoinType.SUQA)
+            {
+                MinerArguments = MinerArguments.Replace("x16r", "x22i");
+            }
         }
 
         /// <summary>
