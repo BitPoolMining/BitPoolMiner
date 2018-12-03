@@ -106,6 +106,7 @@ namespace BitPoolMiner.Models
                 coinTypeList.Add(CoinType.ETH);
                 coinTypeList.Add(CoinType.ETC);
                 coinTypeList.Add(CoinType.RVN);
+                coinTypeList.Add(CoinType.SUQA);
             }
             else if (HardwareType == HardwareType.Nvidia)
             {
@@ -193,6 +194,7 @@ namespace BitPoolMiner.Models
                 case CoinType.SUQA:
                     minerBaseTypeList.Add(MinerBaseType.TRex);
                     minerBaseTypeList.Add(MinerBaseType.CryptoDredge);
+                    minerBaseTypeList.Add(MinerBaseType.WildRig);
                     break;
             }
 
