@@ -22,7 +22,7 @@ namespace BitPoolMiner.Miners
         {
             string versionedDirectory = "";
             MinerFileName = "CryptoDredge.exe";
-            versionedDirectory = "CryptoDredge_0.11.0";
+            versionedDirectory = "CryptoDredge_0.14.0";
 
             MinerWorkingDirectory = Path.Combine(Utils.Core.GetBaseMinersDir(), versionedDirectory);
 
