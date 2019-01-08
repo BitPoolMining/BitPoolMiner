@@ -1,4 +1,4 @@
-# BitPoolMiner
+# BitPoolMiner - Open Source GPU Miner and GPU Monitor
 GPU Mining and Monitoring App that is free to use and open source.  Written to work specifically with www.bitpoolmining.com.  You can get full details of BPM here www.bitpoolmining.com/bpm
 
 Lots of features:
