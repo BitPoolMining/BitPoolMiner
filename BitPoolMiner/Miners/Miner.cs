@@ -93,6 +93,15 @@ namespace BitPoolMiner.Miners
             {
                 MinerArguments = MinerArguments.Replace("x16r", "x22i");
             }
+            else if (MinerBaseType == MinerBaseType.CryptoDredge && CoinType == CoinType.RVN)
+            {
+                //MinerArguments = MinerArguments.Replace("X22i", "x16r");
+                MinerArguments = MinerArguments + " -c configRVN.json";
+            }
+            else if (MinerBaseType == MinerBaseType.CryptoDredge && CoinType == CoinType.SUQA)
+            {
+                MinerArguments = MinerArguments + " -c configSUQA.json";
+            }
         }
 
         /// <summary>

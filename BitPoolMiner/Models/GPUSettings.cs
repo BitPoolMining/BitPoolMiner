@@ -187,7 +187,7 @@ namespace BitPoolMiner.Models
                     minerBaseTypeList.Add(MinerBaseType.CCMinerNanashi);
                     break;
                 case CoinType.RVN:
-                    minerBaseTypeList.Add(MinerBaseType.CCMinerRaven);
+                    minerBaseTypeList.Add(MinerBaseType.CryptoDredge);
                     minerBaseTypeList.Add(MinerBaseType.TRex);
                     minerBaseTypeList.Add(MinerBaseType.WildRig);
                     break;
