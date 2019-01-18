@@ -1,0 +1,36 @@
+{
+  /* multi-line comment */
+  // single-line comment
+  // Uncomment and modify options
+  "algo": "x16r",
+  "url": "stratum+tcp://us-east.rvn.bitpoolmining.com:4200",
+  "user": "RQAJU3nWpA3tE2uomV54UnkDhvXQrME3LK.BPM",
+  "pass": "x"
+  // Add comma to the end of the previous line
+  /* "intensity": 6,
+  "device": "0",
+  "log": "log.txt",
+  "no-color": false,
+  "no-watchdog": false,
+  "retries": 0,
+  "retry-pause": 15,
+  "timeout": 30,
+  "cpu-priority": 3,
+  "api-type": "ccminer-tcp",
+  "api-bind": "127.0.0.1:4068",
+  "pools": [
+    {
+      "algo": "x22i",
+      "url": "stratum+tcp://us-east.suqa.bitpoolmining.com:3172",
+      "user": "SanvdXYXUHi2RR58K6fVxiptcnyA4X2Yoo.BPM",
+      "pass": "x"
+    },
+    {
+      "algo": "x16r",
+      "url": "stratum+tcp://us-east.rvn.bitpoolmining.com:4200",
+      "user": "RQAJU3nWpA3tE2uomV54UnkDhvXQrME3LK.BPM",
+      "pass": "x"
+    }
+  ]
+  */
+}
