@@ -19,7 +19,7 @@ namespace BitPoolMiner.Miners
         private const int MinerRestartDelay = 2000; // 2 second delay
 
         protected BPMProcess MinerProcess;
-
+        public string Address { get; private set; }
         public string MinerName { get; private set; }
         public string MinerWorkingDirectory { get; protected set; }
         public string MinerArguments { get; set; }
@@ -101,6 +101,10 @@ namespace BitPoolMiner.Miners
             else if (MinerBaseType == MinerBaseType.CryptoDredge && CoinType == CoinType.SUQA)
             {
                 MinerArguments = MinerArguments + " -c configSUQA.json";
+            }
+            else if (MinerBaseType == MinerBaseType.CryptoDredge && CoinType == CoinType.VTC)
+            {
+                MinerArguments = MinerArguments + " -c configVTC.json";
             }
             else if (MinerBaseType == MinerBaseType.CCMiner && CoinType == CoinType.VTC)
             {

@@ -65,13 +65,33 @@ namespace BitPoolMiner.Miners
             MinerConfigArguments = MinerConfigFileName; // no switches, just the config file name for now
         }
 
+        private void CopyLcylConfigFile()
+        {
+            string defaultConfig = string.Format("{0}/{1}", MinerWorkingDirectory, "lyclMiner_default.conf");
+            string currentConfig = string.Format("{0}/{1}", MinerWorkingDirectory, MinerConfigFileName);
+
+            if (File.Exists(currentConfig))
+            {
+                File.Delete(currentConfig);
+            }
+
+            File.Copy(defaultConfig, currentConfig);
+
+            // Replace address with correct address
+            string text = File.ReadAllText(currentConfig);
+            text = text.Replace("xxxxuserxxxx", "new value");
+            File.WriteAllText(currentConfig, text);
+        }
+
+
+
         /// <summary>
         /// Generates the new LyclConfig file
         /// </summary>
         private void GenerateLyclConfig()
         {
             SetupLyclConfigName();
-
+            CopyLcylConfigFile();
         }
         #endregion
 
