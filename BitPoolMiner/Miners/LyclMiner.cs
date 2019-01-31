@@ -24,7 +24,7 @@ namespace BitPoolMiner.Miners
 
         public LyclMiner(HardwareType hardwareType, MinerBaseType minerBaseType, bool is64Bit) : base("LyclMiner", hardwareType, minerBaseType, is64Bit)
         {
-            MinerWorkingDirectory = Path.Combine(Utils.Core.GetBaseMinersDir(), "LyclMiner015");
+            MinerWorkingDirectory = Path.Combine(Utils.Core.GetBaseMinersDir(), "lyclMiner-0.2.0-windows");
             MinerFileName = "lyclMiner.exe";
 
             ApiPort = 4028;

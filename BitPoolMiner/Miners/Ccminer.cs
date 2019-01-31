@@ -23,13 +23,13 @@ namespace BitPoolMiner.Miners
             string versionedDirectory = "";
             if (is64Bit)
             {
-                MinerFileName = "ccminer-x64.exe";
-                versionedDirectory = "ccminer-x64-2.2.4-cuda9";
+                MinerFileName = "ccminer.exe";
+                versionedDirectory = "ccminer-lyra3";
             }
             else
             {
                 MinerFileName = "ccminer.exe";
-                versionedDirectory = "ccminer-x86-2.2.4-cuda9";
+                versionedDirectory = "ccminer-lyra3";
             }
             MinerWorkingDirectory = Path.Combine(Utils.Core.GetBaseMinersDir(), versionedDirectory);
 

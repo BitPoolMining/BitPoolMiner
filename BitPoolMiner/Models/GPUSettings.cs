@@ -102,22 +102,14 @@ namespace BitPoolMiner.Models
 
             if (HardwareType == HardwareType.AMD)
             {
-                coinTypeList.Add(CoinType.EXP);
-                coinTypeList.Add(CoinType.ETH);
                 coinTypeList.Add(CoinType.ETC);
                 coinTypeList.Add(CoinType.RVN);
                 coinTypeList.Add(CoinType.SUQA);
+                coinTypeList.Add(CoinType.VTC);
             }
             else if (HardwareType == HardwareType.Nvidia)
             {
-                coinTypeList.Add(CoinType.HUSH);
-                coinTypeList.Add(CoinType.KMD);
-                coinTypeList.Add(CoinType.MONA);
                 coinTypeList.Add(CoinType.VTC);
-                coinTypeList.Add(CoinType.ZCL);
-                coinTypeList.Add(CoinType.ZEN);
-                coinTypeList.Add(CoinType.BTG);
-                coinTypeList.Add(CoinType.BTCP);
                 coinTypeList.Add(CoinType.RVN);
                 coinTypeList.Add(CoinType.SUQA);
             }
@@ -184,7 +176,7 @@ namespace BitPoolMiner.Models
                     break;
                 case CoinType.VTC:
                     minerBaseTypeList.Add(MinerBaseType.CCMiner);
-                    minerBaseTypeList.Add(MinerBaseType.CCMinerNanashi);
+                    minerBaseTypeList.Add(MinerBaseType.LyclMiner);
                     break;
                 case CoinType.RVN:
                     minerBaseTypeList.Add(MinerBaseType.CryptoDredge);

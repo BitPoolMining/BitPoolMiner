@@ -34,7 +34,7 @@
     <ProductName>BitPoolMiner</ProductName>
     <PublisherName>BitPoolMining</PublisherName>
     <SuiteName>BitPoolMining</SuiteName>
-    <ApplicationRevision>24</ApplicationRevision>
+    <ApplicationRevision>25</ApplicationRevision>
     <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -309,6 +309,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Content Include="MinerApps\ccminer-lyra3\ccminer.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\ccminer-lyra3\vcruntime140.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="MinerApps\ccminer-ravencoin-v2.6\ccminer.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -343,6 +349,21 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="MinerApps\EWBF_NO_ASIC\vcruntime140.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\libcurl-x64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\libgcc_s_seh-1.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\libstdc++-6.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\libwinpthread-1.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\lyclMiner.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="MinerApps\t-rex-0.9.1-win-cuda10.0\msvcr71.dll">
@@ -583,6 +604,72 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="MinerApps\EWBF_NO_ASIC\miner.cfg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\kernels\blake32\blake32.cl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\kernels\bmw\bmw.cl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\kernels\bmw\bmw_htarg.cl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\kernels\cubeHash256\cubeHash256.cl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\kernels\keccakF1600\keccakF1600.cl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p1\lyra441p1.cl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev2\lyra441p2.cl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev2\lyra441p2_gfx7_amdcl2.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev2\lyra441p2_gfx8_amdcl2.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev2\lyra441p2_gfx8_rocm.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev2\lyra441p2_gfx9_amdcl2.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev2\lyra441p2_gfx9_rocm.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev3\lyra441p2.cl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev3\lyra441p2_gfx6_amdcl2.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev3\lyra441p2_gfx7_amdcl2.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev3\lyra441p2_gfx8_amdcl2.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev3\lyra441p2_gfx8_rocm.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev3\lyra441p2_gfx9_amdcl2.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev3\lyra441p2_gfx9_rocm.bin">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p3\lyra441p3.cl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\kernels\skein\skein.cl">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MinerApps\lyclMiner-0.2.0-windows\LICENSE">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="MinerApps\lyclMiner015\libcurl.dll" />
@@ -926,6 +1013,172 @@
     <None Include="publish\Application Files\BitPoolMiner_1_0_1_23\ThinkSharp.FeatureTour.dll.deploy" />
     <None Include="publish\Application Files\BitPoolMiner_1_0_1_23\ToastNotifications.dll.deploy" />
     <None Include="publish\Application Files\BitPoolMiner_1_0_1_23\ToastNotifications.Messages.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\bitpool.ico.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\BitPoolMiner.application" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\BitPoolMiner.exe.config.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\BitPoolMiner.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\BitPoolMiner.exe.manifest" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\LiveCharts.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\LiveCharts.Wpf.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\Microsoft.Expression.Interactions.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\ccminer-2.2-mod-r2\ccminer.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\ccminer-2.2-mod-r2\README.txt.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\ccminer-2.2-mod-r2\vcruntime140.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\ccminer-lyra3\ccminer.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\ccminer-lyra3\vcruntime140.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\ccminer-ravencoin-v2.6\ccminer.bat.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\ccminer-ravencoin-v2.6\ccminer.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\ccminer-ravencoin-v2.6\Changelog.txt.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\ccminer-ravencoin-v2.6\color.txt.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\ccminer-ravencoin-v2.6\msvcr120.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\ccminer-x64-2.2.4-cuda9\ccminer-x64.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\ccminer-x64-2.2.4-cuda9\msvcr120.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\ccminer-x64-2.2.4-cuda9\README.txt.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\ccminer-x86-2.2.4-cuda9\ccminer.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\ccminer-x86-2.2.4-cuda9\msvcr120.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\config.txt.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\cuda6.5\cudart64_65.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\cuda7.5\cudart64_75.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\cuda7.5\EthDcrMiner64.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\cuda9.1\cudart64_91.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\cudart64_80.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1a1.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1a1.bin2.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1b1.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1b1.bin2.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1c1.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1c1.bin2.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1c2.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1c2.bin2.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1d1.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1d1.bin2.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1e1.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1e1.bin2.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1e2.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1e2.bin2.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1g1.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1g1.bin2.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1g2.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1g2.bin2.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1h1.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1h1.bin2.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1h2.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1h2.bin2.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1i1.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1i1.bin2.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1j1.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Data1j1.bin2.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\dpools.txt.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\epools.txt.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\EthDcrMiner64.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\History.txt.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\libcurl.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\License.txt.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\msvcr110.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Readme!!!.txt.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Remote manager\API.txt.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Remote manager\EthMan.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Remote manager\libeay32.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Remote manager\readme.txt.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Remote manager\sample.bat.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\Remote manager\ssleay32.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\start_eth+pasc.bat.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\Claymore\start_only_eth.bat.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\CryptoDredge_0.16.1\configRVN.json.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\CryptoDredge_0.16.1\configSUQA.json.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\CryptoDredge_0.16.1\CryptoDredge.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\CryptoDredge_0.16.1\LICENSE.txt.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\CryptoDredge_0.16.1\README.txt.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\CryptoDredge_0.16.1\RELEASE-NOTES.txt.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\CryptoDredge_0.16.1\run-c0ban-pecadol.bat.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\CryptoDredge_0.16.1\run-gin-gos.bat.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\CryptoDredge_0.16.1\run-grlc-freshgrlc.bat.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\CryptoDredge_0.16.1\run-hdac-bsod.bat.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\CryptoDredge_0.16.1\run-lux-bpool.bat.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\CryptoDredge_0.16.1\run-lyra2z-blockmasters.bat.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\CryptoDredge_0.16.1\run-suqa-beepool.bat.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\CryptoDredge_0.16.1\run-zcoin-mintpond.bat.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\DSTM\pthreadVC2.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\DSTM\vcruntime140.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\DSTM\zm.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\EWBF\cudart32_80.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\EWBF\cudart64_80.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\EWBF\miner.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\EWBF\msvcp120.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\EWBF\msvcr120.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\EWBF_NO_ASIC\cudart32_91.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\EWBF_NO_ASIC\cudart64_91.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\EWBF_NO_ASIC\miner.cfg.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\EWBF_NO_ASIC\miner.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\EWBF_NO_ASIC\vcruntime140.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\kernels\blake32\blake32.cl.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\kernels\bmw\bmw.cl.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\kernels\bmw\bmw_htarg.cl.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\kernels\cubeHash256\cubeHash256.cl.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\kernels\keccakF1600\keccakF1600.cl.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p1\lyra441p1.cl.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev2\lyra441p2.cl.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev2\lyra441p2_gfx7_amdcl2.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev2\lyra441p2_gfx8_amdcl2.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev2\lyra441p2_gfx8_rocm.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev2\lyra441p2_gfx9_amdcl2.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev2\lyra441p2_gfx9_rocm.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev3\lyra441p2.cl.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev3\lyra441p2_gfx6_amdcl2.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev3\lyra441p2_gfx7_amdcl2.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev3\lyra441p2_gfx8_amdcl2.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev3\lyra441p2_gfx8_rocm.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev3\lyra441p2_gfx9_amdcl2.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p2\rev3\lyra441p2_gfx9_rocm.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\kernels\lyra441p3\lyra441p3.cl.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\kernels\skein\skein.cl.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\libcurl-x64.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\libgcc_s_seh-1.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\libstdc++-6.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\libwinpthread-1.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\LICENSE.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner-0.2.0-windows\lyclMiner.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner015\kernels\lyra441p3\lyra441p3.cl.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\lyclMiner015\kernels\skein\skein.cl.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\t-rex-0.9.1-win-cuda10.0\BCD-failover.bat.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\t-rex-0.9.1-win-cuda10.0\BCD-icemining.bat.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\t-rex-0.9.1-win-cuda10.0\config_example.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\t-rex-0.9.1-win-cuda10.0\msvcr71.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\t-rex-0.9.1-win-cuda10.0\RVN-gos.cx.bat.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\t-rex-0.9.1-win-cuda10.0\RVN-minermore.bat.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\t-rex-0.9.1-win-cuda10.0\t-rex-help.txt.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\t-rex-0.9.1-win-cuda10.0\t-rex.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\wildrig-multi-0.13.4-beta\kernel-baffin.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\wildrig-multi-0.13.4-beta\kernel-ellesmere.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\wildrig-multi-0.13.4-beta\kernel-fiji.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\wildrig-multi-0.13.4-beta\kernel-gfx900.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\wildrig-multi-0.13.4-beta\kernel-tonga.bin.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\wildrig-multi-0.13.4-beta\start.bat.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\MinerApps\wildrig-multi-0.13.4-beta\wildrig.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\Newtonsoft.Json.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\NLog.config.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\NLog.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\OpenHardwareMonitorLib.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\publish\setup.exe.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\Resources\Images\bitpool.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\Resources\Images\btcp.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\Resources\Images\btg.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\Resources\Images\etc.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\Resources\Images\eth.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\Resources\Images\exp.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\Resources\Images\hush.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\Resources\Images\kmd.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\Resources\Images\mona.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\Resources\Images\rvn.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\Resources\Images\suqa.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\Resources\Images\vtc.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\Resources\Images\zcl.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\Resources\Images\zencash.png.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\System.Windows.Interactivity.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\ThinkSharp.FeatureTour.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\ToastNotifications.dll.deploy" />
+    <None Include="publish\Application Files\BitPoolMiner_1_0_1_24\ToastNotifications.Messages.dll.deploy" />
     <None Include="publish\BitPoolMiner.application" />
   </ItemGroup>
   <ItemGroup>

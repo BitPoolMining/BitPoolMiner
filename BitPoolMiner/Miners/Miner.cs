@@ -102,6 +102,10 @@ namespace BitPoolMiner.Miners
             {
                 MinerArguments = MinerArguments + " -c configSUQA.json";
             }
+            else if (MinerBaseType == MinerBaseType.CCMiner && CoinType == CoinType.VTC)
+            {
+                MinerArguments = MinerArguments.Replace("lyra2v2", "lyra2v3");
+            }
         }
 
         /// <summary>

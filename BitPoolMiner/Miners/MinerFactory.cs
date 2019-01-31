@@ -47,6 +47,9 @@ namespace BitPoolMiner.Miners
                 case MinerBaseType.CryptoDredge:
                     return new CryptoDredge(hardwareType, minerBaseType);
 
+                case MinerBaseType.LyclMiner:
+                    return new LyclMiner(hardwareType, minerBaseType, is64Bit);
+
                 default:
                     throw new ApplicationException(string.Format("The miner base type {0} is not yet supported.", minerBaseType.ToString()));
             }
