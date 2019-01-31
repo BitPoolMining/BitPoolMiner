@@ -1,0 +1,6 @@
+<Global TerminalColors = "false"
+        ExtraNonce = "true">
+<Connection Url = "stratum+tcp://us-east.vtc.bitpoolmining.com:3096"
+            Username = "user"
+            Password = "xxxxuserxxxx">
+<Device0 DeviceIndex = "0" BinaryFormat = "amdcl2" AsmProgram = "gfx8" WorkSize = "1048576">

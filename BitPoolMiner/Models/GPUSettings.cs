@@ -176,6 +176,7 @@ namespace BitPoolMiner.Models
                     break;
                 case CoinType.VTC:
                     minerBaseTypeList.Add(MinerBaseType.CCMiner);
+                    minerBaseTypeList.Add(MinerBaseType.CryptoDredge);
                     minerBaseTypeList.Add(MinerBaseType.LyclMiner);
                     break;
                 case CoinType.RVN:
