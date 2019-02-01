@@ -138,6 +138,12 @@ namespace BitPoolMiner.ViewModels
             // Call API and retrieve a list of miner configurations used to start mining
             List<MinerConfigResponse> minerConfigResponseList = GetMinerConfigurations();
 
+            // Build the Request to call the API and retrieve the miner config strings
+            List<AccountWallet> accountWalletList = new List<AccountWallet>();
+
+            // Get configurations needed for building API request from Application settings
+            accountWalletList = (List<AccountWallet>)Application.Current.Properties["AccountWalletList"];
+
             // Iterate through returned responses from API and initialize miners
             foreach (MinerConfigResponse minerConfigResponse in minerConfigResponseList)
             {
@@ -145,6 +151,7 @@ namespace BitPoolMiner.ViewModels
                 Miner miner = MinerFactory.CreateMiner(minerConfigResponse.MinerBaseType, minerConfigResponse.HardwareType);
                 miner.CoinType = minerConfigResponse.CoinSelectedForMining;
                 miner.MinerArguments = minerConfigResponse.MinerConfigString;
+                miner.Address = accountWalletList.Find(x => x.CoinType == miner.CoinType).WalletAddress;
                 MiningSession.AddMiner(miner);
                 ShowInformation(string.Format("Mining started {0} {1}", minerConfigResponse.MinerBaseType, minerConfigResponse.MinerConfigString));
             }

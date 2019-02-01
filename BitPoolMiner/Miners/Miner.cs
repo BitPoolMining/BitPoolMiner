@@ -19,7 +19,7 @@ namespace BitPoolMiner.Miners
         private const int MinerRestartDelay = 2000; // 2 second delay
 
         protected BPMProcess MinerProcess;
-        public string Address { get; private set; }
+        public string Address { get; set; }
         public string MinerName { get; private set; }
         public string MinerWorkingDirectory { get; protected set; }
         public string MinerArguments { get; set; }
