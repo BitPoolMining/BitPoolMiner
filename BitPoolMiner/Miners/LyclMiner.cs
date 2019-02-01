@@ -79,7 +79,7 @@ namespace BitPoolMiner.Miners
 
             // Replace address with correct address
             string text = File.ReadAllText(currentConfig);
-            text = text.Replace("xxxxuserxxxx", "new value");
+            text = text.Replace("xxxxuserxxxx", string.Format("{0}.BPM", Address));
             File.WriteAllText(currentConfig, text);
         }
 
