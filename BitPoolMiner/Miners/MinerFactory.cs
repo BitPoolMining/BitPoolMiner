@@ -20,21 +20,6 @@ namespace BitPoolMiner.Miners
                 case MinerBaseType.CCMiner:
                     return new Ccminer(hardwareType, minerBaseType, is64Bit);
 
-                case MinerBaseType.CCMinerNanashi:
-                    return new CCMinerForkNanashi(hardwareType, minerBaseType);
-
-                case MinerBaseType.CCMinerRaven:
-                    return new CCMinerForkRaven(hardwareType, minerBaseType);
-
-                case MinerBaseType.EWBF:
-                    return new EWBF(hardwareType, minerBaseType);
-
-                case MinerBaseType.EWBF_NO_ASIC:
-                    return new EWBF_NO_ASIC(hardwareType, minerBaseType);
-
-                case MinerBaseType.DSTM:
-                    return new DSTM(hardwareType, minerBaseType);
-
                 case MinerBaseType.Claymore:
                     return new Claymore(hardwareType, minerBaseType);
 

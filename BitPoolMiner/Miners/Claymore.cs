@@ -20,7 +20,7 @@ namespace BitPoolMiner.Miners
     {
         public Claymore(HardwareType hardwareType, MinerBaseType minerBaseType) : base("Claymore", hardwareType, minerBaseType)
         {
-            MinerWorkingDirectory = Path.Combine(Utils.Core.GetBaseMinersDir(), "Claymore");
+            MinerWorkingDirectory = Path.Combine(Utils.Core.GetBaseMinersDir(), "claymore_v14.6");
             MinerFileName = "EthDcrMiner64.exe";
 
             ApiPort = 2882;
@@ -160,7 +160,7 @@ namespace BitPoolMiner.Miners
                         {
                             AccountGuid = (Guid)Application.Current.Properties["AccountID"],
                             WorkerName = Application.Current.Properties["WorkerName"].ToString(),
-                            CoinType = this.CoinType,
+                            CoinType = this.CoinType.ToString(),
                             GPUID = i,
                             // Returned hashrate is in MH. Format later, return in KH/s same as CCMiner for now
                             HashRate = Convert.ToDecimal(hashRates[i]) * 1024,

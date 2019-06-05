@@ -12,15 +12,23 @@ namespace BitPoolMiner.Formatter
         {
             try
             {
+                ObservableCollection<MinerMonitorStat> minerMonitorStatListSupported = new ObservableCollection<MinerMonitorStat>();
                 foreach (MinerMonitorStat minerMonitorStat in minerMonitorStatList)
                 {
+                    // Skip unsupported coin types                    
+                    if (Enum.IsDefined(typeof(CoinType), minerMonitorStat.CoinType) == false)
+                        continue;
+
                     // Update coin logo for each miner
                     CoinLogos.CoinLogoDictionary.TryGetValue(minerMonitorStat.CoinType, out string logoSourceLocation);
                     if (minerMonitorStat.CoinType != CoinType.UNDEFINED)
                         minerMonitorStat.CoinLogo = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, logoSourceLocation);
+
+                    minerMonitorStatListSupported.Add(minerMonitorStat);
+
                 }
 
-                return minerMonitorStatList;
+                return minerMonitorStatListSupported;
             }
             catch (Exception ex)
             {

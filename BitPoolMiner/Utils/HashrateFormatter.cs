@@ -27,9 +27,9 @@ namespace BitPoolMiner.Utils
         /// <returns></returns>
         public static string Format(CoinType coinType, decimal bytes)
         {
-            if (coinType == CoinType.HUSH || coinType == CoinType.KMD)
-                return FormatEWBFHashrate(bytes);
-            else
+            //if (coinType == CoinType.HUSH || coinType == CoinType.KMD)
+            //    return FormatEWBFHashrate(bytes);
+            //else
                 return FormatCCMinerHashrate(bytes);
         }
 
@@ -86,10 +86,7 @@ namespace BitPoolMiner.Utils
         /// <returns></returns>
         public static double FormatNumeric(CoinType coinType, decimal bytes)
         {
-            if (coinType == CoinType.HUSH || coinType == CoinType.KMD)
-                return FormatEWBFHashrateNumeric(bytes);
-            else
-                return FormatCCMinerHashrateNumeric(bytes);
+            return FormatCCMinerHashrateNumeric(bytes);
         }
 
         /// <summary>

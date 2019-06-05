@@ -157,7 +157,7 @@ namespace BitPoolMiner.Miners
                         {
                             AccountGuid = (Guid)Application.Current.Properties["AccountID"],
                             WorkerName = Application.Current.Properties["WorkerName"].ToString(),
-                            CoinType = this.CoinType,
+                            CoinType = this.CoinType.ToString(),
                             GPUID = gpuCounter,//wildRigGPU.device_id,
                             HashRate = wildRigGPU[0],
                             FanSpeed = 0,//(short)wildRigGPU.fan_speed,

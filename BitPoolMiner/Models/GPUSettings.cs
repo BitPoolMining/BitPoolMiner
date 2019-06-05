@@ -1,5 +1,7 @@
 ﻿using BitPoolMiner.Enums;
 using BitPoolMiner.ViewModels.Base;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 
@@ -44,15 +46,19 @@ namespace BitPoolMiner.Models
         /// What should this card mine?
         /// </summary>
         private CoinType coinSelectedForMining;
+
+        [JsonConverter(typeof(StringEnumConverter))]
         public CoinType CoinSelectedForMining
         {
             get
             {
-                return coinSelectedForMining;
+                return coinSelectedForMining; ;
             }
             set
             {
+
                 coinSelectedForMining = value;
+
                 minerBaseTypeList = SetMinerBaseType();
 
                 if (minerBaseTypeList.Count > 0)
@@ -104,14 +110,13 @@ namespace BitPoolMiner.Models
             {
                 coinTypeList.Add(CoinType.ETC);
                 coinTypeList.Add(CoinType.RVN);
-                coinTypeList.Add(CoinType.SUQA);
                 coinTypeList.Add(CoinType.VTC);
             }
             else if (HardwareType == HardwareType.Nvidia)
             {
+                coinTypeList.Add(CoinType.ETC);
                 coinTypeList.Add(CoinType.VTC);
                 coinTypeList.Add(CoinType.RVN);
-                coinTypeList.Add(CoinType.SUQA);
             }
 
             return coinTypeList;
@@ -135,44 +140,10 @@ namespace BitPoolMiner.Models
         private List<MinerBaseType> SetMinerBaseType()
         {
             List<MinerBaseType> minerBaseTypeList = new List<MinerBaseType>();
-
-            switch (CoinSelectedForMining)
+            switch (coinSelectedForMining)
             {
-                case CoinType.EXP:
-                    minerBaseTypeList.Add(MinerBaseType.Claymore);
-                    break;
-                case CoinType.ETH:
-                    minerBaseTypeList.Add(MinerBaseType.Claymore);
-                    break;
                 case CoinType.ETC:
                     minerBaseTypeList.Add(MinerBaseType.Claymore);
-                    break;
-                case CoinType.HUSH:
-                    minerBaseTypeList.Add(MinerBaseType.DSTM);
-                    minerBaseTypeList.Add(MinerBaseType.EWBF);
-                    break;
-                case CoinType.KMD:
-                    minerBaseTypeList.Add(MinerBaseType.DSTM);
-                    minerBaseTypeList.Add(MinerBaseType.EWBF);
-                    break;
-                case CoinType.BTG:
-                    minerBaseTypeList.Add(MinerBaseType.EWBF_NO_ASIC);
-                    break;
-                case CoinType.BTCP:
-                    minerBaseTypeList.Add(MinerBaseType.DSTM);
-                    minerBaseTypeList.Add(MinerBaseType.EWBF);
-                    break;
-                case CoinType.ZEN:
-                    minerBaseTypeList.Add(MinerBaseType.DSTM);
-                    minerBaseTypeList.Add(MinerBaseType.EWBF);
-                    break;
-                case CoinType.ZCL:
-                    minerBaseTypeList.Add(MinerBaseType.DSTM);
-                    minerBaseTypeList.Add(MinerBaseType.EWBF);
-                    break;
-                case CoinType.MONA:
-                    minerBaseTypeList.Add(MinerBaseType.CCMiner);
-                    minerBaseTypeList.Add(MinerBaseType.CCMinerNanashi);
                     break;
                 case CoinType.VTC:
                     minerBaseTypeList.Add(MinerBaseType.CCMiner);
@@ -182,11 +153,6 @@ namespace BitPoolMiner.Models
                 case CoinType.RVN:
                     minerBaseTypeList.Add(MinerBaseType.CryptoDredge);
                     minerBaseTypeList.Add(MinerBaseType.TRex);
-                    minerBaseTypeList.Add(MinerBaseType.WildRig);
-                    break;
-                case CoinType.SUQA:
-                    minerBaseTypeList.Add(MinerBaseType.TRex);
-                    minerBaseTypeList.Add(MinerBaseType.CryptoDredge);
                     minerBaseTypeList.Add(MinerBaseType.WildRig);
                     break;
             }

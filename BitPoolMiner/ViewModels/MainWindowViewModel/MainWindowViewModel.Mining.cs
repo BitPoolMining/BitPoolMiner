@@ -151,7 +151,7 @@ namespace BitPoolMiner.ViewModels
                 Miner miner = MinerFactory.CreateMiner(minerConfigResponse.MinerBaseType, minerConfigResponse.HardwareType);
                 miner.CoinType = minerConfigResponse.CoinSelectedForMining;
                 miner.MinerArguments = minerConfigResponse.MinerConfigString;
-                miner.Address = accountWalletList.Find(x => x.CoinType == miner.CoinType).WalletAddress;
+                miner.Address = accountWalletList.Find(x => x.CoinType == miner.CoinType.ToString()).WalletAddress;
                 MiningSession.AddMiner(miner);
                 ShowInformation(string.Format("Mining started {0} {1}", minerConfigResponse.MinerBaseType, minerConfigResponse.MinerConfigString));
             }
