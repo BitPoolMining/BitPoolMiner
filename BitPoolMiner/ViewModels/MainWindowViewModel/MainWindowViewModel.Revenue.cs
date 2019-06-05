@@ -107,11 +107,11 @@ namespace BitPoolMiner.ViewModels
             // Set the decimal seperator
             format.NumberDecimalSeparator = ".";
 
-            if (minerMonitorStat.CoinType == CoinType.MONA || minerMonitorStat.CoinType == CoinType.VTC)
+            if (minerMonitorStat.CoinType == CoinType.VTC)
             {
                 nameValueCollection.Add("hr", (minerMonitorStat.HashRate / 1000).ToString(format));
             }
-            else if (minerMonitorStat.CoinType == CoinType.EXP || minerMonitorStat.CoinType == CoinType.ETC || minerMonitorStat.CoinType == CoinType.ETH || minerMonitorStat.CoinType == CoinType.RVN || minerMonitorStat.CoinType == CoinType.SUQA)
+            else if (minerMonitorStat.CoinType == CoinType.ETC || minerMonitorStat.CoinType == CoinType.RVN)
             {
                 // Expects MH/s
                 nameValueCollection.Add("hr", (minerMonitorStat.HashRate / 1000000).ToString(format));

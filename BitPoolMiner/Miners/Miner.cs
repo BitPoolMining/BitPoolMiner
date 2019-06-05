@@ -83,24 +83,12 @@ namespace BitPoolMiner.Miners
         /// </summary>
         private void FormatPerMinerCoinCombo()
         {
-            // DS - Hotfix for SUQA/TREX algo type
+            // DS - Hotfix for Coin/Miner algo type
             // TODO - Fix this shit
-            if (MinerBaseType == MinerBaseType.TRex && CoinType == CoinType.SUQA)
-            {
-                MinerArguments = MinerArguments.Replace("x16r", "x22i");
-            }
-            else if (MinerBaseType == MinerBaseType.WildRig && CoinType == CoinType.SUQA)
-            {
-                MinerArguments = MinerArguments.Replace("x16r", "x22i");
-            }
-            else if (MinerBaseType == MinerBaseType.CryptoDredge && CoinType == CoinType.RVN)
+            if (MinerBaseType == MinerBaseType.CryptoDredge && CoinType == CoinType.RVN)
             {
                 //MinerArguments = MinerArguments.Replace("X22i", "x16r");
                 MinerArguments = MinerArguments + " -c configRVN.json";
-            }
-            else if (MinerBaseType == MinerBaseType.CryptoDredge && CoinType == CoinType.SUQA)
-            {
-                MinerArguments = MinerArguments + " -c configSUQA.json";
             }
             else if (MinerBaseType == MinerBaseType.CryptoDredge && CoinType == CoinType.VTC)
             {

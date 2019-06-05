@@ -1,5 +1,6 @@
 ﻿using BitPoolMiner.Enums;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,7 +26,8 @@ namespace BitPoolMiner.Models
         /// <summary>
         /// Current coin being mined
         /// </summary>
-        public Enums.CoinType CoinType { get; set; }
+        [JsonConverter(typeof(StringEnumConverter))]
+        public CoinType CoinType { get; set; }
 
         /// <summary>
         /// Current GPU HashRate

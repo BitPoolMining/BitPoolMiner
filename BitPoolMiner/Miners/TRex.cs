@@ -23,7 +23,7 @@ namespace BitPoolMiner.Miners
         {
             string versionedDirectory = "";
             MinerFileName = "t-rex.exe";
-            versionedDirectory = "t-rex-0.9.1-win-cuda10.0";
+            versionedDirectory = "t-rex-0.11.0-win-cuda10.0";
             MinerWorkingDirectory = Path.Combine(Utils.Core.GetBaseMinersDir(), versionedDirectory);
 
             ApiPort = 4067;
@@ -86,8 +86,7 @@ namespace BitPoolMiner.Miners
         {
             try
             {
-                // Build WhatToMine API URL from Coin ID Dictionary to get expected coin ID
-                string apiURL = String.Format("http://{0}:{1}/summary", HostName, ApiPort);
+                 string apiURL = String.Format("http://{0}:{1}/summary", HostName, ApiPort);
                 TRexTemplate trexTemplate = DownloadSerializedJSONData<TRexTemplate>(apiURL);
 
                 return trexTemplate;
@@ -154,7 +153,7 @@ namespace BitPoolMiner.Miners
                         {
                             AccountGuid = (Guid)Application.Current.Properties["AccountID"],
                             WorkerName = Application.Current.Properties["WorkerName"].ToString(),
-                            CoinType = this.CoinType,
+                            CoinType = this.CoinType.ToString(),
                             GPUID = trexGPU.device_id,
                             HashRate = trexGPU.hashrate,
                             FanSpeed = (short)trexGPU.fan_speed,

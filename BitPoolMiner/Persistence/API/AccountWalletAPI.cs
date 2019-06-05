@@ -35,21 +35,33 @@ namespace BitPoolMiner.Persistence.API
 
                 apiURL = APIConstants.APIURL + APIEndpoints.GetAccountWallet;
                 List<AccountWallet> accountWalletList = DownloadSerializedJSONData<List<AccountWallet>>(apiURL, nameValueCollection);
+                List<AccountWallet> accountWalletListSupported = new List<AccountWallet>();
 
                 // Update all AccountGuid properties in case they are returned null when there is no pre-existing wallet addresses saved for this account
                 accountWalletList = accountWalletList.Select(c => { c.AccountGuid = (Guid)Application.Current.Properties["AccountID"]; return c; }).ToList();
 
-                // Update coin logo
+                // Update coin logo and build supported wallet list
                 foreach (AccountWallet accountWallet in accountWalletList)
                 {
-                    CoinLogos.CoinLogoDictionary.TryGetValue(accountWallet.CoinType, out string logoSourceLocation);
+                    // Skip unsupported coin types                    
+                    if (Enum.IsDefined(typeof(CoinType), accountWallet.CoinType) == false)
+                    {
+                        continue;
+                    }
+
+                    CoinType coinType = CoinType.UNDEFINED;
+                    Enum.TryParse(accountWallet.CoinType, out coinType);
+
+                    CoinLogos.CoinLogoDictionary.TryGetValue(coinType, out string logoSourceLocation);
                     string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, logoSourceLocation);
                     if (accountWallet.WalletAddress == null)
                         accountWallet.WalletAddress = "";
                     accountWallet.CoinLogo = path;
+                                       
+                    accountWalletListSupported.Add(accountWallet);
                 }
 
-                return accountWalletList;
+                return accountWalletListSupported;
             }
             catch (Exception e)
             {

@@ -182,7 +182,7 @@ namespace BitPoolMiner.Miners
 
                     gpuMonitorStat.AccountGuid = (Guid)Application.Current.Properties["AccountID"];
                     gpuMonitorStat.WorkerName = Application.Current.Properties["WorkerName"].ToString();
-                    gpuMonitorStat.CoinType = CoinType;
+                    gpuMonitorStat.CoinType = CoinType.ToString();
                     gpuMonitorStat.GPUID = Convert.ToInt32(gpuNumber);
                     //gpuMonitorStat.HashRate = (Convert.ToDecimal(gpuHash["KHS"]));
                     //gpuMonitorStat.FanSpeed = Convert.ToInt16(gpuHw["FAN"]);

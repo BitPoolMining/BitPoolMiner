@@ -21,7 +21,7 @@ namespace BitPoolMiner.Models
         /// <summary>
         /// Current coin being mined
         /// </summary>
-        public CoinType CoinType { get; set; }
+        public string CoinType { get; set; }
 
         /// <summary>
         /// ID of GPU

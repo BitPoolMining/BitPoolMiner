@@ -64,8 +64,8 @@ namespace BitPoolMiner.Utils.OpenHardwareMonitor
                             nvidiaCount++;
 
                             gpuSettings.HardwareType = Enums.HardwareType.Nvidia;
-                            gpuSettings.CoinSelectedForMining = Enums.CoinType.HUSH;
-                            gpuSettings.MinerBaseType = Enums.MinerBaseType.EWBF;
+                            gpuSettings.CoinSelectedForMining = Enums.CoinType.RVN;
+                            gpuSettings.MinerBaseType = Enums.MinerBaseType.CryptoDredge;
 
                         }
                         else if (hardwareItem.HardwareType == HardwareType.GpuAti)
@@ -76,7 +76,7 @@ namespace BitPoolMiner.Utils.OpenHardwareMonitor
                             amdCount++;
 
                             gpuSettings.HardwareType = Enums.HardwareType.AMD;
-                            gpuSettings.CoinSelectedForMining = Enums.CoinType.EXP;
+                            gpuSettings.CoinSelectedForMining = Enums.CoinType.ETC;
                             gpuSettings.MinerBaseType = Enums.MinerBaseType.Claymore;
                         }
 

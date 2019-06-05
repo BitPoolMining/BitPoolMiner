@@ -32,7 +32,7 @@ namespace BitPoolMiner.Models
         /// <summary>
         /// Internal enum value
         /// </summary>
-        public CoinType CoinType { get; set; }
+        public string CoinType { get; set; }
 
         /// <summary>
         /// Is the coin currently supported by the pool?
