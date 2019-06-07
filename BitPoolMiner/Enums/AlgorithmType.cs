@@ -6,6 +6,7 @@
         Equihash,
         Lyra2REv2,
         EthHash,
-        x16R
+        x16R,
+        CryptoNightR
     }
 }

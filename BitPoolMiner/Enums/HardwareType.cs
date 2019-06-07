@@ -4,6 +4,7 @@
     {
         UNDEFINED,
         AMD,
-        Nvidia
+        Nvidia,
+        CPU
     }
 }

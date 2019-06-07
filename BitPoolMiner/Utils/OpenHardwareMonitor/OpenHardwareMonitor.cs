@@ -21,13 +21,15 @@ namespace BitPoolMiner.Utils.OpenHardwareMonitor
                 Computer myComputer = new Computer();
                 myComputer.Open();
                 myComputer.GPUEnabled = true;
+                myComputer.CPUEnabled = true;
 
                 int nvidiaCount = 0;
-                int amdCount = 0; 
+                int amdCount = 0;
+                int cpuCount = 0;
 
                 foreach (var hardwareItem in myComputer.Hardware)
                 {
-                    if (hardwareItem.HardwareType == HardwareType.GpuNvidia || hardwareItem.HardwareType == HardwareType.GpuAti)
+                    if (hardwareItem.HardwareType == HardwareType.GpuNvidia || hardwareItem.HardwareType == HardwareType.GpuAti || hardwareItem.HardwareType == HardwareType.CPU)
                     {
                         GPUSettings gpuSettings = new GPUSettings();
 
@@ -65,7 +67,7 @@ namespace BitPoolMiner.Utils.OpenHardwareMonitor
 
                             gpuSettings.HardwareType = Enums.HardwareType.Nvidia;
                             gpuSettings.CoinSelectedForMining = Enums.CoinType.RVN;
-                            gpuSettings.MinerBaseType = Enums.MinerBaseType.CryptoDredge;
+                            gpuSettings.MinerBaseType = Enums.MinerBaseType.TRex;
 
                         }
                         else if (hardwareItem.HardwareType == HardwareType.GpuAti)
@@ -78,6 +80,16 @@ namespace BitPoolMiner.Utils.OpenHardwareMonitor
                             gpuSettings.HardwareType = Enums.HardwareType.AMD;
                             gpuSettings.CoinSelectedForMining = Enums.CoinType.ETC;
                             gpuSettings.MinerBaseType = Enums.MinerBaseType.Claymore;
+                        }
+
+                        else if (hardwareItem.HardwareType == HardwareType.CPU)
+                        {
+                            gpuSettings.GPUID = cpuCount;
+                            amdCount++;
+
+                            gpuSettings.HardwareType = Enums.HardwareType.CPU;
+                            gpuSettings.CoinSelectedForMining = Enums.CoinType.XMR;
+                            gpuSettings.MinerBaseType = Enums.MinerBaseType.XMRig;
                         }
 
                         // Add GPU settings to list
