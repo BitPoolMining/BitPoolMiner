@@ -1,5 +1,5 @@
 # BitPoolMiner - Open Source GPU Miner and GPU Monitor
-GPU Mining and Monitoring App that is free to use and open source.  Written to work specifically with www.bitpoolmining.com.  You can get full details of BPM here www.bitpoolmining.com/bpm
+GPU Mining, CPU Mining and Monitoring App that is free to use and open source.  Written to work specifically with www.bitpoolmining.com.  You can get full details of BPM here www.bitpoolmining.com/bpm
 
 Lots of features:
 * Allows remote monitoring of workers and all gpus, including hashrates, temps, fan speed, power, etc.
@@ -28,12 +28,11 @@ Add an exclusion to the folder C:\Users\username\AppData\Local\Apps\2.0
 
 ### Supported Coins and Miners
 
-| Coins | NVidia Miner | AMD Miner |
-| ------------- | ------------- | ------------- |
-| ETC | N/A | Claymore |
-| RVN | TRex, Ravencoin Miner | WildRig |
-| SUQA | CryptoDredge | N/A |
-| VTC | CCMiner, CCMinerNanashi | N/A |
-| HUSH | DSTM, EWBF | N/A |
+| Coins | NVidia Miner | AMD Miner | CPU Miner |
+| ------------- | ------------- | ------------- | ------------- |
+| ETC | Claymore | Claymore | N/A |
+| RVN | TRex, CryptoDredge | WildRig | N/A |
+| XMR | XMRig | XMRig | XMRig |
+| VTC | CryptoDredge | Lyclminer | N/A |
 
 
