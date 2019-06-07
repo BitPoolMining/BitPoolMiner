@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace BitPoolMiner.Models
 {
@@ -47,6 +48,7 @@ namespace BitPoolMiner.Models
         /// </summary>
         private CoinType coinSelectedForMining;
 
+        [DefaultValue(CoinType.UNDEFINED)]
         [JsonConverter(typeof(StringEnumConverter))]
         public CoinType CoinSelectedForMining
         {
@@ -109,6 +111,7 @@ namespace BitPoolMiner.Models
             if (HardwareType == HardwareType.AMD)
             {
                 coinTypeList.Add(CoinType.ETC);
+                coinTypeList.Add(CoinType.XMR);
                 coinTypeList.Add(CoinType.RVN);
                 coinTypeList.Add(CoinType.VTC);
             }
@@ -117,6 +120,11 @@ namespace BitPoolMiner.Models
                 coinTypeList.Add(CoinType.ETC);
                 coinTypeList.Add(CoinType.VTC);
                 coinTypeList.Add(CoinType.RVN);
+                coinTypeList.Add(CoinType.XMR);
+            }
+            else if (HardwareType == HardwareType.CPU)
+            {
+                coinTypeList.Add(CoinType.XMR);
             }
 
             return coinTypeList;
@@ -154,6 +162,11 @@ namespace BitPoolMiner.Models
                     minerBaseTypeList.Add(MinerBaseType.CryptoDredge);
                     minerBaseTypeList.Add(MinerBaseType.TRex);
                     minerBaseTypeList.Add(MinerBaseType.WildRig);
+                    break;
+                case CoinType.XMR:
+                    minerBaseTypeList.Add(MinerBaseType.XMRig);
+                    minerBaseTypeList.Add(MinerBaseType.XMRigAMD);
+                    minerBaseTypeList.Add(MinerBaseType.XMRigNvidia);
                     break;
             }
 

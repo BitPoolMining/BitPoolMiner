@@ -35,6 +35,9 @@ namespace BitPoolMiner.Miners
                 case MinerBaseType.LyclMiner:
                     return new LyclMiner(hardwareType, minerBaseType, is64Bit);
 
+                case MinerBaseType.XMRig:
+                    return new XMRig(hardwareType, minerBaseType);
+
                 default:
                     throw new ApplicationException(string.Format("The miner base type {0} is not yet supported.", minerBaseType.ToString()));
             }

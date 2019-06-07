@@ -8,6 +8,9 @@
         LyclMiner,
         TRex,
         WildRig,
-        CryptoDredge
+        CryptoDredge,
+        XMRig,
+        XMRigNvidia,
+        XMRigAMD
     }
 }

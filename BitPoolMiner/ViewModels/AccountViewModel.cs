@@ -545,31 +545,27 @@ namespace BitPoolMiner.ViewModels
 
         #region MinerTypeExtraParams
 
-        private bool ValidateMinerTypeExtraParams(ObservableCollection<AccountMinerTypeExtraParams> minerTypeExtraParamsValidateList)
+        private ObservableCollection<AccountMinerTypeExtraParams> ValidateMinerTypeExtraParams(ObservableCollection<AccountMinerTypeExtraParams> minerTypeExtraParamsValidateList)
         {
-            bool isValid = true;
+            ObservableCollection<AccountMinerTypeExtraParams> filteredMinerTypeExtraParamsList = new ObservableCollection<AccountMinerTypeExtraParams>();
 
             foreach (AccountMinerTypeExtraParams minerTypeExtraParams in minerTypeExtraParamsValidateList)
             {
-                // Validate that miner type is set
-                if (minerTypeExtraParams.MinerBaseType == MinerBaseType.UNDEFINED)
+                // Remove invalid or stale entries
+                if (minerTypeExtraParams.MinerBaseType != MinerBaseType.UNDEFINED)
                 {
-                    ShowError("Please select a miner type");
-                    isValid = false;
+                    filteredMinerTypeExtraParamsList.Add(minerTypeExtraParams);
                 }
             }
 
-            return isValid;
+            return filteredMinerTypeExtraParamsList;
         }
 
         public void PersistMinerTypeExtraParams(object param)
         {
             try
             {
-                if (ValidateMinerTypeExtraParams(AccountMinerTypeExtraParamsList) == false)
-                {
-                    return;
-                }
+                AccountMinerTypeExtraParamsList = ValidateMinerTypeExtraParams(AccountMinerTypeExtraParamsList);
 
                 // Write GUID to account identity config file
                 MinerTypeExtraParamsFile minerTypeExtraParamsFile = new MinerTypeExtraParamsFile();

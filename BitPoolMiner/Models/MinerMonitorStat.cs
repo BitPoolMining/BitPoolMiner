@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Windows;
 
@@ -26,6 +27,7 @@ namespace BitPoolMiner.Models
         /// <summary>
         /// Current coin being mined
         /// </summary>
+        [DefaultValue(CoinType.UNDEFINED)]
         [JsonConverter(typeof(StringEnumConverter))]
         public CoinType CoinType { get; set; }
 

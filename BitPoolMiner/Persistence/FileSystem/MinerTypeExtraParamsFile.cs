@@ -7,6 +7,7 @@ using BitPoolMiner.Utils;
 using BitPoolMiner.Enums;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace BitPoolMiner.Persistence.FileSystem
 {
@@ -21,6 +22,20 @@ namespace BitPoolMiner.Persistence.FileSystem
         /// <param name="accountMinerTypeExtraParamsList"></param>
         public void WriteJsonToFile(ObservableCollection<AccountMinerTypeExtraParams> accountMinerTypeExtraParamsList)
         {
+
+            // Iterate through MinerBaseTypes and insert any missing miners to the list of
+            // extra params
+            foreach (MinerBaseType minerBaseType in Enum.GetValues(typeof(MinerBaseType)))
+            {   
+                if (accountMinerTypeExtraParamsList.Any(x => x.MinerBaseTypeString == minerBaseType.ToString()) == false && minerBaseType != MinerBaseType.UNDEFINED)
+                {
+                    AccountMinerTypeExtraParams accountMinerTypeExtraParams = new AccountMinerTypeExtraParams();
+                    accountMinerTypeExtraParams.ExtraParams = "";
+                    accountMinerTypeExtraParams.MinerBaseTypeString = minerBaseType.ToString();
+                    accountMinerTypeExtraParamsList.Add(accountMinerTypeExtraParams);
+                }
+            }
+
             string filePath = Path.Combine(FileConstants.ConfigFilePath(), FileNameConstants.MinerTypeExtraParamsFileName);
 
             try

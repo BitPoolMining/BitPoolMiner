@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BitPoolMiner.Models.RPCResponse
 {
@@ -58,6 +54,5 @@ namespace BitPoolMiner.Models.RPCResponse
         public int power { get; set; }
         public int disabled_at_temperature { get; set; }
     }
-
 }
 
